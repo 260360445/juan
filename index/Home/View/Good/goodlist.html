@@ -1,0 +1,751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>"></meta>
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>"></meta>
+<meta name="renderer" content="webkit"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE = edge"></meta>
+<title> 
+<?php if($type == 'yes'){?>
+    <{$info.goods_title}>
+<?php }else{?>
+    该商品已删除或已下架
+<?php } ?>
+
+</title>
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon"/>
+<link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/comm.min.css"></link>
+<link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/footer_header.min.css"></link>
+<link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/index.min.css"></link>
+<link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/new_join.min.css">
+<link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/login_box/login_box.min.css">
+<link rel="stylesheet" type="text/css" href="/Public/Home/static/css/front/c_cloud.css"></link>
+<link rel="stylesheet" type="text/css" href="/Public/Home/static/css/front/goods.css"></link>
+<link rel="stylesheet" type="text/css" href="/Public/Home/static/css/front/s_goods.css"></link>
+<link rel="stylesheet" href="/Public/Home/static/userCenter/css/login.css"/>
+<link rel="stylesheet" href="/Public/Home/static/css/front/login_box/login_box.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/css/page.css"/>
+<style>
+    .w_rob_another.y_rob_another dd {
+        width: 211px;
+        margin: 0px 20px;
+        height: 50px;
+    }
+
+    .w_rob_another.y_rob_another dd a {
+        height: 50px;
+        line-height: 50px;
+        font-size: 20px;
+    }
+
+    .w_rob_another.y_rob_another dd.w_slip_out a {
+        background: #ffb922;
+    }
+
+    .w_rob_another.y_rob_another dd.w_slip_out a:hover {
+        background: #ffa200;
+    }
+
+    .w_rob_another.y_rob_another dd.w_slip_out {
+        margin-right: 0px;
+    }
+
+    .w_spans_bg {
+        dispaly: block;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.7;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    .w_addss_img {
+        width: 100%;
+        text-align: center;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    /* 新手体验专区商品样式--S */
+    .w_greenHands {
+        width: 420px;
+        padding: 0px 25px;
+        height: 50px;
+        background: #fceaea;
+        border-radius: 25px;
+        font-size: 14px;
+        color: #e72500;
+        line-height: 50px;
+        margin: 0px auto 20px;
+        display: none;
+    }
+
+    .w_greenHands a {
+        font-size: 14px;
+        color: #0096ff;
+        text-decoration: underline;
+    }
+
+    /* 新手体验专区商品样式--E */
+    .c_sold_out {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 90px;
+        height: 90px;
+    }
+
+    .c_sold_out img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .loginContent {
+        padding: 0px 0 0;
+    }
+
+    .loginContent form {
+        padding-top: 30px;
+    }
+
+    /* S 2015-11-30 新增  */
+    .a_login_register_box {
+        height: 375px;
+    }
+
+    .ygqq_b {
+        background: #e7e7e7 none repeat scroll 0 0;
+        display: block;
+        float: left;
+        height: 1px;
+        margin-top: 7px;
+        width: 107px;
+    }
+
+    /*E 2015-11-30 新增  */
+    /*S 2015-12-1 新增  */
+    body {
+        min-width: 1210px;
+        background-color: #f5f5f5;
+    }
+
+    /*E 2015-12-1 新增  */
+    .tm-fcs-panel {
+        background-color: #e9e9e9;
+        background-repeat: no-repeat;
+        backgroung-position: left 0;
+        position: relative;
+        left: 0;
+        z-index: 10;
+        font: 12px/1.5 "Microsoft Yahei",tahoma,arial;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        margin-right: 5px;
+    }
+
+    .tm-price-panel {
+        position: static;
+        color: #333;
+        padding-left: 0;
+    }
+
+    .tm-fcs-panel dl dt.tb-metatit {
+        color: #999;
+        font-size: 12px;
+        text-align: left;
+        float: left;
+        width: 69px;
+        margin: 0 0 0 8px;
+    }
+
+    .tm-fcs-panel dl dd {
+        color: #333;
+        margin-left: 70px;
+        font-family: Arial;
+    }
+
+    .tm-yen {
+        font-family: arial;
+    }
+
+    .tm-price-panel .tm-price {
+        text-decoration: line-through;
+        font-size: 12px;
+    }
+
+    .tm-fcs-panel dl dt.tb-metatit {
+        color: #999;
+        font-size: 12px;
+        text-align: left;
+        float: left;
+        width: 69px;
+        margin: 0 0 0 8px;
+    }
+
+    .tm-promo-panel .tm-promo-price {
+        line-height: 24px;
+        font-size: 12px;
+        position: relative;
+    }
+
+    .tm-promo-panel.tm-promo-cur .tm-promo-price .tm-yen {
+        vertical-align: middle;
+        color: #FF0036;
+        font-size: 18px;
+        font-family: Arial;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .tm-promo-panel.tm-promo-cur .tm-promo-price .tm-price {
+        vertical-align: middle;
+        font-size: 22px;
+        color: #FF0036;
+        font-weight: bolder;
+        font-family: Arial;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .tm-promo-panel .tm-promo-price .tm-promo-type {
+        background-color: #f47a86;
+        border-radius: 1px;
+        color: #fff;
+        height: 16px;
+        line-height: 16px;
+        margin: 0 2px 4px 6px;
+        padding: 1px 5px;
+        position: relative;
+    }
+
+    .tm-promo-panel .tm-promo-price .tm-promo-type s {
+        position: absolute;
+        width: 0;
+        display: block;
+        font-size: 0;
+        left: -4px;
+        bottom: 0;
+        height: 0;
+        border: 3px solid #f47a86;
+        border-color: transparent #f47a86 #f47a86 transparent;
+    }
+
+    .tm-ind-panel {
+        border: 1px dotted #c9c9c9;
+        border-width: 1px 0;
+        margin: -1px 5px 0 0;
+        padding: 10px 0;
+        position: relative;
+        overflow: hidden;
+        clear: both;
+        display: flex;
+        list-style: none;
+    }
+
+    .tm-ind-item {
+        float: left;
+        width: 33%;
+        text-align: center;
+        position: relative;
+        left: -1px;
+        border-left: 1px solid #e5dfda;
+        flex: 1;
+        line-height: 16px;
+    }
+
+    .tm-ind-item .tm-label, .tm-ind-item .tm-monthavg {
+        display: inline-block;
+        line-height: 16px;
+        height: 16px;
+        color: #999;
+    }
+
+    .tm-ind-panel .tm-count {
+        display: inline-block;
+        line-height: 16px;
+        height: 16px;
+        color: #FF0036;
+        font-weight: 700;
+        margin-left: 3px;
+    }
+
+    .tm-ind-item .tm-label, .tm-ind-item .tm-monthavg {
+        display: inline-block;
+        line-height: 16px;
+        height: 16px;
+        color: #999;
+    }
+
+    .tm-ind-panel .tm-count {
+        display: inline-block;
+        line-height: 16px;
+        height: 16px;
+        color: #FF0036;
+        font-weight: 700;
+        margin-left: 3px;
+    }
+
+    .tm-ind-emPointCount .tm-indcon {
+        display: inline-block;
+        margin: 0 auto;
+        line-height: 16px;
+    }
+
+    .tm-ind-item .tm-label, .tm-ind-item .tm-monthavg {
+        display: inline-block;
+        line-height: 16px;
+        height: 16px;
+        color: #999;
+    }
+
+    .tm-ind-panel .tm-count {
+        display: inline-block;
+        line-height: 16px;
+        height: 16px;
+        color: #FF0036;
+        font-weight: 700;
+        margin-left: 3px;
+    }
+
+    .yFootBottomLeft .x_newadd_aBox {
+        width: 88px;
+        background: url(/Public/Home/static/images/wjhb.jpg) no-repeat center center;
+    }
+
+    .yFootBottomLeft .x_newadd_aBox:hover {
+        background: url(/Public/Home/static/images/wj.jpg) no-repeat center center;
+    }
+
+    .yFootBottomLeft a.s_footer_icon {
+        background-position: -481px 0;
+    }
+
+    .yFootBottomLeft a.s_footer_icon:hover {
+        background-position: -393px 0;
+    }
+
+    .yFootBottomLeft a.s_footer_icon1 {
+        background-position: -387px 0;
+    }
+
+    .yFootBottomLeft a.s_footer_icon1:hover {
+        background-position: -491px 0;
+    }
+    .w_results_right{
+        float: left;
+    }
+    .c_newest_prize_con .w_results_right{
+        width: 801px;
+        margin-left: 10px;
+    }
+    .r-fixed{
+        visibility: visible !important;
+    }
+</style>
+</head>
+<body>
+<!-- 顶部 -->
+<!-- 引入头部 -->
+<include file="public:head" />
+<!-- 引入头部 -->
+<!-- 引入左侧 -->
+<include file="public:left" />
+<!--E 2015 11 21 -->
+<!--S 遮罩背景 -->
+<!-- 引入左侧 -->
+<input type="hidden" id="mid" value="<?php echo $_SESSION['sc']['id']?>" />
+<input type="hidden" id="sta" value="<?php echo $_SESSION['sc']['status']?>" />
+<input type="hidden" value="<{$info.id}>" id="gid" />
+<?php if($type == 'yes'){?>
+<div class="w_con" id="goods_details" style="display: block;">
+    <div class="w_details_left s_details_left">
+        <h4 class="w_guide">
+            <a href="/">首页</a>
+            <a href="<{:U('Good/allgood')}>">全部商品</a>
+            <a class="w_accord" href="javascript:void(0)">商品详情</a>
+        </h4>
+        <div class="w_details_top">
+            <div class="w_details_choose" style="position:relative;">
+                <dl class="w_big_img">
+                    <!-- 大图 -->
+                    <?php 
+                        $imgarr=M('goods_imgs')->where(['gid'=>$info['id']])->order('id asc')->select();
+                    ?>
+                    <volist name="imgarr" id="list">
+                        <dd><img src="__ROOT__/Uploads<{$list['showlogo']}>"/></dd>
+                    </volist>
+                </dl>
+                <ul class="w_small_img">
+                    <i class='w_modified'></i>
+                    <volist name="imgarr" id="list" key="key">
+                        <if condition="$key eq 1">
+                            <li class="w_small_color"><img style="width:53px;height:53px;" src="__ROOT__/Uploads<{$list['showlogo']}>"/></li>
+                        <else />
+                            <li><img style="width:53px;height:53px;" src="__ROOT__/Uploads<{$list['showlogo']}>" /></li>
+                        </if>
+                    </volist>
+                    <!-- 小图 -->
+                </ul>
+                <ul class="w_security s_security">
+                    <li class="s_security_one">四大服务保证：</li>
+                    <li class="w_security_one">公平公正</li>
+                    <li class="w_security_two">正品保证</li>
+                    <li class="w_security_four">权益保障</li>
+                    <li class="w_security_three">急速配送</li>
+                    <div class="w_clear"></div>
+                </ul>
+            </div>
+            <div class="w_details_text s_details_text" style="position:relative;">
+                <div class="zhengchang s_goods_detail" style="display:;">
+                    <!-- 正常购买 -->
+                    <p id="zc_title" class="s_title">
+                        <span id="cart_period">
+                            <strong>
+                                <c id="cart_title" style="font-size:18px;"><{$info.goods_title}></c>
+                            </strong>
+                        </span>
+                        <i style="color:"></i>
+                    </p>
+                    <div class="tm-fcs-panel">
+                        <dl class="tm-price-panel" id="J_StrPriceModBox">
+                            <dt class="tb-metatit">价格</dt>
+                            <dd>
+                                <em class="tm-yen">￥</em>
+                                <span class="tm-price"><{$info.money}></span>
+                            </dd>
+                        </dl>
+                        <dl class="tm-promo-panel tm-promo-cur" id="J_PromoPrice" data-label="可用金">
+                            <dt class="tb-metatit">可用金</dt>
+                            <dd>
+                                <div class="tm-promo-price">
+                                    <em class="tm-yen">￥</em>
+                                    <span class="tm-price"><{$info.price}></span>
+                                </div>
+                            </dd>
+                            <dt class="tb-metatit">消费币</dt>
+                            <dd>
+                                <div class="tm-promo-price">
+                                    <em class="tm-yen">￥</em>
+                                    <span class="tm-price"><{$info.xfb}></span>
+                                    <em class="tm-promo-type ">
+                                        <s></s>
+                                        感恩回馈
+                                    </em>
+                                    &nbsp;&nbsp;
+                                <p></p>
+                            </dd>
+                        </dl>
+                        <dl class="tm-phoneprice">
+                            <dt class="tb-metatit">&nbsp;</dt>
+                            <dd>
+                        </dl>
+                    </div>
+                    <ul class="tm-ind-panel">
+                        <li class="tm-ind-item tm-ind-sellCount " data-label="月销量">
+                            <div class="tm-indcon">
+                                <span class="tm-label">销量</span>
+                                <span class="tm-count"><{$info.sell}></span>
+                            </div>
+                        </li>
+                        <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3" id="J_ItemRates">
+                            <div class="tm-indcon">
+                                <span class="tm-label">累计评价</span>
+                                <span class="tm-count"><{$info.comment}></span>
+                            </div>
+                        </li>
+                        <li class="tm-ind-item tm-ind-emPointCount" data-spm="1000988">
+                            <div class="tm-indcon">
+                                <span class="tm-label">库存</span>
+                                <span class="tm-count"><{$info.kucun}></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="w_cumulative w_cumulative_another">
+                        <strong>数量：</strong>
+                        <input type="text" class="w_detailsinputs w_detailsinputs_one times" onkeyup="bugTimesInput()" value="1" min="1" max="<{$info.kucun}>" maxlength="7" id="buyNum">
+                        <span class="w_subtracts_one" onclick="cutBuyTimes()"></span>
+                        <span class="w_pluss_one" onclick="addBuyTimes()"></span>
+                    </div>
+                    <dl class="w_rob w_rob_another y_rob_another s_rob">
+                        <dd>
+                            <a id="iWantyg" class="w_slip" data-gid="5" data-pid="161106202515806" href="javascript:void(0)" onclick="gotoCart('<{$info.id}>')">立即购买</a>
+                        </dd>
+                        <dd class="w_slip_out">
+                            <a class="w_slip_in" href="javascript:void(0)" onclick="cartoons('<{$info.id}>')">加入购物车</a>
+                        </dd>
+                        <div class="w_clear"></div>
+                    </dl>
+                    <!--未登录开始-->
+                </div>
+            </div>
+        </div>
+        <div class="more_product">
+            <div class="shangjia">
+                <h3><{$store['store_name']}></h3>
+                <ul>
+                    <li class="first">
+                        <h4>商品</h4>
+                        <p><{$store_good}></p>
+                    </li>
+                    <li>
+                        <h4>月售</h4>
+                        <p><{$store_sell}></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="look">
+                <h3>看了又看...</h3>
+                <div>
+                    <ul>
+                    <volist name="store_look" id="list">
+                        <li>
+                            <h4><a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><img src="__ROOT__/Uploads<{$list['goods_logo']}>" style="width: 169px;height: 169px;"></a></h4>
+                        </li>
+                    </volist>   
+                    </ul>
+                </div>
+                <span class="up"></span>
+                <span class="down"></span>
+            </div>
+        </div>
+    </div>
+    <!--揭晓前-->
+    <!--揭晓后结束-->
+    <div class="w_clear"></div>
+    <div class="w_details_bottom s_details_bottom">
+        <!--最新上架-->
+        <!--奖品详情-->
+        <div class="w_prize pgp c_newest_prize">
+            <dl class="w_calculate_nav">
+                <dd class="w_results_arrow">商品详情</dd>
+                <dd>评价</dd>
+            </dl>
+            <div style="clear: both;"></div>
+            <div class="w_calculate_con">
+                <div class="w_prize_con w_prize_img c_newest_prize_con" style="display: block;">
+                    <!-- 商品详情 -->
+                    <!-- <p>1</p> -->
+                    <div class="title"></div>
+                    <!-- <ul>
+                        <li>
+                            <div>
+                                <h3>品牌：</h3>
+                                <p>希梵（SHEVAN）</p>
+                            </div>
+                            <div>
+                                <h3>重量：</h3>
+                                <p>0.62KG</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>面料：</h3>
+                                <p>牛皮+PU</p>
+                            </div>
+                            <div>
+                                <h3>结构：</h3>
+                                <p>主袋、侧袋、拉链袋</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>功能：</h3>
+                                <p>双肩、单肩、手提</p>
+                            </div>
+                            <div>
+                                <h3>内里：</h3>
+                                <p>涤纶</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>用途：</h3>
+                                <p>上班、上学、逛街</p>
+                            </div>
+                            <div>
+                                <h3>容量：</h3>
+                                <p>雨伞、钱包、IPAD、化妆品</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>尺寸:</h3>
+                                <p>高31、底宽29、厚14、手提9（cm）</p>
+                            </div>
+                        </li>
+                    </ul> -->
+                    <div ><{$info.cont}></div>
+                    <p>
+                        <!-- <img src="http://img02.ygqq.com/upload/goodsfile/20160530/1464595978429003348.jpg" title="1464595978429003348.jpg" alt="重要说明.jpg" style="white-space: normal;"/> -->
+                    </p>
+                </div>
+                <!--晒单-->
+                <div class="w_prize_con c_newest_prize_con c_newest_prize" style="display: none;" id="ajax_lists">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="hot_sale">
+            <div class="title">
+                <p>热卖推荐</p>
+            </div>
+            <ul>
+            <volist name="store_hot" id="list">
+                <li>
+                    <h4><a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><img src="__ROOT__/Uploads<{$list['goods_logo']}>" style="width: 207px;height: 207px;margin: 0 auto;"></a></h4>
+                    <p>可用金：￥<{$list['price']}></p><p>消费币：￥<{$list['xfb']}></p>
+                    <span><a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list['goods_title']}></a></span>
+                </li>
+            </volist>   
+            </ul>
+        </div>
+        <div class="w_clear"></div>
+    </div>
+</div>
+<?php }else{?>
+
+    <div class="w_con" id="goods_details" style="display: block;">
+        <img style="display:block;margin:80px auto;" src="__PUBLIC__/Home/static/img/shangpinxiajia.png">
+    </div>
+
+<?php }?>
+
+<!-- 夺宝期数弹窗 end -->
+ <script type="text/javascript" src="/Public/Home/static/js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+    var url_ajax = "<{:U('Good/pingjia')}>";
+    var gid="<?php echo $_GET['id']?>";
+    $(function() {
+       $("#ajax_lists").delegate(".pager a", "click", function() {
+            var page = $(this).attr("data-page");
+            getPage(page,gid);
+        })
+        getPage(1,gid);
+    })
+    function getPage(page) {
+        $.get(url_ajax, {p: page,gid:gid}, function(data) {
+            $('#ajax_lists').html(data);
+        })
+    }
+</script>
+ <script type="text/javascript">
+    $(document).ready(function(){
+        // 商品详情、晒单切换
+        $('.w_calculate_nav dd').click(function(){
+            $(this).addClass('w_results_arrow').siblings().removeClass();
+            $('.w_calculate_con>div').eq($(this).index()).css('display','block').siblings('div').css('display','none');
+        })
+
+        // 看了又看
+        var lis_change = 0;
+        $('.more_product .look .down').click(function(){
+            lis_change++;
+            if (lis_change > 2) {
+                lis_change = 2;
+            }
+            $('.more_product .look div ul').animate({top: lis_change * -97.5 + "%"},300);
+        })
+
+        $('.more_product .look .up').click(function(){
+            lis_change--;
+            if (lis_change < 0) {
+                lis_change = 0;
+            }
+            $('.more_product .look div ul').animate({top: lis_change * -97.5 + "%"},300);
+        })
+
+    })
+</script>
+<script type="text/javascript" src="/Public/Home/static/js/common.js"></script>
+<script type="text/javascript" src="/Public/Home/static/min.js/js/ajaxfunctionMain.min.js"></script>
+<script type="text/javascript" src="/Public/Home/static/min.js/js/include/footer_header_new.min.js"></script>
+<script type="text/javascript" src="/Public/Home/static/min.js/js/goods/timeline.min.js"></script>
+<script type="text/javascript" src="/Public/Home/static/min.js/js/goods/goods_details_online.min.js"></script>
+<script src="/Public/Admin/javascripts/layer/layer.js"></script>
+<script src="/Public/Admin/javascripts/JValidator.js"></script> 
+<!-- 引入底部 -->
+<include file="public:foot" />
+<!-- 引入底部 -->
+<!-- 引入底部 -->
+<script>
+function CartOrder(){
+    var a = $("#mid").val();
+    var b = $("#sta").val();
+    if(null != a && "" != a){
+        if(b == '2'){//账号处于激活状态
+            window.location.href="<{:U('Cart/cart')}>"; 
+        }else if(b == '3'){//账号处于冻结状态
+            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
+        }
+    }else{
+        go2Login();
+    }
+}
+function addCarts(a,b) {
+    var url = "<{:U('Cart/docarts')}>";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: {id: a,num:b},
+        success:function(data){
+            if(data == 'ok'){
+                cartCount();
+            }else{
+                layer.msg(data,{offset: '300px',time: 1500,icon: 2});    
+            }
+        }
+    });
+}
+function cartCount() {
+    var url = "<{:U('Cart/cartCount')}>";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: '',
+        success:function(data){
+            if(data > 0){
+                $("#cartCount").html(data);
+                $("#cartCount").addClass("num-rt");
+                $("#row").html(data);
+            }else{
+                $("#cartCount").html("");
+            }
+        }
+    });
+}
+/**
+ * 跳转到结算页面
+ */
+function gotoCartOrder(k){
+    var a = $("#mid").val();
+    var b = $("#sta").val();
+    var c = $("#buyNum").val();
+    // 创建一个示例数据
+    // 使用 JSON.stringify 转换为 JSON 字符串
+    // 然后使用 sessionStorage 保存在 buyNum 名称里
+    var d=[];
+    d.push({gid: k,buyNum: c });
+    sessionStorage.setItem("buyNum",JSON.stringify(d));
+    sessionStorage.setItem("buyType",1);
+    if(null != a && "" != a){
+        if(b == '2'){//账号处于激活状态
+            window.location.href = "<{:U('Order/confirm_order')}>";
+        }else if(b == '3'){//账号处于冻结状态
+            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
+        }
+    }else{
+        go2Login();
+    }
+}
+
+</script>
+</body>
+</html>

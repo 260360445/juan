@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="" />
+<meta name="author"  content="网页作者的资料"/>
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>"></meta>
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>"></meta>
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/new/css/header_footer.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/new/css/member.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/css/front/new_join.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/new/css/member_comm.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/css/page.css"/>
+<style type="">
+  .c_money_type{
+    position: relative;
+  }
+  .c_money_type i{
+    display: inline-block;
+    width:14px;
+    height:14px;
+    background: url(/Public/Home/static/img/icon/i.png) no-repeat center center;
+    position: absolute;
+    top:3px;
+    right:42px;
+  }
+  .c_tips_context{
+    display: none;
+    width: 312px;
+    height:150px;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:4px;
+    text-align: left;
+    line-height: 24px;
+    font-size:14px;
+    color:#333;
+    position: absolute;
+    top:50px;
+    left:31px;
+    z-index: 4;
+    background: #fff;
+  }
+  .c_tips_context em{
+    display: block;
+    background: url(/Public/Home/static/img/icon/top_bottom.png) no-repeat center center;
+    height:10px;
+    width:17px;
+    position: absolute;
+    top:-10px;
+    left:100px;
+  }
+  .c_account_top li span{
+    background: url(/Public/Home/static/new/img/icon/account_icon.png) no-repeat;
+  }
+  .c_connect_deng{
+    background: url(/Public/Home/static/new/img/icon/account_icon.png) no-repeat 0 -174px;
+  }
+  .c_connect_add{
+    background: url(/Public/Home/static/new/img/icon/account_icon.png) no-repeat 0 -135px;
+  } 
+  .c_main_income li{
+    width: 190px;/*2015-10-9 修改*/
+  }
+  .c_money_type i{
+    right: 24px;/*2015-10-9 修改*/
+  }
+  .c_main_recharge {
+    border-bottom: 2px solid #9c0606;
+    border-radius: 2px;
+    display: block;
+    font-size: 16px;
+    height: 37px;
+    line-height: 37px;
+    margin: 20px auto 10px;
+    width: 107px;
+  }
+  .b_choose_cal dd input {
+    background: #f5f5f5 none repeat scroll 0 0;
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    height: 26px;
+    padding:0px;
+    width: 138px;
+  }
+  .b_record_title li a{
+    position:relative;
+  }
+  .b_record_title li a span{
+    position:absolute;
+    top:2px;
+    right:2px;
+    padding:0 5px;
+    background:#dd2726;
+    font-size:12px;
+    color:#fff;
+    border-radius:7px;
+    line-height:15px;
+    display:block;
+  }
+  .b_record_title li a .b_record_block{
+    background:#dd2726;
+  }
+  .b_record_title li a .b_record_block1{
+    background:rgb(255,121,0);
+  }
+  .b_record_title li a .b_record_block2{
+    background:rgb(177,177,177);
+  }
+  .yNumList ul li {
+    font-size: 28px;
+  }
+  .search_header2 s {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/img/front/index/icon_index.png") no-repeat scroll 0 0;
+  }
+  .yNavIndex .yMenuIndex li {
+    padding:0 0px;
+  }
+  /*S 2015-12-1 新增  */
+  body{min-width: 1210px;}
+  /*E 2015-12-1 新增  */
+  .c_out_a i, .c_first_out_a i {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/left_icon.png") no-repeat scroll 0 0;
+  }
+  .c_personage_data {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/icon2.png") no-repeat scroll center top;
+  }
+  .c_login_code {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/icon3.png") no-repeat scroll center top;
+  }
+  .c_real_name {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/icon4.png") no-repeat scroll center top;
+  }
+  .c_investor_ul li{font-size: 12px;}
+  .c_investor_ul li span{font-size: 12px;}
+  .c_investor_ul li a{font-size: 12px;}
+  .c_investor_ul li input{font-size: 12px;}
+  .c_investor_ul{padding-left: 10px;font-size: 12px;}
+  .hhrhg{
+    position: absolute;
+    width: 38px;
+    height: 34px;
+    z-index: 1;
+    left: 0px;
+    top: 16px;
+  }
+  #back.toolbar-item{
+    visibility: visible !important;
+}
+.r-fixed{
+    visibility: visible !important;
+}
+</style>
+<style type="">
+/*E 2015-12-1 新增  */
+.c_out_a i, .c_first_out_a i {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/left_icon.png") no-repeat scroll 0 0;
+}
+</style>
+<title>个人中心--财务记录--万花筒</title>
+</head>
+<body>
+  <!-- S 头部 -->
+  <!-- 顶部 -->
+  <include file="public:phead" />
+  <!-- E 头部 -->
+  <!-- S 内容区域 -->
+  <div class="b_sup_content">
+    
+    <!-- S 会员资料 -->
+<!--S 头部 -->
+<include file="public:pminHead" />
+  <!--E 2015-9-28  添加-->
+  <!-- E头部-->
+  <!-- 修改头像弹窗 --> 
+    <!-- E 会员资料 -->
+    <div id="content_box" class="">
+    <!-- S 左侧-->
+    <include file="public:pleft" />
+    <!-- E 左侧-->
+      <!-- S 右侧 -->
+      <div id="member_right" class="member_right b_record_box">
+        <!-- S 我的积分模块标题 -->
+        <ul class="b_record_title score_b_record_title">
+          <li class="b_record_this"><a href="javascript:;">财务记录</a></li>
+        </ul>
+        <!-- E 我的积分模块标题 -->
+        <!-- S 我的积分模块内容 -->
+        <div class="b_record_buy">
+          <!-- 积分来源 -->
+          <div class="b_record_list b_record_cloud" style="display:block;">
+            <div class="b_record_table a_record_table a_record_table1 a_record_table_width" >
+               <table id="scoreSource">
+                <tbody>
+                  <tr class="b_part_title">
+                    <th class="b_th1">流水号</th>
+                    <th class="b_th4">发生金额</th>
+                    <th class="b_th5">发生类型</th>
+                    <th class="b_th5">发生操作</th>
+                    <th class="b_th5">备注</th>
+                    <th class="b_th5">时间</th>
+                  </tr>
+                  <volist name="info" id="list">
+                  <tr>
+                    <td><{$list.billnum}></td>
+                    <td>
+                      <if condition="$list[sts] eq 2">
+                        <{$list['number']}>
+                      <elseif condition="$list[sts] eq 3" />
+                        <{$list['ke_bal']}>
+                      <elseif condition="$list[sts] eq 4" />
+                        <{$list['xfb']}>
+                      </if>
+                    </td>
+                    <td>
+                      <if condition="$list[sts] eq 2">
+                        余额
+                      <elseif condition="$list[sts] eq 3" />
+                        可用金
+                      <elseif condition="$list[sts] eq 4" />
+                        消费币
+                      </if>
+                    </td>
+                    <td>
+                      <if condition="$list[stus] eq 2">
+                        <font style="color:blue;">加</font>
+                      <elseif condition="$list[stus] eq 3" />
+                        <font style="color:#999;">减</font>
+                      </if>
+                    </td>
+                    <td>
+                        <if condition="$list[type] eq 2">
+                          <font style="color:#dd2726;">购买商品</font>
+                        <elseif condition="$list[type] eq 3" />
+                          <font style="color:blue;">账户充值</font>
+                        <elseif condition="$list[type] eq 4" />
+                          <font style="color:orange;">付货款</font>
+                        <elseif condition="$list[type] eq 5" />
+                          <font style="color:blue;">提现</font>
+                        <elseif condition="$list[type] eq 6" />
+                          <font style="color:#c40000;">提现被驳回</font>
+                        <elseif condition="$list[type] eq 7" />
+                          <font style="color:#2FABFB;">转账</font>
+                        </if>
+                    </td>
+                    <td><{:date('Y-m-d H:i:s',$list[btime])}></td>
+                  </tr>
+                  </volist>
+                </tbody>
+              </table>
+            </div>
+            <!-- S 分页 -->
+                <div id="pages"><{$page}></div>
+            <!-- E 分页 -->
+          </div>
+        </div>
+        <!-- E 我的积分模块内容 -->
+      </div>
+      <!-- E 右侧 -->
+    </div>
+  </div>
+  <!-- S 底部 -->
+  <include file="public:pfoot" />
+  <!-- E 底部 -->
+
+
+<script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/common.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
+<script src="__PUBLIC__/Home/static/new/js/member_left.js"></script>
+<script src="__PUBLIC__/Home/static/min.js/js/common_ajaxfunction_member_base.min.js"></script>
+<script>
+function cartCount() {
+    var url = "<{:U('Cart/cartCount')}>";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: '',
+        success:function(data){
+            if(data > 0){
+                $("#cartCount").html(data);
+                $("#cartCount").addClass("num-rt");
+                $("#row").html(data);
+            }else{
+                $("#cartCount").html("");
+            }
+        }
+    });
+}
+function CartOrder(){
+    var a = $("#mid").val();
+    var b = $("#sta").val();
+    if(null != a && "" != a){
+        if(b == '2'){//账号处于激活状态
+            window.location.href="<{:U('Cart/cart')}>"; 
+        }else if(b == '3'){//账号处于冻结状态
+            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
+        }
+    }
+}
+</script>
+</body>
+</html>

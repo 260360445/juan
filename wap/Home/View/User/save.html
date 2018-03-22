@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/anquan/security_center.css">
+<title>安全中心</title>
+</head>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/anquan/come_back.png" alt=""></a>
+		<h3>安全中心</h3>
+	</header>
+	<ul>
+		<li>
+			<a href="<{:U('User/bind_wallet_one')}>">
+				<img src="__PUBLIC__/Wap/images/anquan/money.png" alt="">
+				<h3>绑定钱包</h3>
+				<span></span>
+			</a>
+		</li>
+		<li>
+			<a href="<{:U('User/real_name_authentication')}>">
+				<img src="__PUBLIC__/Wap/images/anquan/shiming.png" alt="">
+				<h3>实名认证</h3>
+				<span></span>
+			</a>
+		</li>
+		<li>
+			<a href="<{:U('User/bank')}>">
+				<img src="__PUBLIC__/Wap/images/anquan/shiming.png" alt="">
+				<h3>绑定银行</h3>
+				<span></span>
+			</a>
+		</li>
+		<li>
+			<a href="<{:U('User/login_password')}>">
+				<img src="__PUBLIC__/Wap/images/anquan/denglu.png" alt="">
+				<h3>登录密码</h3>
+				<span></span>
+			</a>
+		</li>
+		<li>
+			<a href="<{:U('User/telephone')}>">
+				<img class="phone" src="__PUBLIC__/Wap/images/anquan/shouji.png" alt="">
+				<h3>手机号码</h3>
+				<span></span>
+			</a>
+		</li>
+		<li>
+			<a href="<{:U('User/amend_pay_number')}>">
+				<img src="__PUBLIC__/Wap/images/anquan/zhifu.png" alt="">
+				<h3>支付密码</h3>
+				<span></span>
+			</a>
+		</li>
+	</ul>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+</html>

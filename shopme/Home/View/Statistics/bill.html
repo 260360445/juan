@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" class="fixed">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>财务管理</title>
+    <link rel="apple-touch-icon" sizes="120x120" href="__PUBLIC__/Admin/favicon/apple-icon-120x120.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="__PUBLIC__/Admin/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="__PUBLIC__/Admin/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="__PUBLIC__/Admin/favicon/favicon-16x16.png">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/stylesheets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/stylesheets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/vendor/animate.css/animate.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/vendor/toastr/toastr.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/stylesheets/css/style.css">
+</head>
+<body>
+<div class="wrap">
+    <include file="Public:head" />
+    <div class="page-body">
+        <include file="Public:left" /> 
+        <div class="content">
+            <div class="content-header">
+                <div class="leftside-content-header">
+                    <ul class="breadcrumbs">
+                        <li><i class="fa fa-table" aria-hidden="true"></i><a href="#">财务设置</a></li>
+                        <li><a>财务管理</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row animated fadeInRight">
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <div class="table-responsive">
+                            <div class="col-sm-6">
+                            <div class="form-horizontal form-stripe" id="seachForm">
+                                <label style="display: -webkit-box;"><input type="search" style="width:200px;" class="form-control input-sm" placeholder="用户手机号" name="account" id="seachname" aria-controls="basic-table" value="<?php echo $_GET['mob']?>"> &nbsp;&nbsp;<button class="btn btn-primary" onclick="cha()" type="button">确定</button></label>
+                            </div>
+                            </div>
+                                <table class="table table-striped table-hover table-bordered text-center">
+                                    <thead>
+                                    <tr>
+                                        <th >流水号</th>
+                                        <th >用户/商家</th>
+                                        <th >账户/店铺</th>
+                                        <th >发生金额</th>
+                                        <th >发生类型</th>
+                                        <th >发生操作</th>
+                                        <th >备注</th>
+                                        <th >时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <volist name="info" id="list">
+                                    <tr>
+                                        <td><{$list.billnum}></td>
+                                        <td>
+                                            <if condition="$list[sta] eq 2">
+                                                用户
+                                            <elseif condition="$list[sta] eq 3" />
+                                                商家
+                                            </if>
+                                        </td>
+                                        <td>
+                                            <if condition="$list[sta] eq 2">
+                                                <?php 
+                                                    $user=M('user')->field('mobile')->where(['id'=>$list['uid']])->find();
+                                                    echo $user['mobile'];
+                                                ?>   
+                                            <elseif condition="$list[sta] eq 3" />
+                                                <?php 
+                                                    $store=M('store')->field('store_name')->where(['sj_id'=>$list['uid']])->find();
+                                                    echo $store['store_name'];
+                                                ?>
+                                            </if>
+                                        </td>
+                                        <td>
+                                          <if condition="$list[sts] eq 2">
+                                            <{$list['number']}>
+                                          <elseif condition="$list[sts] eq 3" />
+                                            <{$list['ke_bal']}>
+                                          <elseif condition="$list[sts] eq 4" />
+                                            <{$list['xfb']}>
+                                          </if>
+                                        </td>
+                                        <td>
+                                          <if condition="$list[sts] eq 2">
+                                            余额
+                                          <elseif condition="$list[sts] eq 3" />
+                                            可用金
+                                          <elseif condition="$list[sts] eq 4" />
+                                            消费币
+                                          </if>
+                                        </td>
+                                        <td>
+                                          <if condition="$list[stus] eq 2">
+                                            <font style="color:blue;">加</font>
+                                          <elseif condition="$list[stus] eq 3" />
+                                            <font style="color:#999;">减</font>
+                                          </if>
+                                        </td>
+                                        <td>
+                                            <if condition="$list[type] eq 2">
+                                              <font style="color:#dd2726;">购买商品</font>
+                                            <elseif condition="$list[type] eq 3" />
+                                              <font style="color:blue;">账户充值</font>
+                                            <elseif condition="$list[type] eq 4" />
+                                              <font style="color:orange;">付货款</font>
+                                            <elseif condition="$list[type] eq 5" />
+                                              <font style="color:blue;">提现</font>
+                                            <elseif condition="$list[type] eq 6" />
+                                              <font style="color:#c40000;">提现被驳回</font>
+                                            <elseif condition="$list[type] eq 7" />
+                                              <font style="color:#2FABFB;">转账</font>
+                                            </if>
+                                        </td>
+                                        <td><{:date('Y-m-d H:i:s',$list[btime])}></td>
+                                    </tr>
+                                    </volist>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <ul class="pagination">
+                                    <li id="page"><{$page}></li> 
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Public:right" />
+        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+</div>
+<script src="__PUBLIC__/Admin/javascripts/jquery.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
+<script src="__PUBLIC__/Admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/Admin/vendor/nano-scroller/nano-scroller.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/template-script.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/template-init.min.js"></script>
+</body>
+<script>
+   function cha(){
+      var acc=$("#seachname").val();
+        if(acc){
+            window.location.href="<{:U(MODULE_NAME.'/Statistics/bill/acc/"+acc+"')}>";
+        }else{
+            window.location.href="<{:U('Statistics/bill')}>";
+        }  
+    }
+</script>
+</html>

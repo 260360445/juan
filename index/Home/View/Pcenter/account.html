@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="robots" content="" />
+<meta name="author" content="网页作者的资料"/>
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>"></meta>
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>"></meta>
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/new/css/header_footer.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/new/css/member.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/css/front/new_join.min.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/new/css/member_comm.css"/>
+<title>我的账户-万花筒</title>
+<style type="">
+  .c_money_type{
+    position: relative;
+    float: left;
+  }
+  .c_money_type i{
+    display: inline-block;
+    width:14px;
+    height:14px;
+    background: url(/Public/Home/static/img/icon/i.png) no-repeat center center;
+    position: absolute;
+    top:3px;
+    right:42px;
+  }
+  .c_tips_context{
+    display: none;
+    width: 312px;
+    height:150px;
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:4px;
+    text-align: left;
+    line-height: 24px;
+    font-size:14px;
+    color:#333;
+    position: absolute;
+    top:50px;
+    left:31px;
+    z-index: 4;
+    background: #fff;
+  }
+  .c_tips_context em{
+    display: block;
+    background: url(/Public/Home/static/img/icon/top_bottom.png) no-repeat center center;
+    height:10px;
+    width:17px;
+    position: absolute;
+    top:-10px;
+    left:100px;
+  }
+  .c_account_top li span{
+    background: url(/Public/Home/static/new/img/icon/account_icon.png) no-repeat;
+  }
+  .c_connect_deng{
+    background: url(/Public/Home/static/new/img/icon/account_icon.png) no-repeat 0 -174px;
+  }
+  .c_connect_add{
+    background: url(/Public/Home/static/new/img/icon/account_icon.png) no-repeat 0 -135px;
+  } 
+  .c_main_income li{
+    width: 238px;/*2015-10-9 修改*/
+  }
+  .c_money_type i{
+    right: 24px;/*2015-10-9 修改*/
+  }
+  .c_main_recharge {
+    border-bottom: 2px solid #9c0606;
+    border-radius: 2px;
+    display: block;
+    font-size: 16px;
+    height: 37px;
+    line-height: 37px;
+    margin: 20px auto 10px;
+    width: 107px;
+  }
+  .b_choose_cal dd input {
+    background: #f5f5f5 none repeat scroll 0 0;
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    height: 26px;
+    padding:0px;
+    width: 138px;
+  }
+  .b_record_title li a{
+    position:relative;
+  }
+  .b_record_title li a span{
+    position:absolute;
+    top:2px;
+    right:2px;
+    padding:0 5px;
+    background:#dd2726;
+    font-size:12px;
+    color:#fff;
+    border-radius:7px;
+    line-height:15px;
+    display:block;
+  }
+  .b_record_title li a .b_record_block{
+    background:#dd2726;
+  }
+  .b_record_title li a .b_record_block1{
+    background:rgb(255,121,0);
+  }
+  .b_record_title li a .b_record_block2{
+    background:rgb(177,177,177);
+  }
+  .yNumList ul li {
+    font-size: 28px;
+  }
+  .search_header2 s {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/img/front/index/icon_index.png") no-repeat scroll 0 0;
+  }
+  .yNavIndex .yMenuIndex li {
+    padding:0 0px;
+  }
+  /*S 2015-12-1 新增  */
+  body{min-width: 1210px;}
+  /*E 2015-12-1 新增  */
+  .c_out_a i, .c_first_out_a i {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/left_icon.png") no-repeat scroll 0 0;
+  }
+  .c_personage_data {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/icon2.png") no-repeat scroll center top;
+  }
+  .c_login_code {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/icon3.png") no-repeat scroll center top;
+  }
+  .c_real_name {
+    background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/icon4.png") no-repeat scroll center top;
+  }
+  .c_investor_ul li{font-size: 12px;}
+  .c_investor_ul li span{font-size: 12px;}
+  .c_investor_ul li a{font-size: 12px;}
+  .c_investor_ul li input{font-size: 12px;}
+  .c_investor_ul{padding-left: 10px;font-size: 12px;}
+  .hhrhg{
+    position: absolute;
+    width: 38px;
+    height: 34px;
+    z-index: 1;
+    left: 0px;
+    top: 16px;
+  }
+  .butsp{
+  background-color: #fff;
+    border: 1px solid #dcdcdc;
+    color: #3c3c3c;
+    display: inline-block;
+    height: 28px;
+    line-height: 26px;
+    padding: 0 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.butsp:hover{
+  border: 1px solid #dd2726;
+  color:#dd2726;
+}
+#back.toolbar-item{
+    visibility: visible !important;
+}
+.r-fixed{
+    visibility: visible !important;
+}
+</style>
+</head>
+<body>
+  <!-- 引入头部 -->
+  <include file="public:phead" />
+  <!-- 引入头部 -->
+  <!--E 2015 11 21 -->
+<div class="b_sup_content">
+<include file="public:pminHead" />
+  <div id="content_box" class="">
+    <!-- 引入左侧 -->
+      <include file="public:pleft" />
+    <!-- 引入左侧 -->
+    <div id="member_right" class="member_right c_member_right" style="border:none;">
+      <div class="c_main_box">
+        
+        <ul class="c_main_income">
+          <li class="c_income">
+            <div class="c_money_type">余额</div>
+            <span style="color:#f57403;" id="redCount"><{$user['bal']}></span>
+          </li>
+          <div class="c_right_line"></div>
+          <li class="c_income">
+            <div class="c_money_type">可用金</div>
+            <span style="color:#f57403;" id="redCount"><{$user['ke_bal']}></span>
+          </li>
+          <div class="c_right_line"></div>
+          <li class="c_income">
+            <div class="c_money_type">消费币</div>
+            <span style="color:#f57403;" id="redCount"><{$user['xfb_bal']}></span>
+          </li>
+          <div class="c_right_line"></div>
+          <li class="c_income">
+            <div class="c_money_type">冻结</div>
+            <span style="color:#f57403;" id="redCount"><{$user['fre_bal']}></span>
+          </li>
+          <li id="c_money_type">
+            <div class="c_money_type">待评价</div>
+            <span  style="color:#f57403;"><?php if($pingjia > 0){echo $pingjia;}else{echo 0;}?></span>
+          </li>
+          <div class="c_right_line"></div>
+          <li class="c_income">
+            <div class="c_money_type">待付款</div>
+            <span style="color:#f57403;" id="redCount"><?php if($fukan > 0){echo $fukan;}else{echo 0;}?></span>
+          </li>
+          <div class="c_right_line"></div>
+          <li class="c_income">
+            <div class="c_money_type">待发货</div>
+            <span style="color:#f57403;" id="JSDshopCard"><?php if($fahuo > 0){echo $fahuo;}else{echo 0;}?></span>
+          </li>
+          <div class="c_right_line"></div>
+          <li class="c_income">
+            <div class="c_money_type">待收货</div>
+            <span style="color:#f57403;" id="scoreBalance"><?php if($shouhuo > 0){echo $shouhuo;}else{echo 0;}?></span>
+          </li>
+          <div class="c_clear"></div>
+        </ul>
+        <div class="b_record_box c_record_box">
+            <ul class="b_record_title">
+                <li class="b_record_this">最近订单</li>
+            </ul>
+            <div class="b_record_buy" style="width: 110%;margin: 0 auto;">
+                <div class="b_record_list b_record_cloud" style="display:block;">
+                    <div class="b_record_list b_record_cloud" style="display:block;margin-top: 10px;">
+                        <div class="b_record_table a_record_table a_record_table1 a_record_table_width" >
+                           <table id="scoreSource">
+                            <tbody>
+                                <tr class="b_part_title">
+                                    <th class="b_th1">LOGO</th>
+                                    <th class="b_th1">订单号</th>
+                                    <th class="b_th4">商品标题</th>
+                                    <th class="b_th5">可用金价格</th>
+                                    <th class="b_th5">消费币价格</th>
+                                    <th class="b_th5">购买数量</th>
+                                    <th class="b_th5">购买时间</th>
+                                    <th class="b_th5">交易状态</th>
+                                </tr>
+                              <volist name="info" id="list">
+                              <tr>
+                                <td><a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><img src="__ROOT__/Uploads<{$list.goods_logo}>" style="width:50px;height:50px;"></a></td>
+                                <td><{$list.order_num}></td>
+                                <td title="<{$list['goods_title']}>">
+                                  <?php if (strlen($list['goods_title'])>10) {
+                                    echo mb_substr($list['goods_title'],0,10,'utf-8').'...';
+                                  }else{
+                                    echo $list['goods_title'];
+                                  }
+                                  ?>
+                                </td>
+                                <td><{$list.price}></td>
+                                <td><{$list.xfb}></td>
+                                <td><{$list.buynum}></td>
+                                <td><{:date('Y-m-d',$list[buytime])}></td>
+                                <td>
+                                    <if condition="$list[state] eq 2">
+                                      <font style="color:green;">已发货</font><br>
+                                      <a href="<{:U('Order/detailorder',['order'=>$list['order_id']])}>" target="_blank"><font style="color:#000000;">订单详情</font></a> 
+                                    <elseif condition="$list[state] eq 3" /> 
+                                      <font style="color:red;">未发货</font><br>
+                                      <a href="<{:U('Order/detailorder',['order'=>$list['order_id']])}>" target="_blank"><font style="color:#000000;">订单详情</font></a> 
+                                    <elseif condition="$list[state] eq 4" /> 
+                                      <font style="color:#ddd;">交易关闭</font> <br>
+                                      <a href="<{:U('Order/detail',['order'=>$list['order_id']])}>" target="_blank"><font style="color:#000000;">订单详情</font></a>
+                                    <elseif condition="$list[state] eq 5" /> 
+                                      <font style="color:#c40000;">等待付款</font><br>
+                                      <a href="<{:U('Order/detailorder',['order'=>$list['order_id']])}>" target="_blank"><font style="color:#000000;">订单详情</font></a> <br>
+                                      <a href="javascript:payOrder(<{$list.order_id}>);" class="butsp" >去付款</a><br>
+                                    </if>
+
+                                </td>
+                              </tr>
+                              </volist>
+                            </tbody>
+                          </table>
+                    </div>
+                <center>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="c_exchange_bg"></div>
+
+<!-- S 底部 -->
+<include file="public:pfoot" />
+<!-- E 底部 -->
+<script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/common.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
+<script src="__PUBLIC__/Home/static/new/js/member_left.js"></script>
+<script src="__PUBLIC__/Home/static/min.js/js/common_ajaxfunction_member_base.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
+<script>
+function payOrder(id){
+  var url = "<{:U('Order/doPayBuyOrder')}>";
+  var oid=id;
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {oid:oid},
+    dataType: 'json',
+    error : function () {
+      layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 2000,icon: 7});
+    },
+    success: function(data){
+      if (data.msg == 'ok'){
+          var d=[];
+          d.push({buyOid: data.flg,buyType:data.buytype,gid:data.gid});
+          sessionStorage.setItem("payOrderCashier",JSON.stringify(d));
+          window.open("<{:U('Order/paycashier')}>");
+      }else{
+        layer.msg(data.msg,{offset: '300px',time: 2000,icon: 2});
+        return false;
+      }
+    }
+  });
+}
+function cartCount() {
+    var url = "<{:U('Cart/cartCount')}>";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: '',
+        success:function(data){
+            if(data > 0){
+                $("#cartCount").html(data);
+                $("#cartCount").addClass("num-rt");
+                $("#row").html(data);
+            }else{
+                $("#cartCount").html("");
+            }
+        }
+    });
+}
+function CartOrder(){
+    var a = $("#mid").val();
+    var b = $("#sta").val();
+    if(null != a && "" != a){
+        if(b == '2'){//账号处于激活状态
+            window.location.href="<{:U('Cart/cart')}>"; 
+        }else if(b == '3'){//账号处于冻结状态
+            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
+        }
+    }
+}
+</script>
+</body>
+</html>

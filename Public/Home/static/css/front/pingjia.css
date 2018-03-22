@@ -1,0 +1,173 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.inner{
+	width: 1210px;
+	margin: 0 auto;
+}
+.product_info{
+	border-top: 1px solid #e5e5e5;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.product_info img{
+	float: left;
+	display: block;
+	width: 300px;
+	height: 300px;
+	border: 1px solid #e5e5e5;
+	border-top: none;
+	margin-right: 20px;
+}
+.product_info div{
+	float: left;
+	width: 840px;
+	padding-top: 26px;
+}
+.product_info div h3{
+	font-weight: normal;
+	font-size: 18px;
+	color: #333;
+	line-height: 30px;
+	margin-bottom: 20px;
+}
+.product_info div p{
+	font-size: 16px;
+	color: #999;
+	line-height: 30px;
+}
+.product_info div p span{
+	color: #ff3a4b;
+	font-size: 22px;
+	margin-left: 10px;
+}
+.pingjia{
+	margin-top: 20px;
+}
+.pingjia h3{
+	font-size: 14px;
+	color: #333;
+	line-height: 34px;
+	width: 180px;
+	text-align: center;
+	border: 1px solid #d1ccc8;
+	border-top: 3px solid #ff3a4b;
+	border-bottom: 0;
+	background-color: #f6f5f1;
+}
+.pingjia i{
+	display: block;
+	height: 5px;
+	width: 100%;
+	background-color: #f6f5f1;
+	border: 1px solid #d1ccc8;
+	margin-bottom: 10px;
+}
+.pingjia div{
+	background-color: #f6f6f6;
+	border: 1px solid #d1ccc8;
+	padding: 0 40px 30px;
+}
+.pingjia div p{
+	line-height: 72px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #4d4d4d;
+}
+.pingjia div textarea{
+	resize: none;
+	outline: none;
+	padding: 20px;
+	font-size: 14px;
+	color: #666;
+}
+.pingjia div h4{
+	font-size: 16px;
+	color: #666;
+	line-height: 40px;
+	font-weight: normal;
+	margin-top: 20px;
+}
+.pingjia div span{
+	display: block;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #e5e5e5;
+	font-size: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #e5e5e5;
+	font-effect: none;
+}
+.pingjia div button{
+	display: block;
+	width: 68px;
+	height: 28px;
+	background-color: #c40000;
+	color: #fff;
+	font-size: 14px;
+	line-height: 28px;
+	border: 0;
+	outline: none;
+	border-radius: 2px;
+	text-align: center;
+	margin: 10px auto 0;
+	cursor: pointer;
+}
+.xiangxi{
+	margin-top: 20px;
+	border: 1px solid #e5e5e5;
+}
+.xiangxi h3{
+	font-size: 16px;
+	color: #666;
+	font-weight: normal;
+	padding: 0 30px;
+	line-height: 30px;
+	background-color: #efefef;
+	border-bottom: 1px solid #e3e3e3;
+}
+.xiangxi ul{
+	padding-bottom: 20px;
+}
+.xiangxi ul li{
+	overflow: hidden;
+	padding: 20px 30px;
+	border: 1px solid #e3e3e3;
+}
+.xiangxi ul li:last-child{
+	border: 0;
+}
+.xiangxi ul li p{
+	width: 800px;
+	float: left;
+	font-size: 12px;
+	color: #333;
+	line-height: 20px;
+	margin-bottom: 10px;
+}
+.xiangxi ul li img{
+	float: left;
+	display: block;
+	width: 44px;
+	height: 44px;
+	border: 2px solid #f2f2f2;
+	margin-right: 10px;
+}
+.xiangxi ul li div{
+	overflow: hidden;
+}
+.xiangxi ul li div span{
+	float: left;
+	font-size: 12px;
+	color: #999;
+	line-height: 24px;
+	margin-bottom: 14px;
+}
+.xiangxi ul li div i{
+	font-style: normal;
+	font-size: 12px;
+	float: right;
+	color: #333;
+}

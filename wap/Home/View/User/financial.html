@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/user/shipments.css">
+<title>万花筒--消费记录</title>
+<style>
+footer{
+	background-color: #ee4a58;
+    color: #fff;
+    width: 100%;
+    height: 1.666rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+footer a div{
+	float: left;
+    width: 50%;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2rem;
+}
+footer a div img{
+	display: block;
+    float: left;
+    width: .8rem;
+    height: .7rem;
+    margin: .45rem .25rem 0 0;
+}
+footer a div p{
+	float: left;
+    line-height: 1.666rem;
+    font-size: .5rem;
+    color: #fff;
+}
+.butsp{
+	background-color: #dd2726;
+    border: 1px solid #dcdcdc;
+    color: #fff;
+    display: inline-block;
+    height: 28px;
+    line-height: 26px;
+    padding: 0 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.butsps{
+	background-color: #fff;
+    border: 1px solid #dcdcdc;
+    color: #3c3c3c;
+    display: inline-block;
+    height: 28px;
+    line-height: 26px;
+    padding: 0 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+}
+body{
+	padding-bottom: 0;
+}
+.more{
+    width: 100%;
+    color: #ddd;
+    margin: 10px 0;
+    border-radius: 2px;
+    font-size: 20px;
+    text-align: center; 
+    display: none;
+}
+</style>
+</style>
+</head>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/user/come_back.png" alt=""></a>
+		<h3>消费记录</h3>
+	</header>
+	<volist name="info" id="list">
+		<div id="pro">
+			<div class="order_for_goods">
+				<ul>
+					<li>流水号：<span><{$list.billnum}></span> </li>
+					<li>发生金额：<span>
+                        <if condition="$list[sts] eq 2">
+                            <{$list['number']}>
+                        <elseif condition="$list[sts] eq 3" />
+                            <{$list['ke_bal']}>
+                        <elseif condition="$list[sts] eq 4" />
+                            <{$list['xfb']}>
+                        </if>               
+                    </span></li>
+					<li>发生类型：<span>
+                        <if condition="$list[sts] eq 2">
+                            余额
+                        <elseif condition="$list[sts] eq 3" />
+                            可用金
+                        <elseif condition="$list[sts] eq 4" />
+                            消费币
+                        </if>               
+                    </span></li>
+					<li>发生操作：<span>
+                        <if condition="$list[stus] eq 2">
+                            <font style="color:blue;">加</font>
+                        <elseif condition="$list[stus] eq 3" />
+                            <font style="color:#999;">减</font>
+                        </if>               
+                    </span></li>
+					<li>备注：<span>
+						<if condition="$list[type] eq 2">
+                          <font style="color:#dd2726;">购买商品</font>
+                        <elseif condition="$list[type] eq 3" />
+                          <font style="color:blue;">账户充值</font>
+                        <elseif condition="$list[type] eq 4" />
+                          <font style="color:orange;">付货款</font>
+                        <elseif condition="$list[type] eq 5" />
+                          <font style="color:blue;">提现</font>
+                        <elseif condition="$list[type] eq 6" />
+                          <font style="color:#c40000;">提现被驳回</font>
+                        <elseif condition="$list[type] eq 7" />
+                          <font style="color:#2FABFB;">转账</font>
+                        </if>
+					</span></li>
+					<li>时间：<span><{:date('Y-m-d H:i:s',$list[btime])}></span></li>
+				</ul>
+			</div>
+		</div>
+	</volist>
+	<!-- 滚动加载 -->
+    <?php if(!empty($info)){?>
+        <div class="more" style="width:100%;height:30px;">
+           <img alt="loading" src="__PUBLIC__/Wap/images/loading2.gif" style="height:30px">
+        </div>
+    <?php }?>
+    <!-- 滚动加载 -->
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script>
+var page = 0;
+var is_loading = false;
+$(function(){
+//滚动加载
+    var stop = true;
+    $(window).scroll(function () {
+        if ((screen.height + $(window).scrollTop()) >= $(document).height()) {
+            if (stop == true) {
+                stop = false;
+                $(".more").show();
+                if(!is_loading){
+                    more();
+                }
+            };  
+        }
+    });
+    function more(){
+        is_loading = true;
+        var ApiUrl =  "<{:U('User/listpage')}>";
+        page++;
+        $.ajax({
+            url:ApiUrl,
+            type: 'POST',
+            dataType: 'JSON',
+            data:{page:page,type:2},
+            success:function(data){
+                if (data == '') {
+                    $('.more').text('没有更多记录了');
+                }else{
+                    is_loading = false;
+                    var li = ""
+                    for (var i = 0; i < data.length; i++) {
+						li +='<div class="order_for_goods">';
+							li +='<ul>';
+								li +='<li>流水号：<span>'+data[i]['billnum']+'</span> </li>';
+								li +='<li>购买金额：<span>'+data[i]['number']+'</span></li>';
+								li +='<li>剩余可用金：<span>'+data[i]['money']+'</span></li>';
+								li +='<li>消费币金额：<span>'+data[i]['xfb']+'</span></li>';
+								li +='<li>剩余消费币：<span>'+data[i]['after_xfb']+'</span></li>';
+								li +='<li>商品操作：<span>';
+									if(data[i]['type'] == 2){
+				                      	li +='<font style="color:#dd2726;">购买商品</font>';
+									}else if(data[i]['type'] == 3){
+										li +='<font style="color:blue;">账户充值</font>';
+									}else if(data[i]['type'] == 4){
+										li +='<font style="color:orange;">付货款</font>';
+									}else if(data[i]['type'] == 5){
+										li +='<font style="color:blue;">提现</font>';
+									}else if(data[i]['type'] == 6){
+										li +='<font style="color:#c40000;">提现被驳回</font>';
+									}
+								li +='</span></li>';
+								li +='<li>时间：<span>'+getTime(data[i].btime)+'</span></li>';
+							li +='</ul>';
+						li +='</div>';
+                    };
+                    $('#pro').append(li);
+                }
+                stop = true;
+            }
+        })
+    }
+//滚动加载结束
+})
+function getTime(/** timestamp=0 **/) {
+  var ts = arguments[0] || 0;
+  var t,y,m,d,h,i,s;
+  t = ts ? new Date(ts*1000) : new Date();
+  y = t.getFullYear();
+  m = t.getMonth()+1;
+  d = t.getDate();
+  h = t.getHours();
+  i = t.getMinutes();
+  s = t.getSeconds();
+  // 可根据需要在这里定义时间格式
+  return y+'-'+(m<10?'0'+m:m)+'-'+(d<10?'0'+d:d)+' '+(h<10?'0'+h:h)+':'+(i<10?'0'+i:i)+':'+(s<10?'0'+s:s);
+} 
+</script>
+</html>

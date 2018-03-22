@@ -1,0 +1,221 @@
+<html style="font-size: 62.4px;">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+<meta name="screen-orientation" content="portrait">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="full-screen" content="yes">
+<meta name="x5-fullscreen" content="true">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<meta name="description" content="有了它，找人帮忙？接单赚钱？ 其实可以变得很简单">
+<title>万花筒</title>
+<link href="__PUBLIC__/Wap/css/login/app.css?v.1" rel="stylesheet">
+<style>
+.forget .title{border:none}
+.l_get_code_box{position:relative;overflow:hidden}#float-captcha{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0}
+.yl_icon {
+color: #777;
+}
+.l_register_icon {
+width: 1.5rem;
+border-left: 1px solid #ddd;
+}
+</style>
+</head>
+<body>
+<div id="app">
+	<div class="forget">
+		<div >
+			<div  class="title">
+				<a href="javascript:window.history.back();" class="tit_icon left">
+					<i  class="iconfont icon-arrow-left"></i>
+				</a> 
+				<div  class="tit_font"></div>
+			</div>
+		</div> 
+		<div class="yl_img">
+			<div class="yl_img_bg"><img src="/<?php echo $_SESSION['sc']['infor']['logo']?>" alt=""></div> 
+			<p>请重置您的密码</p>
+		</div> 
+		<div class="yl_mode_list">
+			<div class="yl_mode_item">
+				<div class="yl_icon">手机号</div> 
+				<input type="text" placeholder="请输入手机号" id="mobile" maxlength="11">
+			</div> 
+			<div class="yl_mode_item">
+			<div class="yl_icon">验证码</div> 
+				<input type="text" placeholder="请输入短信验证码" id="validCode" maxlength="4"> 
+				<div class="yl_icon l_register_icon"><a href="javascript:checkValidCode();" class="get_ygqq2_a">发送短信</a></div>
+			</div> 
+			<div class="yl_mode_item">
+				<div class="yl_icon">登录密码</div> 
+				<input type="password" id="password" placeholder="密码8到20位，至少包含字母和数字" > 
+			</div> 
+			<div class="yl_mode_item">
+				<div class="yl_icon">确认密码</div> 
+				<input placeholder="密码8到20位，至少包含字母和数字" id="repassword" type="password"> 
+			</div>
+		</div> 
+		<div class="yl_btn"><div class="btn_block" onclick="setPass()">确定</div></div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+</body>
+<script>
+//校验手机号存在	
+function checkMobileExist(){
+	var url = "<{:U('Register/checkMobileExist')}>";
+	var flag = false;
+	$.ajax({
+		type: "post",
+		url: url,
+		dataType:'json',
+		async: false,
+		data:{mobile :$("#mobile").val()},
+		success:function(data){
+			if(data == 0){
+				layer.open({
+				    content: '该手机号还没有注册！'
+				    ,skin: 'msg'
+				    ,time: 2 //2秒后自动关闭
+				});
+				$("#mobile").focus();
+				return flag;
+			}else if(data == 1){
+				$('#mobile').attr("disabled","disabled")
+				flag = true;
+				return flag;
+			}
+		}
+	});
+}
+//验证码
+function checkValidCode(){
+	var mobile=$("#mobile").val();
+	var isMobile=/^0?1[3-8][0-9]\d{8}$/; //手机号码验证规则
+	if(mobile =="请输入手机号" || mobile == "" || mobile == null){
+		layer.open({
+		    content: '请输入手机号'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+		$("#mobile").focus();
+		return;
+	}else if(!isMobile.test(mobile)){
+		$("#mobile").focus();
+		layer.open({
+		    content: '请正确填写手机号'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+		return;
+	}else{
+		var url = "<{:U('Register/checkValidCodeUSer')}>";
+		$.ajax({
+			type: "post",
+			url: url,
+			dataType:'json',
+			async: false,
+			data:{
+				mobile :$("#mobile").val()
+			},
+			success:function(data){
+				if(data.infor == 2){
+					canNext = true;
+					var code=$(".get_ygqq2_a");
+					time=120;
+					$('.get_ygqq2_a').attr('href', '#'); 
+					t=setInterval(function() {
+						time--;
+						code.html(time+'秒');
+						if (time==0) {
+							clearInterval(t);
+							canNext = false;
+							code.html('发送短信');
+							$('.get_ygqq2_a').attr('href', 'javascript:checkValidCode();');
+						}
+					},1000);
+				}else if(data.infor == 3){
+					layer.open({
+					    content: '短信验证码发送失败，请重新发送！'
+					    ,skin: 'msg'
+					    ,time: 2 //2秒后自动关闭
+					});
+					return false;
+				}else if(data.infor == 4){
+					layer.open({
+					    content: '手机号不存在，请重新填写！'
+					    ,skin: 'msg'
+					    ,time: 2 //2秒后自动关闭
+					});
+					return false;
+				}
+			}
+		});
+	}
+}
+function setPass(){
+	var password=$("#password").val();
+	var repassword=$("#repassword").val();
+	var url = "<{:U('Register/setPass')}>";
+	if(password==null || password == ""){
+		layer.open({
+		    content: '请填写新密码！'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+	}else if(!/(?!^(\d+|[a-zA-Z]+|[~!@#$%^&*?]+)$)^[\w~!@#$%\^&*?]{8,20}$/.test(password)){
+		$("#passwordP").html("长度为8-20位字母+数字的组合!");
+		layer.open({
+		    content: '长度为8-20位字母+数字的组合!'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+	}else if(repassword==null || repassword == ""){
+		layer.open({
+		    content: '请填写确认密码！'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+	}else if(repassword!=password){
+		layer.open({
+		    content: '两次输入的密码不同！'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+	}else{
+		$.ajax({
+			type: "post",
+			url: url,
+			//dataType:'json',
+			data:{
+				mobile:$('#mobile').val(),
+				pass:$('#password').val(),
+				code:$("#validCode").val()
+			},
+			success:function(data){
+				if(data == 2){
+					window.location.href="<{:U('Login/login')}>";
+				}else if(data == 4){
+					layer.open({
+					    content: '手机号不存在！'
+					    ,skin: 'msg'
+					    ,time: 2 //2秒后自动关闭
+					});
+        			return false;
+				}else if(data == 3){
+        			layer.open({
+					    content: '修改失败，请稍后再试！'
+					    ,skin: 'msg'
+					    ,time: 2 //2秒后自动关闭
+					});
+        			return false;
+				}
+			}
+		});
+	}
+}
+</script>
+</html>

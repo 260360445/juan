@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/address/add_address.css">
+<title>添加新地址</title>
+</head>
+<body>
+	<header>
+		<a href="javascript:window.history.back();" onclick="clears()"><img src="__PUBLIC__/Wap/images/address/come_back.png" alt=""></a>
+		<h3>添加新地址</h3>
+		<span class="c_save">保存</span>
+	</header>
+	<form action="">
+		<ul>
+			<li>
+				<h3>收货人</h3>
+				<input type="text" name='name' placeholder="收货人姓名"  maxlength="20">
+			</li>
+			<li>
+				<h3>联系电话</h3>
+				<input type="text" placeholder="请输入您的联系电话"  name='mobile'  maxlength="11">
+			</li>
+			<li>
+				<h3>所在地区</h3>
+				<div class="demo-content">
+			        <div class="content-block">
+			            <input  type="text" class="cell-input" readonly="" id="J_Address" placeholder="请选择收货地址">
+			        </div>
+			    </div>
+				<span></span>
+			</li>
+			<li>
+				<textarea name="street" id="street" cols="36" rows="3" placeholder="请填写详细地址"></textarea>
+			</li>
+		</ul>
+		<div class="tacitly_approve">
+			<img class="no" src="__PUBLIC__/Wap/images/address/choose1.png" alt="">
+			<img class="yes" src="__PUBLIC__/Wap/images/address/choose.png" alt="">
+			<input type="checkbox" name="moren" id="moren" value="2">
+			<label for="moren">设为默认地址</label>
+		</div>
+	</form>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/address/add_address.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+</html>
+<script>
+function clears(){
+	window.sessionStorage.removeItem('uAddress');
+}
+$(function(){
+  var restoredSession = JSON.parse(sessionStorage.getItem('uAddress'));
+  if(restoredSession[0]['uname'] != ""){
+  	$('input[name=name]').val(restoredSession[0]['uname']);
+  }
+  if(restoredSession[0]['umobile'] != ""){
+  	$('input[name=mobile]').val(restoredSession[0]['umobile']);
+  }
+  if(restoredSession[0]['ustreet'] != ""){
+  	$('#street').val(restoredSession[0]['ustreet']);
+  }
+  if(restoredSession[0]['umoren'] == 2){
+  	$(".no").css({ display: "none"});
+  	$(".yes").css({ display: "block"});
+  	$("#moren").attr("checked",'true');
+  }
+  var url = "<{:U('User/ajaxAddressInfo')}>";
+  var pid="<?php echo $_GET['pid']?>";
+  var cid="<?php echo $_GET['cid']?>";
+  var aid="<?php echo $_GET['aid']?>";
+  	$.ajax({
+      type: "post",
+      url: url,
+      dataType:'json',
+      data:{
+          pro_id : pid ,
+          city_id:cid,
+          area_id:aid,
+      	},
+      success:function(data){
+        $("#J_Address").val(data);
+      }
+  	});
+})
+$("#J_Address").click(function(){
+	var name=$('input[name=name]').val();
+	var mobile=$('input[name=mobile]').val();
+	var street=$('#street').val();
+	var name=$('input[name=name]').val();
+	if($('#moren').prop('checked')){
+		var moren=2;
+	}else{
+		var moren=3;
+	}
+	var addRess=[]; 
+  	addRess.push({uname:name,umobile:mobile,ustreet:street,umoren:moren,type:2});
+  	sessionStorage.setItem("uAddress",JSON.stringify(addRess));
+  	window.location.href="<{:U('User/dizhione')}>";
+})
+$(".c_save").click(function(){
+  var name=$("input[name=name]").val();
+  var mobile=$("input[name=mobile]").val();
+  var street=$("#street").val();
+  var pid="<?php echo $_GET['pid']?>";
+  var cid="<?php echo $_GET['cid']?>";
+  var aid="<?php echo $_GET['aid']?>";
+  if($('#moren').prop('checked')){
+  	var isdefault=2;
+  }else{
+  	var isdefault=3;
+  }
+  if(pid == '' || cid == '' || aid == ''){
+    layer.open({
+        content: '请选择收货地址！'
+        ,skin: 'msg'
+        ,time: 2 //2秒后自动关闭
+    });
+    return false;
+  }
+  if(name == ''){
+     layer.open({
+        content: '请填写收货人姓名！'
+        ,skin: 'msg'
+        ,time: 2 //2秒后自动关闭
+    });
+     return false;
+  }
+  if(mobile == ''){
+     layer.open({
+        content: '请填写收货人手机！'
+        ,skin: 'msg'
+        ,time: 2 //2秒后自动关闭
+    });
+     return false;
+  }
+  if(mobile == ''){
+    layer.open({
+        content: '请填写具体收货地址！'
+        ,skin: 'msg'
+        ,time: 2 //2秒后自动关闭
+    });
+     return false;
+  }
+  	var url = "<{:U('User/setAddressInfo')}>";
+  	$.ajax({
+      type: "post",
+      url: url,
+      dataType:'json',
+      data:{
+          uname :name ,
+          pro_id : pid ,
+          city_id:cid,
+          area_id:aid,
+          street:street,
+          mobile:mobile,
+          isdefault:isdefault,
+      	},
+      success:function(data){
+        if(data=="ok"){//保存收货地址成功时
+          	layer.open({
+		        content: '添加成功！'
+		        ,skin: 'msg'
+		        ,time: 2 //2秒后自动关闭
+		    });
+		    setTimeout(function () { test(); }, 2005); 
+		    return false;
+        }else{//保存收货地址未成功时
+          	layer.open({
+		        content: data
+		        ,skin: 'msg'
+		        ,time: 2 //2秒后自动关闭
+		    });
+		    return false;
+        }
+      }
+  	});
+})
+function test(){
+	window.location.href="<{:U('User/address')}>";
+}
+</script>
+

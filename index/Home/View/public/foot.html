@@ -1,0 +1,104 @@
+<?php
+//按照分类循环
+$menu = M("menu")->where(['state'=>2])->where('id != 123')->order('sort asc,id asc')->select();
+$tree = $this->getTreeArc($menu,0);
+?>
+<div class="footer_change" >
+      <div class="footer">
+        <div class="abc">
+          <ul class="footerIn">
+          <li>
+            <span></span>
+            <p>100%公平公正公开</p>
+          </li>
+          <li>
+            <span></span>
+            <p>100%品质保障</p>
+          </li>
+          <li>
+            <span></span>
+            <p>全国急速</p>
+          </li>
+          <li>
+            <span></span>
+            <p>100%权益保障</p>
+          </li>
+        </ul>
+        </div>
+        <div class="yFootSupport">
+          <div class="yFootSupport_in">
+            <!-- <volist name="tree" id="list">
+            <dl>
+              <dt><{$list.name}></dt>
+                <volist name="list.pid" id="v" key="key">
+                  <dd><a href="<{:U('Help/help',['p'=>$list['id'],'m'=>$v['id']])}>" target="_blank"><{$v.name}></a></dd>
+                </volist>  
+            </dl>
+            </volist> -->
+            
+            <dl class="dl_Time">
+              <dd title="服务热线" style="background:url(/Public/Home/static/img/front/index/phone.png) no-repeat 0px 5px;margin-top: 29px;color:red;">客服:13313433197</dd>
+              <dd title="服务器时间" style="background:url(/Public/Home/static/img/front/index/time.png) no-repeat 0px 6px;background-size:21px;margin-top: 15px;color:red;" class="sysTime">时间:09:00至18:00</dd>
+            </dl>
+            <dl class="dlLast">
+              <a href="javascript:void(0);">
+                <dd class="dlLast-WeChat">
+                  <div class="y-popover">
+                    <span class="y-arrow"></span>
+                    <b>客服微信</b>
+                    <img src="/<?php echo $_SESSION['sc']['infor']['weixinlogo']?>" alt="">
+                  </div>
+                </dd>
+              </a>
+              <!-- 
+              <a href="javascript:void(0);">
+                <dd class="dlLast-Sina">
+                  <div class="y-popover">
+                    <span class="y-arrow"></span>
+                    <b>新浪微博</b>
+                    <img src="/Public/Home/static/img/front/cloud_global/fullPage/cloud_xx.jpg" alt="">
+                  </div>
+                </dd>
+              </a>
+              <a href="javascript:void(0);">
+                <dd class="dlLast-apple">
+                  <div class="y-popover">
+                    <span class="y-arrow"></span>
+                    <b>扫二维码下载</b>
+                    <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" alt="">
+                  </div>
+                </dd>
+              </a>
+              <a href="javascript:void(0);">
+                <dd class="dlLast-Android">
+                  <div class="y-popover">
+                    <span class="y-arrow"></span>
+                    <b>扫二维码下载</b>
+                    <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" alt="">
+                  </div>
+                </dd>
+              </a> -->
+            </dl>
+          </div>
+          <div class="footer-time-list" id="pageEnd">
+            <div class="yFootBottomIn" style="clear: both;">
+                <p>友情链接：
+                  <a target="_blank" href="https://www.wanht.net/">万花筒</a>
+                </p>
+            </div>
+            <div class="yFootBottomRight">
+              <?php echo $_SESSION['sc']['infor']['copyright']?>
+            </div>
+            <div class="yFootBottomLeft">
+              <a href="#"  class="s_footer_icon"><img src="http://v.trustutn.org/images/cert/bottom_large_img.png"/></a>
+              <a href="#"  class="yFootBottomLeft1"></a>
+              <a href="#" class="yFootBottomLeft2" ></a>
+              <a href="#"  class="yFootBottomLeft3"></a>
+              <a href="#"  class="yFootBottomLeft4"></a>
+<!--               <a  class="x_newadd_aBox" href="#">
+              </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

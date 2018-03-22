@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>"></meta>
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>"></meta>
+<meta name="renderer" content="webkit"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE = edge"></meta>
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/comm.min.css"></link>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/footer_header.min.css"></link>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/index.min.css"></link>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/new_join.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/login_box/login_box.min.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/css/front/goods.css"></link>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/userCenter/css/login.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/css/front/login_box/login_box.css"/>
+<link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/css/page.css"/>
+<title>特卖会场--万花筒</title>
+<body>
+<style>
+body{
+        background: #f5f5f5;
+    }
+  .w_latest{position:relative;}
+  .w_latest .w_add_tag{display:block;width:54px;height:53px;position: absolute;left:0px;top:0px;}
+  .w_text .w_add_multiple_box{position: relative;margin-top:4px;}
+  .w_text dd .w_add_multiple{display:block;width:176px;height:30px;border:1px solid #ddd;border-radius:4px;text-align: center;color:#dd2726;font-size:16px;line-height:30px;background:#fff;cursor: pointer;}
+
+  .w_title_one .w_last_waiting{
+   border-left:none;
+}
+.w_title_one .w_last_waiting:hover{
+   color:#333;
+}
+.loginContent {
+    padding: 0px 0 0;
+}
+.loginContent form {
+    padding-top: 30px;
+}
+/* S 2015-11-30 新增  */
+.a_login_register_box {
+
+    height: 375px;
+
+}
+.ygqq_b {
+    background: #e7e7e7 none repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 1px;
+    margin-top: 7px;
+    width: 107px;
+}
+
+/*E 2015-11-30 新增  */
+/*S 2015-12-1 新增  */
+body{min-width: 1210px;}
+/*E 2015-12-1 新增  */
+.yFootBottomLeft  .x_newadd_aBox{
+ width:88px;
+ background:url(/Public/Home/static/images/wjhb.jpg) no-repeat center center;
+}
+.yFootBottomLeft  .x_newadd_aBox:hover{
+background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
+}
+.yFootBottomLeft a.s_footer_icon{ background-position: -481px 0;}
+.yFootBottomLeft a.s_footer_icon:hover{ background-position: -393px 0;}
+.yFootBottomLeft a.s_footer_icon1{ background-position: -387px 0;}
+.yFootBottomLeft a.s_footer_icon1:hover{ background-position: -491px 0;}
+.w_top_navs {
+    height: 251px;
+    width: 100%;
+    background: url(/Public/Home/static/img/front/temaihuichang.png) no-repeat top center;
+}
+.r-fixed{
+    visibility: visible !important;
+}
+</style>
+<input type="hidden" id="mid" value="<?php echo $_SESSION['sc']['id']?>"/>
+<input type="hidden" id="sta" value="<?php echo $_SESSION['sc']['status']?>"/>
+<!-- 引入头部 -->
+<include file="public:head" />
+<!-- 引入头部 -->
+<!--r-fixed start-->
+<!-- 引入左侧 -->
+    <include file="public:left" />
+<!-- 引入左侧 -->
+<!--r-fixed end-->
+<div class="a_world_bg" style="z-index:1011"></div>
+<div class="w_top_navs"></div>
+<div class="w_con">
+<div class="w_latest_title">
+    <h2 class="w_title w_title_two">热卖商品<b></b></h2>
+</div>
+<div class="w_announced">
+    <div class="w_announced_one">
+        <ul>
+            <volist name="result" id="list">
+	             <li class="w_latest goods3203_53996">
+	                <div class="w_latestImg">
+	                    <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank">
+	                        <img src="__ROOT__/Uploads<{$list.goods_logo}>" style="margin-top: 30px;">
+	                    </a>
+	                </div>
+	                <a class="w_goods_three" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list.goods_title}></a>
+	                <b>可用金：<font style="font-size:16px;color:#dd2726;">￥<{$list.price}></font></b>
+                    <b>消费币：<font style="font-size:16px;color:#dd2726;">￥<{$list.xfb}></font></b>
+	                <i class="a_js_icon"></i>
+	            </li>
+        	</volist>  
+        </ul>
+        <!-- S 分页 -->
+            <div id="pages"><{$page}></div>
+        <!-- E 分页 -->
+    </div>
+    <ul class="w_announced_two">
+    <volist name="result_hot" id="list">
+        <li class="w_latest_right">
+            <div class="w_rightImg">
+                <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank">
+                    <img class="lazy200" data-original="__ROOT__/Uploads<{$list.goods_logo}>" src="__ROOT__/Uploads<{$list.goods_logo}>" style="display: inline;">
+                </a>
+            </div>
+            <a class="w_goods_three" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list.goods_title}></a>
+            <b>可用金：<{$list.price}></b>
+            <b>消费币：<{$list.xfb}></b>
+            <ul class="w_number">
+                <li class="w_amount"><{$list.sell}></li>
+                <li class="w_amount w_amount_right"><{$list.kucun}></li>
+                <li>销量</li>
+                <li class="w_amount_right">库存</li>
+            </ul>
+            <a class="w_package" href="javascript:void(0)" onclick="gotoCartOrder('<{$list.id}>')">立即购买</a>
+        </li>
+    </volist>    
+    </ul>
+    <div class="w_clear"></div>
+</div>
+</div>
+<!-- 引入底部 -->
+<include file="public:foot" />
+<!-- 引入底部 -->
+<script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/common.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/ajaxfunctionMain.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/JValidator.js"></script>
+<script>
+function gotoCartOrder(k) {
+    var a = $("#mid").val();
+    var b = $("#sta").val();
+    if(null != a && "" != a){
+        if(b == '2'){//账号处于激活状态
+            window.location.href="<{:U(MODULE_NAME.'/Good/goodlist/id/"+k+"')}>";
+        }else if(b == '3'){//账号处于冻结状态
+            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
+        }
+    }else{
+        go2Login();
+    }
+}
+function cartCount() {
+    var url = "<{:U('Cart/cartCount')}>";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: '',
+        success:function(data){
+            if(data > 0){
+                $("#cartCount").html(data);
+                $("#cartCount").addClass("num-rt");
+                $("#row").html(data);
+            }else{
+                $("#cartCount").html("");
+            }
+        }
+    });
+}
+function CartOrder(){
+    var a = $("#mid").val();
+    var b = $("#sta").val();
+    if(null != a && "" != a){
+        if(b == '2'){//账号处于激活状态
+            window.location.href="<{:U('Cart/cart')}>"; 
+        }else if(b == '3'){//账号处于冻结状态
+            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
+        }
+    }else{
+        go2Login();
+    }
+}
+</script>
+</body>
+</html>

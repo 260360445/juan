@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/anquan/login_password.css">
+<title>手机号码</title>
+</head>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/anquan/come_back.png" alt=""></a>
+		<h3>手机号码</h3>
+	</header>
+	<form action="">
+		<ul>
+			<li class="first">
+				<h3>手机号</h3>
+				<input type="number" placeholder="请输入手机号码" id="newMobile" maxlength="11">
+			</li>
+			<li>
+				<h3>短信验证码</h3>
+				<input type="number" id="newMvalidCode" maxlength="4" placeholder="请输入短信验证码">
+				<span><a href="javascript:updMobileGetNewMobileCode();" id="newsmscode" style="color: #fa3232;">发送验证码</a></span>
+			</li>
+			<li>
+				<button type="button" class="c_step2">确定</button>
+			</li>
+		</ul>
+	</form>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script type="text/javascript">
+function updMobileGetNewMobileCode(){
+    var  b = $("#newMobile").val();
+    var url = "<{:U('User/updateMobileNewCode')}>";
+    if ("" == b || null == b){
+    	layer.open({
+	        content: '\u65b0\u624b\u673a\u53f7\u4e0d\u80fd\u4e3a\u7a7a!'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+    }else {
+        var time=120;
+        $.ajax({
+            type: "post",
+            url: url,
+            dataType:'json',
+            data:{
+                mobile : b
+            },
+            success:function(data){
+                if(data == 2){
+                    $("#newsmscode").attr("href","#");
+                    var t=setInterval(function  () {
+                    time--;
+                        $("#newsmscode").html(time+"秒");
+                        if (time==0) {
+                            clearInterval(t);
+                            $("#newsmscode").attr("href","javascript:updMobileGetNewMobileCode();");
+                            $("#newsmscode").html("重新获取");
+                        }
+                    },1000) 
+                }else if(data == 3){
+                    layer.open({
+				        content: '修改失败!'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    return false;
+                }else if(data == 4){
+                    layer.open({
+				        content: '手机号已存在!'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    return false;
+                }
+            }
+        });
+    }
+}
+$(".c_step2").click(function () {
+    var url = "<{:U('User/verifyNewMobileValidCode')}>";
+    var a = $("#newMobile").val();
+    var b = $("#newMvalidCode").val();
+    if("" == a || null == a){
+    	layer.open({
+	        content: '\u65b0\u624b\u673a\u53f7\u4e0d\u80fd\u4e3a\u7a7a!'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+    }
+    if("" == b || null == b){
+    	layer.open({
+	        content: '\u9a8c\u8bc1\u7801\u4e0d\u80fd\u4e3a\u7a7a!'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+    }
+    $.ajax({
+        type: "post",
+        url: url,
+        dataType: "json",
+        data: {
+            mobile: a,
+            validCode: b
+        },
+        success: function (a) {
+            if(a == 2){
+                window.location.href="<{:U('Login/login')}>";
+            }else if(a == 3){
+                layer.open({
+			        content: '修改失败!'
+			        ,skin: 'msg'
+			        ,time: 2 //2秒后自动关闭
+			    });
+			    return false;
+            }else if(a == 4){
+                layer.open({
+			        content: '手机号已存在!'
+			        ,skin: 'msg'
+			        ,time: 2 //2秒后自动关闭
+			    });
+			    return false;
+            }
+        }
+    })
+});
+	
+</script>
+</html>

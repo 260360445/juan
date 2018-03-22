@@ -1,0 +1,165 @@
+body{
+	padding-bottom: 1.7rem;
+}
+.pay .top li{
+	overflow: hidden;
+	padding: 0 .5rem;
+}
+.pay .top li p{
+	float: left;
+	color: #b3b3b3;
+	font-size: .366rem;
+	line-height: 1.2rem;
+}
+.pay .top li span{
+	float: right;
+	font-size: .366rem;
+	color: #808080;
+	line-height: 1.2rem;
+}
+.pay .top li.chongzhi{
+	background-color: #fff;
+	line-height: 1.4rem;
+}
+.pay .top li.chongzhi p{
+	font-size: .4rem;
+	color: #999;
+}
+.pay .top li.chongzhi span{
+	color: #4d4d4d;
+}
+.bank_card{
+	background-color: #fff;
+	overflow: hidden;
+	border-top: 1px solid #ededed;
+	border-left: 1px solid #ededed;
+}
+.bank_card li{
+	float: left;
+	width: 33.33%;
+	border-right: 1px solid #ededed;
+	border-bottom: 1px solid #ededed;
+	overflow: hidden;
+	box-sizing: border-box;
+	padding-left: .633rem;
+	height: 1.816rem;
+	line-height: 1.816rem;
+}
+.bank_card li img{
+	float: left;
+	display: block;
+	width: 0.733rem;
+	height: 0.733rem;
+	margin: .55rem 0.1rem 0 0;
+}
+.bank_card li p{
+	float: left;
+	font-size: .466rem;
+	color: #4d4d4d;
+	line-height: 1.816rem;
+}
+.bank_card li.current{
+	border: 2px solid #ff3a4b;
+	box-sizing: border-box;
+	height: 1.816rem;
+	line-height: 1.816rem;
+}
+.thirdparty_title{
+	color: #b3b3b3;
+	font-size: .366rem;
+	line-height: 1.2rem;
+	padding-left: .5rem;
+	font-weight: normal;
+}
+.thirdparty{
+	background-color: #fff;
+}
+.thirdparty li{
+	line-height: 1.666rem;
+	border-bottom: 1px solid #ededed;
+	overflow: hidden;
+	padding: 0 .5rem;
+}
+.thirdparty li img{
+	float: left;
+	width: .733rem;
+	height: .733rem;
+	display: block;
+	margin-top: .55rem;
+	margin-right: .366rem;
+}
+.thirdparty li p{
+	float: left;
+	font-size: .466rem;
+	color: #4d4d4d;
+	line-height: 1.816rem;
+}
+.thirdparty li.active{
+	background: url(../../images/user/xuanze3.png) no-repeat right .7rem;
+	-webkit-background-origin: content-box;
+	-moz-background-origin: content-box;
+	background-origin: content-box;
+	-webkit-background-size: .6rem .5rem;
+	background-size: .6rem .5rem;
+}
+footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background-color: #fff;
+	overflow: hidden;
+}
+footer p{
+	float: left;
+	font-size: .4rem;
+	color: #999;
+	padding-left: .5rem;
+}
+footer p span{
+	font-size: .5rem;
+	color: #ff3a4b;
+	line-height: 1.633rem;
+}
+footer button{
+	float: right;
+	line-height: 1.633rem;
+	color: #fff;
+	background-color: #ff3a4b;
+	font-size: .5rem;
+	text-align: center;
+	padding: 0 1rem;
+}
+.mask{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 10000;
+}
+.mask div{
+	background-color: #fff;
+	width: 4.5rem;
+	overflow: hidden;
+	padding-left: .8rem;
+	border-radius: 6px;
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -0.833rem 0 0 -2.25rem;
+}
+.mask div img{
+	float: left;
+	width: .8rem;
+	height: .8rem;
+	margin: .42rem .4rem 0 0;
+}
+.mask div p{
+	font-size: .466rem;
+	color: #4d4d4d;
+	line-height: 1.666rem;
+}

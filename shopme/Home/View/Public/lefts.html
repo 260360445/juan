@@ -1,0 +1,124 @@
+<ul class="nav navbar-nav side-nav" id="sidebar">
+              
+              <li class="collapsed-content"> 
+                <ul>
+                  <li class="search"><!-- Collapsed search pasting here at 768px --></li>
+                </ul>
+              </li>                 
+                <li class="navigation" id="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="#navigation">XIRIS <i class="fa fa-angle-up"></i></a>
+                <ul class="menu">
+                    <?php
+                      if(CONTROLLER_NAME=="Index" && ACTION_NAME=="Index") {echo '<li class="active">';}                    
+                      else {echo '<li>';}
+                    ?>
+                  
+                    <a href="<{:U('/ancc.php/Home/Index/Index')}>">
+                      <i class="fa fa-desktop"></i> 首页                      
+                    </a>
+                  </li>                             
+                    <?php
+                      if(CONTROLLER_NAME=="Index" && ACTION_NAME!="Index") {echo '<li class="dropdown hovered open">';}                    
+                      else {echo '<li class="dropdown">';}
+                    ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-list"></i> 常规管理 <b class="fa fa-plus dropdown-plus"></b>
+                    </a>
+                    <ul class="dropdown-menu">                                               
+                    <?php
+                      if(ACTION_NAME=="set") {echo '<li class="active">';}                    
+                      else {echo '<li>';}
+                    ?>
+                      <a href="<{:U('/ancc.php/Home/Index/set')}>">
+                        <i class="fa fa-caret-right"></i> 基本设置
+                      </a>
+                      </li>                                          
+                    </ul>
+                  </li>                       
+                    <?php
+                      if(CONTROLLER_NAME=="Admin") {echo '<li class="dropdown hovered open">';}                    
+                      else {echo '<li class="dropdown">';}
+                    ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-pencil"></i> 系统管理<b class="fa fa-plus dropdown-plus"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                    <?php
+                      if(ACTION_NAME=="admin") {echo '<li class="active">';}                    
+                      else {echo '<li>';}
+                    ?>
+                      <a href="<{:U('/ancc.php/Home/Admin/admin')}>">
+                        <i class="fa fa-caret-right"></i> 管理员管理
+                      </a>
+                      </li>
+                      
+                      <?php
+                      if(ACTION_NAME=="log") {echo '<li class="active">';}                    
+                      else {echo '<li>';}
+                      ?>
+                        <a href="<{:U('/ancc.php/Home/Admin/log')}>">
+                          <i class="fa fa-caret-right"></i> 登录日志
+                        </a>
+                      </li>
+                    </ul>
+                  </li>                                      
+                    <?php
+                      if(CONTROLLER_NAME=="Article") {echo '<li class="dropdown hovered open">';}                    
+                      else {echo '<li class="dropdown">';}
+                    ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-desktop"></i> 文章管理 <b class="fa fa-plus dropdown-plus"></b>
+                     <!--  <span class="label label-greensea">mails</span> -->
+                    </a>
+                    <ul class="dropdown-menu">
+                      <?php
+                        if(ACTION_NAME=="articleList") {echo '<li class="active">';}                    
+                        else {echo '<li>';}
+                      ?>
+                        <a href="<{:U('/ancc.php/Home/Article/articleList')}>">
+                          <i class="fa fa-caret-right"></i> 文章分类
+                        </a>
+                      </li>
+                      <?php
+                        if(ACTION_NAME=="article") {echo '<li class="active">';}                    
+                        else {echo '<li>';}
+                      ?>
+                        <a href="<{:U('/ancc.php/Home/Article/article')}>">
+                          <i class="fa fa-caret-right"></i> 文章列表
+                        </a>
+                      </li>
+                    </ul>
+                  </li>  
+                    <?php
+                      if(CONTROLLER_NAME=="Link") {echo '<li class="dropdown hovered open">';}                    
+                      else {echo '<li class="dropdown">';}
+                    ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-desktop"></i> 友情链接 <b class="fa fa-plus dropdown-plus"></b>
+                     <!--  <span class="label label-greensea">mails</span> -->
+                    </a>
+                    <ul class="dropdown-menu">
+                      <?php
+                      if(ACTION_NAME=="bannerList") {echo '<li class="active">';}                    
+                      else {echo '<li>';}
+                      ?>
+                        <a href="<{:U('/ancc.php/Home/Link/linkList')}>">
+                          <i class="fa fa-caret-right"></i> 链接管理
+                        </a>
+                      </li>
+                  </li>       
+                    </ul>
+                  </li>
+                </ul>
+              </li>                                        
+              </li> 
+            </ul>
+            <script src="__PUBLIC__/Admin/js/jquery.js"></script>
+            <script>
+              $('#order-summary').click(function(){
+                  $('#navigation').attr('class','navigation collapsed');
+              })
+              $('#navigation').click(function(){
+                  $('#order-summary').attr('class','navigation summary collapsed');
+              })
+            </script>

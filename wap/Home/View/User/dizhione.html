@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+	<title>管理收货地址</title>
+</head>
+<style type="text/css">
+	header h3{
+		margin-left: -1.5rem;
+	}
+	ul{
+		background-color: #eee;
+	}
+	ul li{
+		border-top: 1px solid #d9d9d9;
+		padding: 0 .5rem;
+	}
+	ul li a{
+		color: #606060;
+		font-size: .5rem;
+		line-height: 1.4rem;
+	}
+</style>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/user/come_back.png" alt=""></a>
+		<h3>选择省</h3>
+	</header>
+	<ul>
+	<volist name="sheng" id="list">
+		<li><a href="<{:U('User/dizhitwo',['pid'=>$list['id']])}>"><{$list['name']}></a></li>
+	</volist>
+	</ul>
+</body>
+</html>

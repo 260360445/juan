@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" class="fixed">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>轮播管理--修改轮播</title>
+<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+<link rel="icon" type="image/png" sizes="192x192" href="__PUBLIC__/Admin/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="__PUBLIC__/Admin/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="__PUBLIC__/Admin/favicon/favicon-16x16.png">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/stylesheets/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/stylesheets/css/font-awesome.min.css">
+<link rel="stylesheet" href="__PUBLIC__/Admin/vendor/animate.css/animate.css">
+<link rel="stylesheet" href="__PUBLIC__/Admin/stylesheets/css/style.css">
+</head>
+<body>
+<div class="wrap">
+<include file="Public:head" />
+<div class="page-body">
+  <include file="Public:left" /> 
+  <div class="content">
+      <div class="content-header">
+          <div class="leftside-content-header">
+              <ul class="breadcrumbs">
+                  <li><i class="fa fa-columns" aria-hidden="true"></i><a href="#">轮播管理</a></li>
+                  <li><a>修改轮播</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="row animated fadeInUp">
+          <div class="col-md-12">
+              <div class="panel">
+                  <div class="panel-content">
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <form class="form-horizontal form-stripe" enctype="multipart/form-data" id="information">
+                                  <div class="form-group">
+                                      <label for="name" class="col-sm-2 control-label">URL：</label>
+                                      <div class="col-sm-2">
+                                          <select id="pid" name="pid" id="select2-example-basic" class="form-control select2-hidden-accessible" style="width: 100%" tabindex="-1" aria-hidden="true">
+                                              <option value="0">请选择地址</option>
+                                          </select>
+                                      </div>
+                                      <div class="col-sm-2">
+                                          <select id="pid" name="pid" id="select2-example-basic" class="form-control select2-hidden-accessible" style="width: 100%" tabindex="-1" aria-hidden="true">
+                                              <option value="0">请选择地址</option>
+                                          </select>
+                                      </div>
+                                      <div class="col-sm-2">
+                                          <select id="pid" name="pid" id="select2-example-basic" class="form-control select2-hidden-accessible" style="width: 100%" tabindex="-1" aria-hidden="true">
+                                              <option value="0">请选择地址</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="name" class="col-sm-2 control-label">分类：</label>
+                                      <div class="col-sm-2">
+                                          <select id="type" name="type" id="select2-example-basic" class="form-control select2-hidden-accessible" style="width: 100%" tabindex="-1" aria-hidden="true">
+                                            <option value="2" <if condition="$infor[type] eq 2">selected</if>>PC</option>
+                                            <option value="3" <if condition="$infor[type] eq 3">selected</if>>WAP</option>
+                                          </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="email3" class="col-sm-2 control-label">Logo</label>
+                                      <div class="col-sm-10">
+                                          <input class="uploading" type="file" name="logo" id="doc1" multiple="multiple"  style="width:148px;" onchange="javascript:setImagePreviews1();" accept="image/*" /> 
+                                          <div id="dd1" style=" width:700px;height:291px;">
+                                              <?php if($infor['logo']){?>
+                                                  <img src="__ROOT__/<{$infor['logo']}>" style=" width:700px;height:291px;">
+                                              <?php }else{?>
+                                                  <img src="/Public/Home/static/img/expect.png" style=" width:700px;height:291px;">
+                                              <?php }?>
+                                          </div></br>
+                                          <span style="color:red;font-size:20px;">LOGO展示图</span><span style="margin-left:35px;color:#555;font-size:14px;">(图片类型：'jpeg','png','jpg'图片尺寸：(1243px*291px)）</span>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="username" class="col-sm-2 control-label">状态</label>
+                                      <div class="col-sm-10">
+                                          <if condition="$infor[state] eq 2">
+                                              <label class="radio-inline">
+                                                  <input type="radio" name="state"  value="2" checked=""> 开启
+                                              </label>
+                                              <label class="radio-inline">
+                                                  <input type="radio" name="state"  value="3"> 关闭
+                                              </label>
+                                          <elseif condition="$infor[state] eq 3"/> 
+                                              <label class="radio-inline">
+                                                  <input type="radio" name="state"  value="2" > 开启
+                                              </label>
+                                              <label class="radio-inline">
+                                                  <input type="radio" name="state"  value="3" checked=""> 关闭
+                                              </label>
+                                          </if>
+                                      </div>
+                                  </div>
+                                  <if condition="stripos($_SESSION['ad']['auth'],'all') nheq false">
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <input type="hidden" name="setid"  value="<?php echo $_GET['id']?>" >
+                                                <button type="button" onclick="onClick()" class="btn btn-primary">提交</button>
+                                            </div>
+                                        </div>
+                                    <elseif condition="stripos($_SESSION['ad']['auth'],'Banner_ban_edit') nheq false" />
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <input type="hidden" name="setid"  value="<?php echo $_GET['id']?>" >
+                                                <button type="button" onclick="onClick()" class="btn btn-primary">提交</button>
+                                            </div>
+                                        </div>
+                                    </if>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+ <include file="Public:right" />
+  <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+</div>
+</div>
+<script src="__PUBLIC__/Admin/javascripts/jquery.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
+<script src="__PUBLIC__/Admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/Admin/vendor/nano-scroller/nano-scroller.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/template-script.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/template-init.min.js"></script>
+</body>
+<script>
+//下面用于多图片上传预览功能
+function setImagePreviews1(avalue1) {
+var docObj1 = document.getElementById("doc1");
+var dd1 = document.getElementById("dd1");
+dd1.innerHTML = "";
+var fileList = docObj1.files;
+for (var i = 0; i < fileList.length; i++) {           
+  dd1.innerHTML += "<div style='float:left' > <img id='img" + i + "'  /> </div>";
+  var imgObjPreview = document.getElementById("img"+i); 
+  if (docObj1.files && docObj1.files[i]) {
+    //火狐下，直接设img属性
+    imgObjPreview.style.display = 'block';
+    imgObjPreview.style.width = '700px';
+    imgObjPreview.style.height = '291px';
+    //imgObjPreview.src = docObj1.files[0].getAsDataURL();
+    //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+    imgObjPreview.src = window.URL.createObjectURL(docObj1.files[i]);
+  }
+  else {
+    //IE下，使用滤镜
+    docObj1.select();
+    var imgSrc = document.selection.createRange().text;
+    alert(imgSrc)
+    var localImagId = document.getElementById("img" + i);
+    //必须设置初始大小
+    localImagId.style.width = "700px";
+    localImagId.style.height = "291px";
+    //图片异常的捕捉，防止用户修改后缀来伪造图片
+    try {
+        localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+        localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+    }
+    catch (e) {
+        alert("您上传的图片格式不正确，请重新选择!");
+        return false;
+    }
+    imgObjPreview.style.display = 'none';
+    document.selection.empty();
+  }
+}  
+return true;
+}
+</script>
+<script>
+function onClick(){
+  var url = "<{:U('Banner/ban_edit')}>";
+  var information = new FormData($('#information')[0]);
+  $.ajax({
+      type : 'post',
+      url : url,
+      data : information,
+      async : false,
+      processData:false,
+      contentType:false,
+      error : function () {
+          layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+      },
+      success : function (responses) {
+          if (responses == 'ok'){
+              layer.msg('修改成功',{offset: '300px',time: 1500,icon: 1},function () {
+                 window.location.href = "<{:U('Banner/ban')}>";
+              });
+          }else{
+              layer.msg(responses,{offset: '300px',time: 1500,icon: 2});
+          }
+      }
+  });
+}
+</script>
+</html>

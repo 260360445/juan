@@ -1,0 +1,174 @@
+<div id="header">
+<input type="hidden" id="mid" value="<?php echo $_SESSION['sc']['id']?>" />
+<input type="hidden" id="sta" value="<?php echo $_SESSION['sc']['status']?>" />
+<div class="header header_fixed">
+      <input type="hidden" id="mid" value="<?php echo $_SESSION['sc']['id']?>"/>
+      <div class="header header_fixed">
+        <div class="header1">
+          <div class="header1in">
+            <ul class="headerul1 header_yytc">
+              <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>万花筒首页</a></li>
+              <!-- <li><a>客服QQ：<?php echo $_SESSION['sc']['infor']['service']?></a></li>
+              <li>
+                <span class="c_contact_icon c_kik">
+                  <div id="wechat-popover-content" class="pophover-content popover bottom" style="top: 40px;left: -60px;">
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                      <p style="white-space: nowrap">扫码云购全球微信</p>
+                      <div style="width: 100px; height: 100px; margin-left: 10px;">
+                        <img src="/<?php echo $_SESSION['sc']['infor']['weixinlogo']?>" width="100" height="100" border="0" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </span>
+                <span class="c_contact_icon c_qq">
+                  <div id="wechat-app-popover-content" class="pophover-content popover bottom" style="top: 40px;left: -60px;">
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                      <p style="white-space: nowrap">扫码下载客户端</p>
+                      <div style="width: 100px; height: 100px; margin-left: 10px;">
+                        <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" width="100" height="100" border="0" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </span>
+                <a href="http://weibo.com/u/5463325697?topnav=1&wvr=6&topsug=1&is_hot=1#_loginLayer_1474361903097" style="display:inline-block;" target="blank">
+                  <span class="c_contact_icon c_microblog">
+                    <div id="weibo-popover-content" class="pophover-content popover bottom" style="top: 40px;left: -60px;">
+                      <div class="arrow"></div>
+                      <div class="popover-content">
+                        <p style="white-space: nowrap">云购全球新浪微博</p>
+                        <div style="width: 100px; height: 100px; margin-left: 10px;">
+                          <img src="/Public/Home/static/img/front/cloud_global/fullPage/cloud_xx.jpg" width="100" height="100" border="0" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </a> 
+              </li>-->
+            </ul>
+            <ul class="headerul2">
+              <li><a id="memberMobile" href="<{:U('Pcenter/account')}>"><?php echo $_SESSION['sc']['usermobile']?></a></li>
+              <li><a href="<{:U('Login/logout')}>">退出</a></li>
+              <!-- <li class="MyzhLi">
+                <a href="javascript:void(0);">个人中心<i class="top"></i></a>
+                <dl class="Myzh">
+                  <dd><a href="/member_new/recordWin.do">获得的商品</a></dd>
+                  <dd><a href="/member_new/save.do">个人设置</a></dd>
+                </dl>
+              </li> -->
+                <?php if($_SESSION['sj']['id']){?>
+                    <li><a href="<{:U('Merchant/merchant')}>" target="_blank"><?php echo $_SESSION['sj']['account']?></a></li>
+                <?php }else{?>
+                    <li><a href="<{:U('Merchant/member')}>" target="_blank">商家登录</a></li>
+                <?php }?>
+            </ul>
+          </div>
+        </div>
+        <div class="header2_out yNavIndexOut_fixed">
+          <div class="header2 header2_yytc">
+            <a href="/" class="header_logo"><img src="__ROOT__/<{$_SESSION['sc']['infor']['logo']}>"></a>
+            <ul id="yMenuIndex" class="yMenuIndex">
+                <li><a href="/" class="yMenua">首页</a></li>
+               <li><a href="<{:U('Good/specialSale')}>">特卖会场</a></li>
+                    <li><a href="<{:U('Good/newGood')}>">新品上架</a></li>
+                <!-- <li class="hide-menu-nav" style="padding: 0 13px 0px 15px;">
+                <span></span><a href="#" class="hide-menu-nava">发现</a>
+                    <dl>
+                        <dd style="border-top:1px solid #ddd;"><a href="<{:U('/index.php/Home/Index/score')}>" target="_blank">积分兑换</a></dd>
+                        <dd style="border-top:1px solid #ddd;"><a href="<{:U('/index.php/Home/Index/draw')}>" target="_blank">会员抽奖</a></dd>
+                    </dl>
+                </li> -->
+            </ul>
+            <div class="search_header2">
+              <input type="text" placeholder="搜索商品" value="<?php echo $_GET['query']?>" id="query" name="query"/>
+              <a href="javascript:void(0);" id="seach" class="btnHSearch"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="r-fixed">
+        <ul class="r-fixed-nav">
+          <li class="toolbar-item">
+            <a href="javascript:CartOrder();" class="shoppingCartRightFix">
+              <em class="" id="cartCount"></em>
+              <div class="item-tip-c item-tip-checkpage">
+                <div class="item-box">
+                  <u class="u-code u-g-ft-wx"></u>
+                  <div class="item-tip">购物车</div>
+                </div>
+              </div>
+              <i id="cartLabel" class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed1.png) no-repeat center center;"></i>
+            </a>
+          </li>
+          <li class="toolbar-item">
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $_SESSION['sc']['infor']['scrvice']?>&amp;Site=qq&amp;Menu=yes" title="在线客服" target="_blank">
+              <div class="item-tip-c item-tip-kefu">
+                <div class="item-box">
+                  <div class="item-tip">在线客服</div>
+                </div>
+              </div>
+              <i class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed2.png) no-repeat center center;"></i>
+            </a>
+          </li>
+          <li class="toolbar-item">
+            <a href="javascript:void(0);">
+              <div class="item-tip-c item-tip-wx">
+                <div class="item-box">
+                  <u class="u-code u-g-ft-wx">
+                    <img src="/<?php echo $_SESSION['sc']['infor']['weixinlogo']?>">
+                  </u>
+                  <div class="item-tip">关注微信</div>
+                </div>
+              </div>
+              <i class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed3.png) no-repeat center center;"></i>
+            </a>
+          </li>
+          <!-- <li class="toolbar-item">
+            <a href="javascript:void(0);">
+              <div class="item-tip-c item-tip-app">
+                <div class="item-box">
+                  <u class="u-code u-g-ft-app">
+                    <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg">
+                  </u>
+                  <div class="item-tip">扫码下载APP</div>
+                </div>
+              </div>
+              <i class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed4.png) no-repeat center center;"></i>
+            </a>
+          </li> -->
+          <li class="toolbar-item">
+            <a href="<{:U('Pcenter/checkstand')}>" target="_blank" title="我要充值">
+              <div class="item-tip-c item-tip-checkpage">
+                <div class="item-box">
+                  <div class="item-tip">我要充值</div>
+                </div>
+              </div>
+              <i class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed5.png) no-repeat center center;"></i>
+            </a>
+          </li>
+          <li id="back" class="toolbar-item">
+            <a href="javascript:void(0);">
+              <div class="item-tip-c item-tip-back">
+                <div class="item-box">
+                  <div class="item-tip">返回顶部</div>
+                </div>
+              </div>
+              <i class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed6.png) no-repeat center center;"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
+<script>
+$("#seach").click(function(){
+    var query=$("#query").val();
+    if(query){
+        window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+query+"')}>";
+    }else{
+        window.location.href="<{:U('Seach/seach')}>";
+    }
+})
+</script>

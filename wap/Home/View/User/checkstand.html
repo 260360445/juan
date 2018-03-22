@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/user/top_up_recharge.css">
+<title>收银台--万花筒</title>
+</head>
+<body>
+<input type="hidden" id="uid" value="<{$_SESSION['wap']['id']}>">
+<input type="hidden" id="sta" value="<{$_SESSION['wap']['status']}>">
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/user/come_back.png" alt=""></a>
+		<h3>购买套包</h3>
+	</header>
+	<div class="ad">
+		<a href="#"><img src="__PUBLIC__/Wap/images/user/chongzhi.png" alt=""></a>
+	</div>
+	<div class="money">
+		<em><img src="__PUBLIC__/Wap/images/user/anquans.png"></em>
+		<ul>
+			<li class="active" data-sum="5000">正式会员</li>
+			<li data-sum="10000">银卡会员</li>
+			<li data-sum="20000">金卡会员</li>
+			<li data-sum="30000">钻石会员</li>
+		</ul>
+	</div>
+	<footer>
+		<input type="hidden" id="paytype" value="2">
+		<p>实际付款：<span id="paynum">￥<i>5000</i></span></p>
+		<button type="button" ><a style="color: #fff;" href="javascript:void(0);" id="setpay">立即购买</a></button>
+	</footer>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/user/top_up_recharge.js"></script>
+<script type="text/javascript">
+$("#setpay").click(function(){
+    var num = $("#paynum").children('i').html();
+    var type=$("#paytype").val();
+    var uid=$("#uid").val();
+    var sta=$("#sta").val();
+    var rel=/^\+?[1-9][0-9]*$/;
+    if(sta == 3){
+      	layer.open({
+	        content: '您的账户被冻结，请联系客服！'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+		return false;
+    }else{
+      if(num == '' || num == undefined || num == null || !rel.test(num)){
+        layer.open({
+	        content: '金额错误！'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+		return false;
+      }else{
+        var pay=[]; 
+        pay.push({user:uid,pay:num,type:type});
+        sessionStorage.setItem("wapPayNum",JSON.stringify(pay));
+        window.location.href="<{:U('User/cashier_desk')}>";
+      }
+    }
+  })
+</script>
+</html>
