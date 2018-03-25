@@ -1,0 +1,47 @@
+<style type="text/css">
+.active-on{
+	border-left: 2px solid #dd2726;
+}
+</style>
+<div id="member_left" class="member_left">
+<div class="c_left_side">
+  <ul class="c_left_nav">
+    <li><a class="c_first_out_a c_click_li" href="<{:U('Merchant/merchant')}>"><i></i>我的账户</a></li>
+    <!-- <li><a class="c_out_a" href="#"><i class="c_out_i_two"></i>订单管理</a></li><{:U('Merchant/order_list')}> -->
+    <?php
+      if(CONTROLLER_NAME == "Merchant") {
+    ?>
+    <?php
+      if(ACTION_NAME=="order_list") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+    	<a class="c_out_a " href="<{:U('Merchant/order_list')}>"><i class="c_out_i_four"></i>订单管理</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="auction_list") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+    	<a class="c_out_a" href="<{:U('Merchant/auction_list')}>"><i class="c_out_i_five"></i>出售中的商品</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="auction_list_in" || ACTION_NAME=="auction_list_out") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+      <a class="c_out_a" href="<{:U('Merchant/auction_list_in')}>"><i class="c_out_i_seven"></i>商品下架</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="sendout" || ACTION_NAME=="sendoutf" || ACTION_NAME=="sendoutw") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+    	<a class="c_out_a" href="<{:U('Merchant/sendout')}>"><i class="c_out_i_ten"></i>等待发货</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="sell") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+    	<a class="c_out_a" href="<{:U('Merchant/sell')}>"><i class="c_out_i_eleven"></i>发布商品</a>
+    </li>
+    <?php }?>
+  </ul>
+</div>
+</div>

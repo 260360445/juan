@@ -1,0 +1,161 @@
+@charset "UTF-8";
+*{outline:none;-webkit-tap-highlight-color: transparent;font-family: "微软雅黑";}
+body,p,h1,h2,h3,h4,h5,h6,form,input,ul,li,dd,dl,textarea{
+  padding:0;margin:0;
+  list-style-type:none;
+  font-weight:normal;
+  font-style:normal;
+}
+a{
+  text-decoration:none;
+  font-size:14px;
+}
+img{
+  border:0;
+}
+input:focus,textarea:focus,select:focus,a:focus{outline:none;}
+.shade_box {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .4);
+}
+
+.slideBox {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 314px;
+	height: 634px;
+	margin: -317px 0 0 -157px;
+	background: url("/static/images/iphone.png") no-repeat;
+}
+
+.slideBox .hd {
+	overflow: hidden;
+	position: absolute;
+	left: 92px;
+	bottom: 100px;
+	z-index: 1;
+}
+
+.slideBox .hd ul {
+	overflow: hidden;
+	zoom: 1;
+	width: 160px;
+	height: 12px;
+	padding: 10px 0;
+	text-align: center;
+}
+
+.slideBox .hd ul li {
+	float: left;
+	margin: 0 5px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	line-height: 30px;
+	text-align: center;
+	background: #828282;
+	cursor: pointer;
+}
+
+.slideBox .hd ul li.on {
+	background: #fff;
+}
+
+.slideBox .bd {
+	position: relative;
+	top: 74px;
+	left: 20px;
+	width: 271px;
+	height: 483px;
+	z-index: 0;
+	overflow: hidden;
+}
+
+.slideBox .bd li {
+	position: relative;
+	zoom: 1;
+	vertical-align: middle;
+	float: left;
+}
+
+.slideBox .bd img {
+	display: block;
+}
+
+.slideBox .prev,
+.slideBox .next {
+	display: block;
+	position: absolute;
+	left: -35%;
+	top: 50%;
+	width: 82px;
+	height: 82px;
+	background: url(/static/images/ico_arrow.png) 0 0 no-repeat;
+}
+
+.slideBox .next {
+	left: auto;
+	right: -33%;
+	background-position: -160px 0;
+}
+
+.slideBox .prev:hover {
+	background-position: -82px 0;
+}
+
+.slideBox .next:hover {
+	background-position: -246px 0;
+}
+
+.slideBox .prevStop {
+	display: none;
+}
+
+.slideBox .nextStop {
+	display: none;
+}
+
+.official_number {
+	position: absolute;
+	top: 61px;
+	left: 4px;
+	width: 224px;
+	height: 37px;
+	padding: 0 18px;
+	line-height: 37px;
+	border-radius: 3px;
+	color: #dd2726;
+	font-size: 20px;
+}
+
+.official_number1 {
+	position: absolute;
+	top: 216px;
+	left: 18px;
+	color: #fff;
+	font-size: 16px;
+}
+
+.official_number2 {
+	position: absolute;
+	top: 242px;
+	left: 18px;
+	color: #fff;
+	font-size: 16px;
+}
+
+.y_close_btn {
+	position: absolute;
+	top: 0;
+	right: -60px;
+	width: 44px;
+	height: 46px;
+	background: url("/static/images/y_esc.png") no-repeat;
+	cursor: pointer;
+}

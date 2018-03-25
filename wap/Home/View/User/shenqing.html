@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" />
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<title>提现管理</title>
+</head>
+<style type="text/css">
+	body{
+		background-color: #f5f5f5;
+		padding: 1.5rem 0;
+	}
+	ul{
+		margin-top: .3rem;
+	}
+	ul li{
+		background-color: #fff;
+		margin-bottom: .3rem;
+		padding: .2rem .5rem;
+		font-size: .4rem;
+		color: #4d4d4d;
+	}
+	ul li p{
+		line-height: 1rem;
+	}
+	ul li p .check_pending{
+		color: #dd2726;
+	}
+	ul li p .reject{
+		color: #999;
+	}
+	ul li p .pass{
+		color: #008000;
+	}
+	footer{
+		width: 100%;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+	}
+	footer a{
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-color: #dd2726;
+		font-size: .5rem;
+		color: #fff;
+		text-align: center;
+		line-height: 1.5rem;
+	}
+	.shipments_top{
+		padding: 0 0 0 .4rem;
+	    background-color: #fff;
+	    overflow: hidden;
+	    padding-right: .4rem;
+	    border-top: 1px solid #e6e6e6;
+	    border-bottom: 1px solid #e6e6e6;
+	}
+	.more{
+	    width: 100%;
+	    color: #ddd;
+	    margin: 10px 0;
+	    border-radius: 2px;
+	    font-size: 20px;
+	    text-align: center; 
+	    display: none;
+	}
+</style>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/user/come_back.png" alt=""></a>
+		<h3>提现管理</h3>
+	</header>
+	<div class="shipments_top">
+		<p style="color:#ff3a4b;font-size:14px;">
+		注意 : 提现金额单笔需≥100元，银行到账时间:T+3个工作日,提现手续费:5.00元/笔
+		</p>
+	</div>
+	<ul id="pro">
+	<volist name="info" id="list">
+		<li>
+			<p>流水号：<span><{$list.number}></span></p>
+			<p>提现金额：<span><{$list.money}></span></p>
+			<p>提现时间：<span><{:date('Y-m-d H:i:s',$list[ctime])}></span></p>
+			<p>状态：<span >
+				<if condition="$list[status] eq 2">
+                    <font style="color:#dd2726;">待审核</font>
+                  <elseif condition="$list[status] eq 3"/>
+                   <font style="color:orange;">初审通过</font>
+                  <elseif condition="$list[status] eq 4"/>
+                    <font style="color:green;">审核通过</font>
+                  <elseif condition="$list[status] eq 5"/>
+                    <font style="color:#999;">已驳回</font>
+                  <elseif condition="$list[status] eq 6"/>
+                    <font style="color:#999;">已取消</font>
+                  <elseif condition="$list[status] eq 7"/>
+                    <font style="color:#999;">提现成功</font>
+                  <elseif condition="$list[status] eq 8"/>
+                    <font style="color:#999;">提现失败</font>
+                </if>
+			</span></p>
+		</li>
+	</volist>	
+	</ul>
+	<!-- 滚动加载 -->
+    <?php if(!empty($info)){?>
+        <div class="more" style="width:100%;height:30px;">
+           <img alt="loading" src="__PUBLIC__/Wap/images/loading2.gif" style="height:30px">
+        </div>
+    <?php }?>
+    <!-- 滚动加载 -->
+	<footer>
+		<a onclick="doTiXian()">申请提现</a>
+	</footer>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script type="text/javascript">
+function doTiXian(id){
+  var url = "<{:U('User/doTiXian')}>";
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: '',
+    error : function () {
+      	layer.open({
+	        content: '网络故障，请稍后重试！'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+    },
+    success: function(data){
+      if (data == 'ok'){
+          window.location.href="<{:U('User/tixian')}>";
+      }else{
+        layer.open({
+	        content: data
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+      }
+    }
+  });
+}
+var page = 0;
+var is_loading = false;
+$(function(){
+//滚动加载
+    var stop = true;
+    $(window).scroll(function () {
+        if ((screen.height + $(window).scrollTop()) >= $(document).height()) {
+            if (stop == true) {
+                stop = false;
+                $(".more").show();
+                if(!is_loading){
+                    more();
+                }
+            };  
+        }
+    });
+    function more(){
+        is_loading = true;
+        var ApiUrl =  "<{:U('User/listpage')}>";
+        page++;
+        $.ajax({
+            url:ApiUrl,
+            type: 'POST',
+            dataType: 'JSON',
+            data:{page:page,type:6},
+            success:function(data){
+                if (data == '') {
+                    $('.more').text('没有更多记录了');
+                }else{
+                    is_loading = false;
+                    var li = ""
+                    for (var i = 0; i < data.length; i++) {
+                      li +='<div class="order_for_goods">';
+                        li +='<li>';
+							li +='<p>流水号：<span>'+data[i]['number']+'</span></p>';
+							li +='<p>提现金额：<span>'+data[i]['money']+'</span></p>';
+							li +='<p>提现时间：<span>'+getTime(data[i].ctime)+'</span></p>';
+							li +='<p>状态：<span >';
+								if(data[i]['status'] == 2){
+									li +='<font style="color:#dd2726;">待审核</font>';
+								}else if(data[i]['status'] == 3){
+									li +='<font style="color:orange;">初审通过</font>';
+								}else if(data[i]['status'] == 4){
+									li +='<font style="color:green;">审核通过</font>';	
+								}else if(data[i]['status'] == 5){
+									li +='<font style="color:#999;">已驳回</font>';
+								}else if(data[i]['status'] == 6){
+									li +='<font style="color:#999;">已取消</font>';
+								}else if(data[i]['status'] == 7){
+									li +='<font style="color:#999;">提现成功</font>';
+								}else if(data[i]['status'] == 8){
+									li +='<font style="color:#999;">提现失败</font>';
+								}
+							li +='</span></p>';
+						li +='</li>';
+                    };
+                    $('#pro').append(li);
+                }
+                stop = true;
+            }
+        })
+    }
+//滚动加载结束
+})
+function getTime(/** timestamp=0 **/) {
+  var ts = arguments[0] || 0;
+  var t,y,m,d,h,i,s;
+  t = ts ? new Date(ts*1000) : new Date();
+  y = t.getFullYear();
+  m = t.getMonth()+1;
+  d = t.getDate();
+  h = t.getHours();
+  i = t.getMinutes();
+  s = t.getSeconds();
+  // 可根据需要在这里定义时间格式
+  return y+'-'+(m<10?'0'+m:m)+'-'+(d<10?'0'+d:d)+' '+(h<10?'0'+h:h)+':'+(i<10?'0'+i:i)+':'+(s<10?'0'+s:s);
+} 
+</script>
+</html>

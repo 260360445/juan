@@ -1,0 +1,70 @@
+<style type="text/css">
+.active-on{
+	border-left: 2px solid #dd2726;
+}
+.dui{
+  background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/duiruico.png") no-repeat !important;
+}
+.taobao{
+  background: rgba(0, 0, 0, 0) url("/Public/Home/static/new/img/icon/member_comm/taocanbao.png") no-repeat !important;
+}
+</style>
+<div id="member_left" class="member_left">
+<div class="c_left_side">
+  <ul class="c_left_nav">
+    <li><a class="c_first_out_a c_click_li" href="<{:U('Pcenter/account')}>"><i></i>首页</a></li>
+    <?php
+      if(CONTROLLER_NAME == "Pcenter") {
+    ?>
+    <?php
+      if(ACTION_NAME=="buy_bao_lst") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+      <a class="c_out_a" href="<{:U('Pcenter/buy_bao_lst')}>"><i class="taobao"></i>套餐管理</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="transfer") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+      <a class="c_out_a" href="<{:U('Pcenter/transfer')}>"><i class="c_out_i_seven"></i>转账管理</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="packet") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+      <a class="c_out_a" href="<{:U('Pcenter/packet')}>"><i class="c_out_i_five"></i>提现管理</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="dui_list") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+      <a class="c_out_a" href="<{:U('Pcenter/dui_list')}>"><i class="dui"></i>兑入记录</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="bill_list_item") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+      <a class="c_out_a" href="<{:U('Pcenter/bill_list_item')}>"><i class="c_out_i_four"></i>消费记录</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="save") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+      <a class="c_out_a" href="<{:U('Pcenter/save')}>"><i class="c_out_i_eleven"></i>安全中心</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="address") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+      <a class="c_out_a" href="<{:U('Pcenter/address')}>"><i class="c_out_i_ten"></i>收货地址</a>
+    </li>
+    <?php
+      if(ACTION_NAME=="buy_list_item") {echo '<li class="active-on">';}                    
+      else {echo '<li>';}
+    ?>
+    	<a class="c_out_a " href="<{:U('Pcenter/buy_list_item')}>"><i class="c_out_i_two"></i>订单记录</a>
+    </li>
+    <?php }?>
+  </ul>
+</div>
+</div>

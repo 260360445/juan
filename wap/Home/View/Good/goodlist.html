@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/good/product_details.css">
+<link href="__PUBLIC__/Wap/css/login/app.css" rel="stylesheet">
+<title> 
+<?php if($type == 'yes'){?>
+    <{$info.goods_title}>
+<?php }else{?>
+    该商品已删除或已下架
+<?php } ?>
+</title>
+<style type="text/css">
+.particulars .price h3{
+	font-size: .5rem;
+    color: #393534;
+    line-height: .92rem;
+    margin: .3rem 0;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.particulars .name{
+	padding: 0.2rem;
+}
+#app span{
+	display: block;
+    width: .7rem;
+    height: .7rem;
+    background: url(/Public/Wap/images/good/off.png) no-repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    position: absolute;
+    top: .4rem;
+    right: .5rem;
+}
+.product_info2 ul li img{
+	margin-bottom: .2rem;
+}
+.more{
+    width: 100%;
+    color: #000;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-size: 20px;
+    text-align: center; 
+    display: none;
+}
+</style>
+</head>
+<body>
+	<input type="hidden" id="mid" value="<?php echo $_SESSION['wap']['id']?>" />
+	<input type="hidden" id="sta" value="<?php echo $_SESSION['wap']['status']?>" />
+	<input type="hidden" value="<{$info.id}>" id="gid" />
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/good/back.png" alt=""></a>
+		<a class="car" href="<{:U('Cart/cart')}>"><img src="__PUBLIC__/Wap/images/good/car3.png" alt=""></a>
+	</header>
+	<div class="header">
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/good/come_back.png" alt=""></a>
+		<p>商品</p>
+		<a class="car" href="<{:U('Cart/cart')}>">
+			<img src="__PUBLIC__/Wap/images/good/car2.png" alt="">
+		</a>
+	</div>
+	<div class="main_visual">
+	<?php 
+        $imgarr=M('goods_imgs')->where(['gid'=>$info['id']])->order('id asc')->select();
+    ?>
+		<div class="flicking_con">
+		<volist name="imgarr" id="list">
+			<a href="#"></a>
+		</volist>
+		</div>
+		<div class="main_image">
+			<ul>
+			<volist name="imgarr" id="list">
+				<li><a href="#"><img src="__ROOT__/Uploads<{$list['showlogo']}>"/></a></li>
+			</volist>
+			</ul>
+			<a href="javascript:;" id="btn_prev"></a>
+			<a href="javascript:;" id="btn_next"></a>
+		</div>
+	</div>
+	<div class="particulars">
+		<div class="price">
+			<h3><{$info.goods_title}></h3>
+			<h4>可用金：<span><{$info.price}></span></h4>
+			<h4>消费币：<span><{$info.xfb}></span></h4>
+		</div>
+		<div class="name">
+			<div>
+				<p>销量 <{$info.sell}></p>
+				<p>评价 <{$info.comment}></p>
+				<p>库存 <{$info.kucun}></p>
+			</div>
+		</div>
+		<div class="safeguard">
+			<p>公平公正</p>
+			<p>正品保证</p>
+			<p>权益保障</p>
+			<p>极速配送</p>
+		</div>
+	</div>
+	<div class="product_detdils_con">
+		<div class="title">
+			<h3 class="active">商品详情</h3>
+			<h3>评价</h3>
+		</div>
+		<div class="product_info current">
+			<{$info.cont}>
+		</div>
+		<div class="product_info product_info2">
+			<?php if($comment){?>
+				<ul id="pro"> 
+			   		<volist name="comment" id="list">
+			            <li>
+			                <i><img src="__ROOT__/Uploads<{$list.photo}>" alt=""></i>
+			                <h3><{$list.nick_name}></h3>
+			                <h4><{:date('Y-m-d H:i:s',$list['ptime'])}></h4>
+			                <p><{$list.cont}></p>
+			                <?php
+	                            $img=M('comment_img')->field('showlogo')->where(['cid'=>$list['id']])->select();
+	                        ?> 
+			                <volist name="img" id="info">
+			                    <img src="__ROOT__/Uploads<{$info['showlogo']}>" alt="">
+			                </volist>
+			            </li>
+			    	</volist> 
+			    </ul> 
+			    <!-- 滚动加载 -->
+			    <?php if(!empty($comment)){?>
+			        <div class="more">
+			           <img alt="loading" src="__PUBLIC__/Wap/images/loading2.gif" style="height:30px;width:30px;display:inline-block;">
+			        </div>
+			    <?php }?>
+			    <!-- 滚动加载 -->
+			<?php }else{?>
+			<img src="/Public/Home/static/img/zanwupingjia.png" style="display:block;margin:100px auto;">
+			<?php }?>
+		</div>
+	</div>
+	<footer>
+		<a href="<{:U('Index/index')}>">
+			<img src="__PUBLIC__/Wap/images/good/home.png" alt="">
+			<p>首页</p>
+		</a>
+		<a class="shopping" href="javascript:void(0);">加入购物车</a>
+		<a class="buy" href="javascript:void(0);">立即购买</a>
+	</footer>
+	<div class="mask"></div>
+	<div class="xiangqing">
+		<div class="pic">
+			<h3><img src="__ROOT__/Uploads<{$info['goods_logo']}>" alt=""></h3>
+			<p>可用金：<span><{$info.price}></span></p>
+			<p>消费币：<span><{$info.xfb}></span></p>
+		</div>
+		<div class="shuliang">
+			<p>购买数量</p>
+			<div class="amount">
+				<span class="minus">-</span>
+				<p id="payNum">1</p>
+				<span class="add">+</span>
+			</div>
+		</div>
+		<a class="jiaru" href="javascript:void(0);" onclick="cartoon('<{$info.id}>')">加入购物车</a>
+		<a href="javascript:gotopay('<{$info.id}>');">立即购买</a>
+	</div>
+</body>
+<div id="app" style="display:none;z-index:999;">
+<div class="layui-m-layershade"></div>
+<div class="layui-m-layermain"><div class="layui-m-layersection"><div class="layui-m-layerchild  layui-m-anim-scale"><div class="layui-m-layercont">
+<span id="closeloginuser"></span>
+<div class="login">
+      <div class="yl_img">
+        <p>请登录您的账户</p>
+      </div> 
+      
+      <ul class="yl_mode_list">
+        <li>
+          <div>
+            <label class="yl_account yl_mode_item">
+              <div class="yl_icon"><i class="iconfont icon-zhanghu"></i></div> 
+              <input type="text" placeholder="请输入手机号" name="phone" id="phone" maxlength="11">
+            </label>
+          </div> 
+          <div class="yl_password yl_mode_item">
+            <div class="yl_icon"><i class="iconfont icon-mima"></i></div> 
+            <input placeholder="请输入登录密码" type="password" id="pass" maxlength="20"> 
+          </div>
+        </li> 
+      </ul> 
+      <div class="yl_btn"><div class="btn_block" onclick="loginSubmit()">立即登录</div></div>
+      <div class="yl_oper">
+        <a href="/wap.php?s=/home/register/reset.html" class="forget">忘记密码？</a> 
+        <a href="/wap.php?s=/home/register/register.html" class="register">注册</a>
+      </div>
+    </div>
+  </div></div></div></div>
+  </div>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/good/jquery.touchSlider.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/good/product_details.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script type="text/javascript">
+var page = 0;
+var is_loading = false;
+$(function(){
+//滚动加载
+    var stop = true;
+    var start = $('#pro li:last .limit').val();
+    if(start > 6){
+    	$(".more").show();
+    }
+    $(window).scroll(function () {
+        if ((screen.height + $(window).scrollTop()) >= $(document).height()) {
+            if (stop == true) {
+                stop = false;
+                $(".more").show();
+                if(!is_loading){
+                    more();
+                }
+            };  
+        }
+    });
+    function more(){
+        is_loading = true;
+        var ApiUrl =  "<{:U('Good/goodpage')}>";
+        var imgUrl =  "<{:U('Good/imageImg')}>";
+        var id="<?php echo $_GET['id']?>";
+        page++;
+        $.ajax({
+            url:ApiUrl,
+            type: 'POST',
+            dataType: 'JSON',
+            data:{page:page,type:5,gid:id},
+            success:function(data){
+                if (data == '') {
+                    $('.more').text('没有更多评价了');
+                }else{
+                    is_loading = false;
+                    var li = '';
+                    for (var i = 0; i < data.length; i++) {
+                    	 li +='<li>';
+			                li +='<i><img src="__ROOT__/Uploads'+data[i]['photo']+'" alt=""></i>';
+			                li +='<h3>'+data[i]['nick_name']+'</h3>';
+			                li +='<h4>'+getTime(data[i].ptime)+'</h4>';
+			                li +='<p>'+data[i]['cont']+'</p>';
+			                $.ajax({
+						        url:imgUrl,
+						        type: 'POST',
+						        dataType: 'JSON',
+						        data:{cid:data[i]['id']},
+						        async:false,
+						        success:function(responses){
+						        	for (var j = 0 ; j < responses.length; j++) {
+					                	li +='<img src="__ROOT__/Uploads'+responses[j].showlogo+'" alt="">';
+					                }
+						        }
+						    })
+			            li +='</li>';
+                    };
+                    $('#pro').append(li);
+                }
+                stop = true;
+            }
+        })
+    }
+//滚动加载结束
+})	
+function getTime(/** timestamp=0 **/) {
+  var ts = arguments[0] || 0;
+  var t,y,m,d,h,i,s;
+  t = ts ? new Date(ts*1000) : new Date();
+  y = t.getFullYear();
+  m = t.getMonth()+1;
+  d = t.getDate();
+  h = t.getHours();
+  i = t.getMinutes();
+  s = t.getSeconds();
+  // 可根据需要在这里定义时间格式
+  return y+'-'+(m<10?'0'+m:m)+'-'+(d<10?'0'+d:d)+' '+(h<10?'0'+h:h)+':'+(i<10?'0'+i:i)+':'+(s<10?'0'+s:s);
+}
+/**
+ * 跳转到结算页面
+*/
+function gotopay(k){
+    var a = $("#mid").val();
+    var b = $("#sta").val();
+    var c = parseInt($("#payNum").html());
+    if(null != a && "" != a){
+        if(b == '2'){//账号处于激活状态
+        	// 创建一个示例数据
+		    // 使用 JSON.stringify 转换为 JSON 字符串
+		    // 然后使用 sessionStorage 保存在 buyNum 名称里
+	    	var d=[];
+		    d.push({gid: k,buyNum: c });
+		    sessionStorage.setItem("buyNum",JSON.stringify(d));
+		    sessionStorage.setItem("buyType",1);
+            window.location.href = "<{:U('Order/confirm_order')}>";
+        }else if(b == '3'){//账号处于冻结状态
+    		layer.open({
+		        content: '账号处于冻结状态,请联系管理员解封！'
+		        ,skin: 'msg'
+		        ,time: 2 //2秒后自动关闭
+		    });
+		    return false;
+        }
+    }else{
+    	$('.mask').hide();
+        $('.xiangqing').slideUp(300);
+        $("#app").show();
+    }
+}
+$("#closeloginuser").click(function(){
+	$("#app").hide();
+})
+//会员登录
+function loginSubmit(){
+	var phone = window.document.getElementById("phone").value;
+    var password = $("#pass").val();  
+    var isMobile = /^0?1[3-8][0-9]\d{8}$/; // 手机号码验证规则
+    if(phone==null || phone == "" || phone == "请输入手机号" ){
+        layer.open({
+		    content: '请输入手机号'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+      return false;
+    }else if(!isMobile.test(phone)){
+    	layer.open({
+		    content: '手机号格式不正确'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+      return false;
+    }else if(password==null ||password =="" || password == "请输入登录密码"){
+      	layer.open({
+		    content: '请输入登录密码'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+      return false;
+    }else{
+      var url = "<{:U('Login/dologin')}>";
+      $("#loginSubmit").val("等待...");
+      $.ajax({
+        type: "post",
+        url: url,
+        dataType:'json',
+        data:{
+          username :phone,
+          password : password
+        },
+        success:function(data){
+          if(data=="0"){
+            window.location.reload();
+          }else{ 
+            $("#loginSubmit").val("立即登录");
+            if(data == "1"){
+              	layer.open({
+				    content: '账号不正确'
+				    ,skin: 'msg'
+				    ,time: 2 //2秒后自动关闭
+				});
+		      return false;
+            }else if(data == "2" ){
+              	layer.open({
+				    content: '密码不正确'
+				    ,skin: 'msg'
+				    ,time: 2 //2秒后自动关闭
+				});
+		      return false;
+            }
+          } 
+        }
+      });   
+    }
+}
+function cartoon() {
+    var d = $("#mid").val();
+    var c = $("#sta").val();
+    var a = parseInt($("#payNum").html());
+    if(null != d && "" != d){
+        if(c == '2'){//账号处于激活状态
+            var b = $("#gid").val();
+            addCart(b,a);
+        }else if(c == '3'){//账号处于冻结状态
+            layer.open({
+		        content: '账号处于冻结状态,请联系管理员解封！'
+		        ,skin: 'msg'
+		        ,time: 2 //2秒后自动关闭
+		    });
+		    return false;
+        }
+    }else{
+        $('.mask').hide();
+        $('.xiangqing').slideUp(300);
+        $("#app").show();
+    } 
+}
+function addCart(b,a) {
+    var url = "<{:U('Cart/docart')}>";
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: {id: b,num:a},
+        success:function(data){
+            if(data == 'ok'){
+            	$('.mask').hide();
+        		$('.xiangqing').slideUp(300);
+                layer.open({
+			        content: '添加成功！'
+			        ,skin: 'msg'
+			        ,time: 2 //2秒后自动关闭
+			    });
+			    return false; 
+            }else{
+                layer.open({
+			        content: data
+			        ,skin: 'msg'
+			        ,time: 2 //2秒后自动关闭
+			    });
+			    return false;  
+            }
+        }
+    });
+}
+</script>
+</html>

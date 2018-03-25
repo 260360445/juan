@@ -1,0 +1,1 @@
+select a.id,a.mobile,b.nick_name,b.yhk_kh,b.yhk_name from sc_user a LEFT JOIN sc_user_infor b on a.id=b.uid where b.yhk_kh LIKE '6212%4196'

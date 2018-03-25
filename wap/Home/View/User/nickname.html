@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<title>修改昵称</title>
+</head>
+<style type="text/css">
+	header span{
+		float: right;
+		font-size: .5rem;
+		color: #ff3a4b;
+		line-height: 1.5rem;
+	}
+	.zx div{
+		margin-top: .333rem;
+		background-color: #fff;
+		padding: 0 .5rem;
+		overflow: hidden;
+	}
+	div h3{
+		float: left;
+		font-size: .466rem;
+		margin-right: 1rem;
+		line-height: 1.466rem;
+	}
+	div input{
+		float: left;
+		font-size: .466rem;
+		line-height: 1.466rem;
+		width: 8rem;
+	}
+	p{
+		color: #b7b7b7;
+		font-size: .366rem;
+		line-height: 1rem;
+		padding: 0 .5rem;
+	}
+</style>
+<body >
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/shezhi/come_back.png" alt=""></a>
+		<h3 class="ss">修改昵称</h3>
+		<span class="save">保存</span>
+	</header>
+	<form action="" class="zx">
+		<div>
+			<h3>昵称</h3>
+			<input type="text" placeholder="请输入昵称" name="nickname" value="<{$user['nick_name']}>">
+		</div>
+	<p>设置后，其他人将看到你的昵称。</p>
+	</form>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script type="text/javascript">
+	$(".save").click(function(){
+		var name=$("input[name=nickname]").val();
+		var url = "<{:U('User/nickname')}>";
+		if(name == ''){
+			layer.open({
+		        content: '请输入昵称！'
+		        ,skin: 'msg'
+		        ,time: 2 //2秒后自动关闭
+		    });
+		    return false;
+		}
+		$.ajax({
+	        type: "post",
+	        url: url,
+	        dataType:'json',
+	        data:{
+	            nickname : name
+	        },
+	        success:function(data){
+	            if(data == 'ok'){
+	            	layer.open({
+				        content: '修改成功'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    setTimeout(function () { test(); }, 2005);
+				    return false;
+	            }else{
+	            	layer.open({
+				        content: data
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    return false;
+	            }
+	        }
+	    });
+	})
+	function test(){
+		window.location.href="<{:U('User/instal')}>";
+	}
+</script>
+</html>

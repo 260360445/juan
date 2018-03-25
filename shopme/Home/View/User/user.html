@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en" class="fixed">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>会员管理</title>
+    <link rel="apple-touch-icon" sizes="120x120" href="__PUBLIC__/Admin/favicon/apple-icon-120x120.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="__PUBLIC__/Admin/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="__PUBLIC__/Admin/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="__PUBLIC__/Admin/favicon/favicon-16x16.png">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/stylesheets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/stylesheets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/vendor/animate.css/animate.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/vendor/toastr/toastr.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/stylesheets/css/style.css">
+</head>
+<style>
+.btn.btn-wide{
+    min-width: 50px;
+}
+</style>
+<body>
+<div class="wrap">
+    <include file="Public:head" />
+    <div class="page-body">
+        <include file="Public:left" /> 
+        <div class="content">
+            <div class="content-header">
+                <div class="leftside-content-header">
+                    <ul class="breadcrumbs">
+                        <li><i class="fa fa-table" aria-hidden="true"></i><a href="#">会员设置</a></li>
+                        <li><a>会员管理</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row animated fadeInRight">
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <div class="table-responsive">
+                            <div class="col-sm-6">
+                                <div id="basic-table_filter" class="dataTables_filter">
+                                    <div class="form-horizontal form-stripe" id="seachForm">
+                                        <label style="display: -webkit-box;"><input type="search" style="width:400px;" class="form-control input-sm" placeholder="手机号/商城钱包地址/万花筒钱包地址" name="mob" id="seachname" aria-controls="basic-table" value="<?php echo $_GET['mob']?>"> &nbsp;&nbsp;<button class="btn btn-primary" onclick="cha()" type="button">确定</button></label>
+                                    </div>
+                                </div>
+                            </div>
+                                <table class="table table-striped table-hover table-bordered text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>手机</th>
+                                        <th>余额</th>
+                                        <th style="width:200px;">本站地址</th>
+                                        <th style="width:200px;">万花筒地址</th>
+                                        <th style="width:200px;">注册时间</th>
+                                        <th style="width:200px;">万花筒注册时间</th>
+                                        <th style="width:100px;">账号状态</th>
+                                        <th style="width:200px;">管理</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <volist name="info" key="key" id="list">
+                                    <tr>
+                                        <td><{$key}></td>
+                                        <td><{$list.mobile}></td>
+                                        <td><{$list.bal}></td>
+                                        <td><{$list.shop_pay}></td>
+                                        <td>
+                                            <if condition="$list[wht_pay] neq '0'">
+                                                <{$list.wht_pay}>
+                                            <else/> 
+                                               未绑定
+                                            </if>
+                                        </td>
+                                        <td><{$list.reg_time|date='Y-m-d H:i:s',###}></td>
+                                        <td>
+                                            <if condition="$list[wht_reg_time] gt 999">
+                                                <{$list.wht_reg_time|date='Y-m-d H:i:s',###}>
+                                            <else/> 
+                                               未绑定
+                                            </if>
+                                        </td>
+                                        <td>
+                                        <if condition="stripos($_SESSION['ad']['auth'],'all') nheq false">
+                                            <if condition="$list[status] eq 2">
+                                                <a href="javascript:close(<{$list.id}>);" class="btn btn-wide btn-o btn-info">激活</a>
+                                            <elseif condition="$list[status] eq 3"/> 
+                                               <a href="javascript:open(<{$list.id}>);" class="btn btn-wide btn-o btn-danger">冻结</a>
+                                            </if>
+                                        <else/>
+                                            <if condition="stripos($_SESSION['ad']['auth'],'User_open_close') nheq false">
+                                                <if condition="$list[status] eq 2">
+                                                    <a href="javascript:close(<{$list.id}>);" class="btn btn-wide btn-o btn-info">激活</a>
+                                                <elseif condition="$list[status] eq 3"/> 
+                                                   <a href="javascript:open(<{$list.id}>);" class="btn btn-wide btn-o btn-danger">冻结</a>
+                                                </if>
+                                            </if>
+                                        </if>
+                                        </td>
+                                        <td>
+                                        <if condition="stripos($_SESSION['ad']['auth'],'all') nheq false">
+                                            <a href="javascript:void(0);"  style="color:#F00;"  onclick="clareWht(<{$list.id}>)">清空地址</a>
+                                            <span >|</span>
+                                            <a href="javascript:setPass(<{$list.id}>);">修改密码</a>
+                                        <else />
+                                            <if condition="stripos($_SESSION['ad']['auth'],'User_clarewht') nheq false">
+                                                <a href="javascript:void(0);"  style="color:#F00;"  onclick="clareWht(<{$list.id}>)">清空地址</a>
+                                                <span >|</span>
+                                            </if>
+                                            <if condition="stripos($_SESSION['ad']['auth'],'User_setpass') nheq false">
+                                                <a href="javascript:setPass(<{$list.id}>);">修改密码</a>
+                                            </if>
+                                        </if>
+                                        </td>
+                                    </tr>
+                                    </volist>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                            <!-- <div class="col-sm-5"></div> -->
+                            <div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="basic-table_paginate">
+                            <ul class="pagination">
+                            <li id="page"><{$page}></li> 
+                            </ul>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Public:right" />
+        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+</div>
+<script src="__PUBLIC__/Admin/javascripts/jquery.min.js"></script>
+<script src="__PUBLIC__/Admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/Admin/vendor/nano-scroller/nano-scroller.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/template-script.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/template-init.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
+</body>
+<script>
+function clareWht(id){
+    var url = "<{:U('User/clarewht')}>";
+    layer.confirm('您确定要清空地址吗？', {
+      btn: ['钱包地址','其他地址'] //按钮
+    }, function(){
+        $.ajax({
+            type : 'post',
+            url : url,
+            data : {id:id,type:1},
+            error : function () {
+                layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+            },
+            success : function (responses) {
+                if (responses.msg == 'ok'){
+                    layer.msg('设置成功',{offset: '300px',time: 1500,icon: 1},function () {
+                        window.location.reload();
+                    });
+                }else{
+                    layer.msg(responses.msg,{offset: '300px',time: 1500,icon: 2});
+                }
+            }
+        });
+    },  function(){
+         layer.confirm('您确定要清空地址吗？', {
+              btn: ['身份认证','银行卡'] //按钮
+            }, function(){
+                $.ajax({
+                    type : 'post',
+                    url : url,
+                    data : {id:id,type:3},
+                    error : function () {
+                        layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+                    },
+                    success : function (responses) {
+                        if (responses.msg == 'ok'){
+                            layer.msg('设置成功',{offset: '300px',time: 1500,icon: 1},function () {
+                                window.location.reload();
+                            });
+                        }else{
+                            layer.msg(responses.msg,{offset: '300px',time: 1500,icon: 2});
+                        }
+                    }
+                });
+            },  function(){
+                $.ajax({
+                    type : 'post',
+                    url : url,
+                    data : {id:id,type:2},
+                    error : function () {
+                        layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+                    },
+                    success : function (responses) {
+                        if (responses.msg == 'ok'){
+                            layer.msg('设置成功',{offset: '300px',time: 1500,icon: 1},function () {
+                                window.location.reload();
+                            });
+                        }else{
+                            layer.msg(responses.msg,{offset: '300px',time: 1500,icon: 2});
+                        }
+                    }
+                });
+            });
+    });
+}
+function close(id){
+    var url = "<{:U('User/close')}>";
+    layer.confirm('您确定要冻结这个账户吗？', {
+      btn: ['确定','取消'] //按钮
+    }, function(){
+        $.ajax({
+            type : 'post',
+            url : url,
+            data : {id:id},
+            error : function () {
+                layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+            },
+            success : function (responses) {
+                if (responses.msg == 'ok'){
+                    layer.msg('设置成功',{offset: '300px',time: 1500,icon: 1},function () {
+                        window.location.reload();
+                    });
+                }else{
+                    layer.msg(responses.msg,{offset: '300px',time: 1500,icon: 2});
+                }
+            }
+        });
+    });
+}
+function open(id){
+    var url = "<{:U('User/open')}>";
+    var id=id;
+    layer.confirm('您确定要激活这个账户吗？', {
+      btn: ['确定','取消'] //按钮
+    }, function(){
+        $.ajax({
+            type : 'post',
+            url : url,
+            data : {id:id},
+            error : function () {
+                layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+            },
+            success : function (responses) {
+                if (responses.msg == 'ok'){
+                    layer.msg('设置成功',{offset: '300px',time: 1500,icon: 1},function () {
+                        window.location.reload();
+                    });
+                }else{
+                    layer.msg(responses.msg,{offset: '300px',time: 1500,icon: 2});
+                }
+            }
+        });
+    });
+}
+function setPass(id){
+    var url = "<{:U('User/setpass')}>";
+    layer.confirm('您确定要重置密码吗？', {
+      btn: ['重置登录密码','重置支付密码'] //按钮
+    }, function(){
+        $.ajax({
+            type : 'post',
+            url : url,
+            data : {id:id,type:1},
+            error : function () {
+                layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+            },
+            success : function (responses) {
+                if (responses.msg == 'ok'){
+                    layer.alert(responses.flg, {
+                      title: '友情提示', //不显示标题
+                      icon: 1,
+                      skin: 'layer-ext-moon' //该皮肤由layer.seaning.com友情扩展。关于皮肤的扩展规则，去这里查阅
+                    })
+                }else{
+                    layer.msg(responses.msg,{offset: '300px',time: 1500,icon: 2});
+                }
+            }
+        });
+    }, function(){
+        $.ajax({
+            type : 'post',
+            url : url,
+            data : {id:id,type:2},
+            error : function () {
+                layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+            },
+            success : function (responses) {
+                if (responses.msg == 'ok'){
+                    layer.alert(responses.flg, {
+                      title: '友情提示', //不显示标题
+                      icon: 1,
+                      skin: 'layer-ext-moon' //该皮肤由layer.seaning.com友情扩展。关于皮肤的扩展规则，去这里查阅
+                    })
+                }else{
+                    layer.msg(responses.msg,{offset: '300px',time: 1500,icon: 2});
+                }
+            }
+        });
+    });
+}
+function cha(){
+    var mob=$("#seachname").val();
+    if(mob){
+        window.location.href="<{:U(MODULE_NAME.'/User/user/mob/"+mob+"')}>";
+    }else{
+        window.location.href="<{:U('User/user')}>";
+    }
+}
+</script>
+<script type="text/javascript">
+$(function(){
+    window.onkeydown=function(event){
+    　　if(event.keyCode == 13){
+    　　　　cha();
+    　　}
+    };
+})
+</script>
+</html>

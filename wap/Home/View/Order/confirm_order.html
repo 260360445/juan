@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/order/confirm_order.css">
+<title>确认订单</title>
+</head>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/order/come_back.png" alt=""></a>
+		<h3>确认订单</h3>
+	</header>
+	<div class="shipments_address">
+		<i></i>
+		<input type="hidden" id="adsid" value="<{$address_arr['id']}>">
+		<a href="<{:U('Order/addressinfo')}>">
+			<img src="__PUBLIC__/Wap/images/order/dingwei.png" alt="">
+			<h3><span id="adsname" style="margin-left:0;"></span><span id="adsmobile"></span></h3>
+			<p>收货地址：<span id="adsstreet"></span></p>
+		</a>
+	</div>
+	<div class="info" id="orderinfo">
+		<h3>订单信息</h3>
+	</div>
+	<ul style="margin-bottom:2rem;">
+		<li>
+			<p>支付可用金</p>
+			<span class="a2"></span>
+		</li>
+		<li>
+			<p>支付消费币</p>
+			<span class="a1"></span>
+		</li>
+		<li>
+			<p>支付总额</p>
+			<span class="a3"></span>
+		</li>
+	</ul>
+	<footer>
+		<p>实付款：<span class="a3"></span></p>
+		<button id="dopay">提交订单</button>
+	</footer>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/order/confirm_order.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script type="text/javascript">
+$(function(){
+    // 然后是如何转换通过 JSON.stringify 生成的字符串，该字符串以 JSON 格式保存在 localStorage 里
+    var restoredSession = JSON.parse(sessionStorage.getItem('buyNum'));
+    var restoredSessionaid = JSON.parse(sessionStorage.getItem('buyAidNum'));
+    var apiurl = "<{:U('Order/ajaxAddress')}>";
+    if(restoredSessionaid != null){
+    	$.ajax({
+	        url: apiurl,
+	        type: 'POST',
+	        dataType: 'json',
+	        async : false,
+	        data: {aid:restoredSessionaid[0]['aid']},
+	        success:function(data){
+	           	if(data != '3'){
+	           		$("#adsid").val(data['id']);
+	           		$("#adsname").html(data['name']);
+	           		$("#adsmobile").html(data['mobile']);
+	           		$("#adsstreet").html(data['province']+data['city']+data['area']+data['street']);
+	           	}else{
+	           		layer.open({
+				        content: '地址选择失败！'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    return false;
+	           	}
+	        }
+	    });
+    }else{
+    	$.ajax({
+	        url: apiurl,
+	        type: 'POST',
+	        dataType: 'json',
+	        async : false,
+	        data: {aid:2},
+	        success:function(data){
+	           	if(data != '3'){
+	           		$("#adsid").val(data['id']);
+	           		$("#adsname").html(data['name']);
+	           		$("#adsmobile").html(data['mobile']);
+	           		$("#adsstreet").html(data['province']+data['city']+data['area']+data['street']);
+	           	}else{
+	           		layer.open({
+				        content: '您还没有默认地址，请选择地址！'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    return false;
+	           	}
+	        }
+	    });
+    }
+    var url = "<{:U('Order/ajaxGoods')}>";
+	// 现在 restoredSession 包含了保存在 localStorage 里的对象
+	if(sessionStorage.getItem('buyType') == 1){
+		$.ajax({
+	        url: url,
+	        type: 'POST',
+	        dataType: 'json',
+	        async : false,
+	        data: {buyType:sessionStorage.getItem('buyType'),itemid: restoredSession[0]['gid'],buynum:restoredSession[0]['buyNum']},
+	        success:function(data){
+	           	if(data != '3'){
+	           		$("#orderinfo").append(data);
+	           	}else{
+	           		layer.open({
+				        content: '购买数量非法！'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    return false;
+	           	}
+	        }
+	    });
+	}else if(sessionStorage.getItem('buyType') == 2){
+		// 现在 restoredSession 包含了保存在 localStorage 里的对象
+		$.ajax({
+	        url: url,
+	        type: 'POST',
+	        dataType: 'json',
+	        async : false,
+	        data: {buyType:sessionStorage.getItem('buyType'),item:restoredSession},
+	        success:function(data){
+	           	if(data != '3'){
+	           		$("#orderinfo").append(data);
+	           	}else{
+	           		layer.open({
+				        content: '购买数量非法！'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    return false;
+	           	}
+	        }
+	    });
+	    add();
+	}
+    $('#dopay').click(function(){
+		var index =  layer.open({
+			    type: 2
+			    ,content: '加载中...'
+			  });
+		var type=sessionStorage.getItem('buyType');
+		var adsid=$("#adsid").val();
+		var a = /^\d{6}$/;
+		if(type == 1){
+			var gid=restoredSession[0]['gid'];
+			var num=$("#buynum_"+gid).val();
+			var url = "<{:U('Order/payorder')}>";
+			$.ajax({
+                type: "POST",
+                url: url,
+                data: {num:num,gid:gid,adsid:adsid},
+                dataType: 'json',
+                error : function () {
+	            	layer.open({
+					    content: '网络故障，请稍后重试!'
+					    ,skin: 'msg'
+					    ,time: 2 //2秒后自动关闭
+					});
+			      	return false;
+	          	},
+                success: function(data){
+                	if (data.msg == 'ok'){
+                		var d=[];
+					    d.push({buyOid: data.flg,buyType:data.buytype,gid:data.gid});
+					    sessionStorage.setItem("payOrderCashierWap",JSON.stringify(d));
+	                    window.location.href = "<{:U('Order/fukuan')}>";
+	            	}else{
+	            		sessionStorage.clear();//清空缓存数据
+	                  	layer.open({
+					        content: data.msg
+					        ,skin: 'msg'
+					        ,time: 2 //2秒后自动关闭
+					    });
+					    setTimeout(function () { test(); }, 2005);
+	                	return false;
+	            	}
+                }
+            });
+		}else if(type == 2){
+			var buy=[]; 
+			var num='';
+			var url = "<{:U('Order/cartPayOrder')}>";
+		    $("input[name=items]").each(function(k,v) {  
+		        if ($(this).is(":checked")) { 
+		        	buynum=$("#buynum_"+$(this).val()+"").val();
+		        	buy.push({gid:$(this).val(),num:buynum});	
+		        }
+		    });
+		    if(buy == ""){
+		    	layer.open({
+			        content: '请选择商品！'
+			        ,skin: 'msg'
+			        ,time: 2 //2秒后自动关闭
+			    });
+		    	return false;
+		    }else{
+		    	$.ajax({
+	                type: "POST",
+	                url: url,
+	                data: {item:buy,adsid:adsid},
+	                dataType: 'json',
+	                error : function () {
+		            	layer.open({
+					        content: '网络故障，请稍后重试！'
+					        ,skin: 'msg'
+					        ,time: 2 //2秒后自动关闭
+					    });
+				    	return false;
+		          	},
+	                success: function(data){
+	                	if (data.msg == 'ok'){
+		                	var d=[];
+						    d.push({buyOid: data.flg,buyType:data.buytype});
+						    sessionStorage.setItem("payOrderCashierWap",JSON.stringify(d));
+		                    window.location.href = "<{:U('Order/fukuan')}>";
+		            	}else{
+		            		sessionStorage.clear();//清空缓存数据
+		                	layer.open({
+						        content: data.msg
+						        ,skin: 'msg'
+						        ,time: 2 //2秒后自动关闭
+						    });
+						    setTimeout(function () { test(); }, 2005);
+		                	return false;
+			            	}
+	                }
+	            });	
+		    }
+		}
+	})
+	var ipt = $('.check_alls');
+	ipt.change(function(){
+		add();	
+	})
+})
+function test(){
+	window.location.reload();
+}
+// 合计金额函数封装
+function add(){
+	var ipt = $('.check_alls');
+	j = 0;
+	o = 0;
+	w = 0;
+	for (var i = 0; i < $('.check_alls').length; i++) {
+		if($(ipt[i]).is(':checked')){
+			var gid=$(ipt[i]).siblings('div').children('#goodsid').val();
+			o = o + parseInt($(ipt[i]).siblings().siblings('h6').children('.sumPay').html());//总额
+			w = w + parseInt($(ipt[i]).siblings('div').siblings('a').children('p').children('.payNum').html() * $(ipt[i]).siblings('div').children('a').children('#buynum_'+gid).val());//可用金
+			j = j + parseInt($(ipt[i]).siblings('div').children('a').children('p').children('.xfbNum').html() * $(ipt[i]).siblings('div').children('a').children('#buynum_'+gid).val());//消费币
+		}
+	}
+	// console.log(o)
+	$('.a1').html(j);//消费币
+	$('.a2').html(w);//可用金
+	$('.a3').html(o);//总额
+}
+</script>
+</html>

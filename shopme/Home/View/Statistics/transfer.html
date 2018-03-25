@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" class="fixed">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>转账管理</title>
+    <link rel="apple-touch-icon" sizes="120x120" href="__PUBLIC__/Admin/favicon/apple-icon-120x120.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="__PUBLIC__/Admin/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="__PUBLIC__/Admin/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="__PUBLIC__/Admin/favicon/favicon-16x16.png">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/stylesheets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/stylesheets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/vendor/animate.css/animate.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/vendor/toastr/toastr.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Admin/stylesheets/css/style.css">
+</head>
+<body>
+<div class="wrap">
+    <include file="Public:head" />
+    <div class="page-body">
+        <include file="Public:left" /> 
+        <div class="content">
+            <div class="content-header">
+                <div class="leftside-content-header">
+                    <ul class="breadcrumbs">
+                        <li><i class="fa fa-table" aria-hidden="true"></i><a href="#">转账设置</a></li>
+                        <li><a>转账管理</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row animated fadeInRight">
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <div class="table-responsive">
+                            <div class="col-sm-6">
+                            <div id="basic-table_filter" class="dataTables_filter">
+                                <div class="form-horizontal form-stripe" id="seachForm">
+                                    <label style="display: -webkit-box;"><input type="search" style="width:200px;" class="form-control input-sm" placeholder="接收账户" name="account" id="seachname" aria-controls="basic-table" value="<?php echo $_GET['mob']?>"> &nbsp;&nbsp;<button class="btn btn-primary" onclick="cha()" type="button">确定</button></label>
+                                </div>
+                            </div>
+                            </div>
+                                <table class="table table-striped table-hover table-bordered text-center">
+                                    <thead>
+                                    <tr>
+                                        <th >流水号</th>
+                                        <th >转出账户</th>
+                                        <th >接收账户</th>
+                                        <th >转账金额</th>
+                                        <th >状态</th>
+                                        <th >转账时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <volist name="info" id="list">
+                                    <tr>
+                                        <td><{$list.number}></td>
+                                        <td><{$list.umobile}></td>
+                                        <td><{$list.tmobile}></td>
+                                        <td><{$list.money}></td>
+                                        <td>
+                                          <if condition="$list[status] eq 2">
+                                            <font style="color:green;">成功</font>
+                                          <elseif condition="$list[status] eq 3"/>
+                                            <font style="color:#999;">失败</font>
+                                          </if>
+                                        </td>
+                                        <td><{:date('Y-m-d H:i:s',$list[ztime])}></td>
+                                    </tr>
+                                    </volist>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <ul class="pagination">
+                                    <li id="page"><{$page}></li> 
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Public:right" />
+        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+</div>
+<script src="__PUBLIC__/Admin/javascripts/jquery.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
+<script src="__PUBLIC__/Admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/Admin/vendor/nano-scroller/nano-scroller.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/template-script.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/template-init.min.js"></script>
+</body>
+<script>
+    function cha(){
+      var mob=$("#seachname").val();
+        if(mob){
+            window.location.href="<{:U(MODULE_NAME.'/Statistics/transfer/mob/"+mob+"')}>";
+        }else{
+            window.location.href="<{:U('Statistics/transfer')}>";
+        }  
+    }
+</script>
+</html>

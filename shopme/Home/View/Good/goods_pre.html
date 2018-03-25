@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>上传设置</title>
+<link rel="stylesheet" href="__PUBLIC__/Admin/static/style/css/global.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/Admin/static/style/css/style.css" type="text/css">
+<script src="__PUBLIC__/Admin/static/style/js/jquery-1.8.3.min.js"></script>
+<link href="__PUBLIC__/validform/styles.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/validform/Validform_v5.3.2_ncr_min.js" type="text/javascript"></script>
+<script language="javascript">
+
+	// validateForm 表单验证 + ajax账号是否可用
+	 $(function(){
+			var form=$(".registerform").Validform({
+			     tiptype:2,
+			  });
+			form.addRule([
+			   {
+			     ele:"#goods_id",
+			     datatype:"n1-100",
+			     ajaxurl:"__CONTROLLER__/ajaid", 
+			     nullmsg:"请输入商品编号！",
+			     errormsg:"（商品编号只能输入数字，最少输入一位！）"
+			   },
+			   {
+			     ele:"#luckycode",
+			     datatype:"n1-100",
+			     ajaxurl:"__CONTROLLER__/ajacode", 
+			     nullmsg:"请输入中奖云购码！",
+			     errormsg:"（中奖云购码是从 100001 开始的！）"
+			   }
+         ]);
+		})
+</script>
+</head>
+<body>
+<div class="header lr10">
+		<h3 class="nav_icon">中奖人设置</h3>	
+</div>   
+<div class="bk10"></div>
+<div class="table-list lr10">
+<!--start-->
+<form name="myform" class="registerform" action="__MODULE__/Good/goods_pre?action=add" method="post">
+  <table width="100%" cellspacing="0" class="registerform">	
+		<tr>
+			<td width="200" align="right">商品编号：</td>
+			<td><input type="text" name="goods_id" id="goods_id" class="input-text" maxlength="100">商品的编号(id)</td>
+			<td>
+	              <div class="Validform_checktip">
+	                <span id="usernameWarning" class="org2">
+	                </span>
+	              </div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td width="200" align="right">中奖云购码：</td>
+			<td><input type="text" name="luckycode" id="luckycode" class="input-text" maxlength="10">必须购买当期商品下的云购码</td>
+			<td>
+	              <div class="Validform_checktip">
+	                <span id="usernameWarning" class="org2">
+	                </span>
+	              </div>
+			</td>
+			
+		</tr>
+		
+		<tr>
+        	<td width="200" align="right"></td>
+            <td><input type="submit" class="submit"  value=" 提交 " ></td>	
+            <td></td>	
+		</tr>
+  </table>
+</form>
+
+</div>
+</body>
+</html>

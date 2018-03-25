@@ -1,0 +1,4 @@
+select count(a.id),sum(a.shiji) from sc_wht_tilog a LEFT JOIN sc_user b on a.uid=b.id where a.ctime>1520352000 and a.ctime<1520438400 and b.wht_reg_time>1516204800 and a.`status`=2 and a.money in(588,1176,2352,3528)
+
+
+update sc_wht_tilog a LEFT JOIN sc_user b on a.uid=b.id set a.`status`=3 where a.ctime>1520352000 and a.ctime<1520438400 and b.wht_reg_time>1516204800 and a.`status`=2 and a.money in(588,1176,2352,3528)

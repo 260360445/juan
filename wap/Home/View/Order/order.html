@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/order/order_record.css">
+<title>订单记录</title>
+</head>
+<style type="text/css">
+.more{
+    width: 100%;
+    color: #ddd;
+    margin: 10px 0;
+    border-radius: 2px;
+    font-size: 20px;
+    text-align: center; 
+    display: none;
+}
+</style>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/order/come_back.png" alt=""></a>
+		<h3>订单记录</h3>
+	</header>
+	<div class="order_record_tit">
+		<a href="<{:U('Order/order')}>"><p class="current">全部</p></a>
+		<a href="<{:U('Order/payorderlist')}>"><p>待付款(<i>2</i>)</p></a>
+		<a href="<{:U('Order/order_record')}>"><p>待发货(<i>2</i>)</p></a>
+		<a href="<{:U('Order/shouhuo')}>"><p>待收货(<i>2</i>)</p></a>
+		<a href="<{:U('Order/pingjia')}>"><p>待评价(<i>2</i>)</p></a>
+	</div>
+	<div class="order_record_con">
+		<ul id="pro">
+		<volist name="info" id="list" key="key">
+			<li>
+				<div class="top">
+					<img src="__PUBLIC__/Wap/images/order/shangpu.png" alt="">
+					<p>订单号：<i><{$list.order_num}></i></p>
+					<span>
+						<if condition="$list[state] eq 2">
+	                        <font style="color:green;">待收货</font>
+	                    <elseif condition="$list[state] eq 3"/> 
+	                        <font style="color:orange;">待发货</font>
+	                    <elseif condition="$list[state] eq 4"/> 
+	                        <font style="color:#ddd;">交易关闭</font>
+	                    <elseif condition="$list[state] eq 5"/> 
+	                        <font style="color:#c40000;">待付款</font>
+	                    <elseif condition="$list[state] eq 6"/> 
+	                        <font style="color:#999;">已取消</font>
+	                    </if>
+					</span>
+				</div>
+				
+				<if condition="$list[state] eq 2">
+                    <!-- <font style="color:green;">已发货</font> -->
+                    <div class="center" onclick='window.location="<{:U("Order/delivery",["order"=>$list["order_id"]])}>"'>
+                <elseif condition="$list[state] eq 3"/> 
+                   <!--  <font style="color:orange;">待发货</font> -->
+                   <div class="center" onclick='window.location="<{:U("Order/shipments",["order"=>$list["order_id"]])}>"'>
+                <elseif condition="$list[state] eq 4"/> 
+                    <!-- <font style="color:#ddd;">交易关闭</font> -->
+                    <div class="center" onclick='window.location="<{:U("Order/evaluate",["order"=>$list["order_id"]])}>"'>
+                <elseif condition="$list[state] eq 5"/> 
+                    <!-- <font style="color:#c40000;">待付款</font> -->
+                    <div class="center" onclick='window.location="<{:U("Order/payordercon",["order"=>$list["order_id"]])}>"'>
+                <elseif condition="$list[state] eq 6"/> 
+                    <!-- <font style="color:#c40000;">待付款</font> -->
+                    <div class="center" onclick='window.location="<{:U("Good/goodlist",["id"=>$list["id"]])}>"'>
+                </if>
+					<img src="__ROOT__/Uploads<{$list.goods_logo}>" alt="">
+					<h3><{$list.goods_title}></h3>
+					<p>可用金：￥<i><{$list.price}></i></p>
+					<p>消费币：￥<i><{$list.xfb}></i></p>
+					<span>×<i><{$list.buynum}></i></span>
+				</div>
+				<div class="bottom">
+					<h4>总计：<i>￥<{$list.sumpay}></i></h4>
+					<h3>共<span><{$list.buynum}></span>件商品</h3>
+				</div>
+				<div class="btn">
+					<if condition="$list[state] eq 2">
+                    	<a href="<{:U('Order/delivery',['order'=>$list['order_id']])}>" >确认收货</a>
+                  	<elseif condition="$list[state] eq 4"/> 
+	                    <a href="<{:U('Order/evaluate',['order'=>$list['order_id']])}>" class="goumai">评价</a>
+	                    <a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" >再次购买</a>
+                  	<elseif condition="$list[state] eq 5"/> 
+                    	<a href="javascript:payOrder(<{$list.order_id}>);" >去付款</a>
+                    	<a class="goumai" href="javascript:closeOrder(<{$list.order_id}>);">取消订单</a>
+                  	</if>
+				</div>
+			</li>
+		</volist>
+		</ul>
+		<!-- 滚动加载 -->
+	    <?php if(!empty($info)){?>
+	        <div class="more" style="height:30px;">
+	           <img alt="loading" src="__PUBLIC__/Wap/images/loading2.gif" style="height:30px">
+	        </div>
+	    <?php }?>
+	    <!-- 滚动加载 -->
+	</div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script>
+var page = 0;
+var is_loading = false;
+$(function(){
+//滚动加载
+    var stop = true;
+    $(window).scroll(function () {
+        if ((screen.height + $(window).scrollTop()) >= $(document).height()) {
+            if (stop == true) {
+                stop = false;
+                $(".more").show();
+                if(!is_loading){
+                    more();
+                }
+            };  
+        }
+    });
+    function more(){
+        is_loading = true;
+        var ApiUrl =  "<{:U('Order/listpage')}>";
+        page++;
+        $.ajax({
+            url:ApiUrl,
+            type: 'POST',
+            dataType: 'JSON',
+            data:{page:page,type:2},
+            success:function(data){
+                if (data == '') {
+                    $('.more').text('没有更多记录了');
+                }else{
+                    is_loading = false;
+                    var li = ""
+                    for (var i = 0; i < data.length; i++) {
+							li +="<li>";
+								li +="<div class='top'>";
+									li +="<img src='__PUBLIC__/Wap/images/order/shangpu.png' alt=''>";
+									li +="<p>订单号：<i>"+data[i]["order_num"]+"</i></p>";
+									li +="<span>";
+										if(data[i]['state'] == 2){
+											li +="<font style='color:green;''>待收货</font>";
+										}else if(data[i]['state'] == 3){
+											li +='<font style="color:orange;">待发货</font>';
+										}else if(data[i]['state'] == 4){
+											li +='<font style="color:#ddd;">交易关闭</font>';
+										}else if(data[i]['state'] == 5){
+											li +='<font style="color:#c40000;">待付款</font>';
+										}else if(data[i]['state'] == 6){
+											li +='<font style="color:#999;">已取消</font>';
+										}
+									li +='</span>';
+								li +='</div>';
+									if(data[i]['state'] == 2){
+										li +='<div class="center" onclick="targetblank(2,'+data[i]['order_id']+')">';
+									}else if(data[i]['state'] == 3){
+										li +='<div class="center" onclick="targetblank(3,'+data[i]['order_id']+')">';
+									}else if(data[i]['state'] == 4){
+										li +='<div class="center" onclick="targetblank(4,'+data[i]['order_id']+')">';
+									}else if(data[i]['state'] == 5){
+										li +='<div class="center" onclick="targetblank(5,'+data[i]['order_id']+')">';
+									}else if(data[i]['state'] == 6){
+										li +='<div class="center" onclick="targetblank(6,'+data[i]['id']+')">';
+									}
+									li +='<img src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
+									li +='<h3>'+data[i]['goods_title']+'</h3>';
+									li +='<p>可用金：￥<i>'+data[i]['price']+'</i></p>';
+									li +='<p>消费币：￥<i>'+data[i]['xfb']+'</i></p>';
+									li +='<span>×<i>'+data[i]['buynum']+'</i></span>';
+								li +='</div>';
+								li +='<div class="bottom">';
+									li +='<h4>总计：<i>￥'+data[i]['sumpay']+'</i></h4>';
+									li +='<h3>共<span>'+data[i]['buynum']+'</span>件商品</h3>';
+								li +='</div>';
+								li +='<div class="btn">';
+									if(data[i]['state'] == 2){
+				                    	li +='<a href="<{:U(MODULE_NAME."/Order/delivery/order/'+data[i]['order_id']+'")}>" >确认收货</a>';
+									}else if(data[i]['state'] == 4){
+										li +='<a href="<{:U(MODULE_NAME."/Order/evaluate/order/'+data[i]['order_id']+'")}>" class="goumai">评价</a>';
+					                    li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>" >再次购买</a>';
+									}else if(data[i]['state'] == 5){
+										li +='<a href="javascript:payOrder('+data[i]['order_id']+');" >去付款</a>';
+				                    	li +='<a class="goumai" href="javascript:closeOrder('+data[i]['order_id']+');">取消订单</a>';
+									}
+								li +='</div>';
+							li +='</li>';
+                    };
+                    $('#pro').append(li);
+                }
+                stop = true;
+            }
+        })
+    }
+//滚动加载结束
+})
+function targetblank(tar,id){
+	if(tar == 2){
+		window.location.href="<{:U(MODULE_NAME.'/Order/delivery/order/"+id+"')}>";
+	}else if(tar == 3){
+		window.location.href="<{:U(MODULE_NAME.'/Order/shipments/order/"+id+"')}>";
+	}else if(tar == 4){
+		window.location.href="<{:U(MODULE_NAME.'/Order/evaluate/order/"+id+"')}>";
+	}else if(tar == 5){
+		window.location.href="<{:U(MODULE_NAME.'/Order/payordercon/order/"+id+"')}>";	
+	}else if(tar == 6){
+		window.location.href="<{:U(MODULE_NAME.'/Good/goodlist/id/"+id+"')}>";	
+	}
+	
+}
+function payOrder(id){
+  var url = "<{:U('Order/doPayBuyOrder')}>";
+  var oid=id;
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: {oid:oid},
+    dataType: 'json',
+    error : function () {
+      	layer.open({
+	        content: '网络故障，请稍后重试！'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+    },
+    success: function(data){
+      if (data.msg == 'ok'){
+          var d=[];
+          d.push({buyOid: data.flg,buyType:data.buytype,gid:data.gid});
+          sessionStorage.setItem("payOrderCashierWap",JSON.stringify(d));
+          window.location.href="<{:U('Order/fukuan')}>";
+      }else{
+        layer.open({
+	        content: data.msg
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+      }
+    }
+  });
+}
+//取消订单
+function closeOrder(id){
+	layer.open({
+    content: '您确定要取消订单吗？'
+    ,btn: ['确定', '取消']
+    ,skin: 'footer'
+    ,yes: function(index){
+      	var url = "<{:U('Order/closeDoPayBuyOrder')}>";
+	  	var oid=id;
+	  	$.ajax({
+	    type: "POST",
+	    url: url,
+	    data: {oid:oid},
+	    dataType: 'json',
+	    error : function () {
+	      	layer.open({
+		        content: '网络故障，请稍后重试！'
+		        ,skin: 'msg'
+		        ,time: 2 //2秒后自动关闭
+		    });
+		    return false;
+	    },
+	    success: function(data){
+	      if (data.msg == 'ok'){
+	          window.location.reload();
+	      }else{
+	        layer.open({
+		        content: data.msg
+		        ,skin: 'msg'
+		        ,time: 2 //2秒后自动关闭
+		    });
+		    return false;
+	      }
+	    }
+	  });
+    }
+  });
+}
+</script>
+</html>

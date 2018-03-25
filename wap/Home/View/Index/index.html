@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/index/index.css">
+<title>万花筒_离梦想最近的地方</title>
+</head>
+<body>
+	<div class="header">
+		<div class="main">
+			<a class="car" href="<{:U('Cart/cart')}>"><img src="__PUBLIC__/Wap/images/index/car.png"></a>
+            <form onsubmit="return false;">
+                <input class="seach" id="keyword" placeholder="输入关键字搜索"  type="text" value="<?php echo $_GET['query']?>"/>
+                <a style="position: absolute;right: 18%;top: 0;width: 1rem;height: 100%;" href="javascript:seach();"></a>
+            <form>
+			<a class="classify" href="<{:U('Good/gclass')}>"><img src="__PUBLIC__/Wap/images/index/classify.png"></a>
+		</div>
+	</div>
+    <div class="main_visual">
+        <div class="flicking_con">
+        <volist name="ban" id="list">
+            <a href="#"></a>
+        </volist>    
+        </div>
+        <div class="main_image">
+            <ul>
+            <volist name="ban" id="list">
+                <li><a href="#"><img src="__ROOT__/<{$list.logo}>"/></a></li>
+            </volist>
+            </ul>
+            <a href="javascript:;" id="btn_prev"></a>
+            <a href="javascript:;" id="btn_next"></a>
+        </div>
+    </div>
+   <!--  <div class="news">
+       <p>最新<i>动态</i></p>
+       <ul>
+           <li><a href="#">1摆脱拖延症，这些手账就不能错过摆</a></li>
+           <li><a href="#">2摆脱拖延症，这些手账就不能错过摆</a></li>
+           <li><a href="#">3摆脱拖延症，这些手账就不能错过摆</a></li>
+       </ul>
+       <span><a href="#">更多</a></span>
+   </div> -->
+    <div class="special_sale">
+    	<div class="title">
+    		<h3>猜你喜欢</h3>
+    	</div>
+    	<ul>
+        <volist name="goods" id="list">
+    		<li>
+    			<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
+    				<img src="__ROOT__/Uploads<{$list.goods_logo}>" alt="">
+    				<h4><{$list.goods_title}></h4>
+    				<p><s>￥<{$list.money}></s></p>
+                    <p><i>消费币</i><{$list.price}></p>
+                    <p><i>可用金</i><{$list.xfb}></p>
+                    <p><span>销量<{$list.sell}></span></p>
+    			</a>
+    		</li>
+    	</volist>
+    	</ul>
+    </div>
+    <include file="public:foot" />
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/index/jquery.touchSlider.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/index/index.js"></script>
+<script type="text/javascript">
+function seach(){
+    var search = $('#keyword').val();  
+    if(search){
+        window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+search+"')}>";
+    }else{
+        window.location.href="<{:U('Seach/seach')}>";
+    }   
+}
+$("#keyword").on('keypress',function(e) {  
+        var keycode = e.keyCode;  
+        var search = $('#keyword').val();  
+        if(keycode=='13') {  
+            //alert(searchName);
+            if(search){
+                window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+search+"')}>";
+            }else{
+                window.location.href="<{:U('Seach/seach')}>";
+            }    
+        }  
+ });
+</script>
+</html>

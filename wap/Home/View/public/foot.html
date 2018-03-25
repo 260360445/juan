@@ -1,0 +1,38 @@
+<footer>
+<?php if(CONTROLLER_NAME == "Index" && ACTION_NAME=="index"){?>
+	<a href="<{:U('Index/index')}>" class="current">
+<?php }else{?>
+	<a href="<{:U('Index/index')}>">
+<?php }?>
+		<img class="yi" src="__PUBLIC__/Wap/images/index/home1.png" alt="">
+		<img class="er" src="__PUBLIC__/Wap/images/index/home.png" alt="">
+		<p>首页</p>
+	</a>
+<?php if(CONTROLLER_NAME == "Good" && ACTION_NAME=="specialsale"){?>
+	<a href="<{:U('Good/specialsale')}>" class="current">
+<?php }else{?>
+	<a href="<{:U('Good/specialsale')}>">
+<?php }?>
+		<img class="yi" src="__PUBLIC__/Wap/images/index/huichang.png" alt="">
+		<img class="er" src="__PUBLIC__/Wap/images/index/huichang2.png" alt="">
+		<p>特卖会场</p>
+	</a>
+<?php if(CONTROLLER_NAME == "Good" && ACTION_NAME=="newgood"){?>
+	<a href="<{:U('Good/newgood')}>" class="current">
+<?php }else{?>
+	<a href="<{:U('Good/newgood')}>">
+<?php }?>
+		<img class="yi" src="__PUBLIC__/Wap/images/index/xinpin.png" alt="">
+		<img class="er" src="__PUBLIC__/Wap/images/index/xinpin2.png" alt="">
+		<p>新品上架</p>
+	</a>
+<?php if(CONTROLLER_NAME == "User" && ACTION_NAME=="member"){?>
+	<a href="<{:U('User/member')}>" class="current">
+<?php }else{?>
+	<a href="<{:U('User/member')}>">
+<?php }?>
+		<img class="yi" src="__PUBLIC__/Wap/images/index/my.png" alt="">
+		<img class="er" src="__PUBLIC__/Wap/images/index/my2.png" alt="">
+		<p>会员中心</p>
+	</a>
+</footer>

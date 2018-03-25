@@ -1,0 +1,257 @@
+body{
+	padding: 1.5rem 0 1.7rem 0;
+	background-color: #f5f5f5;
+}
+.header{
+	width: 100%;
+	height: 1.5rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #f7515f;
+	z-index: 1000;
+}
+.header h3{
+	font-size: .566rem;
+	color: #fff;
+	line-height: 1.466rem;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -1.2rem;
+}
+.header img{
+	float: right;
+	display: block;
+	width: .7rem;
+	height: .7rem;
+	margin: .4rem .5rem 0 0;
+}
+.tx{
+	width: 100%;
+	height: 5.166rem;
+	background: url(../../images/user/member_back.png) no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	position: relative;
+	overflow: hidden;
+	position: absolute;
+	top: 1.5rem;
+	left: 0;
+}
+.touxiang div{
+	width: 2.166rem;
+	height: 2.166rem;
+	margin: .5rem auto .333rem auto;
+}
+.touxiang div img.touxiang{
+	display: block;
+	width: 2.166rem;
+	height: 2.166rem;
+	margin: 0;
+}
+.touxiang p,
+.touxiang span{
+	font-size: .4rem;
+	color: #fff;
+	line-height: .7rem;
+	text-align: center;
+}
+.touxiang span{
+	display: block;
+	width: 3rem;
+	padding-left: .4rem;
+	background: url(../../images/user/phone.png) no-repeat 0 .08rem;
+	-webkit-background-size: .35rem .5rem;
+	background-size: .35rem .5rem;
+	margin: 0 auto;
+}
+.member_money{
+	width: 97%;
+	margin: 4.3rem auto .3rem;
+	background-color: #fff;
+	border-radius: 0 0 10px 10px;
+	box-shadow: 0px 2px 6px 0px rgba(13, 4, 9, 0.1);
+}
+.member_money ul{
+	overflow: hidden;
+	padding-bottom: .5rem;
+	border-bottom: 1px solid #e5e5e5;
+}
+.member_money ul li{
+	width: 25%;
+	float: left;
+	text-align: center;
+}
+.member_money ul li p{
+	font-size: .35rem;
+	color: #f2924c;
+	line-height: .35rem;
+	margin-top: 1.2rem;
+}
+.member_money ul li span{
+	color: #646464;
+	font-size: .35rem;
+	line-height: .35rem;
+}
+.member_money a{
+	display: block;
+	color: #f34958;
+	font-size: .433rem;
+	line-height: 1.5rem;
+	text-align: center;
+	background: url(../../images/user/more.png) no-repeat 62% .55rem;
+	-webkit-background-size: .2rem .4rem;
+	background-size: .2rem .4rem;
+}
+.my_order{
+	width: 97%;
+	margin: 0 auto .3rem;
+	background-color: #fff;
+	padding-left: .5rem;
+	border-radius: 10px;
+	box-shadow: 0px 2px 6px 0px rgba(13, 4, 9, 0.1);
+	box-sizing: border-box;
+}
+.my_order .title{
+	overflow: hidden;
+	border-bottom: 1px solid #e5e5e5;
+}
+.my_order .title p{
+	float: left;
+	font-size: .4rem;
+	color: #4d4d4d;
+	line-height: 1.233rem;
+}
+.my_order .title a{
+	float: right;
+	margin-right: .5rem;
+	font-size: .4rem;
+	line-height: 1.233rem;
+	color: #b3b3b3;
+	padding-right: .5rem;
+	background: url(../../images/user/more.png) no-repeat right .412rem;
+	-webkit-background-size: .2rem .4rem;
+	background-size: .2rem .4rem;
+}
+.my_order ul{
+	overflow: hidden;
+	padding: .5rem 0 .4rem 0;
+}
+.my_order ul li{
+	float: left;
+	width: 25%;
+	text-align: center;
+	position: relative;
+}
+.my_order ul li img{
+	display: block;
+	width: .666rem;
+	height: .666rem;
+	margin: 0 auto .2rem;
+}
+.my_order ul li p{
+	font-size: .4rem;
+	color: #646464;
+	line-height: .4rem;
+}
+.my_order ul li span{
+	display: block;
+	width: .6rem;
+	height: .6rem;
+	background-color: #ff5454;
+	border-radius: 50%;
+	font-size: .4rem;
+	line-height: .6rem;
+	text-align: center;
+	color: #fff;
+	position: absolute;
+	top: -.2rem;
+	right: .8rem;
+}
+.member_info{
+	width: 97%;
+	margin: 0 auto .3rem;
+	background-color: #fff;
+	padding-left: .5rem;
+	border-radius: 10px;
+	box-shadow: 0px 2px 6px 0px rgba(13, 4, 9, 0.1);
+	box-sizing: border-box;
+}
+.member_info ul{
+	padding-left: .5rem;
+}
+.member_info ul li{
+	overflow: hidden;
+	border-bottom: 1px solid #e5e5e5;
+}
+.member_info ul li:last-child{
+	border: 0;
+}
+.member_info ul li img{
+	float: left;
+	width: .5rem;
+	height: .5rem;
+	margin: .5rem .3rem 0 0;
+}
+.member_info ul li p{
+	float: left;
+	font-size: .4rem;
+	color: #4d4d4d;
+	line-height: 1.4rem;
+}
+.member_info ul li span{
+	float: right;
+	display: block;
+	width: .216rem;
+	height: .416rem;
+	margin-right: .5rem;
+	
+}
+.member_info ul li span img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	z-index: 1000;
+	overflow: hidden;
+}
+footer a{
+	float: left;
+	width: 25%;
+	padding-top: 0.266rem;
+}
+footer a img.yi{
+	display: block;
+	margin: 0 auto;
+	width: .7rem;
+	height: .7rem;
+}
+footer a img.er{
+	display: block;
+	margin: 0 auto;
+	width: .7rem;
+	height: .7rem;
+	display: none;
+}
+footer a p{
+	font-size: .3rem;
+	color: #b3b3b3;
+	text-align: center;
+	line-height: 0.733rem;
+}
+footer a.current .yi{
+	display: none;
+}
+footer a.current .er{
+	display: block;
+}
+footer a.current p{
+	color: #ff1b2f;
+}

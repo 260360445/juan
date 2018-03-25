@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<if condition="$_SESSION['website']['id']">
+	    <link rel="Shortcut Icon" href="/<{$Think.session.infor.qico}>">
+	<else/>
+	    <link rel="Shortcut Icon" href="/<{$Think.session.infodata.qico}>">
+	</if>
+	<title>
+		<if condition="$_SESSION['website']['id']">
+			<{$_SESSION['infor']['name']}>
+		<else/>
+			<{$_SESSION['infodata']['name']}>
+		</if>
+	</title>
+	<link rel="stylesheet" type="text/css"　media="screen and (max-device-width: 728px)" href="__PUBLIC__/Home/css/index_1.css?v=1.0" />
+	<link rel="stylesheet" type="text/css" media="screen and (min-device-width: 728px)" href="__PUBLIC__/Home/css/index.css"/>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/jquery.alert.css"/>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/ten.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/header.css"/>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/header.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.alert.js"></script>
+	<script src="__PUBLIC__/Home/js/jquery.myPagination5.0.js" type="text/javascript"></script>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/include_login.js"></script>
+	<script>
+	window.onload=function(){
+		bindRegisterTotal();
+	}
+	</script>
+	<style type="text/css">
+	#sort li a{ width: 100%; height: 100%; display: block;}
+	</style>
+	<style>
+	.lands_t {height: 36px;}
+	#sort li a{ width: 100%; height: 100%; display: block;}
+	.active{ color: #dd2726;}
+
+
+	.pinpai{ display: block;width: 50px; height: 26px; float: left;margin-top: 30px;margin-left:30px;font-size: 14px;color:#333333;text-align: center;line-height: 26px;margin-bottom:10px;}
+	.pin_second{margin-top: 0px;}
+	#third li,#pinpai li { float: left; height: 26px;margin-top: 30px;margin-left: 10px;margin-bottom:10px;}
+	#third li{margin-top: 0px;}
+	#third li a,#pinpai li a{ display: block; font-size: 14px; color: #666666; height: 26px;  line-height: 26px;padding:0px 20px;}
+	.ac,.act{ background: #dd2726; color:white !important;}
+	.menu1{ display: none;}
+  </style>
+</head>
+<body>
+	<!--顶部nav-->
+	<include file="public:head" />
+
+	<!--右侧的图标悬浮-->
+	<include file="public:right" />
+
+	<!--右侧的图标悬浮-->
+
+	<div class="AG_div1">
+		<p>全部商品<span>（共<span><{$count}></span>件商品）</span></p>
+	</div>
+	<div class="AG_div2">
+		<volist name="topmenu" id="list">
+			<div>
+				<a href="__MODULE__/Index/selgood?classid=<{$list.id}>" >
+					<img src="/<{$list.bpic}>">
+					<p><{$list.name}></p>
+				</a>	
+			</div>
+		</volist>
+		<p style="clear:both;"></p>
+		<script type="text/javascript">
+				$(function(){
+					$('.AG_div2 div').last().css('border','none');
+				})
+			</script>
+	</div>
+	<div class="AG_div3" id="">
+		<span>排序：</span>
+		<ul id='sort'>
+			<li name="curstate" >
+				<a href='__MODULE__/Seach/seach?btn=0&condition=<{$search}>' <if condition="$btn eq 0">style="background-color:#dd2726;color:white"</if>>即将揭晓</a>
+			</li>
+			<li name="buy"><a href='__MODULE__/Seach/seach?btn=1&condition=<{$search}>' <if condition="$btn eq 1">style="background-color:#dd2726;color:white"</if>>剩余人次</a></li>
+			<li name = "hot"><a href='__MODULE__/Seach/seach?btn=2&condition=<{$search}>' <if condition="$btn eq 2">style="background-color:#dd2726;color:white"</if>>热卖</a></li>
+			<li name="new"><a href='__MODULE__/Seach/seach?btn=3&condition=<{$search}>' <if condition="$btn eq 3">style="background-color:#dd2726;color:white"</if>>最新商品</a></li>
+			<li name="price" style="position:relative" class="on_last_ul">
+				<if condition="$btn eq 4">
+					<a href="__MODULE__/Seach/seach?btn=4&condition=<{$search}>" <if condition="$btn eq 4">style="background-color:#dd2726;color:white"</if>>由高到低</a>
+				<elseif condition="$btn eq 5"/>
+					<a href="__MODULE__/Seach/seach?btn=5&condition=<{$search}>" <if condition="$btn eq 5">style="background-color:#dd2726;color:white"</if>>由低到高</a>
+				<else/>
+					价格<img src="__PUBLIC__/Home/images/jia_03.png" style="width:12px;"/>
+				</if>
+				<ul class="last_ul">
+					<li><a href="__MODULE__/Seach/seach?btn=4&condition=<{$search}>" <if condition="$btn eq 4">style="background-color:#dd2726;color:white"</if>>由高到低</a></li>
+					<li><a href="__MODULE__/Seach/seach?btn=5&condition=<{$search}>" <if condition="$btn eq 5">style="background-color:#dd2726;color:white"</if>>由低到高</a></li>
+				</ul>
+			</li>
+			<style type="text/css">
+					.last_ul{position:absolute;top:0px;left:-1px;z-index: 99;display: none;}
+					.last_ul>li{width: 80px;background:white;border:1px solid #999999;position: relative;margin-top:-1px;}
+					.last_ul>li:hover{box-shadow:1px 1px 2px 2px #e1e1e1;border:1px solid red;z-index: 100}
+					.last_ul>li>a{color: #555555;display: block;}
+					.last_ul>li>a:hover{color:red;}
+				</style>
+				<script type="text/javascript">
+				$(function(){
+
+					$('.on_last_ul').mouseenter(function(){
+						$('.last_ul').show();
+					});
+					$('.on_last_ul').mouseleave(function(){
+						$('.last_ul').hide();
+					});
+					$(document).on('click','.last_ul li',function(){
+						var txt='';
+						txt=$(this).text();
+						$('.on_last_ul').html(txt+'<ul class="last_ul"><li><a href="#">由高到低</a></li><li><a href="#">由低到高</a></li></ul>');
+					})
+				})
+					
+				</script>
+		</ul>
+	</div>
+	<div style="clear:both;"></div>
+
+	<div class="AG_content" id="AG_content0">
+		<ul class="layoutul">
+			<volist name="goodlist" id="list">
+				<li>
+					<a href="__MODULE__/Index/gooddetail?id=<{$list.goods_id}>" target="blank" title="(第<{$list.goods_period}>期)<{$list.goods_name}>"><img class="allgoodimg" src="/<{$list.logo}>"/></a>
+					<p class="q1">
+					<a href="__MODULE__/Index/gooddetail?id=<{$list.goods_id}>" target="blank" title="(第<{$list.goods_period}>期)<{$list.goods_name}>">
+						<?php if (strlen('(第'.$list['goods_period'].'期)'.$list['goods_name'])>20) {
+							echo mb_substr('(第'.$list['goods_period'].'期)'.$list['goods_name'],0,20,'utf-8').'...';
+						}else{
+							echo '(第'.$list['goods_period'].'期)'.$list['goods_name'];
+						}
+						?>
+					</a></p>
+					<p class="q2">价格：￥<{$list.price}></p>
+					<if condition="($list[type] eq 1)">
+						<elseif condition="$list[type] eq 2"/>
+						<div class="q3">
+							限购专区
+						</div>
+						<else /> 
+						<div class="q3">
+							十元专区
+						</div>
+					</if>
+					<div class="line">
+						<div style="width:<{$list[buyperson]/$list[needperson]*100}>%"></div>
+					</div>
+					<ul class="q4">
+						<li><{$list[buyperson]?$list[buyperson]:0}></li>
+						<li><{$list.needperson}></li>
+						<li>
+							<if condition="($list[needpreson]-$list[buyperson]) neq 0"> 
+								<{$list[needperson]-$list[buyperson]}>
+								<elseif condition="$list[buyperson] eq 0 or $list[buyperson] eq null"/> 
+								<{$list.needperson}>
+								<else/>
+								0
+							</if>
+						</li>
+					</ul>
+					<ul class="q5">
+						<li>已夺宝人</li>
+						<li>总需人数</li>
+						<li>剩余人数</li>
+					</ul>
+					<div class="q6">
+						<input class="buy" type="button" value="立即夺宝">
+						<input type="hidden" value="<{$list.goods_id}>"/>
+						<a href="javascript:;" class="btn-buy"><img src="__PUBLIC__/Home/images/productimg06.png"/></a>
+					</div>
+				</li>
+			</volist>
+			<script>
+			$('.btn-buy').bind('click',function(){
+				var img = $(this).parent().parent().find('img');
+				var flyElm = $(this).parent().parent().clone().css('opacity', 0.75);
+				$('body').append(flyElm);
+				flyElm.css({
+					'z-index': 9000,
+					'display': 'block',
+					'position': 'absolute',
+					'top': img.offset().top +'px',
+					'left': img.offset().left +'px',
+					'width': img.width() +'px',
+					'height': img.height() +'px'
+				});
+				flyElm.animate({
+					top: $('.head-shopcart').offset().top,
+					left: $('.head-shopcart').offset().left,
+					width: 30,
+					height: 32
+				}, 'slow', function() {
+					flyElm.remove();
+				});
+				var goodid = $(this).siblings('input:hidden').val();
+	//alert(goodid);
+	$.ajax({
+		url: '__MODULE__/Cart/cart',
+		type: 'POST',
+		dataType: 'json',
+		data: {id: goodid},
+		success:function(date){
+			$('#right_float span').text(date[0]);
+				if (date[1] == 0) {
+					alert('您已经购买过该商品');
+				};
+		}
+	});
+}); 
+			</script>
+		</ul>
+	</div>
+	<div style="clear:both;"></div>
+	<div class="cover_pager">
+		<div id='devide'>
+			<ul>
+				<li><{$page}></li>
+			</ul>
+		</div>
+	</div>
+	<div style="clear:both"></div>
+	<include file="public:foot" />	
+</div>
+</body>
+</html>

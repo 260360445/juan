@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/address/edit_address.css">
+<title>收货地址</title>
+</head>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/address/come_back.png" alt=""></a>
+		<h3>编辑地址</h3>
+		<a class="right" href="<{:U('User/addressinfor')}>"><img src="__PUBLIC__/Wap/images/address/add.png" alt=""></a>
+	</header>
+	<ul>
+	<volist name="user_address" id="v">  
+		<li>
+			<h3><{$v['name']}></h3>
+			<?php
+                //截取收货地址手机手机
+                $subumobile= substr($v['mobile'],4,-4);
+                $umobile= str_replace($subumobile,'***',$v['mobile']);
+            ?>
+			<h4><{$umobile}></h4>
+			<p><{$v['province']}>  <{$v['city']}>  <{$v['area']}> <{$v['street']}></p>
+			<?php if($v['sta'] ==2){?>
+				<i class="current">默认</i>
+			<?php }?>
+			<span class="delete" onclick="deleteAddress(<{$v['id']}>)">删除</span>
+			<a href="<{:U('User/addressinforset',['id'=>$v['id']])}>"><span class="bianji">编辑</span></a>
+		</li>
+	</volist>
+	</ul>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script>
+$(function(){
+	window.sessionStorage.removeItem('uAddress');
+})
+/*
+ * 方法描述：删除地址按钮点击事件
+ * 参数：int id 地址id
+ */
+function deleteAddress(id){
+    var url = "<{:U('User/addressdel')}>";
+	layer.open({
+	    content: '您确定要删除这个地址吗？'
+	    ,btn: ['确定', '取消']
+	    ,yes: function(index){
+		      $.post(url,{id:id,},function(data){
+	            if(data=="1"){
+	                layer.close(index);
+	                layer.open({
+				        content: '删除成功！'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    setTimeout(function () { test(); }, 2005);
+				    return false;
+	            }else{
+	                layer.close(index);
+	                layer.open({
+				        content: '删除失败！'
+				        ,skin: 'msg'
+				        ,time: 2 //2秒后自动关闭
+				    });
+				    return false;
+	            }
+	        })
+	    }
+	});
+}
+function test(){
+	window.location.reload();
+}
+</script>
+</html>

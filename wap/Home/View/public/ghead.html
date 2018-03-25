@@ -1,0 +1,11 @@
+<div class="header">
+	<div class="main">
+		<a class="car" href="<{:U('Cart/cart')}>"><img src="__PUBLIC__/Wap/images/temai/car.png"></a>
+		<?php if(CONTROLLER_NAME == "Good" && ACTION_NAME=="specialsale"){?>
+			<p>特卖会场</p>
+		<?php }else if(CONTROLLER_NAME == "Good" && ACTION_NAME=="newgood"){?>
+			<p>新品上架</p>
+		<?php }?>
+		<a class="classify" href="<{:U('Good/gclass')}>"><img src="__PUBLIC__/Wap/images/temai/classify.png"></a>
+	</div>
+</div>

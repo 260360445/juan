@@ -1,0 +1,301 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>头像</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no, email=no" />
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link href="__PUBLIC__/Wap/css/pic/style.css" rel="stylesheet" type="text/css">
+<!--[if IE]>
+<script src="__PUBLIC__/Wap/js/pic/html5shiv.min.js"></script>
+<![endif]-->
+</head>
+<body style="background:#000">
+<!--头部-->
+<div id="user_head">
+        <a id="left_ico" href="javascript:history.go(-1);">
+          <i class="icon iconfont">&#xe645;</i>
+        </a>
+        <span>个人头像</span>
+        <a id="s_dpage" href="javascript:void(0);">
+           <i class="icon iconfont">&#xe633;</i> 
+        </a>
+</div>
+<a href="javascript:void(0);" class="logoBox" id="logoBox">
+    <img id="bgl" src="__ROOT__/Uploads<{$user['photo']}>" width="100%">
+</a>
+<div class="htmleaf-container">
+<div id="clipArea"></div>
+<div id="view"></div>
+</div>
+<div class="btn-1">
+<button type="button" onclick="saveImageInfo()">确认更换</button>
+</div>
+<div id="dpage">
+ <a href="javascript:void(0);">
+     <input type="button" name="file" class="button" value="选取照片">
+	  <input id="file" type="file" onchange="javascript:setImagePreview();" accept="image/*" multiple  />
+      </a>
+ <a href="javascript:void(0);" class="qx"><button id="clipBtn">截取图片</button></a>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script src="__PUBLIC__/Wap/js/pic/iscroll-zoom.js"></script>
+<script src="__PUBLIC__/Wap/js/pic/hammer.js"></script>
+<script src="__PUBLIC__/Wap/js/pic/jquery.photoClip.js"></script>
+<script>
+var obUrl = ''
+//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+$("#clipArea").photoClip({
+	width: 280,
+	height: 280,
+	file: "#file",
+	view: "#view",
+	ok: "#clipBtn",
+	loadStart: function() {
+		//console.log("照片读取中");
+	},
+	loadComplete: function() {
+		//console.log("照片读取完成");
+	},
+	clipFinish: function(dataURL) {
+		//console.log(dataURL);
+		//saveImageInfo();
+	}
+});
+function saveImageInfo() {
+    var img_data = $('#userlogoimg').attr('src');
+    if(img_data=="" || img_data== undefined || img_data== null){
+    	layer.open({
+	        content: '请上传头像！'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+    }
+    var file_head = document.getElementById("file");
+		picture = file_head.value;
+	if (!picture.match(/.jpg|.gif|.png|.jpeg|.bmp/i)){
+		layer.open({
+	        content: '您上传的图片格式不正确，请重新选择！'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+	}
+    var url="<{:U('User/userlogo')}>";
+    $.ajax({
+	    type: "POST",
+	    url: url,
+	    data: {image:img_data},
+	    dataType: 'json',
+	    error : function () {
+	      	layer.open({
+		        content: '网络故障，请稍后重试！'
+		        ,skin: 'msg'
+		        ,time: 2 //2秒后自动关闭
+		    });
+		    return false;
+	    },
+	    success: function(data){
+	        if (data== 'ok'){
+	        	layer.open({
+			        content: '上传成功！'
+			        ,skin: 'msg'
+			        ,time: 2 //2秒后自动关闭
+			    });
+			    setTimeout(function () { tests(); }, 2005);
+	            return false;
+	      	}else{
+		        layer.open({
+			        content: data
+			        ,skin: 'msg'
+			        ,time: 2 //2秒后自动关闭
+			    });
+			    setTimeout(function () { test(); }, 2005);
+			    return false;
+	      	}
+	    }
+	});
+}
+function test(){
+	window.location.reload();
+}
+function tests(){
+	window.location.href="<{:U('User/instal')}>";
+}
+</script>
+<script>
+$(function(){
+$("#logoBox,#s_dpage").click(function(){
+$(".htmleaf-container").fadeIn(300);
+$("#dpage").addClass("show");
+})
+	$("#clipBtn").click(function(){
+		$("#logoBox").empty();
+		$('#logoBox').append('<img src="' + imgsource + '" align="absmiddle" id="userlogoimg" style=" width:100%;">');
+		$(".htmleaf-container").hide();
+		$("#dpage").removeClass("show");
+	})
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	jQuery.divselect = function(divselectid,inputselectid) {
+		var inputselect = $(inputselectid);
+		$(divselectid+" small").click(function(){
+			$("#divselect ul").toggle();
+			$(".mask").show();
+		});
+		$(divselectid+" ul li a").click(function(){
+			var txt = $(this).text();
+			$(divselectid+" small").html(txt);
+			var value = $(this).attr("selectid");
+			inputselect.val(value);
+			$(divselectid+" ul").hide();
+			$(".mask").hide();
+			$("#divselect small").css("color","#333")
+		});
+	};
+	$.divselect("#divselect","#inputselect");
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	jQuery.divselectx = function(divselectxid,inputselectxid) {
+		var inputselectx = $(inputselectxid);
+		$(divselectxid+" small").click(function(){
+			$("#divselectx ul").toggle();
+			$(".mask").show();
+		});
+		$(divselectxid+" ul li a").click(function(){
+			var txt = $(this).text();
+			$(divselectxid+" small").html(txt);
+			var value = $(this).attr("selectidx");
+			inputselectx.val(value);
+			$(divselectxid+" ul").hide();
+			$(".mask").hide();
+			$("#divselectx small").css("color","#333")
+		});
+	};
+	$.divselectx("#divselectx","#inputselectx");
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	jQuery.divselecty = function(divselectyid,inputselectyid) {
+		var inputselecty = $(inputselectyid);
+		$(divselectyid+" small").click(function(){
+			$("#divselecty ul").toggle();
+			$(".mask").show();
+		});
+		$(divselectyid+" ul li a").click(function(){
+			var txt = $(this).text();
+			$(divselectyid+" small").html(txt);
+			var value = $(this).attr("selectyid");
+			inputselecty.val(value);
+			$(divselectyid+" ul").hide();
+			$(".mask").hide();
+			$("#divselecty small").css("color","#333")
+		});
+	};
+	$.divselecty("#divselecty","#inputselecty");
+});
+</script>
+<script type="text/javascript">
+$(function(){
+   $(".mask").click(function(){
+	   $(".mask").hide();
+	   $(".all").hide();
+   })
+	$(".right input").blur(function () {
+		if ($.trim($(this).val()) == '') {
+			$(this).addClass("place").html();
+		}
+		else {
+			$(this).removeClass("place");
+		}
+	})
+});
+</script>
+<script>
+$("#file0").change(function(){
+	var objUrl = getObjectURL(this.files[0]) ;
+	 obUrl = objUrl;
+	if (objUrl) {
+		$("#img0").attr("src", objUrl).show();
+	}
+	else{
+		$("#img0").hide();
+	}
+}) ;
+function qd(){
+   var objUrl = getObjectURL(this.files[0]) ;
+   obUrl = objUrl;
+   if (objUrl) {
+	   $("#img0").attr("src", objUrl).show();
+   }
+   else{
+	   $("#img0").hide();
+   }
+}
+function getObjectURL(file) {
+	var url = null ;
+	if (window.createObjectURL!=undefined) { // basic
+		url = window.createObjectURL(file) ;
+	} else if (window.URL!=undefined) { // mozilla(firefox)
+		url = window.URL.createObjectURL(file) ;
+	} else if (window.webkitURL!=undefined) { // webkit or chrome
+		url = window.webkitURL.createObjectURL(file) ;
+	}
+	return url ;
+}
+</script>
+<script type="text/javascript">
+var subUrl = "";
+$(function (){
+	$(".file-3").bind('change',function(){
+		subUrl = $(this).val()
+		$(".yulan").show();
+		$(".file-3").val("");
+	});
+
+	$(".file-3").each(function(){
+		if($(this).val()==""){
+			$(this).parents(".uploader").find(".filename").val("营业执照");
+		}
+	});
+$(".btn-3").click(function(){
+$("#img-1").attr("src", obUrl);
+$(".yulan").hide();
+$(".file-3").parents(".uploader").find(".filename").val(subUrl);
+})
+	$(".btn-2").click(function(){
+		$(".yulan").hide();
+	})
+
+});
+</script>
+<script type="text/javascript">
+function setImagePreview() {
+	var file_head = document.getElementById("file");
+		picture = file_head.value;
+	if (!picture.match(/.jpg|.gif|.png|.jpeg|.bmp/i)){
+		layer.open({
+	        content: '您上传的图片格式不正确，请重新选择！'
+	        ,skin: 'msg'
+	        ,time: 2 //2秒后自动关闭
+	    });
+	    return false;
+	}
+}
+</script>
+
+</body>
+</html>
+

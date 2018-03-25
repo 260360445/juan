@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" />
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/order/fukuan.css">
+<title>确认付款</title>
+</head>
+<body>
+	<header>
+		<a href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/user/come_back.png" alt=""></a>
+		<h3>确认付款</h3>
+	</header>
+	<div class="content">
+		<i>订单提交成功，请尽快付款！</i>
+		<i id="dingdan"></i>
+		<ul>
+			<li>
+				<p id="gtitle"></p>
+				<p  id="gsname"></p>
+				<p id="xinshishuliang">购买数量：<em id="gbuynum"></em></p>
+				<p id="xinshishijian">下单时间：<em id="gbuytitme"></em></p>
+                <p id="yincangdingdan" style="display:none;">多笔订单已合并</p>
+			</li>
+			<li>
+				<p>支付可用金：<span id="payprice"></span></p>
+				<p>支付消费币：<span id="payxfb"></span></p>
+				<p>支付总额：<span id="paySumNum"></span></p>
+			</li>
+		</ul>
+	</div>
+	<footer>
+		<button type="button" >确认付款</button>
+	</footer>
+	<div class="mask"></div>
+	<div class="pay_all">
+		<div class="pay_password">
+			<h3>支付密码</h3>
+			<!-- 支付密码开始 -->
+		    <div class="alieditContainer" id="payPassword_container">
+	            <input minlength="6" maxlength="6" tabindex="1" id="payPassword_rsainput" name="payPassword_rsainput" class="ui-input i-text" oncontextmenu="return false" onpaste="return false" oncopy="return false" oncut="return false" autocomplete="off"  type="password" >
+	            <div class="sixDigitPassword" tabindex="0">
+	                <i class="active"><b></b></i>
+	                <i><b></b></i>
+	                <i><b></b></i>
+	                <i><b></b></i>
+	                <i><b></b></i>
+	                <i><b></b></i>
+	            </div>
+	        </div>
+	        <!-- 支付密码结束 -->
+			<button type="button" id="dopay">付款</button>
+			<span></span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/order/fukuan.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+<script type="text/javascript">
+$(function(){
+	var restoredSession = JSON.parse(sessionStorage.getItem('payOrderCashierWap'));
+	var urlo = "<{:U('Order/orderdetail')}>";
+    var urlc = "<{:U('Order/cartorderdetail')}>";
+    if (restoredSession[0]['buyType'] == '1') {
+        $.ajax({
+            type: 'post',
+            url: urlo,
+            data: { buyOid: restoredSession[0]['buyOid'] },
+            dataType: 'json',
+            error: function() {
+                layer.open({
+			        content: '网络故障，请稍后重试！'
+			        ,skin: 'msg'
+			        ,time: 2 //2秒后自动关闭
+			    });
+			    return false;
+            },
+            success: function(responses) {
+                if (responses.msg == 'ok') {
+                    var html = "";
+                    if (responses.store_name == null || responses.store_name == '') {
+                        html += "<p>店铺名称：</p>";
+                    } else {
+                        html += "<p>店铺名称：" + responses.store_name + "</p>";
+                    }
+                    $("#gtitle").html("<p>万花筒 -- " + responses.goods_title + "</p>");
+                    $("#gsname").html(html);
+                    $("#gbuynum").html(responses.buynum);
+                    $("#gbuytitme").html(getTime(responses.buytime));
+                    $("#dingdan").html("订单号："+responses.order_num);
+                    $("#payprice").html(responses.price);
+                    $("#payxfb").html(responses.xfb);
+                    $("#paySumNum").html(responses.sumpay);
+                }
+            }
+        });
+    } else if (restoredSession[0]['buyType'] == '2') {
+        $.ajax({
+            type: 'post',
+            url: urlc,
+            data: { buyOid: restoredSession[0]['buyOid'] },
+            dataType: 'json',
+            error: function() {
+                layer.open({
+                    content: '网络故障，请稍后重试！'
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+                return false;
+            },
+            success: function(responses) {
+                if (responses != 'no') {
+                    var sum = 0;
+                    var xfb = 0;
+                    var sumpay = 0;
+                    var tr = '<tr>';
+                    for (var i = 0; i < responses.length; i++) {
+                        tr += '<td>' + responses[i]['order_num'] + '</td>';
+                        tr += '<td><p>' + responses[i]['goods_title'] + '</p></td>';
+                        if (responses[i]['store_name'] == null || responses[i]['store_name'] == '') {
+                            tr += '<td><p></p></td>';
+                        } else {
+                            tr += '<td><p>' + responses[i]['store_name'] + '</p></td>';
+                        }
+                        tr += '<td>' + responses[i]['price'] + '</td>';
+                        tr += '<td>' + responses[i]['xfb'] + '</td>';
+                        tr += '</tr>';
+                        sum += parseInt(responses[i]['price']);
+                        xfb += parseInt(responses[i]['xfb']);
+                        sumpay += parseInt(responses[i]['sumpay']);
+                    }
+                    $("#paySumNum").html(sumpay);
+                    $("#payprice").html(sum);
+                    $("#payxfb").html(xfb);
+                    $("#yincangdingdan").show();
+                    $("#xinshishuliang").hide();
+                    $("#xinshishijian").hide();
+                }
+            }
+        });
+    }
+})
+function getTime( /** timestamp=0 **/ ) {
+    var ts = arguments[0] || 0;
+    var t, y, m, d, h, i, s;
+    t = ts ? new Date(ts * 1000) : new Date();
+    y = t.getFullYear();
+    m = t.getMonth() + 1;
+    d = t.getDate();
+    h = t.getHours();
+    i = t.getMinutes();
+    s = t.getSeconds();
+    // 可根据需要在这里定义时间格式
+    return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d) + ' ' + (h < 10 ? '0' + h : h) + ':' + (i < 10 ? '0' + i : i) + ':' + (s < 10 ? '0' + s : s);
+}
+$("#dopay").click(function() {
+    var url = "<{:U('Order/dopayorder')}>";
+    var restoredSession = JSON.parse(sessionStorage.getItem('payOrderCashierWap'));
+    var flg = restoredSession[0]['buyOid'];
+    var pass = $("#payPassword_rsainput").val();
+    var tel = /^[0-9]*$/;
+    if (pass == '' || pass == null) {
+        layer.open({
+            content: '请输入支付密码！'
+            ,skin: 'msg'
+            ,time: 2 //2秒后自动关闭
+        });
+        return false;
+    } else if (!tel.test(pass)) {
+        layer.open({
+            content: '请输入6位数字支付密码！'
+            ,skin: 'msg'
+            ,time: 2 //2秒后自动关闭
+        });
+        return false;
+    }
+    var index =  layer.open({
+                    type: 2
+                    ,content: '付款中...'
+                });
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: { buyFlg: flg, pass: pass },
+        dataType: 'json',
+        error: function() {
+            layer.open({
+                content: '网络故障，请稍后重试！'
+                ,skin: 'msg'
+                ,time: 2 //2秒后自动关闭
+            });
+            setTimeout(function () { test(); }, 2005);
+            return false;
+        },
+        success: function(responses) {
+            if (responses.msg == 'ok') {
+                window.location.href = "<{:U('Order/order')}>";
+            } else {
+                layer.open({
+                    content: responses.msg
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+                setTimeout(function () { test(); }, 2005);
+                return false;
+            }
+        }
+    });
+})
+function test(){
+    window.location.reload();
+}
+</script>
+</html>

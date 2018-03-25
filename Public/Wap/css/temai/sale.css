@@ -1,0 +1,179 @@
+body{
+	padding: 1.7rem 0;
+	background-color: #f5f5f5;
+}
+.header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 9999;
+	background-color: #fff;
+}
+.header .main{
+	padding: .2rem .466rem;
+	background: rgba(0,0,0,0);
+	position: relative;
+	overflow: hidden;
+}
+.header .main a{
+	width: 1rem;
+	height: 1.1rem;
+}
+.header .main .car{
+	float: left;
+}
+.header .main .classify{
+	float: right;
+}
+.header .main a.car img{
+	display: block;
+	width: .733rem;
+	height: .733rem;
+	margin: .15rem auto;
+}
+.header .main .classify img{
+	display: block;
+	width: .733rem;
+	height: .733rem;
+	margin: .15rem 1rem .15rem 0;
+}
+.header p{
+	color: #666;
+	line-height: 1.5rem;
+	font-size: .566rem;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -1.2rem;
+}
+.sale_con{
+	background-color: #270c5d;
+	padding: .5rem 0;
+}
+.sale_con .ad img{
+	display: block;
+	width: 100%;
+	height: 2rem;
+}
+.sale_con ul{
+	padding: 0 .666rem;
+}
+.sale_con ul li{
+	padding: .5rem 0;
+	overflow: hidden;
+	position: relative;
+}
+.sale_con ul li .shangpin{
+	float: left;
+	display: block;
+	width: 5.166rem;
+	height: 5.166rem;
+}
+.sale_con ul li .renqi,
+.sale_con ul li .huore{
+	float: right;
+	display: block;
+	width: 4.066rem;
+	height: 0.866rem;
+	margin: .2rem 0;
+}
+.sale_con ul li h3{
+	float: right;
+	font-size: .366rem;
+	color: #fff;
+	line-height: .866rem;
+}
+
+.sale_con ul li h3 i{
+	font-size: .6rem;
+}
+.sale_con ul li p{
+	float: right;
+	font-size: .5rem;
+	color: #fff;
+	line-height: .866rem;
+	width: 50%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-align: right;
+}
+.sale_con ul li button{
+	float: right;
+	padding: 0 .25rem;
+	height: .833rem;
+	line-height: .833rem;
+	color: #fff;
+	font-size: .4rem;
+	text-align: center;
+	background-color: #ed1c24;
+	border-radius: 3px;
+	margin-top: .2rem;
+}
+.sale_con ul li span{
+	width: 100%;
+	height: 1px;
+	background-color: #fff;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: url(../../images/temai/dixian.png) no-repeat;
+}
+.sale_con ul li.right .shangpin{
+	float: right;
+}
+
+.sale_con ul li.right p{
+	text-align: left;
+}
+.sale_con ul li.right .renqi,
+.sale_con ul li.right h3,
+.sale_con ul li.right p,
+.sale_con ul li.right button{
+	float: left;
+}
+footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	z-index: 1000;
+	overflow: hidden;
+}
+footer a{
+	float: left;
+	width: 25%;
+	padding-top: 0.266rem;
+}
+footer a img.yi{
+	display: block;
+	margin: 0 auto;
+	width: .7rem;
+	height: .7rem;
+}
+footer a img.er{
+	display: block;
+	margin: 0 auto;
+	width: .7rem;
+	height: .7rem;
+	display: none;
+}
+footer a p{
+	font-size: .3rem;
+	color: #b3b3b3;
+	text-align: center;
+	line-height: 0.733rem;
+}
+footer a.current .yi{
+	display: none;
+}
+footer a.current .er{
+	display: block;
+}
+footer a.current p{
+	color: #ff1b2f;
+}

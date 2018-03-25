@@ -1,0 +1,120 @@
+<html style="font-size: 62.4px;">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+<meta name="screen-orientation" content="portrait">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="full-screen" content="yes">
+<meta name="x5-fullscreen" content="true">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>"/>
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>"/>
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<title>万花筒</title>
+<link href="__PUBLIC__/Wap/css/login/app.css?v.2" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+<div class="login">
+  <div >
+    <div  class="title">
+      <a href="<{:U('Index/index')}>" class="tit_icon left">
+        <i  class="iconfont icon-arrow-left"></i></a> 
+        <div  class="tit_font"></div>
+      </div>
+    </div> 
+    <div class="yl_img">
+      <div class="yl_img_bg">
+        <img src="/<?php echo $_SESSION['sc']['infor']['logo']?>" alt=""></div> 
+        <p>请登录您的账户</p>
+      </div> 
+      <ul class="yl_mode_list">
+        <li>
+          <div>
+            <label class="yl_account yl_mode_item">
+              <div class="yl_icon"><i class="iconfont icon-zhanghu"></i></div> 
+              <input type="text" placeholder="请输入手机号" id="J_phone" maxlength="11">
+            </label>
+          </div> 
+          <div class="yl_password yl_mode_item">
+            <div class="yl_icon"><i class="iconfont icon-mima"></i></div> 
+            <input placeholder="请输入登录密码" type="password" id="J_pass" maxlength="20"> 
+          </div>
+        </li> 
+      </ul> 
+      <div class="yl_btn"><div class="btn_block" id="loginSubmit">立即登录</div></div>
+      <div class="yl_oper">
+        <a href="<{:U('Register/reset')}>" class="forget">忘记密码？</a> 
+        <a href="<{:U('Register/register')}>" class="register">注册</a>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
+</body>
+<script>
+  //会员登录
+  $("#loginSubmit").click(function(){
+    var mobile = $("#J_phone").val();    
+    var password = $("#J_pass").val();  
+    var isMobile = /^0?1[3-8][0-9]\d{8}$/; // 手机号码验证规则
+    if(mobile==null || mobile == "" || mobile == "请输入手机号" ){
+        layer.open({
+		    content: '请输入手机号'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+      return ;
+    }else if(!isMobile.test(mobile)){
+    	layer.open({
+		    content: '手机号格式不正确'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+      return ;
+    }else if(password==null ||password =="" || password == "请输入登录密码"){
+      	layer.open({
+		    content: '请输入登录密码'
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		});
+      return ;
+    }else{
+      var url = "<{:U('Login/dologin')}>";
+      $("#loginSubmit").val("等待...");
+      $.ajax({
+        type: "post",
+        url: url,
+        dataType:'json',
+        data:{
+          username :mobile,
+          password : password
+        },
+        success:function(data){
+          if(data=="0"){
+            window.location.href = "<{:U('User/member')}>";
+          }else{ 
+            $("#loginSubmit").val("立即登录");
+            if(data == "1"){
+              	layer.open({
+				    content: '账号不正确'
+				    ,skin: 'msg'
+				    ,time: 2 //2秒后自动关闭
+				});
+		      return ;
+            }else if(data == "2" ){
+              	layer.open({
+				    content: '密码不正确'
+				    ,skin: 'msg'
+				    ,time: 2 //2秒后自动关闭
+				});
+		      return ;
+            }
+          } 
+        }
+      });   
+    }
+  });
+</script>
+</html>
