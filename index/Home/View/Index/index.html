@@ -342,125 +342,379 @@ cursor: pointer;
 		</ul>
 	</div>
 </div>
-<div class="yscroll_list">
-	<div class="yscroll_listin">
-		<span><i></i><a href="" target="_blank">最新动态：</a></span>
-		<ul class="yscroll_list_left">
-		<li><p class="yscrollfont"><a href="" title="">关于国庆节工作安排公告</a></p><p class="yscrolltime">2016/09/29</p></li>
-		<li><p class="yscrollfont"><a href="" title="">关于近期网站公告</a></p><p class="yscrolltime">2016/09/19</p></li>
-		</ul>
-		<ul class="yscroll_list_right">
-			<a href="" target="_blank"><span></span><em>更多</em></a>
-		</ul>
-	</div>
-</div>
+<style type="text/css">
+.discount{
+	    width: 1200px;
+    margin: 0 auto;
+}
+.discount .dis_product .pro_detail{
+	height: 272px;
+    width: 582px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 1px solid #eee;
+    background-color: #fffcfd;
+}
+.discount .dis_product .pro_detail .pro_intro{
+	    width: 290px;
+    margin: 26px 0 26px 20px;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_title{
+	    font-size: 15px;
+    padding: 0 15px 0 0;
+    height: 70px;
+    overflow: hidden;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_title a{
+	    color: #787878;
+	        font-size: 16px;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_price{
+	font-size: 14px;
+    margin-top: 6px;
+    position: relative;
+    overflow: hidden;
+    height: 26px;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_price .coupon{
+	position: relative;
+    left: 0;
+    font: 12px Simsun;
+    text-align: center;
+    background: #dd2726;
+    color: #fff;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 8px;
+    margin: 0 10px 0 0;
+    border: 1px dotted #ff0060;
+    float: left;
+    border-left: none;
+    border-right: none;
+}
+.theme-color-4{
+	    color: #FE4A65!important;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_price .coupon b{
+	    font-size: 14px;
+    font-family: "Microsoft Yahei";
+    float: right;
+    position: relative;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_price .out-time{
+	    margin-top: 4px;
+    height: 16px;
+    line-height: 29px;
+    color: #fc7e91;
+    padding-right: 5px;
+}
+.discount .dis_product .pro_detail .pro_intro .residue{
+	    margin-top: 10px;
+    font-size: 12px;
+    color: #333;
+}
+.discount .dis_product .pro_detail .pro_intro .residue i{
+	padding: 0 5px;
+    color: #dd2726;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: Arial;
+}
+ .discount .dis_product .pro_detail .pro_intro .pro_nowPri{
+	    background-color: #dd2726;
+    color: #fff;
+    font-size: 15px;
+    margin-top: 35px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    display: block;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_nowPri .buy-price{
+	    font: 36px/50px Arial;
+    font-weight: 700;
+    padding-left: 15px;
+    float: left;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_nowPri .old-price{
+	    float: left;
+    height: 30px;
+    margin: 10px 0 10px 10px;
+    text-align: left;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_nowPri .old-price p{
+	    display: block;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    color: #fef181;
+    line-height: 16px;
+    text-decoration: line-through;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_nowPri .old-price span{
+	    display: block;
+    height: 12px;
+    font: 12px/12px "Microsoft Yahei";
+    color: #fff;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_nowPri .go-buy{
+	    position: absolute;
+    right: 0;
+    background: -webkit-gradient(linear,0 0,right 0,from(#fef490),to(#fee44d));
+    width: 80px;
+    font-size: 16px;
+    text-align: center;
+    font-family: "Microsoft Yahei";
+}
+.discount .dis_product .pro_detail .pro_intro .pro_nowPri{
+	    background-color: #dd2726;
+    color: #fff;
+    font-size: 15px;
+    margin-top: 35px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    display: block;
+}
+.discount .dis_product .pro_detail .pro_intro .pro_nowPri .go-buy a{
+	color: #f61d5a;
+    display: block;
+}
+.discount .dis_product .fr{
+	    float: right;
+}
+.discount .dis_product .pro_detail:hover{
+	border: 1px solid #dd2726;
+}
+.go-buy .theme-color-1::after{
+	position: absolute;
+    display: block;
+    content: "";
+    top: 0;
+    left: -12px;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-right: 12px solid #fef490;
+    width: 0;
+    height: 0;
+}
+</style>
 <div class="sd_yContent">
 	<div class="yContent">
 		<div class="yConNew yCon" style="position: relative;">
 			<!--E sd2015 -->
 			<h2 class="x_left_line">
-				<a href="<{:U('Good/specialSale')}>" class="yMoreLink" id="topMore" target="_blank">更多<em></em></a>
+				<i>1F</i><a href="javascript:void(0)" class="yCon-title" id="module_1_name">领券秒杀精选</a>
+				<a href="javascript:void(0)"  style="top: 0px;color: #f61d5a;padding-left: 10px;font-size: 12px;">实时更新\独享优惠券<em></em></a>
 			</h2>
 		</div>
-		<div class="Box">
-    	<div class="content">
-    		<div class="Box_con clearfix"> 			
-    			<div class="conbox" id="BoxUl">
-						<a href="<{:U('Good/specialSale')}>" class="yMoreLink" id="topMore" target="_blank"><img class="ad" src="/Public/Home/static/img/front/goods/tmhclogo.png" alt=""></a>
-	    			<ul >
-	    			<volist name="good_tm" id="list">
-	    				<li class="cur">
-	    					<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank">
-								<div class="aa">
-									
-									<img src="__ROOT__/Uploads<{$list.goods_logo}>" alt="">
-								</div>
-							</a>
-							<p class="sk_item_name"><a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list.goods_title}></a></p>
-							<div class="sk_item_price">
-								<span class="mod_price sk_item_price_new"><i>￥</i><span><{$list.price}></span></span>
-								<span class="mod_price sk_item_price_origin"><i>￥</i><span><{$list.xfb}></span></span>
-							</div>
-						</li>
-					</volist>
-    				</ul>
-    			</div>
-    		</div>
+		<div class="discount">
+        <!-- 领券优惠头部-->
+        
+        <!--领券优惠商品-->
+        <div class="dis_product">
+            <!-- 商品-->
+            <div class="theme-hover-border-color-1 pro_detail addLeft" >
+                <a rel="nofollow" data-gid="6358817" data-ci="301963" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=l/d&amp;id=6358817&amp;u=820138" biz-itemid="41699747788" isconvert="1" target="_blank">
+                    <img src="http://img.alicdn.com/imgextra/i1/64752412/TB2bwekhbBmpuFjSZFuXXaG_XXa_!!64752412.jpg_310x310.jpg" height="272" style="border: 0;max-width:272px;">
+                </a>
+                <div class="pro_intro fr" >
+                    <p class="pro_title">
+                        <a href="/index.php?r=l/d&amp;id=6358817&amp;u=820138" rel="nofollow" target="_blank" biz-itemid="41699747788" isconvert="1" title="【天天特价】韩版高弹力黑色橡皮筋 DIY发绳打底发圈发绳约100根" style="font-size: 16px;" data-gid="6358817" data-ci="301963" data-in="1" data-uid="820138" data-cn="20">【天天特价】韩版高弹力黑色橡皮筋 DIY发绳打底发圈发绳约100根</a>
+                    </p>
+                    <div class="pro_price color_p">
+                        <span class="coupon theme-bg-color-9 theme-color-1 theme-border-color-1">券<b><i>￥</i>3</b></span>
+                        <div class="out-time theme-color-4" data-goodsid="41699747788" data-seller="64752412">店铺名称：陶子饰品批发商城</div>
+                    </div>
+                                                    <div class="residue">优惠券总数<i class="color_p theme-color-1">5000</i>张</div>
+                    
+                    <div class="pro_nowPri theme-bg-color-1">
+                        <div class="buy-price">9.9</div>
+                        <div class="old-price">
+                            <p><i>￥</i>12.9</p>
+                            <span>券后价</span>
+                        </div>
+                        <div class="go-buy">
+                            <a class="theme-color-1" data-gid="6358817" data-ci="301963" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=index/middleurl&amp;id=6358817" target="_blank">去抢购</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                
+                    <div class="theme-hover-border-color-1 pro_detail fr">
+
+                        <a rel="nofollow" data-gid="6281762" data-ci="300025" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=l/d&amp;id=6281762&amp;u=820138" biz-itemid="13610177464" isconvert="1" target="_blank">
+                            <img src="https://img.alicdn.com/imgextra/i3/2255795767/TB22Tu6a6gy_uJjSZSgXXbz0XXa_!!2255795767.jpg_310x310.jpg" height="272" style="border: 0;max-width:272px;">
+                        </a>
+                        <div class="pro_intro fr">
+                            <p class="pro_title">
+                                <a href="/index.php?r=l/d&amp;id=6281762&amp;u=820138" rel="nofollow" target="_blank" biz-itemid="13610177464" isconvert="1" title="唇刷 金属便携伸缩口红刷 唇膏唇彩刷 带盖迷你化妆刷唇笔刷 款" style="font-size: 16px;" data-gid="6281762" data-ci="300025" data-in="1" data-uid="820138" data-cn="20">唇刷 金属便携伸缩口红刷 唇膏唇彩刷 带盖迷你化妆刷唇笔刷 款</a>
+                            </p>
+                            <div class="pro_price color_p">
+                                <span class="coupon theme-bg-color-9 theme-color-1 theme-border-color-1">券<b><i>￥</i>10</b></span>
+                                <div class="out-time theme-color-4" data-goodsid="13610177464" data-seller="784497909">店铺名称：zoreya旗舰店</div>
+                            </div>
+                                                            <div class="residue">优惠券总数<i class="color_p theme-color-1">60000</i>张</div>
+                            
+                            <div class="pro_nowPri theme-bg-color-1">
+                                <div class="buy-price">5.9</div>
+                                <div class="old-price">
+                                    <p><i>￥</i>15.9</p>
+                                    <span>券后价</span>
+                                </div>
+                                <div class="go-buy">
+                                    <a class="theme-color-1" data-gid="6281762" data-ci="300025" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=index/middleurl&amp;id=6281762" target="_blank">去抢购</a>
+                                </div>
+                            </div>
+                        </div>
+                        <em class="border_l_b border"></em>
+                        <em class="border_l_t border"></em>
+                        <em class="border_r_b border"></em>
+                        <em class="border_r_t border"></em>
+                    </div>
+
+                
+                    <div class="theme-hover-border-color-1 pro_detail addLeft">
+
+                        <a rel="nofollow" data-gid="6336701" data-ci="300358" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=l/d&amp;id=6336701&amp;u=820138" biz-itemid="542034018863" isconvert="1" target="_blank">
+                            <img src="https://img.alicdn.com/imgextra/i4/784497909/TB24eSOhS7PL1JjSZFHXXcciXXa_!!784497909.jpg_310x310.jpg" height="272" style="border: 0;max-width:272px;">
+                        </a>
+                        <div class="pro_intro fr">
+                            <p class="pro_title">
+                                <a href="/index.php?r=l/d&amp;id=6336701&amp;u=820138" rel="nofollow" target="_blank" biz-itemid="542034018863" isconvert="1" title="睫毛夹初学者卷翘夹睫毛器卷翘迷你持久便携不夹眼皮化妆睫毛工具" style="font-size: 16px;" data-gid="6336701" data-ci="300358" data-in="1" data-uid="820138" data-cn="20">睫毛夹初学者卷翘夹睫毛器卷翘迷你持久便携不夹眼皮化妆睫毛工具</a>
+                            </p>
+                            <div class="pro_price color_p">
+                                <span class="coupon theme-bg-color-9 theme-color-1 theme-border-color-1">券<b><i>￥</i>5</b></span>
+                                <div class="out-time theme-color-4" data-goodsid="542034018863" data-seller="784497909">店铺名称：zoreya旗舰店</div>
+                            </div>
+                                                            <div class="residue">优惠券总数<i class="color_p theme-color-1">80000</i>张</div>
+                            
+                            <div class="pro_nowPri theme-bg-color-1">
+                                <div class="buy-price">4.9</div>
+                                <div class="old-price">
+                                    <p><i>￥</i>9.9</p>
+                                    <span>券后价</span>
+                                </div>
+                                <div class="go-buy">
+                                    <a class="theme-color-1" data-gid="6336701" data-ci="300358" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=index/middleurl&amp;id=6336701" target="_blank">去抢购</a>
+                                </div>
+                            </div>
+                        </div>
+                        <em class="border_l_b border"></em>
+                        <em class="border_l_t border"></em>
+                        <em class="border_r_b border"></em>
+                        <em class="border_r_t border"></em>
+                    </div>
+
+                
+                    <div class="theme-hover-border-color-1 pro_detail fr">
+
+                        <a rel="nofollow" data-gid="6474377" data-ci="307879" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=l/d&amp;id=6474377&amp;u=820138" biz-itemid="557414944379" isconvert="1" target="_blank">
+                            <img src="https://img.alicdn.com/imgextra/i2/3216583513/TB2i11bXEUIL1JjSZFrXXb3xFXa_!!3216583513.jpg_310x310.jpg" height="272" style="border: 0;max-width:272px;">
+                        </a>
+                        <div class="pro_intro fr">
+                            <p class="pro_title">
+                                <a href="/index.php?r=l/d&amp;id=6474377&amp;u=820138" rel="nofollow" target="_blank" biz-itemid="557414944379" isconvert="1" title="159素食全餐代餐粉正品官网佐五谷杂粮丹粗食品力膳食能量辟谷餐" style="font-size: 16px;" data-gid="6474377" data-ci="307879" data-in="1" data-uid="820138" data-cn="20">159素食全餐代餐粉正品官网佐五谷杂粮丹粗食品力膳食能量辟谷餐</a>
+                            </p>
+                            <div class="pro_price color_p">
+                                <span class="coupon theme-bg-color-9 theme-color-1 theme-border-color-1">券<b><i>￥</i>60</b></span>
+                                <div class="out-time theme-color-4" data-goodsid="557414944379" data-seller="3216583513">店铺名称：禹府旗舰店</div>
+                            </div>
+                                                            <div class="residue">优惠券总数<i class="color_p theme-color-1">30000</i>张</div>
+                            
+                            <div class="pro_nowPri theme-bg-color-1">
+                                <div class="buy-price">19</div>
+                                <div class="old-price">
+                                    <p><i>￥</i>79</p>
+                                    <span>券后价</span>
+                                </div>
+                                <div class="go-buy">
+                                    <a class="theme-color-1" data-gid="6474377" data-ci="307879" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=index/middleurl&amp;id=6474377" target="_blank">去抢购</a>
+                                </div>
+                            </div>
+                        </div>
+                        <em class="border_l_b border"></em>
+                        <em class="border_l_t border"></em>
+                        <em class="border_r_b border"></em>
+                        <em class="border_r_t border"></em>
+                    </div>
+
+                
+                    <div class="theme-hover-border-color-1 pro_detail addLeft">
+
+                        <a rel="nofollow" data-gid="6514073" data-ci="310696" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=l/d&amp;id=6514073&amp;u=820138" biz-itemid="556069789405" isconvert="1" target="_blank">
+                            <img src="https://img.alicdn.com/imgextra/i1/2099783878/TB2WX1neNOMSKJjSZFlXXXqQFXa_!!2099783878.jpg_310x310.jpg" height="272" style="border: 0;max-width:272px;">
+                        </a>
+                        <div class="pro_intro fr">
+                            <p class="pro_title">
+                                <a href="/index.php?r=l/d&amp;id=6514073&amp;u=820138" rel="nofollow" target="_blank" biz-itemid="556069789405" isconvert="1" title="美国自然兰蚕丝面膜补水保湿细嫩提亮肤色清洁收缩毛孔含EGF" style="font-size: 16px;" data-gid="6514073" data-ci="310696" data-in="1" data-uid="820138" data-cn="20">美国自然兰蚕丝面膜补水保湿细嫩提亮肤色清洁收缩毛孔含EGF</a>
+                            </p>
+                            <div class="pro_price color_p">
+                                <span class="coupon theme-bg-color-9 theme-color-1 theme-border-color-1">券<b><i>￥</i>20</b></span>
+                                <div class="out-time theme-color-4" data-goodsid="556069789405" data-seller="3365082098">店铺名称：自然兰旗舰店</div>
+                            </div>
+                                                            <div class="residue">优惠券总数<i class="color_p theme-color-1">10000</i>张</div>
+                            
+                            <div class="pro_nowPri theme-bg-color-1">
+                                <div class="buy-price">78</div>
+                                <div class="old-price">
+                                    <p><i>￥</i>98</p>
+                                    <span>券后价</span>
+                                </div>
+                                <div class="go-buy">
+                                    <a class="theme-color-1" data-gid="6514073" data-ci="310696" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=index/middleurl&amp;id=6514073" target="_blank">去抢购</a>
+                                </div>
+                            </div>
+                        </div>
+                        <em class="border_l_b border"></em>
+                        <em class="border_l_t border"></em>
+                        <em class="border_r_b border"></em>
+                        <em class="border_r_t border"></em>
+                    </div>
+
+                
+                    <div class="theme-hover-border-color-1 pro_detail fr">
+
+                        <a rel="nofollow" data-gid="6474263" data-ci="307981" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=l/d&amp;id=6474263&amp;u=820138" biz-itemid="43497406752" isconvert="1" target="_blank">
+                            <img src="https://img.alicdn.com/imgextra/i4/2096878391/TB2gQq5XsrHK1Jjy1zdXXbTwXXa_!!2096878391.jpg_310x310.jpg" height="272" style="border: 0;max-width:272px;">
+                        </a>
+                        <div class="pro_intro fr">
+                            <p class="pro_title">
+                                <a href="/index.php?r=l/d&amp;id=6474263&amp;u=820138" rel="nofollow" target="_blank" biz-itemid="43497406752" isconvert="1" title="复青品牌菊花茶 金丝皇菊一朵一杯黄菊茶叶贡菊大朵 礼盒装花茶" style="font-size: 16px;" data-gid="6474263" data-ci="307981" data-in="1" data-uid="820138" data-cn="20">复青品牌菊花茶 金丝皇菊一朵一杯黄菊茶叶贡菊大朵 礼盒装花茶</a>
+                            </p>
+                            <div class="pro_price color_p">
+                                <span class="coupon theme-bg-color-9 theme-color-1 theme-border-color-1">券<b><i>￥</i>5</b></span>
+                                <div class="out-time theme-color-4" data-goodsid="43497406752" data-seller="2096878391">店铺名称：复青旗舰店</div>
+                            </div>
+                                                            <div class="residue">优惠券总数<i class="color_p theme-color-1">20000</i>张</div>
+                            
+                            <div class="pro_nowPri theme-bg-color-1">
+                                <div class="buy-price">24.9</div>
+                                <div class="old-price">
+                                    <p><i>￥</i>29.9</p>
+                                    <span>券后价</span>
+                                </div>
+                                <div class="go-buy">
+                                    <a class="theme-color-1" data-gid="6474263" data-ci="307981" data-in="1" data-uid="820138" data-cn="20" href="/index.php?r=index/middleurl&amp;id=6474263" target="_blank">去抢购</a>
+                                </div>
+                            </div>
+                        </div>
+                        <em class="border_l_b border"></em>
+                        <em class="border_l_t border"></em>
+                        <em class="border_r_b border"></em>
+                        <em class="border_r_t border"></em>
+                    </div>
+            </div>
     	</div>
-    </div>
 	</div>
-	<div id="modules">
-	<volist name="goods" id="first" key="k">
-		<div class="yCon yCon<{$k-1}> yConCenter">
-			<h2>
-				<i><{$k}>F</i><a href="" class="yCon-title" id="module_1_name" target="_blank"><{$first.name}></a>
-				<a href="<{:U('Good/allgood',['id'=>$first['goods_class_id']])}>" class="yMoreLink" id="module_1_more" target="_b`lank" style="top: 0px;">更多<em></em></a>
-				<ul id="module_1_child_nav">
-				<volist name="first.pid" id="second" key="key">
-					<?php
-						$goods = M('goods');
-						$idstr[$key]=$second['goods_class_id'];
-						$map['goods_cate_id'] = $idstr['1'];
-						$map['sta'] = 3;
-			            $good_arr = $goods->field("id,goods_title,goods_logo,goods_cate_id,price,kucun,sell,comment,xfb")->where($map)->order('goods_time desc')->limit(7)->select();
-					?>
-					<li data-index="<{$k-1}>" data-adimg="__ROOT__/Uploads<{$second.pic}>" data-adimglink="<{:U('Good/allgood',['id'=>$first['goods_class_id'],'sonid'=>$second['goods_class_id']])}>" data-cid="<{$first.goods_class_id}>" data-id="<{$second.goods_class_id}>">
-					<?php if($key == '1'){?>
-						<a href="javascript:void(0);" class="yhoversH1List"><{$second.name}></a></li>
-					<?php }else{?>
-						<a href="javascript:void(0);" ><{$second.name}></a></li>
-					<?php }?>
-				</volist>
-				</ul>
-			</h2>
-			<div class="yConCenterIn" id="module_1_child_html">
-				<div class="yConCenterInList" style="display: block;">
-					<ul class="w_goods_one">
-					<volist name="first.pid" id="second" key="key">
-					<?php if($key == '1'){?>
-					<li class="w_goods_details x_goods_classfix_img" style="">
-						<a href="<{:U('Good/allgood',['id'=>$first['goods_class_id'],'sonid'=>$second['goods_class_id']])}>"><img src="__ROOT__/Uploads<{$second.pic}>"></a>
-					</li>
-					<?php }?>
-					</volist>
-					<!-- 循环二级分类下的商品 -->
-					<volist name="good_arr" id="vo">
-						<li class="w_goods_details x_goods_details">
-							<div class="w_imgOut">
-								<a target="_blank" href="<{:U('Good/goodlist',['id'=>$vo['id']])}>" class="w_goods_img x_action">
-									<img id="img_<{$vo['id']}>" src="__ROOT__/Uploads/<{$vo.goods_logo}>"></a>
-							</div>
-							<a target="_blank" href="<{:U('Good/goodlist',['id'=>$vo['id']])}>" class="w_goods_three"><{$vo['goods_title']}></a>
-							<b>可用金：<span style="font-size:16px;color:#dd2726;"><{$vo.price}></span></b>
-							<b>消费币：<span style="font-size:16px;color:#dd2726;"><{$vo.xfb}></span></b>
-							<ul class="w_number">
-								<li class="w_amount"><{$vo.sell}></li>
-								<li class="w_amount"><{$vo.kucun}></li>
-								<li class="w_amount"><{$vo.comment}></li>
-								<li>成交</li>
-								<li>库存</li>
-								<li>评价</li>
-							</ul> 
-							<dl class="w_rob">
-								<dd>
-									<a href="javascript:gotoCartOrder(<{$vo['id']}>);" class="w_slip">立即购买</a>
-									<a class="w_slip2" href="javascript:cartoon(<{$vo['id']}>,1)"></a>
-									<input type="hidden" id="priceArea_<{$vo['id']}>" value="<{$vo['id']}>">
-								</dd>
-							</dl>
-						</li>
-					</volist>
-						<li class="w_goods_details x_goods_details" style="background:url('/Public/Home/static/img/front/goods/expect.jpg') no-repeat center 0;"></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</volist>	
-	</div>
-</div>
+
 <div class="yCon yCon8 yConCenter y_new_index_Center x_new_index_Center">
 	<h2>
-		<i>XF</i><a href="" class="yCon-title" target="_blank">新品上架</a> <a href="" class="yMoreLink" target="_blank" style="top: 0px;">更多<em></em></a>
+		<i>2F</i><a href="" class="yCon-title" target="_blank">领券优惠直播</a> <a href="" class="yMoreLink" target="_blank" style="top: 0px;">更多<em></em></a>
 	</h2>
 	<div class="yConCenterIn">
 		<div class="yConCenterInList" style="display: block;">
