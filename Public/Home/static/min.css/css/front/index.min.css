@@ -598,7 +598,7 @@ em,i {
 }
 
 .yConCenterInList {
-	background: #fff;
+	/* background: #fff; */
 	width: 1210px;
 	height: 420px;
 	display: none;

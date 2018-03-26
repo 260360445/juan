@@ -318,7 +318,7 @@ a {
 }
 
 .w_goods_details {
-	border: 1px solid #ddd;
+	/* border: 1px solid #ddd; */
 	margin-top: -1px;
 	margin-left: -1px;
 	float: left;
@@ -329,9 +329,12 @@ a {
 	position: relative
 }
 
-.w_goods_details:hover {
-	border: 1px solid #dd2726;
-	z-index: 1
+#newGoodsList .w_goods_details:hover {
+	border: 5px solid #dd2726;
+	z-index: 1;
+	width: 196px;
+	height: 300px;
+	padding: 5px 13px 15px 13px;
 }
 
 .w_goods_details .w_imgOut {
@@ -354,11 +357,12 @@ a {
 }
 
 .w_goods_details a.w_goods_three {
-	width: 264px;
+	width: 190px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	font-size: 13px
+	font-size: 13px;
+	text-align: left;
 }
 
 .w_goods_details a.w_goods_three em {

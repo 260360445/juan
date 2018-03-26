@@ -134,7 +134,7 @@ body {
 }
 
 .w_goods_details .w_imgOut {
-	width: 220px;
+	width: 198px;
 	height: 220px;
 	position: relative;
 	margin: 0 auto
@@ -299,9 +299,9 @@ body {
 	height: 468px
 }
 
-.w_goods_details:hover {
+/* .w_goods_details:hover {
 	border-color: #ddd
-}
+} */
 
 .yConNew dl.yTimesDl .yddName,dl.yTimesDl .yGray {
 	width: 100%

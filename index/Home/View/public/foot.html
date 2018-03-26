@@ -1,70 +1,39 @@
-<?php
-//按照分类循环
-$menu = M("menu")->where(['state'=>2])->where('id != 123')->order('sort asc,id asc')->select();
-$tree = $this->getTreeArc($menu,0);
-?>
+<style type="text/css">
+.footer_change .footer .yFootSupport dl.dl_Time{
+      padding-left: 195px;
+}
+.yFootBottomLeft{
+  padding:0;
+}
+.footer_change .footer .yFootSupport{
+  padding-bottom: 8px;
+}
+.yFootBottomRight{
+      padding-top: 5px;
+    padding-bottom: 5px;
+}
+.footer_change .footer .yFootSupport dl.dlLast dd{
+      margin-left: 60px;
+}
+</style>
 <div class="footer_change" >
       <div class="footer">
-        <div class="abc">
-          <ul class="footerIn">
-          <li>
-            <span></span>
-            <p>100%公平公正公开</p>
-          </li>
-          <li>
-            <span></span>
-            <p>100%品质保障</p>
-          </li>
-          <li>
-            <span></span>
-            <p>全国急速</p>
-          </li>
-          <li>
-            <span></span>
-            <p>100%权益保障</p>
-          </li>
-        </ul>
+        
+        <div class="yFootSupport" style="background:url(/Public/Home/static/img/front/index/footer_bg.jpg);">
+          <div class="bt" style="font-size: 36px;font-weight: 200; color: #a9a9a9;text-align: center;padding-top: 30px;">
+            “感谢有你，我们的坚持才更有意义”
         </div>
-        <div class="yFootSupport">
           <div class="yFootSupport_in">
-            <!-- <volist name="tree" id="list">
-            <dl>
-              <dt><{$list.name}></dt>
-                <volist name="list.pid" id="v" key="key">
-                  <dd><a href="<{:U('Help/help',['p'=>$list['id'],'m'=>$v['id']])}>" target="_blank"><{$v.name}></a></dd>
-                </volist>  
-            </dl>
-            </volist> -->
-            
             <dl class="dl_Time">
-              <dd title="服务热线" style="background:url(/Public/Home/static/img/front/index/phone.png) no-repeat 0px 5px;margin-top: 29px;color:red;">客服:0351-6855922</dd>
-              <dd title="服务器时间" style="background:url(/Public/Home/static/img/front/index/time.png) no-repeat 0px 6px;background-size:21px;margin-top: 15px;color:red;" class="sysTime">时间:09:00至18:00</dd>
+              <dd title="服务热线" style="background:url(/Public/Home/static/img/front/index/phone.png) no-repeat 0px 5px;margin-top: 29px;">400-814-0777</dd>
+              <dd title="服务器时间" style="background:url(/Public/Home/static/img/front/index/time.png) no-repeat 0px 6px;background-size:21px;margin-top: 15px;" class="sysTime">00:00:00</dd>
             </dl>
             <dl class="dlLast">
               <a href="javascript:void(0);">
                 <dd class="dlLast-WeChat">
                   <div class="y-popover">
                     <span class="y-arrow"></span>
-                    <b>客服微信</b>
-                    <img src="/<?php echo $_SESSION['sc']['infor']['weixinlogo']?>" alt="">
-                  </div>
-                </dd>
-              </a>
-              <!-- 
-              <a href="javascript:void(0);">
-                <dd class="dlLast-Sina">
-                  <div class="y-popover">
-                    <span class="y-arrow"></span>
-                    <b>新浪微博</b>
-                    <img src="/Public/Home/static/img/front/cloud_global/fullPage/cloud_xx.jpg" alt="">
-                  </div>
-                </dd>
-              </a>
-              <a href="javascript:void(0);">
-                <dd class="dlLast-apple">
-                  <div class="y-popover">
-                    <span class="y-arrow"></span>
-                    <b>扫二维码下载</b>
+                    <!-- <b>云购全球官方微信</b> -->
                     <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" alt="">
                   </div>
                 </dd>
@@ -73,31 +42,32 @@ $tree = $this->getTreeArc($menu,0);
                 <dd class="dlLast-Android">
                   <div class="y-popover">
                     <span class="y-arrow"></span>
-                    <b>扫二维码下载</b>
+                    <!-- <b>扫二维码下载</b> -->
                     <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" alt="">
                   </div>
                 </dd>
-              </a> -->
+              </a>
             </dl>
           </div>
           <div class="footer-time-list" id="pageEnd">
-            <div class="yFootBottomIn" style="clear: both;">
-                <p>友情链接：
-                  <a target="_blank" href="https://www.wanht.net/">万花筒</a>
-                </p>
-            </div>
             <div class="yFootBottomRight">
-              <?php echo $_SESSION['sc']['infor']['copyright']?>
+              山西云购电子商务有限公司版权所有 © 2016 ICP证晋ICP备15005633号-1
             </div>
             <div class="yFootBottomLeft">
-              <a href="#"  class="s_footer_icon"><img src="http://v.trustutn.org/images/cert/bottom_large_img.png"/></a>
-              <a href="#"  class="yFootBottomLeft1"></a>
-              <a href="#" class="yFootBottomLeft2" ></a>
-              <a href="#"  class="yFootBottomLeft3"></a>
-              <a href="#"  class="yFootBottomLeft4"></a>
-<!--               <a  class="x_newadd_aBox" href="#">
-              </a> -->
+              <a href="http://si.trustutn.org/info?sn=836160421021216393517&certType=1" target="_blank" class="s_footer_icon"><img src="http://v.trustutn.org/images/cert/bottom_large_img.png"/></a>
+              <a href="http://webscan.360.cn/index/checkwebsite/url/www.ygqq.com" class="yFootBottomLeft2" target="_blank"></a>
+              <a href="http://www.itrust.org.cn/yz/pjwx.asp?wm=1325737350" target="_blank" class="yFootBottomLeft3"></a>
+              <a href="http://218.26.1.108/businessPublicity.jspx?id=4FA23AC6152B1BAC3D5A1FF847D3D615" target="_blank" class="yFootBottomLeft4"></a>
+              <a target="_blank" class="x_newadd_aBox" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=14019902000004">
+              </a>
             </div>
+          </div>
+        </div>
+        <div class="yFootBottom">
+          <div class="yFootBottomIn" style="clear: both;">
+            <p>友情链接：
+              <a target="_blank" href="">大德通集团</a>
+            </p>
           </div>
         </div>
       </div>

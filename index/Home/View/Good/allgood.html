@@ -70,7 +70,8 @@ body{
       border-left:1px solid #ddd;
     }
     .w_goods_details{
-      height:327px;
+      height:315px;
+      background: #fff;
     }
     .w_product_con{
       position: relative;
@@ -158,6 +159,14 @@ width:670px;}
 .r-fixed{
     visibility: visible !important;
 }
+.w_top_navs{
+  height: 251px;
+    width: 100%;
+    background: url(/Public/Home/static/img/front/temaihuichang.png) no-repeat top center;
+}
+.w_guide{
+  height: 10px;
+}
 </style>
 <!--E 2015-10-30 添加-->
 <title>全部商品分类</title>
@@ -174,12 +183,10 @@ width:670px;}
     <include file="public:left" />
 <!-- 引入左侧 -->
     <div class="a_world_bg" style="z-index:1011"></div>
+    <div class="w_top_navs"></div>
    <div class="w_con">
       <!-- <h4 class="w_guide"><a href="/">首页</a><a class="w_accord" href="javascript:void(0)">全部商品</a></h4> -->
       <h4 class="w_guide">
-        <a href="/">首页</a>
-        <a href="">全部商品</a>
-        <a class="w_accord" href="javascript:void(0);"></a>
       </h4>
       <div class="w_goods_nav">
         <h2>全部商品<span>（共<a href="javascript:void(0)"><{$goods_num}></a>件商品）</span></h2>
@@ -188,10 +195,10 @@ width:670px;}
             <div class="w_all_class" style="">
                <div class="w_choose_more">
                    <dl class="w_goods_class" >
-                      <dd>全部分类</dd>
+                      <dd>商品分类</dd>
                       <dd class="w_specific_class">
                           <ul>
-                          <li style="width:25px;"></li>
+                          <li style="margin-left: 20px;">全部优惠</li>
                           <?php if($type == '1001'){?>
                             <li> 暂无分类</li>
                           <?php }else {?>
@@ -207,7 +214,7 @@ width:670px;}
                        </dd>
                    </dl>
                    <dl class="w_goods_brand c_newgoods_brand">
-                      <dd class="c_newgoods_brand_name">品牌</dd>
+                      <dd class="c_newgoods_brand_name">促销类型</dd>
                       <dd class="w_specific_class1">
                         <ul>
                         <?php if($type == '1001'){?>
@@ -240,6 +247,48 @@ width:670px;}
          </div>
 
       </div>
+      <style type="text/css">
+        .price{
+          overflow: hidden;
+        }
+        .price h4{
+          float: left;
+          font-size: 12px;
+          color: #ff0060;
+          line-height: 22px;
+        }
+        .price h4 span{
+          font-size: 16px;
+        }
+        .price p{
+          float: right;
+          font-size: 12px;
+          color: #ff0060;
+          border: 1px dashed #ff0060;
+          padding: 0 5px;
+          line-height: 22px;
+        }
+        .w_goods_details .xiaoliang{
+          overflow: hidden;
+          margin-top: 10px;
+        }
+        .w_goods_details .xiaoliang h4{
+          float: left;
+          font-size: 12px;
+          color: #787878;
+        }
+        .w_goods_details .xiaoliang h4 span{
+          color: #fc903d;
+          margin-left: 5px;
+          line-height: 22px;
+        }
+        .w_goods_details .xiaoliang img{
+          float: right;
+          width: 16px;
+          height: 16px;
+          margin: 3px 0 0 5px;
+        }
+      </style>
      <!--商品列表-->
       <div class="w_goods_con">
          <ul class="w_goods_one">
@@ -252,18 +301,15 @@ width:670px;}
                    </a>
                </div>
                <a class="w_goods_three" target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" data-gid="3541" data-pid="161106040101875" title="<{$list['goods_title']}>"><{$list['goods_title']}></a>
-               <b>可用金：<span style="font-size:16px;color:#dd2726;">￥<{$list.price}></span></b>
-               <b>消费币：<span style="font-size:16px;color:#dd2726;">￥<{$list.xfb}></span></b>
-               <div class="c_rob_box">
-                   <dl class="w_rob">
-                       <dd>
-                           <a class="w_slip" href="javascript:void(0);" onclick="gotoCartOrderList('<{$list['id']}>')">立即购买</a>
-                       </dd>
-                       <dd class="w_rob_out">
-                           <a class="w_rob_in" href="javascript:void(0);" onclick="cartoon('<{$list['id']}>')">加入购物车</a>
-                       </dd>
-                   </dl>
-               </div>
+                <div class="price" style="width:260px;margin-top: 10px;">
+                  <h4>￥<span>18.9</span>券后价</h4>
+                  <p>券￥15</p>
+                </div>
+                <div class="xiaoliang" style="width:260px;">
+                  <h4>销量<span>11888</span></h4>
+                  <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                  <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                </div>
            </li>
           </volist>   
         <?php }else{?>

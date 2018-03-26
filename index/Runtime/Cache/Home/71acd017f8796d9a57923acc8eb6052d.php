@@ -67,17 +67,15 @@
 	}
 
 	.y_new_index_Center .yConCenterIn {
-		height: 655px;
+		height: auto;
 	}
 	.y_new_index_Center .w_goods_one {
 		width: 1210px;
 	}
-	.y_new_index_Center .yConCenterInList {
-		height: 655px;
-	}
+	
 
 	.y_new_index_Center .w_goods_details {
-		height: 290px;
+		height: 300px;
 	}
 
 	/* 2015 12 21 */
@@ -175,9 +173,9 @@ body{min-width: 1210px;}
 .yConNew ul li.yTimesLi{
 	border: 1px solid #fff;
 }
-#newGoodsList .w_goods_three, #newGoodsList b{
+/*#newGoodsList .w_goods_three, #newGoodsList b{
 	text-align: center;
-}
+}*/
 </style>
 <style type="text/css">
 .Box {position: relative;}
@@ -287,7 +285,9 @@ cursor: pointer;
 	width: 266.2px;
 }
 #newGoodsList .w_goods_details{
-	width: 265.2px;
+	    width: 196px;
+    background: #fff;
+    margin: 0 10px 20px 0;
 }
 </style>
 </head>
@@ -298,7 +298,7 @@ cursor: pointer;
             <div class="header1in">
                 <ul class="headerul1 header_yytc">
                     <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>万花筒首页</a></li>
-                    <!-- <li><a>客服QQ：<?php echo $_SESSION['sc']['infor']['service']?></a></li>
+                     <li><a>客服QQ：<?php echo $_SESSION['sc']['infor']['service']?></a></li>
                     <li>
                         <span class="c_contact_icon c_kik">
                             <div id="wechat-popover-content" class="pophover-content popover bottom" style="top: 40px;left: -60px;">
@@ -322,35 +322,7 @@ cursor: pointer;
                                 </div>
                             </div>
                         </span>
-                        <a href="http://weibo.com/u/5463325697?topnav=1&wvr=6&topsug=1&is_hot=1#_loginLayer_1474361903097" style="display:inline-block;" target="blank">
-                            <span class="c_contact_icon c_microblog">
-                                <div id="weibo-popover-content" class="pophover-content popover bottom" style="top: 40px;left: -60px;">
-                                    <div class="arrow"></div>
-                                    <div class="popover-content">
-                                        <p style="white-space: nowrap">新浪微博</p>
-                                        <div style="width: 100px; height: 100px; margin-left: 10px;">
-                                            <img src="/Public/Home/static/img/front/cloud_global/fullPage/cloud_xx.jpg" width="100" height="100" border="0" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </span>
-                        </a>
-                    </li> -->
-                </ul>
-                <ul class="headerul2">
-                    <?php if($_SESSION['sc']['usermobile']){?>
-                        <li><a id="memberMobile" href="<?php echo U('Pcenter/account');?>"><?php echo $_SESSION['sc']['usermobile']?></a></li>
-                        <li><a href="<?php echo U('Login/logout');?>">退出</a></li>
-                    <?php }else{?>
-                        <li class="li_popup_doregister"><a href="<?php echo U('Register/register');?>" style="padding-left:30px;color:#dd2726;"><img style="position:absolute;top:14px;left:7px;" src="/Public/Home/static/img/front/add_index/top_add.png">免费注册</a></li>
-                    <li class="li_popup_login"><a href="<?php echo U('Login/login');?>">登录</a></li>
-                    <?php }?>
-                    <?php if($_SESSION['sj']['id']){?>
-                        <li><a href="<?php echo U('Merchant/merchant');?>" target="_blank"><?php echo $_SESSION['sj']['account']?></a></li>
-                    <?php }else{?>
-                        <li><a href="<?php echo U('Mlogin/member');?>" target="_blank">商家登录</a></li>
-                    <?php }?>
-                    <!-- <li><a href="/footer/cmsArticle.do?typeId=3">帮助</a></li> -->
+                    </li>
                 </ul>
             </div>
         </div>
@@ -394,37 +366,19 @@ $("#seach").click(function(){
 			<div class="pullDown" style="">
 				<h4 class="pullDownTitle" style="color: #fff;font-size: 16px;display: block;">所有商品分类</h4>
 				<ul class="pullDownList" style="display: block;">
-				<!-- <li class=""><i></i>
-					<a href="#">商品分类</a><span></span>
-					<div class="por">
-				        <h3>商品分类1111</h3>
-				        <a href="#">11111111</a>
-				        <a href="#">11111111</a>
-				        <a href="#">11111111</a>
-				        <a href="#">11111111</a>
-				        <a href="#">11111111</a>
-				    </div>
-				</li> -->
 				<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><li class=""><i></i><a href="<?php echo U('Good/allgood',['id'=>$list['goods_class_id']]);?>"><?php echo ($list["name"]); ?></a><span></span></li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- 引入左侧 -->
-		<div class="r-fixed" style="visibility: hidden;">
+		<style type="text/css">
+.r-fixed{
+  bottom: 140px;
+}
+</style>
+<div class="r-fixed" style="visibility: hidden;">
         <ul class="r-fixed-nav">
-            <li class="toolbar-item" >
-                <a href="javascript:CartOrder();" class="shoppingCartRightFix">
-                    <em class="" id="cartCount"></em> 
-                    <div class="item-tip-c item-tip-checkpage">
-                        <div class="item-box">
-                            <u class="u-code u-g-ft-wx"></u>
-                            <div class="item-tip">购物车</div>
-                        </div>
-                    </div>
-                    <i id="cartLabel" class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed1.png) no-repeat center center;"></i>
-                </a>
-            </li>
             <li class="toolbar-item">
                 <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $_SESSION['sc']['infor']['service']?>&amp;Site=qq&amp;Menu=yes" title="在线客服" target="_blank">
                     <div class="item-tip-c item-tip-kefu">
@@ -446,29 +400,6 @@ $("#seach").click(function(){
                         </div>
                     </div>
                     <i class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed3.png) no-repeat center center;"></i>
-                </a>
-            </li>
-            <!-- <li class="toolbar-item">
-                <a href="javascript:void(0);">
-                    <div class="item-tip-c item-tip-app">
-                        <div class="item-box">
-                            <u class="u-code u-g-ft-app">
-                                <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg">
-                            </u>
-                            <div class="item-tip">扫码下载APP</div>
-                        </div>
-                    </div>
-                    <i class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed4.png) no-repeat center center;"></i>
-                </a>
-            </li> -->
-            <li class="toolbar-item">
-                <a href="<?php echo U('Pcenter/checkstand');?>" target="_blank" title="购买套包">
-                    <div class="item-tip-c item-tip-checkpage">
-                        <div class="item-box">
-                            <div class="item-tip">购买套包</div>
-                        </div>
-                    </div>
-                    <i class="iconfont" style="background:url(/Public/Home/static/img/front/add_index/r-fixed5.png) no-repeat center center;"></i>
                 </a>
             </li>
             <li id="back" class="toolbar-item">
@@ -715,6 +646,46 @@ $("#loginSubmitUser").click(function () {
     width: 0;
     height: 0;
 }
+.price{
+	overflow: hidden;
+}
+.price h4{
+	float: left;
+	font-size: 12px;
+	color: #ff0060;
+	line-height: 22px;
+}
+.price h4 span{
+	font-size: 16px;
+}
+.w_goods_details .price p{
+	float: right;
+	font-size: 12px;
+	color: #ff0060;
+	border: 1px dashed #ff0060;
+	padding: 0 5px;
+	line-height: 22px;
+}
+.w_goods_details .xiaoliang{
+	overflow: hidden;
+	margin-top: 10px;
+}
+.w_goods_details .xiaoliang h4{
+	float: left;
+	font-size: 12px;
+	color: #787878;
+}
+.w_goods_details .xiaoliang h4 span{
+	color: #fc903d;
+	margin-left: 5px;
+	line-height: 22px;
+}
+.w_goods_details .xiaoliang img{
+	float: right;
+	width: 16px;
+	height: 16px;
+	margin: 3px 0 0 5px;
+}
 </style>
 <div class="sd_yContent">
 	<div class="yContent">
@@ -938,13 +909,20 @@ $("#loginSubmitUser").click(function () {
 				<?php if(is_array($good_xp)): $i = 0; $__LIST__ = $good_xp;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><li class="w_goods_details">
 						<div class="w_imgOut">
 							<a target="_blank" href="<?php echo U('Good/goodlist',['id'=>$list['id']]);?>" class="w_goods_img x_action">
-								<img style="height:220px;width:220px;" class="w_goods_three" src="/Uploads<?php echo ($list["goods_logo"]); ?>"></a>
+								<img style="height:220px;width:196px;" class="w_goods_three" src="/Uploads<?php echo ($list["goods_logo"]); ?>"></a>
 						</div>
 						<a target="_blank" href="<?php echo U('Good/goodlist',['id'=>$list['id']]);?>" class="w_goods_three">
 							<?php echo ($list['goods_title']); ?>
 						</a>
-						<b>可用金<span style="font-size:16px;color:#dd2726;">￥ <?php echo ($list["price"]); ?></b>
-						<b>消费币<span style="font-size:16px;color:#dd2726;">￥ <?php echo ($list["xfb"]); ?></b>
+						<div class="price">
+							<h4>￥<span>18.9</span>券后价</h4>
+							<p>券￥15</p>
+						</div>
+						<div class="xiaoliang">
+							<h4>销量<span>11888</span></h4>
+							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+						</div>
 					</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
@@ -966,66 +944,42 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 .yFootBottomLeft a.s_footer_icon1:hover{ background-position: -491px 0;}
 </style>
 <!-- 引入底部 -->
-<?php
-$menu = M("menu")->where(['state'=>2])->where('id != 123')->order('sort asc,id asc')->select(); $tree = $this->getTreeArc($menu,0); ?>
+<style type="text/css">
+.footer_change .footer .yFootSupport dl.dl_Time{
+      padding-left: 195px;
+}
+.yFootBottomLeft{
+  padding:0;
+}
+.footer_change .footer .yFootSupport{
+  padding-bottom: 8px;
+}
+.yFootBottomRight{
+      padding-top: 5px;
+    padding-bottom: 5px;
+}
+.footer_change .footer .yFootSupport dl.dlLast dd{
+      margin-left: 60px;
+}
+</style>
 <div class="footer_change" >
       <div class="footer">
-        <div class="abc">
-          <ul class="footerIn">
-          <li>
-            <span></span>
-            <p>100%公平公正公开</p>
-          </li>
-          <li>
-            <span></span>
-            <p>100%品质保障</p>
-          </li>
-          <li>
-            <span></span>
-            <p>全国急速</p>
-          </li>
-          <li>
-            <span></span>
-            <p>100%权益保障</p>
-          </li>
-        </ul>
+        
+        <div class="yFootSupport" style="background:url(/Public/Home/static/img/front/index/footer_bg.jpg);">
+          <div class="bt" style="font-size: 36px;font-weight: 200; color: #a9a9a9;text-align: center;padding-top: 30px;">
+            “感谢有你，我们的坚持才更有意义”
         </div>
-        <div class="yFootSupport">
           <div class="yFootSupport_in">
-            <!-- <?php if(is_array($tree)): $i = 0; $__LIST__ = $tree;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><dl>
-              <dt><?php echo ($list["name"]); ?></dt>
-                <?php if(is_array($list["pid"])): $key = 0; $__LIST__ = $list["pid"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($key % 2 );++$key;?><dd><a href="<?php echo U('Help/help',['p'=>$list['id'],'m'=>$v['id']]);?>" target="_blank"><?php echo ($v["name"]); ?></a></dd><?php endforeach; endif; else: echo "" ;endif; ?>  
-            </dl><?php endforeach; endif; else: echo "" ;endif; ?> -->
-            
             <dl class="dl_Time">
-              <dd title="服务热线" style="background:url(/Public/Home/static/img/front/index/phone.png) no-repeat 0px 5px;margin-top: 29px;color:red;">客服:0351-6855922</dd>
-              <dd title="服务器时间" style="background:url(/Public/Home/static/img/front/index/time.png) no-repeat 0px 6px;background-size:21px;margin-top: 15px;color:red;" class="sysTime">时间:09:00至18:00</dd>
+              <dd title="服务热线" style="background:url(/Public/Home/static/img/front/index/phone.png) no-repeat 0px 5px;margin-top: 29px;">400-814-0777</dd>
+              <dd title="服务器时间" style="background:url(/Public/Home/static/img/front/index/time.png) no-repeat 0px 6px;background-size:21px;margin-top: 15px;" class="sysTime">00:00:00</dd>
             </dl>
             <dl class="dlLast">
               <a href="javascript:void(0);">
                 <dd class="dlLast-WeChat">
                   <div class="y-popover">
                     <span class="y-arrow"></span>
-                    <b>客服微信</b>
-                    <img src="/<?php echo $_SESSION['sc']['infor']['weixinlogo']?>" alt="">
-                  </div>
-                </dd>
-              </a>
-              <!-- 
-              <a href="javascript:void(0);">
-                <dd class="dlLast-Sina">
-                  <div class="y-popover">
-                    <span class="y-arrow"></span>
-                    <b>新浪微博</b>
-                    <img src="/Public/Home/static/img/front/cloud_global/fullPage/cloud_xx.jpg" alt="">
-                  </div>
-                </dd>
-              </a>
-              <a href="javascript:void(0);">
-                <dd class="dlLast-apple">
-                  <div class="y-popover">
-                    <span class="y-arrow"></span>
-                    <b>扫二维码下载</b>
+                    <!-- <b>云购全球官方微信</b> -->
                     <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" alt="">
                   </div>
                 </dd>
@@ -1034,31 +988,32 @@ $menu = M("menu")->where(['state'=>2])->where('id != 123')->order('sort asc,id a
                 <dd class="dlLast-Android">
                   <div class="y-popover">
                     <span class="y-arrow"></span>
-                    <b>扫二维码下载</b>
+                    <!-- <b>扫二维码下载</b> -->
                     <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" alt="">
                   </div>
                 </dd>
-              </a> -->
+              </a>
             </dl>
           </div>
           <div class="footer-time-list" id="pageEnd">
-            <div class="yFootBottomIn" style="clear: both;">
-                <p>友情链接：
-                  <a target="_blank" href="https://www.wanht.net/">万花筒</a>
-                </p>
-            </div>
             <div class="yFootBottomRight">
-              <?php echo $_SESSION['sc']['infor']['copyright']?>
+              山西云购电子商务有限公司版权所有 © 2016 ICP证晋ICP备15005633号-1
             </div>
             <div class="yFootBottomLeft">
-              <a href="#"  class="s_footer_icon"><img src="http://v.trustutn.org/images/cert/bottom_large_img.png"/></a>
-              <a href="#"  class="yFootBottomLeft1"></a>
-              <a href="#" class="yFootBottomLeft2" ></a>
-              <a href="#"  class="yFootBottomLeft3"></a>
-              <a href="#"  class="yFootBottomLeft4"></a>
-<!--               <a  class="x_newadd_aBox" href="#">
-              </a> -->
+              <a href="http://si.trustutn.org/info?sn=836160421021216393517&certType=1" target="_blank" class="s_footer_icon"><img src="http://v.trustutn.org/images/cert/bottom_large_img.png"/></a>
+              <a href="http://webscan.360.cn/index/checkwebsite/url/www.ygqq.com" class="yFootBottomLeft2" target="_blank"></a>
+              <a href="http://www.itrust.org.cn/yz/pjwx.asp?wm=1325737350" target="_blank" class="yFootBottomLeft3"></a>
+              <a href="http://218.26.1.108/businessPublicity.jspx?id=4FA23AC6152B1BAC3D5A1FF847D3D615" target="_blank" class="yFootBottomLeft4"></a>
+              <a target="_blank" class="x_newadd_aBox" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=14019902000004">
+              </a>
             </div>
+          </div>
+        </div>
+        <div class="yFootBottom">
+          <div class="yFootBottomIn" style="clear: both;">
+            <p>友情链接：
+              <a target="_blank" href="">大德通集团</a>
+            </p>
           </div>
         </div>
       </div>

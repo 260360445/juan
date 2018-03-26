@@ -67,17 +67,15 @@
 	}
 
 	.y_new_index_Center .yConCenterIn {
-		height: 655px;
+		height: auto;
 	}
 	.y_new_index_Center .w_goods_one {
 		width: 1210px;
 	}
-	.y_new_index_Center .yConCenterInList {
-		height: 655px;
-	}
+	
 
 	.y_new_index_Center .w_goods_details {
-		height: 290px;
+		height: 300px;
 	}
 
 	/* 2015 12 21 */
@@ -175,9 +173,9 @@ body{min-width: 1210px;}
 .yConNew ul li.yTimesLi{
 	border: 1px solid #fff;
 }
-#newGoodsList .w_goods_three, #newGoodsList b{
+/*#newGoodsList .w_goods_three, #newGoodsList b{
 	text-align: center;
-}
+}*/
 </style>
 <style type="text/css">
 .Box {position: relative;}
@@ -287,7 +285,9 @@ cursor: pointer;
 	width: 266.2px;
 }
 #newGoodsList .w_goods_details{
-	width: 265.2px;
+	    width: 196px;
+    background: #fff;
+    margin: 0 10px 20px 0;
 }
 </style>
 </head>
@@ -301,19 +301,7 @@ cursor: pointer;
 			<div class="pullDown" style="">
 				<h4 class="pullDownTitle" style="color: #fff;font-size: 16px;display: block;">所有商品分类</h4>
 				<ul class="pullDownList" style="display: block;">
-				<!-- <li class=""><i></i>
-					<a href="#">商品分类</a><span></span>
-					<div class="por">
-				        <h3>商品分类1111</h3>
-				        <a href="#">11111111</a>
-				        <a href="#">11111111</a>
-				        <a href="#">11111111</a>
-				        <a href="#">11111111</a>
-				        <a href="#">11111111</a>
-				    </div>
-				</li> -->
 				<volist name="goods" id="list">
-					
 					<li class=""><i></i><a href="<{:U('Good/allgood',['id'=>$list['goods_class_id']])}>"><{$list.name}></a><span></span></li>
 				</volist>
 				</ul>
@@ -499,6 +487,46 @@ cursor: pointer;
     border-right: 12px solid #fef490;
     width: 0;
     height: 0;
+}
+.price{
+	overflow: hidden;
+}
+.price h4{
+	float: left;
+	font-size: 12px;
+	color: #ff0060;
+	line-height: 22px;
+}
+.price h4 span{
+	font-size: 16px;
+}
+.w_goods_details .price p{
+	float: right;
+	font-size: 12px;
+	color: #ff0060;
+	border: 1px dashed #ff0060;
+	padding: 0 5px;
+	line-height: 22px;
+}
+.w_goods_details .xiaoliang{
+	overflow: hidden;
+	margin-top: 10px;
+}
+.w_goods_details .xiaoliang h4{
+	float: left;
+	font-size: 12px;
+	color: #787878;
+}
+.w_goods_details .xiaoliang h4 span{
+	color: #fc903d;
+	margin-left: 5px;
+	line-height: 22px;
+}
+.w_goods_details .xiaoliang img{
+	float: right;
+	width: 16px;
+	height: 16px;
+	margin: 3px 0 0 5px;
 }
 </style>
 <div class="sd_yContent">
@@ -724,13 +752,20 @@ cursor: pointer;
 					<li class="w_goods_details">
 						<div class="w_imgOut">
 							<a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="w_goods_img x_action">
-								<img style="height:220px;width:220px;" class="w_goods_three" src="__ROOT__/Uploads<{$list.goods_logo}>"></a>
+								<img style="height:220px;width:196px;" class="w_goods_three" src="__ROOT__/Uploads<{$list.goods_logo}>"></a>
 						</div>
 						<a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="w_goods_three">
 							<{$list['goods_title']}>
 						</a>
-						<b>可用金<span style="font-size:16px;color:#dd2726;">￥ <{$list.price}></b>
-						<b>消费币<span style="font-size:16px;color:#dd2726;">￥ <{$list.xfb}></b>
+						<div class="price">
+							<h4>￥<span>18.9</span>券后价</h4>
+							<p>券￥15</p>
+						</div>
+						<div class="xiaoliang">
+							<h4>销量<span>11888</span></h4>
+							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+						</div>
 					</li>
 				</volist>
 				</ul>
