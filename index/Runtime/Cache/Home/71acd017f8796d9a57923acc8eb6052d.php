@@ -286,7 +286,6 @@ cursor: pointer;
 }
 #newGoodsList .w_goods_details{
 	    width: 196px;
-    background: #fff;
     margin: 0 10px 20px 0;
 }
 </style>
@@ -331,8 +330,10 @@ cursor: pointer;
                 <a href="/" class="header_logo"><img src="/<?php echo ($_SESSION['sc']['infor']['logo']); ?>"></a>
                 <ul id="yMenuIndex" class="yMenuIndex">
                     <li><a href="/" class="yMenua">首页</a></li>
-                    <li><a href="<?php echo U('Good/specialsale');?>">特卖会场</a></li>
-                    <li><a href="<?php echo U('Good/newgood');?>">新品上架</a></li>
+                    <li><a href="<?php echo U('Good/allgood');?>">领卷优惠直播</a></li>
+                    <li><a href="<?php echo U('Good/specialsale');?>">咚咚抢</a></li>
+                    <li><a href="<?php echo U('Good/popularity');?>">超级人气榜</a></li>
+                    <li><a href="<?php echo U('Good/newgood');?>">9块9包邮</a></li>
                     <!-- <li class="hide-menu-nav" style="padding: 0 13px 0px 15px;">
                     <span></span><a href="#" class="hide-menu-nava">发现</a>
                         <dl>
