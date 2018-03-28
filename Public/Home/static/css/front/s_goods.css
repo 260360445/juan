@@ -45,12 +45,7 @@
 	font-size:12px;
 	color:#999999;
 }
-.s_goods_detail b i{
-	padding:10px;
-	background:url("../../img/front/goods/s_wh.png") no-repeat center;
-	margin-left:10px;
-	cursor:pointer;
-}
+
 .s_goods_detail .s_intro{
 	width:374px;
 	position:absolute;

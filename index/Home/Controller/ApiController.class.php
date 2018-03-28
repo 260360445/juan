@@ -5,7 +5,7 @@ namespace Home\Controller;
 use Think\Controller;
 
 class ApiController extends ComController {
-	#万花筒转入收益为余额
+	#方大商城转入收益为余额
     public function whtRuBal(){
         $key = '118482494389c9ce536ae699cd127999';
         $data['wht_pay']  = $wht_pay   = $_GET['wht_pay'];

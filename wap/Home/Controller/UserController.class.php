@@ -898,7 +898,7 @@ class UserController extends ComController {
         if($user['status'] == 3){
             die('账号已冻结,暂时无法操作!');
         }elseif(empty($user['wht_pay'])){
-            die('请先绑定万花筒钱包地址!');
+            die('请先绑定方大商城钱包地址!');
         }
         $buy_bao=M('buy_bao')->field('type')->where(['uid'=>$uid,'status'=>3,'id'=>$id])->find();
         if(empty($buy_bao)){

@@ -21,7 +21,7 @@ class MloginController extends ComSjController{
                     echo 'ok';
                     exit();
                 }else{
-                    echo '账户被冻结，请联系万花筒！';
+                    echo '账户被冻结，请联系方大商城！';
                     exit();
                 }
                 

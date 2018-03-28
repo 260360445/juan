@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="__PUBLIC__/Home/static/userCenter/css/login.css"/>
 <link rel="stylesheet" href="__PUBLIC__/Home/static/css/front/login_box/login_box.css"/>
 <link rel="stylesheet" href="__PUBLIC__/Home/static/new/css/balance.css" />
-<title>付款--万花筒</title>
+<title>付款--方大商城</title>
 <style>
 .top {
     padding: 20px 0;
@@ -340,7 +340,7 @@ table tr td:nth-child(3) p {
         </div>
         
         <div class="bottom">
-            <p>万花筒支付密码：</p>
+            <p>方大商城支付密码：</p>
             <div class="alieditContainer" id="payPassword_container">
                 <input minlength="6" maxlength="6" tabindex="1" id="payPassword_rsainput" name="payPassword_rsainput" class="ui-input i-text" oncontextmenu="return false" onpaste="return false" oncopy="return false" oncut="return false" autocomplete="off"  type="password" >
                 <div class="sixDigitPassword" tabindex="0">
@@ -551,7 +551,7 @@ $(window).ready(function() {
             },
             success: function(responses) {
                 if (responses.msg == 'ok') {
-                    var html = "<p>万花筒 -- " + responses.goods_title + "</p>";
+                    var html = "<p>方大商城 -- " + responses.goods_title + "</p>";
                     if (responses.store_name == null || responses.store_name == '') {
                         html += "<p>卖家昵称：</p>";
                     } else {

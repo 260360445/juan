@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="__PUBLIC__/Home/static/userCenter/css/login.css"/>
 <link rel="stylesheet" href="__PUBLIC__/Home/static/css/front/login_box/login_box.css"/>
 <link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/css/page.css"/>
-<title>特卖会场--万花筒</title>
+<title>特卖会场--方大商城</title>
 <body >
 <style>
 body{
@@ -133,45 +133,114 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
     height: 60px;
     margin-left: 43px;
 }
-.price{
-  overflow: hidden;
+.padding{
+        padding: 32px 12px;
+    }
+.padding .coupon-wrap{
+    position: relative;
+    height: 26px;
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
 }
-.price h4{
-  float: left;
-  font-size: 12px;
-  color: #ff0060;
-  line-height: 22px;
+.padding .coupon-wrap .price{
+    height: 28px;
+    line-height: 18px;
+    color: #dd2726;
+    float: left;
+    overflow: hidden;
 }
-.price h4 span{
-  font-size: 16px;
+.padding .coupon-wrap .price b{
+    font-size: 30px;
+    padding-right: 2px;
+    line-height: 28px;
 }
-.price p{
-  float: right;
-  font-size: 12px;
-  color: #ff0060;
-  border: 1px dashed #ff0060;
-  padding: 0 5px;
-  line-height: 22px;
+.padding i{
+    font-family: "Microsoft Yahei";
+    font-size: 14px;
+}
+.padding .coupon-wrap .old-price{
+    float: left;
+    width: 50px;
+    margin-left: 10px;
+    text-decoration: line-through;
+    height: 26px;
+    font: 14px "Microsoft Yahei";
+    color: #aaa;
+    line-height: 40px;
+}
+.padding .coupon-wrap .coupon{
+    position: absolute;
+    right: 0;
+    font: 12px Simsun;
+    text-align: center;
+    background: #fff7fa;
+    color: #dd2726;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 8px;
+    margin: 0;
+    border: 1px dotted #dd2726;
+    border-left: none;
+    border-right: none;
+}
+.padding .coupon-wrap .coupon em.quan-left{
+    left: 0;
+}
+.padding .coupon-wrap .coupon em{
+    position: absolute;
+    top: 0;
+    width: 6px;
+    height: 24px;
+    background: url(/Public/Home/static/img/cms_pc_img.png) -120px -79px no-repeat #fff;
+}
+.padding .coupon-wrap .coupon b{
+    font-size: 14px;
+    font-family: "Microsoft Yahei";
+    float: right;
+    position: relative;
+}
+.padding .coupon-wrap .coupon em.quan-right{
+    right: 0;
+    background-position-x: -136px;
+}
+.clearfix:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.padding .title{
+    height: 14px;
+    overflow: hidden;
+    display: block;
+    line-height: 14px;
+    letter-spacing: .5px;
+    margin-bottom: 13px;
+}
+.padding .title a{
+    color: #444;
 }
 .xiaoliang{
-  overflow: hidden;
-  margin-top: 3px;
+    overflow: hidden;
+    margin-top: 10px;
 }
 .xiaoliang h4{
-  float: left;
-  font-size: 12px;
-  color: #787878;
+    float: left;
+    font-size: 12px;
+    color: #787878;
 }
 .xiaoliang h4 span{
-  color: #fc903d;
-  margin-left: 5px;
-  line-height: 22px;
+    color: #fc903d;
+    margin-left: 5px;
+    line-height: 22px;
 }
 .xiaoliang img{
-  float: right;
-  width: 16px;
-  height: 16px;
-  margin: 3px 0 0 5px;
+    float: right;
+    width: 16px;
+    height: 16px;
+    margin: 3px 0 0 5px;
 }
 </style>
 <input type="hidden" id="mid" value="<?php echo $_SESSION['sc']['id']?>"/>
@@ -205,23 +274,27 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
         <ul>
             <volist name="result" id="list">
 	             <li class="w_latest goods3203_53996">
-	                <div class="w_latestImg">
+	                <div class="w_latestImg" style="margin:0 25px;">
 	                    <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank">
-	                        <img src="__ROOT__/Uploads<{$list.goods_logo}>" style="margin-top: 30px;">
+	                        <img src="__ROOT__/Uploads<{$list.goods_logo}>" >
 	                    </a>
 	                </div>
-	                <a class="w_goods_three" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list.goods_title}></a>
-	                <div class="price" style="width:260px;">
-                      <h4>￥<span>18.9</span>券后价</h4>
-                      <p>券￥15</p>
-                    </div>
-                    <div class="xiaoliang" style="width:260px;">
-                      <h4>销量<span>11888</span></h4>
-                      <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                      <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                    </div>
-                    <div class="xiaoliang" >
-                      <h4>18:00 准时开抢</h4>
+	                <div class="padding">
+                      <div class="coupon-wrap clearfix">
+                          <span class="price theme-color-8"><b><i>￥</i>9.5</b></span>
+                          <span class="old-price"><i>￥</i>19.5</span>
+                          <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
+                      </div>
+                      <div class="title">
+                          <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">【画眉神器】眉卡+眉笔+2支眉刀全套</a>
+                      </div>
+
+                      <div class="xiaoliang">
+                          <h4>销量<span>11888</span></h4>
+                          <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                          <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                      </div>
+                      <h4 style="color:green;">18:00 准时开抢</h4>
                     </div>
 	                <i class="a_js_icon"></i>
 	            </li>
@@ -241,8 +314,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
             </div>
             <a class="w_goods_three" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list.goods_title}></a>
             <div class="price" style="width:210px;">
-              <h4>￥<span>18.9</span>券后价</h4>
-              <p>券￥15</p>
+              <h4 style="font-family: 'Microsoft Yahei';font-size: 14px;    height: 28px;line-height: 18px;color: #dd2726;overflow: hidden;">￥<span style="font-size: 30px;padding-right: 2px;line-height: 28px;">18.9</span>券后价</h4>
             </div>
             <div class="xiaoliang" style="width:210px;">
               <h4>销量<span>11888</span></h4>

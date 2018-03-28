@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="/Public/Home/static/css/front/login_box/login_box.css"/>
 <link rel="stylesheet" href="/Public/Home/static/userCenter/css/registerNew.css"/>
 
-<title>万花筒_离梦想最近的地方</title>
+<title>方大商城_离梦想最近的地方</title>
 <script type="text/javascript">
 	//uaredirect("/wap.php/Home/Index/index","");
 </script>
@@ -296,7 +296,7 @@ cursor: pointer;
         <div class="header1">
             <div class="header1in">
                 <ul class="headerul1 header_yytc">
-                    <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>万花筒首页</a></li>
+                    <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>方大商城首页</a></li>
                      <li><a>客服QQ：<?php echo $_SESSION['sc']['infor']['service']?></a></li>
                     <li>
                         <span class="c_contact_icon c_kik">

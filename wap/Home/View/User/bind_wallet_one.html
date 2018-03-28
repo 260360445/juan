@@ -71,9 +71,9 @@
 			<span>50C773E1F4C71F2E8EB54973289B104B</span>
 		</li>
 		<li>
-			<h4>万花筒钱包</h4>
+			<h4>方大商城钱包</h4>
 			<?php if($info['wht_pay'] == '0'){?>
-              <input type="text" id="payKeynum" placeholder="请输入万花筒钱包地址" maxlength="32">
+              <input type="text" id="payKeynum" placeholder="请输入方大商城钱包地址" maxlength="32">
             <?php }else{?>
               <span><{$info['wht_pay']}></span>
             <?php }?> 
@@ -92,7 +92,7 @@ $("#payKeySuc").click(function(){
   var a = $("#payKeynum").val();
   if(a == '' || a == null){
     layer.open({
-        content: '请填写万花筒钱包地址！'
+        content: '请填写方大商城钱包地址！'
         ,skin: 'msg'
         ,time: 2 //2秒后自动关闭
     });

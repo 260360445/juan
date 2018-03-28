@@ -166,12 +166,183 @@ width:670px;}
 .w_guide{
   height: 10px;
 }
-.w_goods_navs{
-    border-top: 1px solid #dddddd;
-    width: 1189px;
-    margin-left: 10px;
-}
 </style>
+
+<style type="text/css">
+    .jipin-wrap{
+        width: 1186px;
+        height: 24px;
+        line-height: 24px;
+        margin: 35px auto 20px;
+        font-size: 20px;
+        font-family: "Microsoft YaHei";
+        color: #2D2D2D;
+        display: block;
+    }
+    .jipin-wrap .jinpin-tit{
+        float: left;
+        background: url(/Public/Home/static/img/jptj.png) left center no-repeat;
+        padding-left: 30px;
+        letter-spacing: 2px;
+        color: #454545;
+    }
+    .jipin-wrap .jinpin-txt{
+        float: left;
+        margin-left: 8px;
+        font-size: 14px;
+        padding-top: 4px;
+        color: #999;
+    }
+    /*.main-container{
+        width: 1200px;
+        margin: 0 auto;
+    }*/
+    .goods-list ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font: 12px Simsun;
+    }
+    .goods-list ul li{
+        float: left;
+        list-style: none;
+        margin: 0 18px 20px 0;
+        padding: 0;
+        border: 1px solid #eee;
+        height: 410px;
+        width: 282px;
+        background: #fff;
+        display: block;
+        overflow: hidden;
+    }
+    .goods-list ul li a.img{
+        position: relative;
+        display: block;
+        width: 284px;
+        height: 284px;
+        margin: 0;
+        padding: 0;
+    }
+    .goods-list ul li .padding{
+        padding: 32px 12px;
+    }
+    .goods-list ul li .padding .coupon-wrap{
+        position: relative;
+        height: 26px;
+        display: block;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    .goods-list ul li .padding .coupon-wrap .price{
+        height: 27px;
+        line-height: 18px;
+        color: #dd2726;
+        float: left;
+        overflow: hidden;
+    }
+    .goods-list ul li .padding .coupon-wrap .price b{
+        font-size: 30px;
+        padding-right: 2px;
+        line-height: 28px;
+    }
+    .goods-list ul li .padding i{
+        font-family: "Microsoft Yahei";
+        font-size: 14px;
+    }
+    .goods-list ul li .padding .coupon-wrap .old-price{
+        float: left;
+        width: 50px;
+        margin-left: 10px;
+        text-decoration: line-through;
+        height: 26px;
+        font: 14px "Microsoft Yahei";
+        color: #aaa;
+        line-height: 40px;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon{
+        position: absolute;
+        right: 0;
+        font: 12px Simsun;
+        text-align: center;
+        background: #fff7fa;
+        color: #dd2726;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 8px;
+        margin: 0;
+        border: 1px dotted #dd2726;
+        border-left: none;
+        border-right: none;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon em.quan-left{
+        left: 0;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon em{
+        position: absolute;
+        top: 0;
+        width: 6px;
+        height: 24px;
+        background: url(/Public/Home/static/img/cms_pc_img.png) -120px -79px no-repeat #fff;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon b{
+        font-size: 14px;
+        font-family: "Microsoft Yahei";
+        float: right;
+        position: relative;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon em.quan-right{
+        right: 0;
+        background-position-x: -136px;
+    }
+    .clearfix:after{
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+    .goods-list ul li .padding .title{
+        height: 14px;
+        overflow: hidden;
+        display: block;
+        line-height: 14px;
+        letter-spacing: .5px;
+        margin-bottom: 13px;
+    }
+    .goods-list ul li .padding .title a{
+        color: #444;
+    }
+    .xiaoliang{
+        overflow: hidden;
+        margin-top: 10px;
+    }
+    .xiaoliang h4{
+        float: left;
+        font-size: 12px;
+        color: #787878;
+    }
+    .xiaoliang h4 span{
+        color: #fc903d;
+        margin-left: 5px;
+        line-height: 22px;
+    }
+    .xiaoliang img{
+        float: right;
+        width: 16px;
+        height: 16px;
+        margin: 3px 0 0 5px;
+    }
+    .goods-list ul li:hover{
+        border: 1px solid #dd2726;
+    }
+    .w_goods_class{
+      border-top: 1px solid #dddddd;
+    }
+    .w_goods_nav{
+          border:0;
+    }
+    
+    </style>
 <!--E 2015-10-30 添加-->
 <title>全部商品分类</title>
 </head>
@@ -192,9 +363,8 @@ width:670px;}
       <!-- <h4 class="w_guide"><a href="/">首页</a><a class="w_accord" href="javascript:void(0)">全部商品</a></h4> -->
       <h4 class="w_guide">
       </h4>
-      <div class="w_goods_navs">
+      <div class="w_goods_nav">
          <div class="w_choose">
-           
             <div class="w_all_class" style="">
                <div class="w_choose_more">
                    <dl class="w_goods_class" >
@@ -202,6 +372,9 @@ width:670px;}
                       <dd class="w_specific_class">
                           <ul>
                           <li style="margin-left: 20px;">全部优惠</li>
+                          <?php if($type == '1001'){?>
+                            <li> 暂无分类</li>
+                          <?php }else {?>
                             <volist name="goods_class" id="list">
                               <?php if($list['goods_class_id'] == $_GET['id']){?>
                                 <li><a class="w_effect" href="<{:U('Good/allgood',['id'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
@@ -209,59 +382,179 @@ width:670px;}
                                 <li><a  href="<{:U('Good/allgood',['id'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
                               <?php }?>
                             </volist>
+                          <?php }?>
                           </ul>
                        </dd>
                    </dl>
                </div>
              </div>
          </div>
-
       </div>
-      <style type="text/css">
-        .price{
-          overflow: hidden;
-        }
-        .price h4{
-          float: left;
-          font-size: 12px;
-          color: #ff0060;
-          line-height: 22px;
-        }
-        .price h4 span{
-          font-size: 16px;
-        }
-        .price p{
-          float: right;
-          font-size: 12px;
-          color: #ff0060;
-          border: 1px dashed #ff0060;
-          padding: 0 5px;
-          line-height: 22px;
-        }
-        .w_goods_details .xiaoliang{
-          overflow: hidden;
-          margin-top: 10px;
-        }
-        .w_goods_details .xiaoliang h4{
-          float: left;
-          font-size: 12px;
-          color: #787878;
-        }
-        .w_goods_details .xiaoliang h4 span{
-          color: #fc903d;
-          margin-left: 5px;
-          line-height: 22px;
-        }
-        .w_goods_details .xiaoliang img{
-          float: right;
-          width: 16px;
-          height: 16px;
-          margin: 3px 0 0 5px;
-        }
-      </style>
      <!--商品列表-->
-      <div class="w_goods_con">
-         <ul class="w_goods_one">
+      <div class="w_goods_con" style="margin-top:20px;">
+        <div class="goods-list main-container">
+            <ul class="clearfix">
+                        <li class="theme-hover-border-color-1 ">
+                    <a href="/index.php?r=l/d&amp;id=6553160" class="img" rel="nofollow" target="_blank" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">
+                                            <img src="https://img.alicdn.com/imgextra/i4/2255795767/TB2TeEii9_I8KJjy0FoXXaFnVXa_!!2255795767.jpg_310x310.jpg" alt="">
+                                        </a>
+                    <div class="padding">
+                        <div class="coupon-wrap clearfix">
+                            <span class="price theme-color-8"><b><i>￥</i>9.5</b>券后价</span>
+                            <span class="old-price"><i>￥</i>19.5</span>
+                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
+                        </div>
+                        <div class="title">
+                            <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">【画眉神器】眉卡+眉笔+2支眉刀全套</a>
+                        </div>
+
+                        <div class="xiaoliang">
+                            <h4>销量<span>11888</span></h4>
+                            <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                            <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                        </div>
+                    </div>
+                    <em class="border_l_b border"></em>
+                    <em class="border_l_t border"></em>
+                    <em class="border_r_b border"></em>
+                    <em class="border_r_t border"></em>
+                </li>
+                            <li class="theme-hover-border-color-1 ">
+                    <a href="/index.php?r=l/d&amp;id=6513551" class="img" rel="nofollow" target="_blank" data-gid="6513551" data-ci="310660" data-in="1" data-uid="820138" data-cn="1">
+                                            <img src="//img.alicdn.com/imgextra/i4/3422105120/TB2or9UXAKWBuNjy1zjXXcOypXa_!!3422105120.jpg_310x310.jpg" alt="">
+                                        </a>
+                    <div class="padding">
+                        <div class="coupon-wrap clearfix">
+                            <span class="price theme-color-8"><b><i>￥</i>26.9</b>券后价</span>
+                            <span class="old-price"><i>￥</i>29.9</span>
+                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>3</b><em class="quan-right"></em></span>
+                        </div>
+                        <div class="title">
+                            <a target="_blank" href="/index.php?r=l/d&amp;id=6513551" data-gid="6513551" data-ci="310660" data-in="1" data-uid="820138" data-cn="1">2018春季新款小白帆布鞋</a>
+                        </div>
+
+                        <div class="xiaoliang">
+                            <h4>销量<span>11888</span></h4>
+                            <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                            <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                        </div>
+                    </div>
+                    <em class="border_l_b border"></em>
+                    <em class="border_l_t border"></em>
+                    <em class="border_r_b border"></em>
+                    <em class="border_r_t border"></em>
+                </li>
+                            <li class="theme-hover-border-color-1 ">
+                    <a href="/index.php?r=l/d&amp;id=6451115" class="img" rel="nofollow" target="_blank" data-gid="6451115" data-ci="306679" data-in="1" data-uid="820138" data-cn="1">
+                                            <img src="https://img.alicdn.com/imgextra/i3/1720923265/TB22Fq8fqmWBuNjy1XaXXXCbXXa_!!1720923265.jpg_310x310.jpg" alt="">
+                                        </a>
+                    <div class="padding">
+                        <div class="coupon-wrap clearfix">
+                            <span class="price theme-color-8"><b><i>￥</i>15.9</b>券后价</span>
+                            <span class="old-price"><i>￥</i>17.9</span>
+                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>2</b><em class="quan-right"></em></span>
+                        </div>
+                        <div class="title">
+                            <a target="_blank" href="/index.php?r=l/d&amp;id=6451115" data-gid="6451115" data-ci="306679" data-in="1" data-uid="820138" data-cn="1">知采烧烤调料组合套装8件套</a>
+                        </div>
+
+                        <div class="goods-num-type">
+                            <span class="goods-num">销量<b>1845</b></span>
+                            <div class="goods-type">
+                                                        </div>
+                        </div>
+                    </div>
+                    <em class="border_l_b border"></em>
+                    <em class="border_l_t border"></em>
+                    <em class="border_r_b border"></em>
+                    <em class="border_r_t border"></em>
+                </li>
+                            <li class="theme-hover-border-color-1 no-right">
+                    <a href="/index.php?r=l/d&amp;id=6606239" class="img" rel="nofollow" target="_blank" data-gid="6606239" data-ci="315565" data-in="1" data-uid="820138" data-cn="1">
+                                                <i class="today-new"></i>
+                                            <img src="//img.alicdn.com/imgextra/i4/2786273568/TB2xLeCa_mWBKNjSZFBXXXxUFXa_!!2786273568.jpg_310x310.jpg" alt="">
+                                        </a>
+                    <div class="padding">
+                        <div class="coupon-wrap clearfix">
+                            <span class="price theme-color-8"><b><i>￥</i>29.9</b>券后价</span>
+                            <span class="old-price"><i>￥</i>69.9</span>
+                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>40</b><em class="quan-right"></em></span>
+                        </div>
+                        <div class="title">
+                            <a target="_blank" href="/index.php?r=l/d&amp;id=6606239" data-gid="6606239" data-ci="315565" data-in="1" data-uid="820138" data-cn="1">春装韩版新款ulzzang纯棉短袖t恤女装</a>
+                        </div>
+
+                        <div class="goods-num-type">
+                            <span class="goods-num">销量<b>17029</b></span>
+                            <div class="goods-type">
+                                <i class="tmall" title="天猫"></i><i class="trans" title="运费险"></i><i class="ddq" title="咚咚"></i>                        </div>
+                        </div>
+                    </div>
+                    <em class="border_l_b border"></em>
+                    <em class="border_l_t border"></em>
+                    <em class="border_r_b border"></em>
+                    <em class="border_r_t border"></em>
+                </li>
+                            <li class="theme-hover-border-color-1 ">
+                    <a href="/index.php?r=l/d&amp;id=6560960" class="img" rel="nofollow" target="_blank" data-gid="6560960" data-ci="313591" data-in="1" data-uid="820138" data-cn="1">
+                                            <img src="https://img.alicdn.com/imgextra/i3/2255795767/TB2oCkHb79WBuNjSspeXXaz5VXa_!!2255795767.jpg_310x310.jpg" alt="">
+                                        </a>
+                    <div class="padding">
+                        <div class="coupon-wrap clearfix">
+                            <span class="price theme-color-8"><b><i>￥</i>29</b>券后价</span>
+                            <span class="old-price"><i>￥</i>49</span>
+                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>20</b><em class="quan-right"></em></span>
+                        </div>
+                        <div class="title">
+                            <a target="_blank" href="/index.php?r=l/d&amp;id=6560960" data-gid="6560960" data-ci="313591" data-in="1" data-uid="820138" data-cn="1">棉域医用级脱脂尿裤2条装</a>
+                        </div>
+
+                        <div class="goods-num-type">
+                            <span class="goods-num">销量<b>7390</b></span>
+                            <div class="goods-type">
+                                <i class="tmall" title="天猫"></i><i class="trans" title="运费险"></i>                        </div>
+                        </div>
+                    </div>
+                    <em class="border_l_b border"></em>
+                    <em class="border_l_t border"></em>
+                    <em class="border_r_b border"></em>
+                    <em class="border_r_t border"></em>
+                </li>
+                            <li class="theme-hover-border-color-1 ">
+                    <a href="/index.php?r=l/d&amp;id=6508673" class="img" rel="nofollow" target="_blank" data-gid="6508673" data-ci="310186" data-in="1" data-uid="820138" data-cn="1">
+                                            <img src="//img.alicdn.com/imgextra/i3/3691133320/TB2Q1fubmMmBKNjSZTEXXasKpXa_!!3691133320.jpg_310x310.jpg" alt="">
+                                        </a>
+                    <div class="padding">
+                        <div class="coupon-wrap clearfix">
+                            <span class="price theme-color-8"><b><i>￥</i>17.9</b>券后价</span>
+                            <span class="old-price"><i>￥</i>27.9</span>
+                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
+                        </div>
+                        <div class="title">
+                            <a target="_blank" href="/index.php?r=l/d&amp;id=6508673" data-gid="6508673" data-ci="310186" data-in="1" data-uid="820138" data-cn="1">2018夏季新款韩版学生宽松圆领短袖</a>
+                        </div>
+
+                        <div class="goods-num-type">
+                            <span class="goods-num">销量<b>592</b></span>
+                            <div class="goods-type">
+                                                        </div>
+                        </div>
+                    </div>
+                    <em class="border_l_b border"></em>
+                    <em class="border_l_t border"></em>
+                    <em class="border_r_b border"></em>
+                    <em class="border_r_t border"></em>
+                </li>
+                          
+        </ul>
+    </div>
+
+
+
+
+
+         <!-- <ul class="w_goods_one">
+         <?php if($type == '1000'){?>
           <volist name="result" id="list">
            <li class="w_goods_details ">
                <div class="w_imgOut" data-gid="<{$list['id']}>" data-pid="161106040101875">
@@ -281,8 +574,10 @@ width:670px;}
                 </div>
            </li>
           </volist>   
-        
-         </ul>
+        <?php }else{?>
+          <img style="display:block;margin:0 auto;" src="/Public/Home/static/img/front/goods/expect.jpg">
+        <?php }?>
+         </ul> -->
      </div>
      <div id="pages"><{$page}></div>
      </div>

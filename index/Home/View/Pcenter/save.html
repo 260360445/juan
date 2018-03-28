@@ -62,7 +62,7 @@
     visibility: visible !important;
 }
 </style>
-<title>安全中心-万花筒</title>
+<title>安全中心-方大商城</title>
 </head>
 <body>
   <!-- 引入头部 -->
@@ -84,7 +84,7 @@
         <div class="c_set_save">
           <ul class="c_set_save_box">
             <li class="c_save_password">绑定钱包：</li>
-            <li class="c_save_tips">绑定后可直接入金万花筒平台</li>
+            <li class="c_save_tips">绑定后可直接入金方大商城平台</li>
             <?php if($info['wht_pay'] != '0'){?>
               <li class="c_save_state c_save_state_other">已绑定</li>
             <?php }else{?>
@@ -99,7 +99,7 @@
                 <i id="memberId"><{$info['shop_pay']}></i>
               </div>
               <div class="c_rechange_doing" style="width: 550px;">
-                <label style="width:103px;">万花筒钱包地址:</label>
+                <label style="width:103px;">方大商城钱包地址:</label>
                 <?php if($info['wht_pay'] == '0'){?>
                   <input  type="text" style="width:282px;" id="payKeynum" maxlength="32"/>
                 <?php }else{?>
@@ -283,7 +283,7 @@
           </ul>
           <ul class="c_set_save_box">
             <li class="c_save_password">手机号码：</li>
-            <li class="c_save_tips">保护账户与资金安全，是您在万花筒重要的身份凭证。</li>
+            <li class="c_save_tips">保护账户与资金安全，是您在方大商城重要的身份凭证。</li>
             <li class="c_save_state c_save_state_other">已设置</li>
             <li class="c_save_num" id="hideMobile">--</li>
             <li class="c_save_rechange"><a href="javascript:void(0);">修改</a></li>
@@ -628,7 +628,7 @@ function idCardBankOk(){
 $("#payKeySuc").click(function(){
   var a = $("#payKeynum").val();
   if(a == '' || a == null){
-    layer.tips("请填写万花筒钱包地址", "#payKeynum");
+    layer.tips("请填写方大商城钱包地址", "#payKeynum");
     return false;
   }
   if(a.length != 32){

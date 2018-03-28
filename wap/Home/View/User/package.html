@@ -8,7 +8,7 @@
 <link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
 <link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
 <link rel="stylesheet" href="__PUBLIC__/Wap/css/user/shipments.css">
-<title>万花筒--套餐包</title>
+<title>方大商城--套餐包</title>
 <style>
 footer{
 	background-color: #ee4a58;
@@ -196,7 +196,7 @@ function shiyong(id){
               data : {id:id},
               success : function(data){
                   if(data == 'ok'){
-                    layer.msg('入金成功,请登录万花筒平台查看!',{offset: '300px',time: 1500,icon: 1},function(){
+                    layer.msg('入金成功,请登录方大商城平台查看!',{offset: '300px',time: 1500,icon: 1},function(){
                               location.href="<{:U('Pcenter/buy_bao_lst')}>"
                             });
                   }else{
