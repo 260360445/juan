@@ -53,47 +53,6 @@ class GoodController extends ComController {
     		$this->display();
     	}
     }
-    //添加子栏目
-    public function goods_cate_per_add(){
-      if(IS_POST) {
-            if(!empty($_FILES['pic']['name'])){
-                $dir=date("Ymd",time());
-                $saveName=date("Ymd",time()).$this->_randStr(4,1);
-                $saveExtStr=explode('/',$_FILES['pic']['type']);
-                $saveExt=$saveExtStr[1];
-                $logo=$this->_createThumImg('pic', 'Goods/'.$dir, $saveName, $saveExt);
-                if($logo['tag'] == '1'){
-                    echo '图片大小不得超过3MB';exit;
-                }else if($logo['tag'] == '2'){
-                    echo '文件格式不正确';exit;
-                }else if($logo['tag'] == '3'){
-                    echo '系统繁忙,请稍后再试';exit;
-                }else if($logo['tag'] == '4'){
-                    $data['pic']=$logo['con'];
-                }    
-            }
-            $goods_class=M("goods_class");
-    		$data['name']=$_POST['name'];
-            $data['sort']=$_POST['sort'];
-            $data['pid']=$_POST['pid'];
-            $data['state']=$_POST['state'];
-            $data['time']=time();
-            $addid=$goods_class->add($data);
-            if($addid){
-            	echo 'ok';
-            	exit;
-            }else{
-            	echo '添加失败';
-            	exit;
-            }   
-         }else{
-             //循环下拉分类
-         	$id = I('get.id','');
-            $sele=M("goods_class")->field("goods_class_id,name")->where("goods_class_id=".$id)->find();
-            $this->assign('sele',$sele);
-            $this->display();
-         }
-    }
     /*
     *2017.12.28
     *分类修改
@@ -123,111 +82,6 @@ class GoodController extends ComController {
     		$this->display();
     	}
     }
-    //修改子栏目
-    public function goods_cate_per_edit(){
-        if (IS_POST){
-    		$goods_class=M("goods_class");
-    		$id = I('post.setid','');
-            if(!empty($_FILES['pic']['name'])){
-                $dir=date("Ymd",time());
-                $saveName=date("Ymd",time()).$this->_randStr(4,1);
-                $saveExtStr=explode('/',$_FILES['pic']['type']);
-                $saveExt=$saveExtStr[1];
-                $logo=$this->_createThumImg('pic', 'Goods/'.$dir, $saveName, $saveExt);
-                if($logo['tag'] == '1'){
-                    echo '图片大小不得超过3MB';exit;
-                }else if($logo['tag'] == '2'){
-                    echo '文件格式不正确';exit;
-                }else if($logo['tag'] == '3'){
-                    echo '系统繁忙,请稍后再试';exit;
-                }else if($logo['tag'] == '4'){
-                    $data['pic']=$logo['con'];
-                }    
-            }else{
-                $logo=$goods_class->field("pic")->where("goods_class_id=".$id)->find();
-                $data['pic']=$logo['pic'];
-            }
-    		$data['name']=$_POST['name'];
-            $data['sort']=$_POST['sort'];
-            $data['pid']=$_POST['pid'];
-            $data['state']=$_POST['state'];
-            $data['time']=time();
-            $addid=$goods_class->where("goods_class_id=".$id)->save($data);
-            if($addid){
-            	echo 'ok';
-            	exit;
-            }else{
-            	echo '修改失败';
-            	exit;
-            }
-    	}else{
-    		$id = I('get.id','');
-    		$pid = I('get.pid','');
-    		//自己的数据
-    		$data=M("goods_class")->field("goods_class_id,name,pic,sort,state")->where("goods_class_id=".$id)->find();
-    		//上级分类数据
-    		$sele=M("goods_class")->field("goods_class_id,name")->where("goods_class_id=".$pid)->find();
-            $this->assign('sele',$sele);
-    		$this->assign("infor",$data);
-    		$this->display();
-    	}
-    }    
-    /*
-    *2017.12.28
-    *明明
-    *分类--子类
-    */
-    #获取下级拼接成相应数据
-    public function getJson()
-    {
-        $id = I('get.id','');
-        $level = I('get.level','');
-        $now_level = $level + 1;
-        $margin = 20 * $now_level;
-        $id_arr = M('goods_class')
-            ->field('goods_class_id')
-            ->where(['goods_class_id'=>$id])
-            ->find();
-        if (empty($id_arr)){
-            echo 'fail';exit;
-        }
-        $info  = M('goods_class')
-        	->field('goods_class_id,name,pic,pid,sort,state,time')
-            ->where(['pid'=>$id_arr['goods_class_id']])
-            ->order("sort asc,goods_class_id asc")
-            ->select();
-        $html = '';
-        if (!empty($info)){
-            foreach ($info as $k => $v)
-            {   
-                $html .='<tr >';
-                $html .='<td ><img style="width:50px;height:50px;" src="/Uploads'.$v['pic'].'""></td>';
-                $html .='<td>'.$v['sort'].'</td>';
-                $html .='<td>'.$v['goods_class_id'].'</td>';
-                $html .='<td align="left" style="padding-left: 40px;">├─ '. $v['name'] .'</td>';
-                $html .='<td>'.date("Y-m-d H:i:s",$v['time']).'</td>';
-                $html .='<td >';
-                if(strpos($_SESSION['ad']['auth'], 'all') !== false){
-                    $html .='<a href="'.U('Good/goods_cate_per_edit',['id'=>$v['goods_class_id'],'pid'=>$id_arr['goods_class_id']]).'" >修改</a>';
-                    $html .=' <span >|</span> ';
-                    $html .='<a href="javascript:void(0);"  style="color:#F00;"  onclick="subformone('.$v['goods_class_id'].')">删除</a>';
-                }else{
-                    if(strpos($_SESSION['ad']['auth'], 'Good_goods_cate_per_edit') !== false){
-                        $html .='<a href="'.U('Good/goods_cate_per_edit',['id'=>$v['goods_class_id'],'pid'=>$id_arr['goods_class_id']]).'" >修改</a>';
-                        $html .=' <span >|</span> ';
-                    }
-                    if(strpos($_SESSION['ad']['auth'], 'Good_goods_cate_per_del') !== false){
-                        $html .='<a href="javascript:void(0);"  style="color:#F00;"  onclick="subformone('.$v['goods_class_id'].')">删除</a>';
-                    }
-                }
-                $html .='</td>';
-                $html .='</tr>';
-            }
-            echo $html;exit;
-        }else{
-            echo 'fail';exit;
-        }
-    }
     //-----删除(单删)-----//
     public function good_cate_delete(){
         $id=isset($_POST['id'])?$_POST['id']:'';//单删id
@@ -256,7 +110,7 @@ class GoodController extends ComController {
     public function goods_list(){
     	$title = I('get.title','');
         if ($title != ''){
-            $cond['goods_title'] = ['like',"%$title%"];
+            $cond['title'] = ['like',"%$title%"];
         }
         $total = M('goods')
             ->where($cond)
@@ -264,7 +118,6 @@ class GoodController extends ComController {
         $limit = 10;
         $page = new Page($total,$limit);
         $info = M('goods')
-            ->field("id,goods_title,sid,goods_cate_id,goods_logo,goods_time,tm,xp,price,money,sta")
             ->where($cond)
             ->limit($page->firstRow.','.$limit)
             ->order('id desc')
@@ -274,15 +127,124 @@ class GoodController extends ComController {
         $this->assign('info',$info);
         $this->display();
     }
+    public function daolist(){
+        $info = M('goods_class')->field('goods_class_id,name')->order('sort asc,goods_class_id asc')->select();
+        $html.='<form enctype="multipart/form-data" method="post" id="subexcel"><div style="text-align:center;margin:0 auto;">';
+        $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
+        $html.='<label>所属分类 ：</label>';
+        $html.='<select id="goods_cate_id" name="goods_cate_id">';
+        $html.='<option value="0">请选择分类</option>';
+        foreach ($info as $k => $v) {
+            $html.='<option value="'.$v['goods_class_id'].'">'.$v['name'].'</option>';
+        }    
+        $html.='</select>';
+        $html.='</div>';
+        $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
+        $html.='<label>导入商品 ： </label><input type="file" name="goodsexal" id="goodsexal" style="display:inline-block;">';
+        $html.='</div>';
+        $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
+        $html.='<label>属性 ： </label><input type="radio" name="type" value="2" checked>普通 <input type="radio" name="type" value="3" >高佣金';
+        $html.='</div>';
+        $html.='<div class="thumbnailbutton">';
+        $html.='<a href="javascript:setexal();" class="btn btn-wide btn-o btn-info">导入</a>&nbsp&nbsp&nbsp'; 
+        $html.='<a href="javascript:closelayer();" class="btn btn-wide btn-o btn-danger">取消</a>'; 
+        $html.='</div>';
+        $html.='</div></form>';
+        echo $html;
+    }
+    public function upload() {
+       if (!empty($_FILES)) {
+            $config = array(
+                'exts' => array('xlsx','xls'),
+                'maxSize' => 3145728,
+                'rootPath' =>"./",
+                'savePath' => 'Uploads/excel/',
+                'subName' => array('date','YmdHis'),
+            );
+            $upload = new \Think\Upload($config);
+            if (!$info = $upload->upload()) {
+               $this->error($upload->getError());
+            }
+            vendor("PHPExcel.PHPExcel");
+            $file_name=$upload->rootPath.$info['goodsexal']['savepath'].$info['goodsexal']['savename'];
+            $extension = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));//判断导入表格后缀格式
+            if ($extension == 'xlsx') {
+                $objReader =\PHPExcel_IOFactory::createReader('Excel2007');
+                $objPHPExcel =$objReader->load($file_name, $encode = 'utf-8');
+            } else if ($extension == 'xls'){
+                $objReader =\PHPExcel_IOFactory::createReader('Excel5');
+                $objPHPExcel =$objReader->load($file_name, $encode = 'utf-8');
+            }
+            $sheet =$objPHPExcel->getSheet(0);
+            $highestRow = $sheet->getHighestRow();//取得总行数
+            $highestColumn =$sheet->getHighestColumn(); //取得总列数
+            for ($i = 1; $i <= $highestRow; $i++) {
+                $data['lid'] =$objPHPExcel->getActiveSheet()->getCell("A" . $i)->getValue();
+                $data['title'] =$objPHPExcel->getActiveSheet()->getCell("B" .$i)->getValue();
+                $data['glogo'] =$objPHPExcel->getActiveSheet()->getCell("C" .$i)->getValue();
+                $data['gurl'] = $objPHPExcel->getActiveSheet()->getCell("D". $i)->getValue();
+                $data['store'] =$objPHPExcel->getActiveSheet()->getCell("E" .$i)->getValue();
+                $data['price'] =$objPHPExcel->getActiveSheet()->getCell("F" . $i)->getValue();
+                $data['sell'] =$objPHPExcel->getActiveSheet()->getCell("G" . $i)->getValue();
+                $data['shouru'] =$objPHPExcel->getActiveSheet()->getCell("H" . $i)->getValue();
+                $data['yj'] =$objPHPExcel->getActiveSheet()->getCell("I" . $i)->getValue();
+                if($_POST['type'] == 2){//普通
+                    $data['wangwang'] =$objPHPExcel->getActiveSheet()->getCell("J" . $i)->getValue();
+                    $data['tbkdurl'] =$objPHPExcel->getActiveSheet()->getCell("K" . $i)->getValue();
+                    $data['tbkurl'] =$objPHPExcel->getActiveSheet()->getCell("L" . $i)->getValue();
+                    $data['tkl'] =$objPHPExcel->getActiveSheet()->getCell("M" . $i)->getValue();
+                    $data['yhj_num'] =$objPHPExcel->getActiveSheet()->getCell("N" . $i)->getValue();
+                    $data['yhj_sy_num'] =$objPHPExcel->getActiveSheet()->getCell("O" . $i)->getValue();
+                    $data['yhj_price'] =$objPHPExcel->getActiveSheet()->getCell("P" . $i)->getValue();
+                    $data['yhj_start_time'] =$objPHPExcel->getActiveSheet()->getCell("Q" . $i)->getValue();
+                    $data['yhj_end_time'] =$objPHPExcel->getActiveSheet()->getCell("R" . $i)->getValue();
+                    $data['yhj_url'] =$objPHPExcel->getActiveSheet()->getCell("S" . $i)->getValue();
+                    $data['yhj_kl'] =$objPHPExcel->getActiveSheet()->getCell("T" . $i)->getValue();
+                    $data['yhj_small_url'] =$objPHPExcel->getActiveSheet()->getCell("U" . $i)->getValue();
+                    $data['yx'] =$objPHPExcel->getActiveSheet()->getCell("V" . $i)->getValue();
+                }else if($_POST['type'] == 3){//高佣金
+                    $data['hdsta'] =$objPHPExcel->getActiveSheet()->getCell("J" . $i)->getValue();
+                    $data['hdsr'] =$objPHPExcel->getActiveSheet()->getCell("K" . $i)->getValue();
+                    $data['hdyj'] =$objPHPExcel->getActiveSheet()->getCell("L" . $i)->getValue();
+                    $data['hd_start_time'] =$objPHPExcel->getActiveSheet()->getCell("M" . $i)->getValue();
+                    $data['hd_end_time'] =$objPHPExcel->getActiveSheet()->getCell("N" . $i)->getValue();
+                    $data['wangwang'] =$objPHPExcel->getActiveSheet()->getCell("O" . $i)->getValue();
+                    $data['tbkdurl'] =$objPHPExcel->getActiveSheet()->getCell("P" . $i)->getValue();
+                    $data['tbkurl'] =$objPHPExcel->getActiveSheet()->getCell("Q" . $i)->getValue();
+                    $data['tkl'] =$objPHPExcel->getActiveSheet()->getCell("R" . $i)->getValue();
+                    $data['yhj_num'] =$objPHPExcel->getActiveSheet()->getCell("S" . $i)->getValue();
+                    $data['yhj_sy_num'] =$objPHPExcel->getActiveSheet()->getCell("T" . $i)->getValue();
+                    $data['yhj_price'] =$objPHPExcel->getActiveSheet()->getCell("U" . $i)->getValue();
+                    $data['yhj_start_time'] =$objPHPExcel->getActiveSheet()->getCell("V" . $i)->getValue();
+                    $data['yhj_end_time'] =$objPHPExcel->getActiveSheet()->getCell("W" . $i)->getValue();
+                    $data['yhj_url'] =$objPHPExcel->getActiveSheet()->getCell("X" . $i)->getValue();
+                    $data['yhj_kl'] =$objPHPExcel->getActiveSheet()->getCell("Y" . $i)->getValue();
+                    $data['yhj_small_url'] =$objPHPExcel->getActiveSheet()->getCell("Z" . $i)->getValue();
+                }
+                $data['state'] = '2';
+                $data['type'] = $_POST['type'];
+                $data['goods_cate_id'] = $_POST['goods_cate_id'];
+                $data['time'] = time();
+                $addid=M('goods')->add($data);
+            }
+            if($addid){
+                echo 'ok';exit;
+            }else{
+                echo '导入失败';exit;
+            }
+        } else {
+            echo '请选择导入的文件';exit;
+        }
+    }
     /*
     *设置商品特卖
     */
-    public function good_set_tm(){
+    public function good_set_ms(){
         $id = I('post.id','');
-        $info = M('goods')->field("tm")->where("id=".$id)->find();
-        $data['tm_time']=time();
-        $data['tm']='2';
-        if($info['tm'] == '3'){
+        $info = M('goods')->field("ms_sta")->where("id=".$id)->find();
+        $data['ms_time']=time();
+        $data['ms_sta']='2';
+        if($info['ms_sta'] == '3'){
             if(false !== M('goods')->where("id=".$id)->save($data)){
                 echo '设置成功';exit;
             }else{
@@ -299,12 +261,12 @@ class GoodController extends ComController {
     /*
     *设置商品新品上架
     */
-    public function good_set_XP(){
+    public function good_set_tj(){
         $id = I('post.id','');
-        $info = M('goods')->field("xp")->where("id=".$id)->find();
-        $data['xp_time']=time();
-        $data['xp']='2';
-        if($info['xp'] == '3'){
+        $info = M('goods')->field("tj_sta")->where("id=".$id)->find();
+        $data['tj_time']=time();
+        $data['tj_sta']='2';
+        if($info['tj_sta'] == '3'){
             if(false !== M('goods')->where("id=".$id)->save($data)){
                 echo '设置成功';exit;
             }else{
@@ -320,20 +282,11 @@ class GoodController extends ComController {
     }
      public function good_list_delete(){
         $id=isset($_POST['id'])?$_POST['id']:'';//单删id
-        if ($id!="") {
-            $where['state']=['in','2,3,5'];
-            $result = M('order')->field('order_id')->where(['gid'=>$id,$where])->select();
-            if ($result) {
-                echo "该商品有订单未处理完成，不允许删除！";
-                exit();
-            }else{
-                $Model=M();
-                if ($Model->execute("delete from sc_goods where id='{$id}'")) {
-                    echo "ok";exit;
-                }else{
-                    echo "删除失败";exit;
-                }
-            }
+        $Model=M();
+        if ($Model->execute("delete from tao_goods where id='{$id}'")) {
+            echo "ok";exit;
+        }else{
+            echo "删除失败";exit;
         }
     }
 }

@@ -77,6 +77,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="password3" class="col-sm-2 control-label">QQ二维码</label>
+                                            <div class="col-sm-5">
+                                               <input type="file" id="bimagetext" name="qqlogo" class="input-text" style="width:200px;height:20px;">(261px*259px)(只支持图片格式 'jpg','png','gif')
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="username" class="col-sm-2 control-label">关键词</label>
                                             <div class="col-sm-5">
                                                 <textarea style="resize:none;" class="form-control" name="keywords" placeholder="关键词" datacol='yes' checkexpession='NotNull' err='关键词'><{$infor['keywords']}></textarea>
@@ -124,7 +130,7 @@
 <script>
     function onClick(){
         if(CheckDataValid("#information")){
-            var url = "<{:U('Index/infor')}>";
+            var url = "<{:U('Basic/infor')}>";
             var information = new FormData($('#information')[0]);
             $.ajax({
                 type : 'post',

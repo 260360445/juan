@@ -3,11 +3,11 @@ return array(
     'DB_TYPE'               =>  'mysql',     // 数据库类型
 
     'DB_HOST'               =>  '47.93.13.221', // 服务器地址
-    'DB_NAME'               =>  'shop',          // 数据库
+    'DB_NAME'               =>  'tao',          // 数据库
     'DB_USER'               =>  'shop_user',      // 用户名  
     'DB_PWD'                =>  'wht@shop',          // 密码 
     'DB_PORT'               =>  '3306',        // 端口
-    'DB_PREFIX'             =>  'sc_',    // 数据库表前缀
+    'DB_PREFIX'             =>  'tao_',    // 数据库表前缀
     'TMPL_L_DELIM'=>'<{',
     'TMPL_R_DELIM'=>'}>',
     'TMPL_ACTION_ERROR'     => 'Public:error', // 默认错误跳转对应的模板文件

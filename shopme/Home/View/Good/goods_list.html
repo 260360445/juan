@@ -37,7 +37,11 @@
                             
                             <div id="basic-table_filter" class="dataTables_filter">
                                 <div class="form-horizontal form-stripe" id="seachForm">
-                                    <label style="display: -webkit-box;"><input type="search" style="width:200px;" class="form-control input-sm" placeholder="商品名称" name="title" id="seachname" aria-controls="basic-table" value="<?php echo $_GET['title']?>"> &nbsp;&nbsp;<button class="btn btn-primary" onclick="cha()" type="button">确定</button></label>
+                                    <label style="display: -webkit-box;">
+                                    <input type="search" style="width:200px;" class="form-control input-sm" placeholder="商品名称" name="title" id="seachname" aria-controls="basic-table" value="<?php echo $_GET['title']?>"> &nbsp;&nbsp;
+                                    <a class="btn btn-wide btn-o btn-lighter-1" onclick="cha()" style="min-width:10px;">搜索</a>
+                                    <a class="btn btn-wide btn-o btn-info" onclick="dao()" style="margin-left:15px;">导入商品</a>
+                                    </label>
                                 </div>
                             </div>
                             </div>
@@ -45,15 +49,19 @@
                                     <thead>
                                     <tr>
                                         <th>编号</th>
-                                        <th>所属商家</th>
+                                        <th>普通/高佣金</th>
                                         <th>所属分类</th>
+                                        <th>商家店铺</th>
+                                        <th>商家旺旺</th>
                                         <th>商品Logo</th>
                                         <th>商品标题</th>
                                         <th>价格</th>
-                                        <th>促销价</th>
-                                        <th>添加时间</th>
-                                        <th>特卖</th>
-                                        <th>新品</th>
+                                        <th>月销量</th>
+                                        <th>收入比率(%)</th>
+                                        <th>佣金</th>
+                                        <th>优惠券总量</th>
+                                        <th>优惠券剩余量</th>
+                                        <th>优惠券面额</th>
                                         <th>状态</th>
                                         <th>管理</th>
                                     </tr>
@@ -62,11 +70,12 @@
                                     <volist name="info" id="list">
                                     <tr>
                                         <td><{$list.id}></td>
-                                        <td>
-                                            <?php 
-                                                $merchant=M('store')->field('store_name')->where('sj_id='.$list['sid'])->find();
-                                                echo $merchant['store_name']
-                                            ?>
+                                        <td >
+                                            <if condition="$list[type] eq 2">
+                                               <font style="color:green;">普通</font>
+                                            <elseif condition="$list[type] eq 3"/> 
+                                               <font style="color:red;">高佣金</font> 
+                                            </if>
                                         </td>
                                         <td >
                                             <?php 
@@ -74,52 +83,30 @@
                                                 echo $cate['name']
                                             ?>
                                         </td>
-                                        <td ><img style="width:50px;height:50px;" src="__ROOT__/Uploads<{$list.goods_logo}>"></td>
-                                        <td style="width:400px;"><{$list.goods_title}></td>
-                                        <td ><{$list.money}></td>
+                                        <td ><{$list.store}></td>
+                                        <td ><{$list.wangwang}></td>
+                                        <td ><img style="width:50px;height:50px;" src="<{$list.glogo}>"></td>
+                                        <td style="width:200px;"><{$list.title}></td>
                                         <td ><{$list.price}></td>
-                                        <td><{$list.goods_time|date='Y-m-d H:i:s',###}></td>
+                                        <td ><{$list.sell}></td>
+                                        <td ><{$list.shouru}></td>
+                                        <td ><{$list.yj}></td>
+                                        <td ><{$list.yhj_num}></td>
+                                        <td ><{$list.yhj_sy_num}></td>
+                                        <td ><{$list.yhj_price}></td>
                                         <td >
-                                            <if condition="$list[tm] eq 2">
-                                               <font style="color:green;">已置顶</font>
-                                            <else /> 
-                                               <font style="color:red;">未设置</font> 
-                                            </if>
-                                        </td>
-                                        <td >
-                                            <if condition="$list[xp] eq 2">
-                                               <font style="color:green;">已置顶</font>
-                                            <else /> 
-                                               <font style="color:red;">未设置</font> 
-                                            </if>
-                                        </td>
-                                        <td >
-                                            <if condition="$list[sta] eq 3">
+                                            <if condition="$list[state] eq 2">
                                                <font style="color:green;">在售</font>
                                             <else /> 
                                                <font style="color:red;">已下架</font> 
                                             </if>
                                         </td>
                                         <td > 
-                                        <if condition="stripos($_SESSION['ad']['auth'],'all') nheq false">
-                                            <a href="javascript:setTm(<{$list.id}>);" >设为特卖</a>
+                                            <a href="javascript:setMs(<{$list.id}>);" >设为秒杀精选</a>
                                             <span >|</span>
-                                            <a href="javascript:setXp(<{$list.id}>);" >设为新品</a>
+                                            <a href="javascript:setTj(<{$list.id}>);" >设为推荐</a>
                                             <span >|</span>
                                             <a href="javascript:void(0);"  style="color:#F00;"  onclick="subformone(<{$list.id}>)">删除</a>
-                                        <else />
-                                            <if condition="stripos($_SESSION['ad']['auth'],'good_set_t') nheq false">
-                                                <a href="javascript:setTm(<{$list.id}>);" >设为特卖</a>
-                                                <span >|</span>
-                                            </if>
-                                            <if condition="stripos($_SESSION['ad']['auth'],'good_set_x') nheq false">
-                                                <a href="javascript:setXp(<{$list.id}>);" >设为新品</a>
-                                                <span >|</span>
-                                            </if>
-                                            <if condition="stripos($_SESSION['ad']['auth'],'good_del') nheq false">
-                                                <a href="javascript:void(0);"  style="color:#F00;"  onclick="subformone(<{$list.id}>)">删除</a>
-                                            </if>
-                                        </if>
                                         </td>
                                     </tr>
                                     </volist>
@@ -150,6 +137,57 @@
 <script src="__PUBLIC__/Admin/javascripts/template-init.min.js"></script>
 </body>
 <script>
+    function setexal(){
+        var cate=$("#goods_cate_id option:selected").val();
+        if(cate == 0){
+            layer.msg('请选择分类',{offset: '300px',time: 1500,icon: 7});
+            return false;
+        }
+        var url = "<{:U('Good/upload')}>";
+        var information = new FormData($('#subexcel')[0]);
+        $.ajax({
+            type : 'post',
+            url : url,
+            data : information,
+            async : false,
+            processData:false,
+            contentType:false,
+            error : function () {
+                layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+            },
+            success : function (responses) {
+                if (responses == 'ok'){
+                    layer.msg('导入成功',{offset: '300px',time: 1500,icon: 1},function () {
+                       window.location.reload();
+                    });
+                }else{
+                    layer.msg(responses,{offset: '300px',time: 1500,icon: 2});
+                }
+            }
+        });
+    }
+    function closelayer(){
+        layer.close(htmlexal);
+    }
+    function dao(){
+         $.ajax({
+            type : 'post',
+            url  : "<{:U('Good/daolist')}>",
+            data : {},
+            success : function(data){
+              htmlexal =layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                closeBtn: 1, //不显示关闭按钮
+                shift: 4,
+                title: '导入商品',
+                shadeClose: false, //开启遮罩关闭
+                area: ['30%', '25%'],
+                content: data
+              });       
+            }
+        })
+    }
     function cha(){
         var mob=$("#seachname").val();
         if(mob){
@@ -158,8 +196,8 @@
             window.location.href="<{:U('Good/goods_list')}>";
         }    
     }
-    function setTm(id){
-        var url = "<{:U('Good/good_set_tm')}>";
+    function setMs(id){
+        var url = "<{:U('Good/good_set_ms')}>";
         var id=id;
         $.ajax({
             type : 'post',
@@ -177,8 +215,8 @@
             }
         });
     }
-    function setXp(id){
-        var url = "<{:U('Good/good_set_xp')}>";
+    function setTj(id){
+        var url = "<{:U('Good/good_set_tj')}>";
         var id=id;
         $.ajax({
             type : 'post',

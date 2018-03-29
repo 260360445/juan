@@ -28,13 +28,6 @@
                             ?>
                                 <a href="<{:U('Basic/infor')}>">基本信息管理</a>
                             </li>
-                            <!-- <li class="has-child-item close-item">
-                                <a>支付管理</a>
-                                <ul class="nav child-nav level-2 ">
-                                    <li><a href="">微信</a></li>
-                                    <li><a href="">支付宝</a></li>
-                                </ul>
-                            </li> -->
                         </ul>
                     </li>
                     <?php
@@ -49,26 +42,6 @@
                               else {echo '<li>';}
                             ?>
                                 <a href="<{:U('Admin/admin')}>">管理员管理</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <?php
-                      if(CONTROLLER_NAME=="Article") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a><i class="fa fa-columns" aria-hidden="true"></i><span>文章设置</span></a>
-                        <ul class="nav child-nav level-1">
-                            <?php
-                              if(ACTION_NAME=="menu") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                                <a href="<{:U('Article/menu')}>">分类管理</a>
-                            </li>
-                            <?php
-                              if(ACTION_NAME=="article") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                                <a href="<{:U('Article/article')}>">文章管理</a>
                             </li>
                         </ul>
                     </li>
@@ -99,79 +72,6 @@
                             ?>
                                 <a href="<{:U('Good/goods_list')}>">商品管理</a>
                             </li>
-                        </ul>
-                    </li>
-                    <?php
-                      if(CONTROLLER_NAME == "User") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a><i class="fa fa-user" aria-hidden="true"></i><span>会员设置</span></a>
-                        <ul class="nav child-nav level-1">
-                            <?php
-                              if(ACTION_NAME=="user") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                                <a href="<{:U('User/user')}>">会员管理</a>
-                            </li>
-                            <?php
-                              if(ACTION_NAME=="address") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                                <a href="<{:U('User/address')}>">地址管理</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <?php
-                      if(CONTROLLER_NAME == "Merchant") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a>
-                            <i class="fa fa-magic" aria-hidden="true"></i>
-                            <span>商家设置</span>
-                        </a>
-                        <ul class="nav child-nav level-1">
-                            <li class="active-item"><a href="<{:U('Merchant/merchant')}>" >商家管理</a></li>  
-                        </ul>
-                    </li>
-                    <?php
-                      if(CONTROLLER_NAME == "Bao") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a>
-                            <i class="fa fa-th-large" aria-hidden="true"></i>
-                            <span>套包设置</span>
-                        </a>
-                        <ul class="nav child-nav level-1">
-                            <li class="active-item"><a href="<{:U('Bao/baolist')}>" >套包管理</a></li>  
-                        </ul>
-                    </li>
-                    <?php
-                      if(CONTROLLER_NAME == "Packet") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a>
-                            <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                            <span>提现设置</span>
-                        </a>
-                        <ul class="nav child-nav level-1">
-                            <?php
-                              if(ACTION_NAME=="chu") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                              <a href="<{:U('Packet/chu')}>" >提现初审</a>
-                            </li>
-                            <?php
-                              if(ACTION_NAME=="shen") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                              <a href="<{:U('Packet/shen')}>" >提现审核</a>
-                            </li> 
-                            <?php
-                              if(ACTION_NAME=="log") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                              <a href="<{:U('Packet/log')}>" >提现记录</a>
-                            </li> 
                         </ul>
                     </li>
                     <?php
@@ -237,39 +137,6 @@
                                 <a href="<{:U('Basic/infor')}>">基本信息管理</a>
                             </li>
                           </if>
-                            <!-- <li class="has-child-item close-item">
-                                <a>支付管理</a>
-                                <ul class="nav child-nav level-2 ">
-                                    <li><a href="">微信</a></li>
-                                    <li><a href="">支付宝</a></li>
-                                </ul>
-                            </li> -->
-                        </ul>
-                    </li>
-                  </if>
-                  <if condition="stripos($_SESSION['ad']['auth'],'Article') nheq false">
-                    <?php
-                      if(CONTROLLER_NAME=="Article") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a><i class="fa fa-columns" aria-hidden="true"></i><span>文章设置</span></a>
-                        <ul class="nav child-nav level-1">
-                          <if condition="stripos($_SESSION['ad']['auth'],'Article_menu') nheq false">
-                            <?php
-                              if(ACTION_NAME=="menu") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                                <a href="<{:U('Article/menu')}>">分类管理</a>
-                            </li>
-                          </if>
-                          <if condition="stripos($_SESSION['ad']['auth'],'Article_article') nheq false">
-                            <?php
-                              if(ACTION_NAME=="article") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                                <a href="<{:U('Article/article')}>">文章管理</a>
-                            </li>
-                          </if>
                         </ul>
                     </li>
                   </if>
@@ -308,101 +175,6 @@
                             ?>
                                 <a href="<{:U('Good/goods_list')}>">商品管理</a>
                             </li>
-                          </if>
-                        </ul>
-                    </li>
-                  </if>
-                  <if condition="stripos($_SESSION['ad']['auth'],'User') nheq false">
-                    <?php
-                      if(CONTROLLER_NAME == "User") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a><i class="fa fa-user" aria-hidden="true"></i><span>会员设置</span></a>
-                        <ul class="nav child-nav level-1">
-                          <if condition="stripos($_SESSION['ad']['auth'],'User_user') nheq false">
-                            <?php
-                              if(ACTION_NAME=="user") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                                <a href="<{:U('User/user')}>">会员管理</a>
-                            </li>
-                          </if>
-                          <if condition="stripos($_SESSION['ad']['auth'],'User_address') nheq false">
-                            <?php
-                              if(ACTION_NAME=="address") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                                <a href="<{:U('User/address')}>">地址管理</a>
-                            </li>
-                          </if>
-                        </ul>
-                    </li>
-                  </if>
-                  <if condition="stripos($_SESSION['ad']['auth'],'Merchant') nheq false">
-                    <?php
-                      if(CONTROLLER_NAME == "Merchant") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a>
-                            <i class="fa fa-magic" aria-hidden="true"></i>
-                            <span>商家设置</span>
-                        </a>
-                        <ul class="nav child-nav level-1">
-                          <if condition="stripos($_SESSION['ad']['auth'],'Merchant_merchant') nheq false">
-                            <li class="active-item"><a href="<{:U('Merchant/merchant')}>" >商家管理</a></li>  
-                          </if>
-                        </ul>
-                    </li>
-                  </if>
-                  <if condition="stripos($_SESSION['ad']['auth'],'Bao') nheq false">
-                    <?php
-                      if(CONTROLLER_NAME == "Bao") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a>
-                            <i class="fa fa-th-large" aria-hidden="true"></i>
-                            <span>套包设置</span>
-                        </a>
-                        <ul class="nav child-nav level-1">
-                          <if condition="stripos($_SESSION['ad']['auth'],'Bao_baolist') nheq false">
-                            <li class="active-item"><a href="<{:U('Bao/baolist')}>" >套包管理</a></li> 
-                          </if> 
-                        </ul>
-                    </li>
-                  </if>
-                  <if condition="stripos($_SESSION['ad']['auth'],'Packet') nheq false">
-                    <?php
-                      if(CONTROLLER_NAME == "Packet") {echo '<li class="has-child-item open-item">';}                    
-                      else {echo '<li class="has-child-item close-item">';}
-                    ?>
-                        <a>
-                            <i class="fa fa-arrows-alt" aria-hidden="true"></i>
-                            <span>提现设置</span>
-                        </a>
-                        <ul class="nav child-nav level-1">
-                          <if condition="stripos($_SESSION['ad']['auth'],'Packet_chu') nheq false">
-                            <?php
-                              if(ACTION_NAME=="chu") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                              <a href="<{:U('Packet/chu')}>" >提现初审</a>
-                            </li>
-                          </if>
-                          <if condition="stripos($_SESSION['ad']['auth'],'Packet_shen') nheq false">
-                            <?php
-                              if(ACTION_NAME=="shen") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                              <a href="<{:U('Packet/shen')}>" >提现审核</a>
-                            </li> 
-                          </if>
-                          <if condition="stripos($_SESSION['ad']['auth'],'Packet_log') nheq false">
-                            <?php
-                              if(ACTION_NAME=="log") {echo '<li class="active-item">';}                    
-                              else {echo '<li>';}
-                            ?>
-                              <a href="<{:U('Packet/log')}>" >提现记录</a>
-                            </li> 
                           </if>
                         </ul>
                     </li>
