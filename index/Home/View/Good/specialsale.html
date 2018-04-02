@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="__PUBLIC__/Home/static/userCenter/css/login.css"/>
 <link rel="stylesheet" href="__PUBLIC__/Home/static/css/front/login_box/login_box.css"/>
 <link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/css/page.css"/>
-<title>特卖会场--方大商城</title>
+<title>咚咚抢会场</title>
 <body >
 <style>
 body{
@@ -78,25 +78,25 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
     visibility: visible !important;
 }
 .daily-sale-switcher{
-        background-color: #2D3845;
-    width: 1190px;
+    background-color: #2D3845;
 }
 .daily-sale-switcher .sale-logo{
         float: left;
     width: 146px;
     height: 53px;
-    margin-left: 36px;
+    margin-left: 20px;
 }
 .daily-sale-switcher .tabs{
     position: relative;
     float: left;
     height: 60px;
-    margin-left: 20px;
 }
 .daily-sale-switcher .tabs .tab:first-child{
     margin-left: 0!important;
 }
 .daily-sale-switcher .tabs .tab{
+    width: 120px;
+    box-sizing:border-box;
         float: left;
     height: 70px;
     padding: 0 20px;
@@ -105,11 +105,9 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
     cursor: pointer;
 }
 .daily-sale-switcher .tabs>div.active{
-        position: relative;
+    position: relative;
     background: #dd2727;
     color: #fff;
-    padding: 0;
-    width: 109px;
 }
 .active:after{
     content: "";
@@ -129,9 +127,8 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 }
 .daily-sale-switcher .sale-right{
     position: relative;
-    float: left;
+    float: right;
     height: 60px;
-    margin-left: 43px;
 }
 .padding{
         padding: 32px 12px;
@@ -259,16 +256,57 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 <div class="w_latest_title">
     <h2 class="w_title w_title_one">
             <div class="daily-tabs" >
-              <div class="daily-sale-switcher" style="height: 77px;">
+              <div class="daily-sale-switcher" style="height: 70px;">
                 <div class="sale-logo"><img src="https://img.alicdn.com/tps/TB1w2T8KXXXXXaiXpXXXXXXXXXX-292-106.png" width="146" height="53"></div>
                 <div class="tabs">    <div class="tab" data-time="9:00" data-index="0" data-countdown-time="" data-type="9" data-status="done"><div class="time">9:00</div><div class="text">已开抢</div></div>   <div class="tab" data-time="12:00" data-index="1" data-countdown-time="" data-type="12" data-status="done"><div class="time">12:00</div><div class="text">已开抢</div></div>       <div class="tab active" data-time="15:00" data-index="2" data-countdown-time="1522058400000" data-type="15" data-status="doing"><div class="time">15:00</div><div class="text">疯抢中</div></div>     <div class="tab" data-time="18:00" data-index="3" data-countdown-time="1522058400000" data-type="18" data-status="notStart"><div class="time">18:00</div><div class="text">即将开始</div></div>     <div class="tab" data-time="21:00" data-index="4" data-countdown-time="1522069200000" data-type="21" data-status="notStart"><div class="time">21:00</div><div class="text">即将开始</div></div> </div>
-                <div class="sale-right"><img src="https://img.alicdn.com/tps/TB16bD2KXXXXXcAXpXXXXXXXXXX-784-120.png" width="392" height="70"></div>
+                <div class="sale-right"><img src="/Public/Home/static/img/tuijian.png" width="392" height="70"></div>
               </div>
           </div>
     </h2>
     <h2 class="w_title w_title_two">推荐商品<b></b></h2>
 </div>
-
+<style type="text/css">
+    .goods_gobuy_seller{
+        position: relative;
+        border: 1px solid #F3C7C7;
+        width: 260px;
+        height: 38px;
+        left: -15px;
+    }
+    .goods_gobuy_seller .goods_seller{
+        margin: 12px 120px 12px 15px;
+        display: block;
+        height: 14px;
+        line-height: 14px;
+        color: #aaa;
+    }
+    .goods_gobuy_seller .goods_seller i{
+            float: left;
+        width: 12px;
+        position: relative;
+        height: 16px;
+        top: -2px;
+        background: url(/public/Home/static/img/cms_pc_img.png) -173px -322px no-repeat;
+    }
+    .goods_gobuy_seller .goods_seller b{
+        color: #FF9960;
+        font-weight: 400;
+        margin: 0 5px;
+    }
+    .goods_gobuy_seller .goods_buy_btn{
+        position: absolute;
+        right: -1px;
+        width: 120px;
+        line-height: 40px;
+        text-align: center;
+        color: #fff;
+        height: 40px;
+        font-size: 18px;
+        background: #DE2634;
+        top: -1px;
+        z-index: 2;
+    }
+</style>
 <div class="w_announced">
     <div class="w_announced_one">
         <ul>
@@ -276,48 +314,41 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 	             <li class="w_latest goods3203_53996">
 	                <div class="w_latestImg" style="margin:0 25px;">
 	                    <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank">
-	                        <img src="__ROOT__/Uploads<{$list.goods_logo}>" >
+	                        <img src="<{$list.glogo}>" >
 	                    </a>
 	                </div>
 	                <div class="padding">
                       <div class="coupon-wrap clearfix">
-                          <span class="price theme-color-8"><b><i>￥</i>9.5</b></span>
-                          <span class="old-price"><i>￥</i>19.5</span>
-                          <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
+                          <span class="price theme-color-8"><b><i>￥</i><{$list.price}></b></span>
+                          <span class="coupon"><em class="quan-left"></em><b><{$list.yhj_price}></b><em class="quan-right"></em></span>
                       </div>
                       <div class="title">
-                          <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">【画眉神器】眉卡+眉笔+2支眉刀全套</a>
+                          <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1"><{$list.title}></a>
                       </div>
-
-                      <div class="xiaoliang">
-                          <h4>销量<span>11888</span></h4>
-                          <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                          <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+                      <div class="goods_gobuy_seller ">
+                          <span class="goods_seller fl"><i></i><b><?php $sell=$list['yhj_num']-$list['yhj_sy_num'];echo $sell;?></b>人已抢</span>
+                          <a href=""><span class="goods_buy_btn ">马上抢</span></a>
                       </div>
-                      <h4 style="color:green;">18:00 准时开抢</h4>
                     </div>
 	                <i class="a_js_icon"></i>
 	            </li>
         	</volist>  
         </ul>
-        <!-- S 分页 -->
-            <div id="pages"><{$page}></div>
-        <!-- E 分页 -->
     </div>
     <ul class="w_announced_two">
     <volist name="result_hot" id="list">
         <li class="w_latest_right">
             <div class="w_rightImg">
                 <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank">
-                    <img class="lazy200" data-original="__ROOT__/Uploads<{$list.goods_logo}>" src="__ROOT__/Uploads<{$list.goods_logo}>" style="display: inline;">
+                    <img class="lazy200" data-original="<{$list.glogo}>" src="<{$list.glogo}>" style="display: inline;">
                 </a>
             </div>
-            <a class="w_goods_three" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list.goods_title}></a>
+            <a class="w_goods_three" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list.title}></a>
             <div class="price" style="width:210px;">
-              <h4 style="font-family: 'Microsoft Yahei';font-size: 14px;    height: 28px;line-height: 18px;color: #dd2726;overflow: hidden;">￥<span style="font-size: 30px;padding-right: 2px;line-height: 28px;">18.9</span>券后价</h4>
+              <h4 style="font-family: 'Microsoft Yahei';font-size: 14px;    height: 28px;line-height: 18px;color: #dd2726;overflow: hidden;">￥<span style="font-size: 30px;padding-right: 2px;line-height: 28px;"><{$list.price}></span></h4>
             </div>
             <div class="xiaoliang" style="width:210px;">
-              <h4>销量<span>11888</span></h4>
+              <h4>销量<span><{$list.sell}></span></h4>
               <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
               <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
             </div>
@@ -331,56 +362,11 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 <include file="public:foot" />
 <!-- 引入底部 -->
 <script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/common.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/ajaxfunctionMain.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
-<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
-<script src="__PUBLIC__/Admin/javascripts/JValidator.js"></script>
-<script>
-function gotoCartOrder(k) {
-    var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-            window.location.href="<{:U(MODULE_NAME.'/Good/goodlist/id/"+k+"')}>";
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
-function cartCount() {
-    var url = "<{:U('Cart/cartCount')}>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: '',
-        success:function(data){
-            if(data > 0){
-                $("#cartCount").html(data);
-                $("#cartCount").addClass("num-rt");
-                $("#row").html(data);
-            }else{
-                $("#cartCount").html("");
-            }
-        }
-    });
-}
-function CartOrder(){
-    var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-            window.location.href="<{:U('Cart/cart')}>"; 
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
+<script type="text/javascript">
+    $('.tabs .tab').click(function  () {
+        $(this).addClass('active').siblings('.tab').removeClass('active');
+    })
 </script>
 </body>
 </html>

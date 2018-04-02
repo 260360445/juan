@@ -7,11 +7,10 @@ a{color: #666666;font-size:13px;}
 .w_guide a{margin-right:6px;background:url(../../img/front/goods/for_03.png) no-repeat right center;padding-right:13px;}
 .w_guide a:hover{color:#dd2726;}
 .w_guide .w_accord{color:#dd2726;background:none;}
-.w_goods_nav{border:1px solid #dddddd;width: 1189px;} 
-.w_goods_nav h2{font-size:16px;color:#333;height:50px;padding-left:14px;line-height:50px;border-bottom:1px solid #dddddd;}
+.w_goods_nav{border-top:1px solid #eee;border-bottom:1px solid #eee;width: 1189px;} 
+.w_goods_nav h2{font-size:16px;color:#333;height:50px;padding-left:14px;line-height:50px;border-bottom:1px solid #eee;}
 .w_goods_nav h2 span{color:#666;font-size:12px;}
 .w_goods_nav h2 span a{color:#dd2726;margin:0px 4px;font-size:14px;}
-.w_choose{margin-top:30px;}
 .w_choose_list dd{width:150px;height:126px;float:left;border-right:1px solid #dddddd;}
 .w_choose_list dd a{width:150px;height:126px;display:block;}
 /* .w_choose_list .w_special,.w_goods_one .w_special,.w_share .w_share_one .w_special{border:0;} */
@@ -38,12 +37,12 @@ a{color: #666666;font-size:13px;}
 .w_choose_list dd a:hover .w_icon_eight {background:url(../../img/front/goods/tb_03.png) no-repeat -1157px -134px;}
 .w_selected{color:#dd2726;}
 .w_choose_list{margin-bottom:40px;}
-.w_goods_class{padding-left:22px;border-bottom:1px solid #dddddd;overflow:hidden;padding-bottom:10px;}
+.w_goods_class{padding-left:22px;overflow:hidden;padding-bottom:10px;}
 .w_goods_brand{padding-left:22px;overflow:hidden;margin-bottom:10px;margin-top:10px;}
-.w_goods_class dd,.w_goods_brand dd{float:left;font-size:13px;color:#666;width:64px;line-height:30px;}
+.w_goods_class dd,.w_goods_brand dd{float:left;font-size:13px;color:#999;width:64px;line-height:30px;}
 .w_goods_brand .w_specific_class1,.w_goods_class .w_specific_class{width:1120px;font-size:13px;}
 .w_specific_class1{position:relative;}
-.w_specific_class  ul li,.w_specific_class1  ul li{float:left;width:75px;overflow:hidden;height: 30px;}
+.w_specific_class  ul li,.w_specific_class1  ul li{float:left;overflow:hidden;height: 30px;}
 .w_specific_class  ul li a,.w_specific_class1  ul li a{font-size:13px;padding:4px 6px;}
 .w_effect{background:#dd2726;color:#fff;}
 .w_specific_class1 span{padding-right:10px;color:#dd2726;position:absolute;right:40px;bottom:0px;cursor:pointer;}
@@ -111,7 +110,7 @@ a.w_slip:hover{background:#c40000;}
 /*十元专区*/
 .w_header_nav{width:100%;height:177px;}
 .w_header_nav img{width:100%;height:177px;}
-.w_title{font-size:18px;color:#333;font-weight:100;line-height:57px;overflow:hidden;}
+.w_title{font-size:18px;color:#333;font-weight:100;line-height:57px;}
 /*2015 7 24 start*/
 .w_goods_two{margin-top:30px;/*border:1px solid #fdc8c6;*/}
 .w_goods_two .w_goods_details{border:1px solid #fdc8c6;}
@@ -145,8 +144,8 @@ box-shadow: 3px 3px 3px #d8d8d8;}
 .w_single a:hover{text-decoration:none;}
 .w_single .w_em:hover{text-decoration:underline;color:#21aeff;}
 /*最新揭晓*/
-.w_latest_title{overflow:hidden;width:100%;height:90px;}
-.w_title_one{float:left;width:910px;line-height:34px;margin-top:10px;}
+.w_latest_title{width:100%;height:90px;}
+.w_title_one{float:left;width:100%;line-height:34px;margin-top:10px;}
 .w_title_two{float:right;width:274px;border-bottom:2px solid #999999;line-height:34px;margin-top:10px;}
 .w_announced_one{float:left;width:921px;}
 /*2015-6-11 添加 start*/
@@ -202,7 +201,7 @@ i.a_js_icon{position:absolute;top:0px;left:0px;display:block;width:66px;height:7
 /*最快揭晓*/
 /*2015-6-5 start*/
 .w_announced_two{float:right;width:272px;border:1px solid #ddd;margin-top:10px;background:#f4f4f4;} 
-.w_latest_right{padding:14px 24px;margin:10px;height:260px;background:#fff;position:relative;}
+.w_latest_right{padding:14px 10px;margin:10px;height:260px;background:#fff;position:relative;}
 /*2015-6-5 end*/
 .w_latest_right a,.w_latest_right b{font-size:13px;color:#333;display:block;width:100%;margin:8px 0px;}
 .w_latest_right .w_rightImg{width:200px;height:180px;overflow:hidden;}

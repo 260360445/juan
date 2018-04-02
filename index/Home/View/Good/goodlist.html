@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE = edge"></meta>
 <title> 
 <?php if($type == 'yes'){?>
-    <{$info.goods_title}>
+    <{$info.title}>
 <?php }else{?>
     该商品已删除或已下架
 <?php } ?>
@@ -399,7 +399,7 @@
         line-height: 52px;
         background: #ed145b;
         margin-top: 50px;
-        padding-left: 60px;
+        /*padding-left: 60px;*/
         color: #ed145b;
     }
     .s_goods_detail .buy-coupon{
@@ -507,13 +507,7 @@
         <div class="w_details_top">
             <div class="w_details_choose" style="position:relative;">
                 <dl class="w_big_img">
-                    <!-- 大图 -->
-                    <?php 
-                        $imgarr=M('goods_imgs')->where(['gid'=>$info['id']])->order('id asc')->select();
-                    ?>
-                    <volist name="imgarr" id="list">
-                        <dd><img src="__ROOT__/Uploads<{$list['showlogo']}>"/></dd>
-                    </volist>
+                        <dd><img src="<{$info['glogo']}>"/></dd>
                 </dl>
             </div>
             <div class="w_details_text s_details_text" style="position:relative;">
@@ -522,35 +516,35 @@
                     <p id="zc_title" class="s_title">
                         <span id="cart_period">
                             <strong>
-                                <c id="cart_title" style="font-size:18px;"><{$info.goods_title}></c>
+                                <c id="cart_title" style="font-size:18px;"><{$info.title}></c>
                             </strong>
                         </span>
                         <i style="color:"></i>
                     </p>
                     <div class="coupon-wrap clearfix">
-                        <span class="now-price"><b class="theme-color-8">(独享)</b>券后价&nbsp;&nbsp;&nbsp;&nbsp;<b class="theme-color-8">¥<i>19.8</i></b></span>
-                        <span class="org-price">在售价&nbsp;&nbsp;¥<i style="text-decoration: line-through;">54.8</i></span>
+                        <span class="now-price"><b class="theme-color-8"></b>售价&nbsp;&nbsp;&nbsp;&nbsp;<b class="theme-color-8">¥<i><{$info.price}></i></b></span>
+                        <span class="org-price">优惠券&nbsp;&nbsp;<i style="    color: #ed145b;font-weight: 400;font-family: Arial;"><{$info.yhj_price}></i></span>
                     </div>
                     <ul class="tm-ind-panel">
                         <li class="tm-ind-item tm-ind-sellCount " data-label="月销量">
                             <div class="tm-indcon">
                                 <span class="tm-label">库存</span>
-                                <span class="tm-count">111111</span>
+                                <span class="tm-count"><{$info.yhj_num}></span>
                             </div>
                         </li>
                         <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3" id="J_ItemRates">
                             <div class="tm-indcon">
                                 <span class="tm-label">已购买</span>
-                                <span class="tm-count">123</span>
+                                <span class="tm-count"><{$info.sell}></span>
                             </div>
                         </li>
                     </ul>
                     <div class="ehy-normal theme-bg-color-8 clearfix">
-                        <div class="buy-coupon theme-color-8">
+                        <!-- <div class="buy-coupon theme-color-8">
                             <span>优惠券</span>
                             <span><b><i>￥</i>35</b></span>
-                        </div>
-                        <a data-gid="6422855" rel="nofollow" class="theme-bg-color-8" href="https://uland.taobao.com/coupon/edetail?e=yaELtj%2FWNAIGQASttHIRqSnToosLoCOF7ciMrMNrXvktePaj0LNp%2Bwx8Fp7DLRa7zSakMyQOmZh3CQkzuplp4b9fwBwwUiql6DF%2F2MLpJMq9GaVAvC2u%2FUBsXx8cnY%2FDdPke9zOP8a%2BG8BxOjDFtEw%3D%3D&amp;traceId=0ab013ad15222002992467109e&amp;activityId=3a3024e535f74996b063d53d2de84878" target="_blank"> 领券购买</a>
+                        </div> -->
+                        <a data-gid="6422855" rel="nofollow" class="theme-bg-color-8" href="<{$info.yhj_url}>" target="_blank"> 领券购买</a>
                     </div>
                     <div class="text2">
                     <span>如果您喜欢此宝贝，记得分享给您的朋友，一起享优惠：</span>
@@ -587,7 +581,7 @@
                     <ul>
                     <volist name="store_look" id="list">
                         <li>
-                            <h4><a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><img src="__ROOT__/Uploads<{$list['goods_logo']}>" style="width: 169px;height: 169px;"></a></h4>
+                            <h4><a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><img src="<{$list['glogo']}>" style="width: 169px;height: 169px;"></a></h4>
                         </li>
                     </volist>   
                     </ul>
@@ -777,22 +771,23 @@
         <!--奖品详情-->
         <div class="goods-list main-container">
         <ul class="clearfix">
-                    <li class="theme-hover-border-color-1 ">
-                <a href="/index.php?r=l/d&amp;id=6553160" class="img" rel="nofollow" target="_blank" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">
-                                        <img src="https://img.alicdn.com/imgextra/i4/2255795767/TB2TeEii9_I8KJjy0FoXXaFnVXa_!!2255795767.jpg_310x310.jpg" alt="">
-                                    </a>
+        <volist name="store_hot" id="list">
+            <li class="theme-hover-border-color-1 ">
+                <a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="img" rel="nofollow" target="_blank" >
+                    <img src="<{$list.glogo}>" alt="" style="width:284px;height:284px;">
+                </a>
                 <div class="padding">
                     <div class="coupon-wrap clearfix">
-                        <span class="price theme-color-8"><b><i>￥</i>9.5</b>券后价</span>
-                        <span class="old-price"><i>￥</i>19.5</span>
-                        <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
+                        <span class="price theme-color-8"><b><i>￥</i><{$list.price}></b></span>
+                        
+                        <span class="coupon"><em class="quan-left"></em><b><{$list.yhj_price}></b><em class="quan-right"></em></span>
                     </div>
                     <div class="title">
-                        <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">【画眉神器】眉卡+眉笔+2支眉刀全套</a>
+                        <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1"><{$list.title}></a>
                     </div>
 
                     <div class="xiaoliang">
-                        <h4>销量<span>11888</span></h4>
+                        <h4>销量<span><{$list.sell}></span></h4>
                         <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
                         <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
                     </div>
@@ -802,184 +797,9 @@
                 <em class="border_r_b border"></em>
                 <em class="border_r_t border"></em>
             </li>
-                        <li class="theme-hover-border-color-1 ">
-                <a href="/index.php?r=l/d&amp;id=6513551" class="img" rel="nofollow" target="_blank" data-gid="6513551" data-ci="310660" data-in="1" data-uid="820138" data-cn="1">
-                                        <img src="//img.alicdn.com/imgextra/i4/3422105120/TB2or9UXAKWBuNjy1zjXXcOypXa_!!3422105120.jpg_310x310.jpg" alt="">
-                                    </a>
-                <div class="padding">
-                    <div class="coupon-wrap clearfix">
-                        <span class="price theme-color-8"><b><i>￥</i>26.9</b>券后价</span>
-                        <span class="old-price"><i>￥</i>29.9</span>
-                        <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>3</b><em class="quan-right"></em></span>
-                    </div>
-                    <div class="title">
-                        <a target="_blank" href="/index.php?r=l/d&amp;id=6513551" data-gid="6513551" data-ci="310660" data-in="1" data-uid="820138" data-cn="1">2018春季新款小白帆布鞋</a>
-                    </div>
-
-                    <div class="xiaoliang">
-                        <h4>销量<span>11888</span></h4>
-                        <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                        <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                    </div>
-                </div>
-                <em class="border_l_b border"></em>
-                <em class="border_l_t border"></em>
-                <em class="border_r_b border"></em>
-                <em class="border_r_t border"></em>
-            </li>
-                        <li class="theme-hover-border-color-1 ">
-                <a href="/index.php?r=l/d&amp;id=6451115" class="img" rel="nofollow" target="_blank" data-gid="6451115" data-ci="306679" data-in="1" data-uid="820138" data-cn="1">
-                                        <img src="https://img.alicdn.com/imgextra/i3/1720923265/TB22Fq8fqmWBuNjy1XaXXXCbXXa_!!1720923265.jpg_310x310.jpg" alt="">
-                                    </a>
-                <div class="padding">
-                    <div class="coupon-wrap clearfix">
-                        <span class="price theme-color-8"><b><i>￥</i>15.9</b>券后价</span>
-                        <span class="old-price"><i>￥</i>17.9</span>
-                        <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>2</b><em class="quan-right"></em></span>
-                    </div>
-                    <div class="title">
-                        <a target="_blank" href="/index.php?r=l/d&amp;id=6451115" data-gid="6451115" data-ci="306679" data-in="1" data-uid="820138" data-cn="1">知采烧烤调料组合套装8件套</a>
-                    </div>
-
-                    <div class="goods-num-type">
-                        <span class="goods-num">销量<b>1845</b></span>
-                        <div class="goods-type">
-                                                    </div>
-                    </div>
-                </div>
-                <em class="border_l_b border"></em>
-                <em class="border_l_t border"></em>
-                <em class="border_r_b border"></em>
-                <em class="border_r_t border"></em>
-            </li>
-                        <li class="theme-hover-border-color-1 no-right">
-                <a href="/index.php?r=l/d&amp;id=6606239" class="img" rel="nofollow" target="_blank" data-gid="6606239" data-ci="315565" data-in="1" data-uid="820138" data-cn="1">
-                                            <i class="today-new"></i>
-                                        <img src="//img.alicdn.com/imgextra/i4/2786273568/TB2xLeCa_mWBKNjSZFBXXXxUFXa_!!2786273568.jpg_310x310.jpg" alt="">
-                                    </a>
-                <div class="padding">
-                    <div class="coupon-wrap clearfix">
-                        <span class="price theme-color-8"><b><i>￥</i>29.9</b>券后价</span>
-                        <span class="old-price"><i>￥</i>69.9</span>
-                        <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>40</b><em class="quan-right"></em></span>
-                    </div>
-                    <div class="title">
-                        <a target="_blank" href="/index.php?r=l/d&amp;id=6606239" data-gid="6606239" data-ci="315565" data-in="1" data-uid="820138" data-cn="1">春装韩版新款ulzzang纯棉短袖t恤女装</a>
-                    </div>
-
-                    <div class="goods-num-type">
-                        <span class="goods-num">销量<b>17029</b></span>
-                        <div class="goods-type">
-                            <i class="tmall" title="天猫"></i><i class="trans" title="运费险"></i><i class="ddq" title="咚咚"></i>                        </div>
-                    </div>
-                </div>
-                <em class="border_l_b border"></em>
-                <em class="border_l_t border"></em>
-                <em class="border_r_b border"></em>
-                <em class="border_r_t border"></em>
-            </li>
-                        <li class="theme-hover-border-color-1 ">
-                <a href="/index.php?r=l/d&amp;id=6560960" class="img" rel="nofollow" target="_blank" data-gid="6560960" data-ci="313591" data-in="1" data-uid="820138" data-cn="1">
-                                        <img src="https://img.alicdn.com/imgextra/i3/2255795767/TB2oCkHb79WBuNjSspeXXaz5VXa_!!2255795767.jpg_310x310.jpg" alt="">
-                                    </a>
-                <div class="padding">
-                    <div class="coupon-wrap clearfix">
-                        <span class="price theme-color-8"><b><i>￥</i>29</b>券后价</span>
-                        <span class="old-price"><i>￥</i>49</span>
-                        <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>20</b><em class="quan-right"></em></span>
-                    </div>
-                    <div class="title">
-                        <a target="_blank" href="/index.php?r=l/d&amp;id=6560960" data-gid="6560960" data-ci="313591" data-in="1" data-uid="820138" data-cn="1">棉域医用级脱脂尿裤2条装</a>
-                    </div>
-
-                    <div class="goods-num-type">
-                        <span class="goods-num">销量<b>7390</b></span>
-                        <div class="goods-type">
-                            <i class="tmall" title="天猫"></i><i class="trans" title="运费险"></i>                        </div>
-                    </div>
-                </div>
-                <em class="border_l_b border"></em>
-                <em class="border_l_t border"></em>
-                <em class="border_r_b border"></em>
-                <em class="border_r_t border"></em>
-            </li>
-                        <li class="theme-hover-border-color-1 ">
-                <a href="/index.php?r=l/d&amp;id=6508673" class="img" rel="nofollow" target="_blank" data-gid="6508673" data-ci="310186" data-in="1" data-uid="820138" data-cn="1">
-                                        <img src="//img.alicdn.com/imgextra/i3/3691133320/TB2Q1fubmMmBKNjSZTEXXasKpXa_!!3691133320.jpg_310x310.jpg" alt="">
-                                    </a>
-                <div class="padding">
-                    <div class="coupon-wrap clearfix">
-                        <span class="price theme-color-8"><b><i>￥</i>17.9</b>券后价</span>
-                        <span class="old-price"><i>￥</i>27.9</span>
-                        <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
-                    </div>
-                    <div class="title">
-                        <a target="_blank" href="/index.php?r=l/d&amp;id=6508673" data-gid="6508673" data-ci="310186" data-in="1" data-uid="820138" data-cn="1">2018夏季新款韩版学生宽松圆领短袖</a>
-                    </div>
-
-                    <div class="goods-num-type">
-                        <span class="goods-num">销量<b>592</b></span>
-                        <div class="goods-type">
-                                                    </div>
-                    </div>
-                </div>
-                <em class="border_l_b border"></em>
-                <em class="border_l_t border"></em>
-                <em class="border_r_b border"></em>
-                <em class="border_r_t border"></em>
-            </li>
-                        <li class="theme-hover-border-color-1 ">
-                <a href="/index.php?r=l/d&amp;id=6455699" class="img" rel="nofollow" target="_blank" data-gid="6455699" data-ci="306895" data-in="1" data-uid="820138" data-cn="1">
-                                        <img src="https://img.alicdn.com/imgextra/i3/1720923265/TB2dBgecrsTMeJjy1zeXXcOCVXa_!!1720923265.jpg_310x310.jpg" alt="">
-                                    </a>
-                <div class="padding">
-                    <div class="coupon-wrap clearfix">
-                        <span class="price theme-color-8"><b><i>￥</i>19.8</b>券后价</span>
-                        <span class="old-price"><i>￥</i>29.8</span>
-                        <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
-                    </div>
-                    <div class="title">
-                        <a target="_blank" href="/index.php?r=l/d&amp;id=6455699" data-gid="6455699" data-ci="306895" data-in="1" data-uid="820138" data-cn="1">正宗四川味牛油火锅底料150g×5袋</a>
-                    </div>
-
-                    <div class="goods-num-type">
-                        <span class="goods-num">销量<b>2930</b></span>
-                        <div class="goods-type">
-                                                    </div>
-                    </div>
-                </div>
-                <em class="border_l_b border"></em>
-                <em class="border_l_t border"></em>
-                <em class="border_r_b border"></em>
-                <em class="border_r_t border"></em>
-            </li>
-                        <li class="theme-hover-border-color-1 no-right">
-                <a href="/index.php?r=l/d&amp;id=6542207" class="img" rel="nofollow" target="_blank" data-gid="6542207" data-ci="313636" data-in="1" data-uid="820138" data-cn="1">
-                                        <img src="https://img.alicdn.com/imgextra/i2/2255795767/TB28Pm6aesAV1JjSZFsXXadZXXa_!!2255795767.jpg_310x310.jpg" alt="">
-                                    </a>
-                <div class="padding">
-                    <div class="coupon-wrap clearfix">
-                        <span class="price theme-color-8"><b><i>￥</i>14.8</b>券后价</span>
-                        <span class="old-price"><i>￥</i>29.8</span>
-                        <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>15</b><em class="quan-right"></em></span>
-                    </div>
-                    <div class="title">
-                        <a target="_blank" href="/index.php?r=l/d&amp;id=6542207" data-gid="6542207" data-ci="313636" data-in="1" data-uid="820138" data-cn="1">【巴巴罗莎】5层双面双效纯棉化妆</a>
-                    </div>
-
-                    <div class="goods-num-type">
-                        <span class="goods-num">销量<b>23460</b></span>
-                        <div class="goods-type">
-                            <i class="tmall" title="天猫"></i><i class="you" title="优品"></i><i class="ddq" title="咚咚"></i>                        </div>
-                    </div>
-                </div>
-                <em class="border_l_b border"></em>
-                <em class="border_l_t border"></em>
-                <em class="border_r_b border"></em>
-                <em class="border_r_t border"></em>
-            </li>
-                </ul>
-</div>
+        </volist>
+        </ul>
+    </div>
         <div class="w_clear"></div>
     </div>
 </div>
@@ -991,7 +811,6 @@
 
 <?php }?>
 
-<!-- 夺宝期数弹窗 end -->
  <script type="text/javascript" src="/Public/Home/static/js/jquery-1.11.3.js"></script>
 <script type="text/javascript">
     var url_ajax = "<{:U('Good/pingjia')}>";

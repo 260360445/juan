@@ -493,7 +493,7 @@ $("#loginSubmitUser").click(function () {
 .discount .dis_product .pro_detail{
 	height: 272px;
     width: 582px;
-    margin-bottom: 20px;
+    margin:0 16px 20px 0;
     display: inline-block;
     border: 1px solid #eee;
     background-color: #fffcfd;
@@ -745,11 +745,11 @@ $("#loginSubmitUser").click(function () {
 							<?php echo ($list['title']); ?>
 						</a>
 						<div class="price">
-							<h4>￥<span>18.9</span>券后价</h4>
-							<p>券￥15</p>
+							<h4>￥<span><?php echo ($list['price']); ?></span></h4>
+							<p><?php echo ($list['yhj_price']); ?></p>
 						</div>
 						<div class="xiaoliang">
-							<h4>销量<span>11888</span></h4>
+							<h4>销量<span><?php echo ($list['sell']); ?></span></h4>
 							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
 							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
 						</div>

@@ -207,7 +207,7 @@ body{min-width: 1210px;}
         margin: 0 18px 20px 0;
         padding: 0;
         border: 1px solid #eee;
-        height: 450px;
+        height: 415px;
         width: 282px;
         background: #fff;
         display: block;
@@ -275,6 +275,20 @@ body{min-width: 1210px;}
       padding: 0 3px;
       font-weight: 700;
     }
+    .w_specific_class  ul li, .w_specific_class1  ul li{
+      margin-left: 20px;
+      text-align: center;
+    }
+    .w_specific_class  ul li a:hover{
+      background: #dd2726;
+      color:#fff;
+    }
+    .w_goods_class .w_specific_class{
+      width: 1100px;
+    }
+    .w_goods_class{
+      padding: 15px 0 15px 22px;
+    }
     </style>
 <!--E 2015-10-30 添加-->
 <title>全部商品分类</title>
@@ -304,15 +318,21 @@ body{min-width: 1210px;}
                       <dd>商品分类</dd>
                       <dd class="w_specific_class">
                           <ul>
-                          <li style="margin-left: 20px;">全部优惠</li>
-                          <?php if($type == '1001'){?>
+                          <li style="margin-left: 45px;">
+                          <?php if(!empty($_GET['gclass'])){?>
+                            <a href="<{:U('Good/popularity',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>">全部优惠</a>
+                          <?php }else{?>
+                            <a class="w_effect" href="<{:U('Good/popularity',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>">全部优惠</a>
+                          <?php }?>
+                          </li>
+                          <?php if(empty($gclass)){?>
                             <li> 暂无分类</li>
                           <?php }else {?>
-                            <volist name="goods_class" id="list">
-                              <?php if($list['goods_class_id'] == $_GET['id']){?>
-                                <li><a class="w_effect" href="<{:U('Good/allgood',['id'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
+                            <volist name="gclass" id="list">
+                              <?php if($list['goods_class_id'] == $_GET['gclass']){?>
+                                <li ><a class="w_effect" href="<{:U('Good/popularity',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
                               <?php }else{?>
-                                <li><a  href="<{:U('Good/allgood',['id'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
+                                <li ><a  href="<{:U('Good/popularity',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
                               <?php }?>
                             </volist>
                           <?php }?>
@@ -327,256 +347,51 @@ body{min-width: 1210px;}
       <div class="w_goods_con" style="margin-top:20px;">
         <div class="goods-list main-container">
             <ul class="clearfix">
+            <?php if($info){?>
+            <volist name="info" id="list">
                 <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6553160" class="img" rel="nofollow" target="_blank" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="//img.alicdn.com/imgextra/i4/3422105120/TB2or9UXAKWBuNjy1zjXXcOypXa_!!3422105120.jpg_310x310.jpg" alt="">
-                                        </a>
+                    <a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="img" rel="nofollow" target="_blank" >
+                        <img src="<{$list.glogo}>" alt="" style="width:284px;height:284px;">
+                    </a>
                     <div class="padding">
                         <div class="padding-tit">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6587873&amp;nav_wrap=p&amp;u=820138" class="title clearfix">
+                            <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="title clearfix">
                                 <i class="tmall"></i>
-                                <span>冰爽袖套防晒女手套男士袖子紫外线薄加长款冰丝护臂手臂套袖夏季</span>
+                                <span><{$list.title}></span>
                             </a>
                         </div>
-                        <div class="coupon-wrap clearfix" style="margin: 9px 2px 7px 3px; color:#909090">
-                            优惠券<span class="price">5</span>元，已有<span class="num" style=" color:#f15482;">70510</span>人购买
-                        </div>
+                        
                     </div>
                     <div class="price-wrap clearfix" >
                         <div class="price">
-                            <span class="text" style="margin-left: 5px;">券后价&nbsp;￥
-                                <span class="price">3.9</span>
+                            <span class="text" style="margin-left: 5px;">售价&nbsp;￥
+                                <span class="price"><{$list.price}></span>
                             </span>
-                            <span class="text" style="margin-left: 18px; font-size: 12px;color: #DBF7E8;">正常售价&nbsp;￥8.9 </span>
+                            <span class="text" style="margin-left: 18px; font-size: 12px;color: #DBF7E8;"><{$list.yhj_price}></span>
                         </div>
                     </div>
                     <div class="padding">
                         <div class="recent-sold-num clearfix" style="color:#D85C85; margin-left:3px;">
-                            最近2小时销量：<span class="sold-count">6153</span>笔
+                            销量：<span class="sold-count"><{$list.sell}></span>笔
                         </div>
                     </div>
                 </li>
-                <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6553160" class="img" rel="nofollow" target="_blank" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="//img.alicdn.com/imgextra/i4/3422105120/TB2or9UXAKWBuNjy1zjXXcOypXa_!!3422105120.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="padding-tit">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6587873&amp;nav_wrap=p&amp;u=820138" class="title clearfix">
-                                <i class="tmall"></i>
-                                <span>冰爽袖套防晒女手套男士袖子紫外线薄加长款冰丝护臂手臂套袖夏季</span>
-                            </a>
-                        </div>
-                        <div class="coupon-wrap clearfix" style="margin: 9px 2px 7px 3px; color:#909090">
-                            优惠券<span class="price">5</span>元，已有<span class="num" style=" color:#27BCB5;">70510</span>人购买
-                        </div>
-                    </div>
-                    <div class="price-wrap clearfix" >
-                        <div class="price">
-                            <span class="text" style="margin-left: 5px;">券后价&nbsp;￥
-                                <span class="price">3.9</span>
-                            </span>
-                            <span class="text" style="margin-left: 18px; font-size: 12px;color: #DBF7E8;">正常售价&nbsp;￥8.9 </span>
-                        </div>
-                    </div>
-                    <div class="padding">
-                        <div class="recent-sold-num clearfix" style="color:#D85C85; margin-left:3px;">
-                            最近2小时销量：<span class="sold-count">6153</span>笔
-                        </div>
-                    </div>
-                </li>
-                <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6553160" class="img" rel="nofollow" target="_blank" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="//img.alicdn.com/imgextra/i4/3422105120/TB2or9UXAKWBuNjy1zjXXcOypXa_!!3422105120.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="padding-tit">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6587873&amp;nav_wrap=p&amp;u=820138" class="title clearfix">
-                                <i class="tmall"></i>
-                                <span>冰爽袖套防晒女手套男士袖子紫外线薄加长款冰丝护臂手臂套袖夏季</span>
-                            </a>
-                        </div>
-                        <div class="coupon-wrap clearfix" style="margin: 9px 2px 7px 3px; color:#909090">
-                            优惠券<span class="price">5</span>元，已有<span class="num" style=" color:#27BCB5;">70510</span>人购买
-                        </div>
-                    </div>
-                    <div class="price-wrap clearfix" >
-                        <div class="price">
-                            <span class="text" style="margin-left: 5px;">券后价&nbsp;￥
-                                <span class="price">3.9</span>
-                            </span>
-                            <span class="text" style="margin-left: 18px; font-size: 12px;color: #DBF7E8;">正常售价&nbsp;￥8.9 </span>
-                        </div>
-                    </div>
-                    <div class="padding">
-                        <div class="recent-sold-num clearfix" style="color:#D85C85; margin-left:3px;">
-                            最近2小时销量：<span class="sold-count">6153</span>笔
-                        </div>
-                    </div>
-                </li>
-                <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6553160" class="img" rel="nofollow" target="_blank" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="//img.alicdn.com/imgextra/i4/3422105120/TB2or9UXAKWBuNjy1zjXXcOypXa_!!3422105120.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="padding-tit">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6587873&amp;nav_wrap=p&amp;u=820138" class="title clearfix">
-                                <i class="tmall"></i>
-                                <span>冰爽袖套防晒女手套男士袖子紫外线薄加长款冰丝护臂手臂套袖夏季</span>
-                            </a>
-                        </div>
-                        <div class="coupon-wrap clearfix" style="margin: 9px 2px 7px 3px; color:#909090">
-                            优惠券<span class="price">5</span>元，已有<span class="num" style=" color:#27BCB5;">70510</span>人购买
-                        </div>
-                    </div>
-                    <div class="price-wrap clearfix" >
-                        <div class="price">
-                            <span class="text" style="margin-left: 5px;">券后价&nbsp;￥
-                                <span class="price">3.9</span>
-                            </span>
-                            <span class="text" style="margin-left: 18px; font-size: 12px;color: #DBF7E8;">正常售价&nbsp;￥8.9 </span>
-                        </div>
-                    </div>
-                    <div class="padding">
-                        <div class="recent-sold-num clearfix" style="color:#D85C85; margin-left:3px;">
-                            最近2小时销量：<span class="sold-count">6153</span>笔
-                        </div>
-                    </div>
-                </li>
-                <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6553160" class="img" rel="nofollow" target="_blank" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="//img.alicdn.com/imgextra/i4/3422105120/TB2or9UXAKWBuNjy1zjXXcOypXa_!!3422105120.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="padding-tit">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6587873&amp;nav_wrap=p&amp;u=820138" class="title clearfix">
-                                <i class="tmall"></i>
-                                <span>冰爽袖套防晒女手套男士袖子紫外线薄加长款冰丝护臂手臂套袖夏季</span>
-                            </a>
-                        </div>
-                        <div class="coupon-wrap clearfix" style="margin: 9px 2px 7px 3px; color:#909090">
-                            优惠券<span class="price">5</span>元，已有<span class="num" style=" color:#27BCB5;">70510</span>人购买
-                        </div>
-                    </div>
-                    <div class="price-wrap clearfix" >
-                        <div class="price">
-                            <span class="text" style="margin-left: 5px;">券后价&nbsp;￥
-                                <span class="price">3.9</span>
-                            </span>
-                            <span class="text" style="margin-left: 18px; font-size: 12px;color: #DBF7E8;">正常售价&nbsp;￥8.9 </span>
-                        </div>
-                    </div>
-                    <div class="padding">
-                        <div class="recent-sold-num clearfix" style="color:#D85C85; margin-left:3px;">
-                            最近2小时销量：<span class="sold-count">6153</span>笔
-                        </div>
-                    </div>
-                </li>
-                          
-        </ul>
-    </div>
-
-
-
-
-
-         <!-- <ul class="w_goods_one">
-         <?php if($type == '1000'){?>
-          <volist name="result" id="list">
-           <li class="w_goods_details ">
-               <div class="w_imgOut" data-gid="<{$list['id']}>" data-pid="161106040101875">
-                   <a data-gid="<{$list['id']}>" data-pid="161106040101875" target="_blank" class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
-                       <img id="img_<{$list['id']}>" data-gid="<{$list['id']}>" data-pid="161106040101875" class="lazy0" data-original="__ROOT__/Uploads<{$list['goods_logo']}>" src="__ROOT__/Uploads<{$list['goods_logo']}>" style="display: inline;">
-                   </a>
-               </div>
-               <a class="w_goods_three" target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" data-gid="3541" data-pid="161106040101875" title="<{$list['goods_title']}>"><{$list['goods_title']}></a>
-                <div class="price" style="width:260px;margin-top: 10px;">
-                  <h4>￥<span>18.9</span>券后价</h4>
-                  <p>券￥15</p>
-                </div>
-                <div class="xiaoliang" style="width:260px;">
-                  <h4>销量<span>11888</span></h4>
-                  <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                  <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                </div>
-           </li>
-          </volist>   
-        <?php }else{?>
-          <img style="display:block;margin:0 auto;" src="/Public/Home/static/img/front/goods/expect.jpg">
-        <?php }?>
-         </ul> -->
+            </volist> 
+            <?php }else{?>
+              <div class="w_con" id="goods_details" style="display: block;">
+                  <img style="display:block;margin:75px auto;" src="__PUBLIC__/Home/static/img/zanwupingjia.png">
+              </div>
+            <?php }?>         
+          </ul>
+      </div>
      </div>
      <div id="pages"><{$page}></div>
      </div>
 <script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/js/common.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/ajaxfunctionMain.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/goods/goods.min.js"></script>
 <!-- 引入底部 -->
 <include file="public:foot" />
 <!-- 引入底部 -->
-<script>
-function cartCount() {
-    var url = "<{:U('Cart/cartCount')}>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: '',
-        success:function(data){
-            if(data > 0){
-                $("#cartCount").html(data);
-                $("#cartCount").addClass("num-rt");
-                $("#row").html(data);
-            }else{
-                $("#cartCount").html("");
-            }
-        }
-    });
-}
-function gotoCartOrderList(k){
-  var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-          window.location.href="<{:U(MODULE_NAME.'/Good/goodlist/id/"+k+"')}>";
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
-function addCart(a) {
-    var url = "<{:U('Cart/docart')}>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: {id: a},
-        success:function(data){
-            if(data == 'ok'){
-                cartCount();
-            }else{
-                layer.msg(data,{offset: '300px',time: 1500,icon: 2});    
-            }
-        }
-    });
-}
-function CartOrder(){
-    var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-            window.location.href="<{:U('Cart/cart')}>"; 
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
-</script>
+
 </body>
 </html>

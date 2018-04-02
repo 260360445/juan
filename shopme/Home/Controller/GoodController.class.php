@@ -131,7 +131,7 @@ class GoodController extends ComController {
         $info = M('goods_class')->field('goods_class_id,name')->order('sort asc,goods_class_id asc')->select();
         $html.='<form enctype="multipart/form-data" method="post" id="subexcel"><div style="text-align:center;margin:0 auto;">';
         $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
-        $html.='<label>所属分类 ：</label>';
+        $html.='<label>商品分类 ：</label>';
         $html.='<select id="goods_cate_id" name="goods_cate_id">';
         $html.='<option value="0">请选择分类</option>';
         foreach ($info as $k => $v) {
@@ -140,10 +140,13 @@ class GoodController extends ComController {
         $html.='</select>';
         $html.='</div>';
         $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
-        $html.='<label>导入商品 ： </label><input type="file" name="goodsexal" id="goodsexal" style="display:inline-block;">';
+        $html.='<label>商品属性 ： </label><input type="radio" name="type" value="2" checked>普通 <input type="radio" name="type" value="3" >高佣金';
         $html.='</div>';
         $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
-        $html.='<label>属性 ： </label><input type="radio" name="type" value="2" checked>普通 <input type="radio" name="type" value="3" >高佣金';
+        $html.='<label>商品类型 ： </label><input type="radio" name="gtype" value="2" checked>普通 <input type="radio" name="gtype" value="3" >9块9';
+        $html.='</div>';
+        $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
+        $html.='<label>导入商品 ： </label><input type="file" name="goodsexal" id="goodsexal" style="display:inline-block;">';
         $html.='</div>';
         $html.='<div class="thumbnailbutton">';
         $html.='<a href="javascript:setexal();" class="btn btn-wide btn-o btn-info">导入</a>&nbsp&nbsp&nbsp'; 
@@ -223,6 +226,7 @@ class GoodController extends ComController {
                 }
                 $data['state'] = '2';
                 $data['type'] = $_POST['type'];
+                $data['gtype'] = $_POST['gtype'];
                 $data['goods_cate_id'] = $_POST['goods_cate_id'];
                 $data['time'] = time();
                 $addid=M('goods')->add($data);
@@ -259,7 +263,7 @@ class GoodController extends ComController {
         }
     }
     /*
-    *设置商品新品上架
+    *推荐商品
     */
     public function good_set_tj(){
         $id = I('post.id','');

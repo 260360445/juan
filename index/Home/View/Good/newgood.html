@@ -332,15 +332,28 @@ body{min-width: 1210px;}
         border: 1px solid #dd2726;
     }
     .w_goods_class{
-      border-top: 1px solid #dddddd;
+      border-top: 1px solid #eee;
     }
     .w_goods_nav{
           border:0;
     }
-    
+    .w_specific_class  ul li, .w_specific_class1  ul li{
+      margin-left: 20px;
+      text-align: center;
+    }
+    .w_specific_class  ul li a:hover{
+      background: #dd2726;
+      color:#fff;
+    }
+    .w_goods_class .w_specific_class{
+      width: 1100px;
+    }
+    .w_goods_class{
+      padding: 15px 0 15px 22px;
+    }
     </style>
 <!--E 2015-10-30 添加-->
-<title>全部商品分类</title>
+<title>9块9包邮</title>
 </head>
 <body>
 <!-- 顶部 -->
@@ -367,15 +380,21 @@ body{min-width: 1210px;}
                       <dd>商品分类</dd>
                       <dd class="w_specific_class">
                           <ul>
-                          <li style="margin-left: 20px;">全部优惠</li>
-                          <?php if($type == '1001'){?>
+                          <li style="margin-left: 45px;">
+                          <?php if(!empty($_GET['gclass'])){?>
+                            <a href="<{:U('Good/newgood',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>">全部优惠</a>
+                          <?php }else{?>
+                            <a class="w_effect" href="<{:U('Good/newgood',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>">全部优惠</a>
+                          <?php }?>
+                          </li>
+                          <?php if(empty($gclass)){?>
                             <li> 暂无分类</li>
                           <?php }else {?>
-                            <volist name="goods_class" id="list">
-                              <?php if($list['goods_class_id'] == $_GET['id']){?>
-                                <li><a class="w_effect" href="<{:U('Good/allgood',['id'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
+                            <volist name="gclass" id="list">
+                              <?php if($list['goods_class_id'] == $_GET['gclass']){?>
+                                <li ><a class="w_effect" href="<{:U('Good/newgood',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
                               <?php }else{?>
-                                <li><a  href="<{:U('Good/allgood',['id'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
+                                <li ><a  href="<{:U('Good/newgood',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
                               <?php }?>
                             </volist>
                           <?php }?>
@@ -390,263 +409,45 @@ body{min-width: 1210px;}
       <div class="w_goods_con" style="margin-top:20px;">
         <div class="goods-list main-container">
             <ul class="clearfix">
-                        <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6553160" class="img" rel="nofollow" target="_blank" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="https://img.alicdn.com/imgextra/i4/2255795767/TB2TeEii9_I8KJjy0FoXXaFnVXa_!!2255795767.jpg_310x310.jpg" alt="">
-                                        </a>
+            <?php if($result){?>
+            <volist name="result" id="list">
+                <li class="theme-hover-border-color-1 ">
+                    <a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="img" rel="nofollow" target="_blank" >
+                        <img src="<{$list.glogo}>" alt="" style="width:284px;height:284px;">
+                    </a>
                     <div class="padding">
                         <div class="coupon-wrap clearfix">
-                            <span class="price theme-color-8"><b><i>￥</i>9.5</b>券后价</span>
-                            <span class="old-price"><i>￥</i>19.5</span>
-                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
+                            <span class="price theme-color-8"><b><i>￥</i><{$list.price}></b></span>
+                            <!-- <span class="old-price"><i>￥</i>19.5</span> -->
+                            <span class="coupon"><em class="quan-left"></em><b><{$list.yhj_price}></b><em class="quan-right"></em></span>
                         </div>
                         <div class="title">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1">【画眉神器】眉卡+眉笔+2支眉刀全套</a>
+                            <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1"><{$list.title}></a>
                         </div>
 
                         <div class="xiaoliang">
-                            <h4>销量<span>11888</span></h4>
+                            <h4>销量<span><{$list.sell}></span></h4>
                             <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
                             <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
                         </div>
                     </div>
-                    <em class="border_l_b border"></em>
-                    <em class="border_l_t border"></em>
-                    <em class="border_r_b border"></em>
-                    <em class="border_r_t border"></em>
                 </li>
-                            <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6513551" class="img" rel="nofollow" target="_blank" data-gid="6513551" data-ci="310660" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="//img.alicdn.com/imgextra/i4/3422105120/TB2or9UXAKWBuNjy1zjXXcOypXa_!!3422105120.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="coupon-wrap clearfix">
-                            <span class="price theme-color-8"><b><i>￥</i>26.9</b>券后价</span>
-                            <span class="old-price"><i>￥</i>29.9</span>
-                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>3</b><em class="quan-right"></em></span>
-                        </div>
-                        <div class="title">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6513551" data-gid="6513551" data-ci="310660" data-in="1" data-uid="820138" data-cn="1">2018春季新款小白帆布鞋</a>
-                        </div>
-
-                        <div class="xiaoliang">
-                            <h4>销量<span>11888</span></h4>
-                            <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                            <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                        </div>
-                    </div>
-                    <em class="border_l_b border"></em>
-                    <em class="border_l_t border"></em>
-                    <em class="border_r_b border"></em>
-                    <em class="border_r_t border"></em>
-                </li>
-                            <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6451115" class="img" rel="nofollow" target="_blank" data-gid="6451115" data-ci="306679" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="https://img.alicdn.com/imgextra/i3/1720923265/TB22Fq8fqmWBuNjy1XaXXXCbXXa_!!1720923265.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="coupon-wrap clearfix">
-                            <span class="price theme-color-8"><b><i>￥</i>15.9</b>券后价</span>
-                            <span class="old-price"><i>￥</i>17.9</span>
-                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>2</b><em class="quan-right"></em></span>
-                        </div>
-                        <div class="title">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6451115" data-gid="6451115" data-ci="306679" data-in="1" data-uid="820138" data-cn="1">知采烧烤调料组合套装8件套</a>
-                        </div>
-
-                        <div class="goods-num-type">
-                            <span class="goods-num">销量<b>1845</b></span>
-                            <div class="goods-type">
-                                                        </div>
-                        </div>
-                    </div>
-                    <em class="border_l_b border"></em>
-                    <em class="border_l_t border"></em>
-                    <em class="border_r_b border"></em>
-                    <em class="border_r_t border"></em>
-                </li>
-                            <li class="theme-hover-border-color-1 no-right">
-                    <a href="/index.php?r=l/d&amp;id=6606239" class="img" rel="nofollow" target="_blank" data-gid="6606239" data-ci="315565" data-in="1" data-uid="820138" data-cn="1">
-                                                <i class="today-new"></i>
-                                            <img src="//img.alicdn.com/imgextra/i4/2786273568/TB2xLeCa_mWBKNjSZFBXXXxUFXa_!!2786273568.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="coupon-wrap clearfix">
-                            <span class="price theme-color-8"><b><i>￥</i>29.9</b>券后价</span>
-                            <span class="old-price"><i>￥</i>69.9</span>
-                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>40</b><em class="quan-right"></em></span>
-                        </div>
-                        <div class="title">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6606239" data-gid="6606239" data-ci="315565" data-in="1" data-uid="820138" data-cn="1">春装韩版新款ulzzang纯棉短袖t恤女装</a>
-                        </div>
-
-                        <div class="goods-num-type">
-                            <span class="goods-num">销量<b>17029</b></span>
-                            <div class="goods-type">
-                                <i class="tmall" title="天猫"></i><i class="trans" title="运费险"></i><i class="ddq" title="咚咚"></i>                        </div>
-                        </div>
-                    </div>
-                    <em class="border_l_b border"></em>
-                    <em class="border_l_t border"></em>
-                    <em class="border_r_b border"></em>
-                    <em class="border_r_t border"></em>
-                </li>
-                            <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6560960" class="img" rel="nofollow" target="_blank" data-gid="6560960" data-ci="313591" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="https://img.alicdn.com/imgextra/i3/2255795767/TB2oCkHb79WBuNjSspeXXaz5VXa_!!2255795767.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="coupon-wrap clearfix">
-                            <span class="price theme-color-8"><b><i>￥</i>29</b>券后价</span>
-                            <span class="old-price"><i>￥</i>49</span>
-                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>20</b><em class="quan-right"></em></span>
-                        </div>
-                        <div class="title">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6560960" data-gid="6560960" data-ci="313591" data-in="1" data-uid="820138" data-cn="1">棉域医用级脱脂尿裤2条装</a>
-                        </div>
-
-                        <div class="goods-num-type">
-                            <span class="goods-num">销量<b>7390</b></span>
-                            <div class="goods-type">
-                                <i class="tmall" title="天猫"></i><i class="trans" title="运费险"></i>                        </div>
-                        </div>
-                    </div>
-                    <em class="border_l_b border"></em>
-                    <em class="border_l_t border"></em>
-                    <em class="border_r_b border"></em>
-                    <em class="border_r_t border"></em>
-                </li>
-                            <li class="theme-hover-border-color-1 ">
-                    <a href="/index.php?r=l/d&amp;id=6508673" class="img" rel="nofollow" target="_blank" data-gid="6508673" data-ci="310186" data-in="1" data-uid="820138" data-cn="1">
-                                            <img src="//img.alicdn.com/imgextra/i3/3691133320/TB2Q1fubmMmBKNjSZTEXXasKpXa_!!3691133320.jpg_310x310.jpg" alt="">
-                                        </a>
-                    <div class="padding">
-                        <div class="coupon-wrap clearfix">
-                            <span class="price theme-color-8"><b><i>￥</i>17.9</b>券后价</span>
-                            <span class="old-price"><i>￥</i>27.9</span>
-                            <span class="coupon"><em class="quan-left"></em>券<b><i>￥</i>10</b><em class="quan-right"></em></span>
-                        </div>
-                        <div class="title">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6508673" data-gid="6508673" data-ci="310186" data-in="1" data-uid="820138" data-cn="1">2018夏季新款韩版学生宽松圆领短袖</a>
-                        </div>
-
-                        <div class="goods-num-type">
-                            <span class="goods-num">销量<b>592</b></span>
-                            <div class="goods-type">
-                                                        </div>
-                        </div>
-                    </div>
-                    <em class="border_l_b border"></em>
-                    <em class="border_l_t border"></em>
-                    <em class="border_r_b border"></em>
-                    <em class="border_r_t border"></em>
-                </li>
-                          
+            </volist>
+            <?php }else{?>
+              <div class="w_con" id="goods_details" style="display: block;">
+                  <img style="display:block;margin:75px auto;" src="__PUBLIC__/Home/static/img/zanwupingjia.png">
+              </div>
+            <?php }?>
         </ul>
     </div>
-
-
-
-
-
-         <!-- <ul class="w_goods_one">
-         <?php if($type == '1000'){?>
-          <volist name="result" id="list">
-           <li class="w_goods_details ">
-               <div class="w_imgOut" data-gid="<{$list['id']}>" data-pid="161106040101875">
-                   <a data-gid="<{$list['id']}>" data-pid="161106040101875" target="_blank" class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
-                       <img id="img_<{$list['id']}>" data-gid="<{$list['id']}>" data-pid="161106040101875" class="lazy0" data-original="__ROOT__/Uploads<{$list['goods_logo']}>" src="__ROOT__/Uploads<{$list['goods_logo']}>" style="display: inline;">
-                   </a>
-               </div>
-               <a class="w_goods_three" target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" data-gid="3541" data-pid="161106040101875" title="<{$list['goods_title']}>"><{$list['goods_title']}></a>
-                <div class="price" style="width:260px;margin-top: 10px;">
-                  <h4>￥<span>18.9</span>券后价</h4>
-                  <p>券￥15</p>
-                </div>
-                <div class="xiaoliang" style="width:260px;">
-                  <h4>销量<span>11888</span></h4>
-                  <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                  <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-                </div>
-           </li>
-          </volist>   
-        <?php }else{?>
-          <img style="display:block;margin:0 auto;" src="/Public/Home/static/img/front/goods/expect.jpg">
-        <?php }?>
-         </ul> -->
      </div>
      <div id="pages"><{$page}></div>
      </div>
 <script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/js/common.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/ajaxfunctionMain.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/goods/goods.min.js"></script>
 <!-- 引入底部 -->
 <include file="public:foot" />
 <!-- 引入底部 -->
-<script>
-function cartCount() {
-    var url = "<{:U('Cart/cartCount')}>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: '',
-        success:function(data){
-            if(data > 0){
-                $("#cartCount").html(data);
-                $("#cartCount").addClass("num-rt");
-                $("#row").html(data);
-            }else{
-                $("#cartCount").html("");
-            }
-        }
-    });
-}
-function gotoCartOrderList(k){
-  var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-          window.location.href="<{:U(MODULE_NAME.'/Good/goodlist/id/"+k+"')}>";
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
-function addCart(a) {
-    var url = "<{:U('Cart/docart')}>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: {id: a},
-        success:function(data){
-            if(data == 'ok'){
-                cartCount();
-            }else{
-                layer.msg(data,{offset: '300px',time: 1500,icon: 2});    
-            }
-        }
-    });
-}
-function CartOrder(){
-    var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-            window.location.href="<{:U('Cart/cart')}>"; 
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
-</script>
 </body>
 </html>
 

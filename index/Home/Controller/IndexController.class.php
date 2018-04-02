@@ -12,10 +12,10 @@ class IndexController extends ComController{
         $this->assign('goods',$good_tree);
          //查找秒杀
         $goods = M('goods');
-        $good_tm = $goods->where(['ms_sta'=>2,'state'=>2])->order('ms_time desc')->limit('6')->select();
+        $good_tm = $goods->where(['ms_sta'=>2,'state'=>2])->order('ms_time desc,sell desc')->limit('6')->select();
         $this->assign('good_tm',$good_tm);
         //查找商品
-        $good = $goods->where(['state'=>2])->order('time desc')->limit('50')->select();
+        $good = $goods->where(['state'=>2])->order('sell desc,time desc')->limit('50')->select();
         $this->assign('good',$good);
         //轮播
         $ban = M('ban')->field("url,logo")->where(['state'=>2,'type'=>2])->order('sort desc,id desc')->select();
