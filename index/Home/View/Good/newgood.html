@@ -412,7 +412,7 @@ body{min-width: 1210px;}
             <?php if($result){?>
             <volist name="result" id="list">
                 <li class="theme-hover-border-color-1 ">
-                    <a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="img" rel="nofollow" target="_blank" >
+                    <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>" class="img" rel="nofollow" target="_blank" >
                         <img src="<{$list.glogo}>" alt="" style="width:284px;height:284px;">
                     </a>
                     <div class="padding">
@@ -422,7 +422,7 @@ body{min-width: 1210px;}
                             <span class="coupon"><em class="quan-left"></em><b><{$list.yhj_price}></b><em class="quan-right"></em></span>
                         </div>
                         <div class="title">
-                            <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1"><{$list.title}></a>
+                            <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>"><{$list.title}></a>
                         </div>
 
                         <div class="xiaoliang">

@@ -350,12 +350,12 @@ body{min-width: 1210px;}
             <?php if($info){?>
             <volist name="info" id="list">
                 <li class="theme-hover-border-color-1 ">
-                    <a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="img" rel="nofollow" target="_blank" >
+                    <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>" class="img" rel="nofollow" target="_blank" >
                         <img src="<{$list.glogo}>" alt="" style="width:284px;height:284px;">
                     </a>
                     <div class="padding">
                         <div class="padding-tit">
-                            <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="title clearfix">
+                            <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>" class="title clearfix">
                                 <i class="tmall"></i>
                                 <span><{$list.title}></span>
                             </a>

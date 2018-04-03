@@ -523,7 +523,7 @@
                     </p>
                     <div class="coupon-wrap clearfix">
                         <span class="now-price"><b class="theme-color-8"></b>售价&nbsp;&nbsp;&nbsp;&nbsp;<b class="theme-color-8">¥<i><{$info.price}></i></b></span>
-                        <span class="org-price">优惠券&nbsp;&nbsp;<i style="    color: #ed145b;font-weight: 400;font-family: Arial;"><{$info.yhj_price}></i></span>
+                        <span class="org-price">优惠券&nbsp;&nbsp;<i style="color: #ed145b;font-weight: 400;font-family: Arial;"><{$info.yhj_price}></i></span>
                     </div>
                     <ul class="tm-ind-panel">
                         <li class="tm-ind-item tm-ind-sellCount " data-label="月销量">
@@ -544,7 +544,21 @@
                             <span>优惠券</span>
                             <span><b><i>￥</i>35</b></span>
                         </div> -->
-                        <a data-gid="6422855" rel="nofollow" class="theme-bg-color-8" href="<{$info.yhj_url}>" target="_blank"> 领券购买</a>
+                        <?php
+                            $t=$_GET['t'];
+                            if($t == 'ts'){
+                        ?>
+                            <?php 
+                                $time=date('H',time());
+                                if($time >= $info['ddq_kai']){
+                            ?>
+                                <a data-gid="6422855" rel="nofollow" class="theme-bg-color-8" href="<{$info.yhj_url}>" target="_blank"> 领券购买</a>
+                            <?php }else{?>
+                                <a data-gid="6422855" rel="nofollow" class="theme-bg-color-8" href="javascript:void(0);" style="background: #ccc;color: #fff;"><{$info.ddq_kai}>：00 准时开抢</a>
+                            <?php }?>
+                        <?php }else if($t == 'ls'){?>
+                            <a data-gid="6422855" rel="nofollow" class="theme-bg-color-8" href="<{$info.yhj_url}>" target="_blank"> 领券购买</a>
+                        <?php }?>
                     </div>
                     <div class="text2">
                     <span>如果您喜欢此宝贝，记得分享给您的朋友，一起享优惠：</span>

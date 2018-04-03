@@ -257,8 +257,105 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
     <h2 class="w_title w_title_one">
             <div class="daily-tabs" >
               <div class="daily-sale-switcher" style="height: 70px;">
-                <div class="sale-logo"><img src="https://img.alicdn.com/tps/TB1w2T8KXXXXXaiXpXXXXXXXXXX-292-106.png" width="146" height="53"></div>
-                <div class="tabs">    <div class="tab" data-time="9:00" data-index="0" data-countdown-time="" data-type="9" data-status="done"><div class="time">9:00</div><div class="text">已开抢</div></div>   <div class="tab" data-time="12:00" data-index="1" data-countdown-time="" data-type="12" data-status="done"><div class="time">12:00</div><div class="text">已开抢</div></div>       <div class="tab active" data-time="15:00" data-index="2" data-countdown-time="1522058400000" data-type="15" data-status="doing"><div class="time">15:00</div><div class="text">疯抢中</div></div>     <div class="tab" data-time="18:00" data-index="3" data-countdown-time="1522058400000" data-type="18" data-status="notStart"><div class="time">18:00</div><div class="text">即将开始</div></div>     <div class="tab" data-time="21:00" data-index="4" data-countdown-time="1522069200000" data-type="21" data-status="notStart"><div class="time">21:00</div><div class="text">即将开始</div></div> </div>
+                <div class="sale-logo"><img src="/Public/Home/static/img/jrfqqq.png" width="146" height="53"></div>
+                <div class="tabs">    
+                    <?php 
+                        $time9=date("H",time());
+                        $starttime9=date("H",mktime(9));
+                        $endtime9=date("H",mktime(12));
+                        //print_r($time9.$endtime9);
+                    ?>
+                    <?php if($time9 >= $starttime9 && $time9 < 12){?>
+                        <div class="tab active" data-time="9" data-index="0" data-countdown-time="" data-type="9" data-status="done">
+                    <?php }elseif($time9 >= $endtime9){?>
+                        <div class="tab" data-time="9" data-index="0" data-countdown-time="" data-type="9" data-status="done">
+                    <?php }?>
+                        <div class="time">9:00</div>
+                        <?php if($time9 < $starttime9){?>
+                            <div class="text">即将开始</div>
+                        <?php }else if($time9 >= $starttime9 && $starttime9 < $endtime9 && $time9 < $endtime9){?>
+                            <div class="text">疯抢中</div>
+                        <?php }else if($time9 >= $endtime9){?>
+                            <div class="text">已开抢</div>
+                        <?php }?>
+                    </div>   
+                    <?php
+                        $time12=date('H',time());
+                        $starttime12=date('H',mktime(12));
+                        $endtime12=date('H',mktime(14));
+                    ?>
+                    <?php if($time12 >= $starttime12 &&  $time12 < 14 ){?>
+                        <div class="tab active" data-time="12" data-index="1" data-countdown-time="" data-type="12" data-status="done">
+                    <?php }else{?>
+                        <div class="tab" data-time="12" data-index="1" data-countdown-time="" data-type="12" data-status="done">
+                    <?php }?>
+                        <div class="time">12:00</div>
+                        <?php if($time12 < $starttime12){?>
+                            <div class="text">即将开始</div>
+                        <?php }else if($time12 >= $starttime12 && $starttime12 < $endtime12 && $time12 < $endtime12){?>
+                            <div class="text">疯抢中</div>
+                        <?php }else if($time12 >= $endtime12){?>
+                            <div class="text">已开抢</div>
+                        <?php }?>
+                    </div>       
+                    <?php
+                        $time15=date("H",time());
+                        $starttime15=date("H",mktime(15));
+                        $endtime15=date("H",mktime(18));
+                    ?>
+                    <?php if($time15 >= $starttime15 && $time15 < 18 ){?>
+                        <div class="tab active" data-time="15" data-index="2" data-countdown-time="1522058400000" data-type="15" data-status="doing">
+                    <?php }else{?>
+                        <div class="tab" data-time="15" data-index="2" data-countdown-time="1522058400000" data-type="15" data-status="doing">
+                    <?php }?>
+                        <div class="time">15:00</div>
+                        <?php if($time15 < $starttime15){?>
+                            <div class="text">即将开始</div>
+                        <?php }else if($time15 >= $starttime15 && $starttime15 < $endtime15 && $time15 < $endtime15){?>
+                            <div class="text">疯抢中</div>
+                        <?php }else if($time15 >= $endtime15){?>
+                            <div class="text">已开抢</div>
+                        <?php }?>
+                    </div>     
+                    <?php 
+                        $time18=date("H",time());
+                        $starttime18=date("H",mktime(18));
+                        $endtime18=date("H",mktime(21));
+                    ?>
+                    <?php if($time18 >= $starttime18 && $time18 < 21 ){?>
+                        <div class="tab active" data-time="18" data-index="3" data-countdown-time="1522058400000" data-type="18" data-status="notStart">
+                    <?php }else{?>
+                        <div class="tab" data-time="18" data-index="3" data-countdown-time="1522058400000" data-type="18" data-status="notStart">
+                    <?php }?>
+                        <div class="time">18:00</div>
+                        <?php if($time18 < $starttime18){?>
+                            <div class="text">即将开始</div>
+                        <?php }else if($time18 >= $starttime18 && $starttime18 < $endtime18 && $time18 < $endtime18){?>
+                            <div class="text">疯抢中</div>
+                        <?php }else if($time18 >= $endtime18){?>
+                            <div class="text">已开抢</div>
+                        <?php }?> 
+                    </div>    
+                    <?php
+                        $time21=date("H",time());
+                        $starttime21=date("H",mktime(21));
+                        $endtime21=date("H",mktime(24));
+                    ?> 
+                    <?php if($time21 >= $starttime21 && $time21 < 24){?>
+                        <div class="tab active" data-time="21" data-index="4" data-countdown-time="1522069200000" data-type="21" data-status="notStart">
+                    <?php }else{?>
+                        <div class="tab" data-time="21" data-index="4" data-countdown-time="1522069200000" data-type="21" data-status="notStart">
+                    <?php }?>
+                        <div class="time">21:00</div>
+                        <?php if($time21 < $starttime21){?>
+                            <div class="text">即将开始</div>
+                        <?php }else if($time21 > $starttime21 && $starttime21 < $endtime21 && $time21 < $endtime21){?>
+                            <div class="text">疯抢中</div>
+                        <?php }else if($time21 >= $endtime21){?>
+                            <div class="text">即将开始</div>
+                        <?php }?>
+                    </div> 
+                </div>
                 <div class="sale-right"><img src="/Public/Home/static/img/tuijian.png" width="392" height="70"></div>
               </div>
           </div>
@@ -269,9 +366,9 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
     .goods_gobuy_seller{
         position: relative;
         border: 1px solid #F3C7C7;
-        width: 260px;
+        width: 268px;
         height: 38px;
-        left: -15px;
+        left: -20px;
     }
     .goods_gobuy_seller .goods_seller{
         margin: 12px 120px 12px 15px;
@@ -309,11 +406,11 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 </style>
 <div class="w_announced">
     <div class="w_announced_one">
-        <ul>
+        <ul id="getAjaxArr">
             <volist name="result" id="list">
-	             <li class="w_latest goods3203_53996">
+	            <li class="w_latest goods3203_53996">
 	                <div class="w_latestImg" style="margin:0 25px;">
-	                    <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank">
+	                    <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>" target="_blank">
 	                        <img src="<{$list.glogo}>" >
 	                    </a>
 	                </div>
@@ -323,11 +420,11 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                           <span class="coupon"><em class="quan-left"></em><b><{$list.yhj_price}></b><em class="quan-right"></em></span>
                       </div>
                       <div class="title">
-                          <a target="_blank" href="/index.php?r=l/d&amp;id=6553160" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1"><{$list.title}></a>
+                          <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><{$list.title}></a>
                       </div>
                       <div class="goods_gobuy_seller ">
                           <span class="goods_seller fl"><i></i><b><?php $sell=$list['yhj_num']-$list['yhj_sy_num'];echo $sell;?></b>人已抢</span>
-                          <a href=""><span class="goods_buy_btn ">马上抢</span></a>
+                          <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><span class="goods_buy_btn ">马上抢</span></a>
                       </div>
                     </div>
 	                <i class="a_js_icon"></i>
@@ -339,13 +436,13 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
     <volist name="result_hot" id="list">
         <li class="w_latest_right">
             <div class="w_rightImg">
-                <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank">
+                <a class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>" target="_blank">
                     <img class="lazy200" data-original="<{$list.glogo}>" src="<{$list.glogo}>" style="display: inline;">
                 </a>
             </div>
-            <a class="w_goods_three" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" target="_blank"><{$list.title}></a>
+            <a class="w_goods_three" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>" target="_blank"><{$list.title}></a>
             <div class="price" style="width:210px;">
-              <h4 style="font-family: 'Microsoft Yahei';font-size: 14px;    height: 28px;line-height: 18px;color: #dd2726;overflow: hidden;">￥<span style="font-size: 30px;padding-right: 2px;line-height: 28px;"><{$list.price}></span></h4>
+              <h4 style="font-family: 'Microsoft Yahei';font-size: 14px;height: 28px;line-height: 18px;color: #dd2726;overflow: hidden;">￥<span style="font-size: 30px;padding-right: 2px;line-height: 28px;"><{$list.price}></span></h4>
             </div>
             <div class="xiaoliang" style="width:210px;">
               <h4>销量<span><{$list.sell}></span></h4>
@@ -365,7 +462,55 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 <script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
 <script type="text/javascript">
     $('.tabs .tab').click(function  () {
+        var time = $(this).data('time');
+        var url = "<{:U('Good/ajaxDdq')}>";
         $(this).addClass('active').siblings('.tab').removeClass('active');
+        $.ajax({
+            type : 'post',
+            url : url,
+            data : {time:time},
+            error : function () {
+                layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
+            },
+            success : function (responses) {
+                var html='';
+                if (responses != 'no'){
+                    $.each(responses,function(k,v){
+                        html+='<li class="w_latest goods3203_53996">';
+                            html+='<div class="w_latestImg" style="margin:0 25px;">';
+                                html+='<a class="w_goods_img" href="<{:U(MODULE_NAME."/Good/goodlist/id/'+v['id']+'/t/ts")}>" target="_blank">';
+                                   html+=' <img src="'+v['glogo']+'" >';
+                                html+='</a>';
+                            html+='</div>';
+                            html+='<div class="padding">';
+                              html+='<div class="coupon-wrap clearfix">';
+                                  html+='<span class="price theme-color-8"><b><i>￥</i><{$list.price}></b></span>';
+                                  html+='<span class="coupon"><em class="quan-left"></em><b>'+v['yhj_price']+'</b><em class="quan-right"></em></span>';
+                             html+=' </div>';
+                              html+='<div class="title">';
+                                 html+=' <a target="_blank" href="<{:U(MODULE_NAME."/Good/goodlist/id/'+v['id']+'/t/ts")}>">'+v['title']+'</a>';
+                              html+='</div>';
+                              html+='<div class="goods_gobuy_seller ">';
+                                var sell=v['yhj_num']-v['yhj_sy_num'];
+                                var time=<?php echo date("H",time())?>;
+                                if(time >= v['ddq_kai']){
+                                    html+='<span class="goods_seller fl"><i></i><b>'+sell+'</b>人已抢</span>';
+                                    html+='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+v['id']+'/t/ts")}>"><span class="goods_buy_btn ">马上抢</span></a>';
+                                }else{
+                                    html+='<span class="goods_seller fl"><i></i><b>'+v['ddq_kai']+':00 准时开抢</b></span>';
+                                    html+='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+v['id']+'/t/ts")}>"><span class="goods_buy_btn" style="background:#D89750;">即将开始</span></a>';
+                                }
+                             html+=' </div>';
+                            html+='</div>';
+                            html+='<i class="a_js_icon"></i>';
+                        html+='</li>';
+                    })
+                }else{
+                    html = '无数据';
+                }
+                $('#getAjaxArr').html(html);
+            }
+        });
     })
 </script>
 </body>

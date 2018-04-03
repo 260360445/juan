@@ -2,7 +2,7 @@
         <div class="header1">
             <div class="header1in">
                 <ul class="headerul1 header_yytc">
-                    <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>方大商城首页</a></li>
+                    <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>领卷福利首页</a></li>
                      <li><a>客服QQ：<?php echo $_SESSION['sc']['infor']['service']?></a></li>
                     <li>
                         <span class="c_contact_icon c_kik">
@@ -20,9 +20,9 @@
                             <div id="wechat-app-popover-content" class="pophover-content popover bottom" style="top: 40px;left: -60px;">
                                 <div class="arrow"></div>
                                 <div class="popover-content">
-                                    <p style="white-space: nowrap">扫码下载客户端</p>
+                                    <p style="white-space: nowrap">QQ</p>
                                     <div style="width: 100px; height: 100px; margin-left: 10px;">
-                                        <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" width="100" height="100" border="0" alt="">
+                                        <img src="/<?php echo $_SESSION['sc']['infor']['qqlogo']?>" width="100" height="100" border="0" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -40,13 +40,6 @@
                     <li><a href="<{:U('Good/specialsale')}>">咚咚抢</a></li>
                     <li><a href="<{:U('Good/popularity')}>">超级人气榜</a></li>
                     <li><a href="<{:U('Good/newgood')}>">9块9包邮</a></li>
-                    <!-- <li class="hide-menu-nav" style="padding: 0 13px 0px 15px;">
-                    <span></span><a href="#" class="hide-menu-nava">发现</a>
-                        <dl>
-                            <dd style="border-top:1px solid #ddd;"><a href="<{:U('Index/score')}>" target="_blank">积分兑换</a></dd>
-                            <dd style="border-top:1px solid #ddd;"><a href="<{:U('Index/draw')}>" target="_blank">会员抽奖</a></dd>
-                        </dl>
-                    </li> -->
                 </ul>
                     <div class="search_header2">
                         <input type="text" placeholder="搜索商品" id="query" name="query" value="<?php echo $_GET['query']?>" />

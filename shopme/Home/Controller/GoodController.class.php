@@ -125,6 +125,7 @@ class GoodController extends ComController {
         $html = $page->show();
         $this->assign('page',$html);
         $this->assign('info',$info);
+        //echo date("Y-m-d H-i-s",mktime(9));
         $this->display();
     }
     public function daolist(){
@@ -143,17 +144,48 @@ class GoodController extends ComController {
         $html.='<label>商品属性 ： </label><input type="radio" name="type" value="2" checked>普通 <input type="radio" name="type" value="3" >高佣金';
         $html.='</div>';
         $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
-        $html.='<label>商品类型 ： </label><input type="radio" name="gtype" value="2" checked>普通 <input type="radio" name="gtype" value="3" >9块9';
+        $html.='<label>商品类型 ： </label><input type="radio" name="gtype" value="3" checked>普通 <input type="radio" name="gtype" value="2" >9块9';
         $html.='</div>';
         $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
         $html.='<label>导入商品 ： </label><input type="file" name="goodsexal" id="goodsexal" style="display:inline-block;">';
         $html.='</div>';
         $html.='<div class="thumbnailbutton">';
-        $html.='<a href="javascript:setexal();" class="btn btn-wide btn-o btn-info">导入</a>&nbsp&nbsp&nbsp'; 
+        $html.='<a href="javascript:setexal();" class="btn btn-wide btn-o btn-info">导入</a>&nbsp;&nbsp;&nbsp;'; 
         $html.='<a href="javascript:closelayer();" class="btn btn-wide btn-o btn-danger">取消</a>'; 
         $html.='</div>';
         $html.='</div></form>';
         echo $html;
+    }
+    public function setDdq(){
+        $id = I('post.id','');
+        $html.='<div style="text-align:center;margin:0 auto;" id="openddq">';
+        $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
+        $html.='<h2 style="margin:25px auto;">请选择咚咚抢开始时间</h2>';
+        $html.='</div>';
+        $html.='<div class="col-md-55" style="margin-top:25px;margin:0 auto;">';
+        $html.='<input type="radio" name="ddq_kai"  value="9" checked=""> 9:00&nbsp;&nbsp;&nbsp;';
+        $html.='<input type="radio" name="ddq_kai"  value="12" > 12:00&nbsp;&nbsp;&nbsp;';
+        $html.='<input type="radio" name="ddq_kai"  value="15" > 15:00&nbsp;&nbsp;&nbsp;';
+        $html.='<input type="radio" name="ddq_kai"  value="18" > 18:00&nbsp;&nbsp;&nbsp;';
+        $html.='<input type="radio" name="ddq_kai"  value="21" > 21:00';
+        $html.='</div>';
+        $html.='<div class="thumbnailbutton" style="margin-top:20px;">';
+        $html.='<a href="javascript:setDdqKai('.$id.');" class="btn btn-wide btn-o btn-info">确定</a>&nbsp;&nbsp;&nbsp;'; 
+        $html.='<a href="javascript:closelayer();" class="btn btn-wide btn-o btn-danger">取消</a>'; 
+        $html.='</div>';
+        $html.='</div>';
+        echo $html;
+    }
+    public function setDdqKai(){
+        $id = I('post.id','');
+        $data['ddq_time']=time();
+        $data['ddq']='2';
+        $data['ddq_kai']=I('post.kai','');
+        if(false !== M('goods')->where("id=".$id)->save($data)){
+            echo 'ok';exit;
+        }else{
+            echo '设置失败';exit;
+        }
     }
     public function upload() {
        if (!empty($_FILES)) {
@@ -245,21 +277,12 @@ class GoodController extends ComController {
     */
     public function good_set_ms(){
         $id = I('post.id','');
-        $info = M('goods')->field("ms_sta")->where("id=".$id)->find();
         $data['ms_time']=time();
         $data['ms_sta']='2';
-        if($info['ms_sta'] == '3'){
-            if(false !== M('goods')->where("id=".$id)->save($data)){
-                echo '设置成功';exit;
-            }else{
-                echo '设置失败';exit;
-            }
+        if(false !== M('goods')->where("id=".$id)->save($data)){
+            echo '设置成功';exit;
         }else{
-            if(false !== M('goods')->where("id=".$id)->save($data)){
-                echo '更新成功';exit;
-            }else{
-                echo '更新失败';exit;
-            }
+            echo '设置失败';exit;
         }
     }
     /*
@@ -267,30 +290,33 @@ class GoodController extends ComController {
     */
     public function good_set_tj(){
         $id = I('post.id','');
-        $info = M('goods')->field("tj_sta")->where("id=".$id)->find();
         $data['tj_time']=time();
         $data['tj_sta']='2';
-        if($info['tj_sta'] == '3'){
-            if(false !== M('goods')->where("id=".$id)->save($data)){
-                echo '设置成功';exit;
-            }else{
-                echo '设置失败';exit;
-            }
+        if(false !== M('goods')->where("id=".$id)->save($data)){
+            echo '设置成功';exit;
         }else{
-            if(false !== M('goods')->where("id=".$id)->save($data)){
-                echo '更新成功';exit;
-            }else{
-                echo '更新失败';exit;
-            }
+            echo '设置失败';exit;
         }
     }
-     public function good_list_delete(){
+    //删除
+    public function good_list_delete(){
         $id=isset($_POST['id'])?$_POST['id']:'';//单删id
         $Model=M();
         if ($Model->execute("delete from tao_goods where id='{$id}'")) {
             echo "ok";exit;
         }else{
             echo "删除失败";exit;
+        }
+    }
+    //设为咚咚抢推荐商品
+    public function setDdTj(){
+        $id = I('post.id','');
+        $data['zd_ddq_time']=time();
+        $data['zd_ddq']='2';
+        if(false !== M('goods')->where("id=".$id)->save($data)){
+            echo '设置成功';exit;
+        }else{
+            echo '设置失败';exit;
         }
     }
 }

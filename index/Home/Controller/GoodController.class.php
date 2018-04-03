@@ -11,7 +11,7 @@ class GoodController extends ComController {
         $id=I('get.id','');
         //商品详情
         $info = M('goods')
-            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_url,yhj_price,state')
+            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_url,yhj_price,state,ddq_kai')
             ->where(['id'=>$id,'sta'=>3])
             ->find();
         if($info['state']== '2'){
@@ -31,20 +31,52 @@ class GoodController extends ComController {
         //特卖最热商品
         $result_hot = M('goods')
             ->field('id,title,glogo,price,sell,yhj_num,yhj_sy_num')
-            ->where(['ddq'=>2,'zd_ddq'=>2,'state'=>2])
+            ->where(['zd_ddq'=>2,'state'=>2])
             ->order('zd_ddq_time desc')
             ->limit(7)
             ->select();
-        //特卖商品
+        //咚咚
+        $where='';
+        $time=date("H",time());
+        $starttime=date("H",mktime(9));
+        if($time < 9 || $time >= 9 && $time < 12){
+            $where = ['ddq'=>2,'state'=>2,'ddq_kai'=>9];
+        }else if($time >= 12 && $time < 15){
+            $where = ['ddq'=>2,'state'=>2,'ddq_kai'=>12];
+        }else if($time >= 15 && $time < 18){
+            $where = ['ddq'=>2,'state'=>2,'ddq_kai'=>15];   
+        }else if($time >= 18 && $time < 21){
+            $where = ['ddq'=>2,'state'=>2,'ddq_kai'=>18];
+        }else if($time >= 21 && $time < 24){
+            $where = ['ddq'=>2,'state'=>2,'ddq_kai'=>21];
+        }else if($time >= 24 && $time < $starttime){
+            $where = ['ddq'=>2,'state'=>2,'ddq_kai'=>9];
+        }
         $result = M('goods')
-            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state')
-            ->where(['ddq'=>2,'state'=>2])
+            ->field('id,title,price,glogo,sell,yhj_num,yhj_sy_num,yhj_price')
+            ->where($where)
             ->limit('18')
             ->order('ddq_time desc,id desc')
             ->select();
         $this->assign('result',$result);
         $this->assign('result_hot',$result_hot);
         $this->display();
+    }
+    //点击切换咚咚抢
+    public function ajaxDdq(){
+        $time = I('post.time','');
+        $result = M('goods')
+            ->field('id,title,price,glogo,sell,yhj_num,yhj_sy_num,yhj_price,ddq_kai')
+            ->where(['ddq'=>2,'state'=>2,'ddq_kai'=>$time])
+            ->limit('18')
+            ->order('ddq_time desc,id desc')
+            ->select();
+        if($result){
+            $result=$result;
+        }else{
+            $result='no';
+        }
+        $this->ajaxReturn($result);
     }
     //9.9
     public function newgood(){
@@ -63,7 +95,7 @@ class GoodController extends ComController {
             ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state')
             ->where($where)
             ->limit($page->firstRow.','.$limit)
-            ->order('sell desc,id desc')
+            ->order('id desc,sell desc')
             ->select();
         $html = $page->show();
         $this->assign('page',$html);

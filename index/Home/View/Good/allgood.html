@@ -467,7 +467,7 @@ body{min-width: 1210px;}
             <?php if($info){?>
               <volist name="info" id="list">
                   <li class="theme-hover-border-color-1 ">
-                    <a href="<{:U('Good/goodlist',['id'=>$list['id']])}>" class="img" rel="nofollow" target="_blank" >
+                    <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>" class="img" rel="nofollow" target="_blank" >
                         <img src="<{$list.glogo}>" alt="" style="width:284;height:284px;">
                     </a>
                     <div class="padding">
@@ -476,7 +476,7 @@ body{min-width: 1210px;}
                             <span class="coupon"><em class="quan-left"></em><b><{$list.yhj_price}></b><em class="quan-right"></em></span>
                         </div>
                         <div class="title">
-                            <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1"><{$list.title}></a>
+                            <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>" data-gid="6553160" data-ci="315901" data-in="1" data-uid="820138" data-cn="1"><{$list.title}></a>
                         </div>
 
                         <div class="xiaoliang">
@@ -506,9 +506,9 @@ body{min-width: 1210px;}
 function setorder(a) {
     var gclass="<?php echo $_GET['gclass']?>";
     if(gclass){
-      window.location.href="<{:U(MODULE_NAME.'/Good/allgood/gclass/"+gclass+"/s/"+a+"')}>";
+      window.location.href="<{:U(MODULE_NAME.'/Good/allgood/gclass/"+gclass+"/s/"+a+"/t/ls')}>";
     }else{
-      window.location.href="<{:U(MODULE_NAME.'/Good/allgood/s/"+a+"')}>";
+      window.location.href="<{:U(MODULE_NAME.'/Good/allgood/s/"+a+"/t/ls')}>";
     }
 }
 </script>

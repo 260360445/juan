@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="/Public/Home/static/css/front/login_box/login_box.css"/>
 <link rel="stylesheet" href="/Public/Home/static/userCenter/css/registerNew.css"/>
 
-<title>方大商城_离梦想最近的地方</title>
+<title>领卷卷_领卷购物 实惠 省钱</title>
 <script type="text/javascript">
 	//uaredirect("/wap.php/Home/Index/index","");
 </script>
@@ -292,7 +292,7 @@ cursor: pointer;
         <div class="header1">
             <div class="header1in">
                 <ul class="headerul1 header_yytc">
-                    <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>方大商城首页</a></li>
+                    <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>领卷福利首页</a></li>
                      <li><a>客服QQ：<?php echo $_SESSION['sc']['infor']['service']?></a></li>
                     <li>
                         <span class="c_contact_icon c_kik">
@@ -310,9 +310,9 @@ cursor: pointer;
                             <div id="wechat-app-popover-content" class="pophover-content popover bottom" style="top: 40px;left: -60px;">
                                 <div class="arrow"></div>
                                 <div class="popover-content">
-                                    <p style="white-space: nowrap">扫码下载客户端</p>
+                                    <p style="white-space: nowrap">QQ</p>
                                     <div style="width: 100px; height: 100px; margin-left: 10px;">
-                                        <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" width="100" height="100" border="0" alt="">
+                                        <img src="/<?php echo $_SESSION['sc']['infor']['qqlogo']?>" width="100" height="100" border="0" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -330,13 +330,6 @@ cursor: pointer;
                     <li><a href="<?php echo U('Good/specialsale');?>">咚咚抢</a></li>
                     <li><a href="<?php echo U('Good/popularity');?>">超级人气榜</a></li>
                     <li><a href="<?php echo U('Good/newgood');?>">9块9包邮</a></li>
-                    <!-- <li class="hide-menu-nav" style="padding: 0 13px 0px 15px;">
-                    <span></span><a href="#" class="hide-menu-nava">发现</a>
-                        <dl>
-                            <dd style="border-top:1px solid #ddd;"><a href="<?php echo U('Index/score');?>" target="_blank">积分兑换</a></dd>
-                            <dd style="border-top:1px solid #ddd;"><a href="<?php echo U('Index/draw');?>" target="_blank">会员抽奖</a></dd>
-                        </dl>
-                    </li> -->
                 </ul>
                     <div class="search_header2">
                         <input type="text" placeholder="搜索商品" id="query" name="query" value="<?php echo $_GET['query']?>" />
@@ -699,12 +692,12 @@ $("#loginSubmitUser").click(function () {
         <div class="dis_product">
             <!-- 商品-->
             <?php if(is_array($good_tm)): $i = 0; $__LIST__ = $good_tm;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><div class="theme-hover-border-color-1 pro_detail addLeft" >
-                <a rel="nofollow"  href="<?php echo U('Good/goodlist',['id'=>$list['id']]);?>" target="_blank">
+                <a rel="nofollow"  href="<?php echo U('Good/goodlist',['id'=>$list['id'],'t'=>ls]);?>" target="_blank">
                     <img src="<?php echo ($list['glogo']); ?>" height="272" style="border: 0;max-width:272px;">
                 </a>
                 <div class="pro_intro fr" >
                     <p class="pro_title">
-                        <a href="<?php echo U('Good/goodlist',['id'=>$list['id']]);?>" rel="nofollow" target="_blank" title="<?php echo ($list['title']); ?>" style="font-size: 16px;" ><?php echo ($list['title']); ?></a>
+                        <a href="<?php echo U('Good/goodlist',['id'=>$list['id'],'t'=>ls]);?>" rel="nofollow" target="_blank" title="<?php echo ($list['title']); ?>" style="font-size: 16px;" ><?php echo ($list['title']); ?></a>
                     </p>
                     <div class="pro_price color_p">
                         <span class="coupon theme-bg-color-9 theme-color-1 theme-border-color-1"><b><i><?php echo ($list['yhj_price']); ?></i></b></span>
@@ -712,13 +705,9 @@ $("#loginSubmitUser").click(function () {
                     </div>
                     <div class="residue">优惠券总数<i class="color_p theme-color-1"><?php echo ($list['yhj_num']); ?></i>张</div>
                     <div class="pro_nowPri theme-bg-color-1">
-                        <div class="buy-price"><?php echo ($list['price']); ?></div>
-                        <div class="old-price">
-                            <!-- <p><i>￥</i>12.9</p> -->
-                            <span>券后价</span>
-                        </div>
+                        <div class="buy-price">¥<?php echo ($list['price']); ?></div>
                         <div class="go-buy">
-                            <a class="theme-color-1" href="<?php echo U('Good/goodlist',['id'=>$list['id']]);?>" target="_blank">去抢购</a>
+                            <a class="theme-color-1" href="<?php echo U('Good/goodlist',['id'=>$list['id'],'t'=>ls]);?>" target="_blank">去抢购</a>
 
                         </div>
                     </div>
@@ -738,10 +727,10 @@ $("#loginSubmitUser").click(function () {
 				<ul class="w_goods_one" id="newGoodsList">
 				<?php if(is_array($good)): $i = 0; $__LIST__ = $good;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><li class="w_goods_details">
 						<div class="w_imgOut">
-							<a target="_blank" href="<?php echo U('Good/goodlist',['id'=>$list['id']]);?>" class="w_goods_img x_action">
+							<a target="_blank" href="<?php echo U('Good/goodlist',['id'=>$list['id'],'t'=>ls]);?>" class="w_goods_img x_action">
 								<img style="height:220px;width:196px;" class="w_goods_three" src="<?php echo ($list["glogo"]); ?>"></a>
 						</div>
-						<a target="_blank" href="<?php echo U('Good/goodlist',['id'=>$list['id']]);?>" class="w_goods_three">
+						<a target="_blank" href="<?php echo U('Good/goodlist',['id'=>$list['id'],'t'=>ls]);?>" class="w_goods_three">
 							<?php echo ($list['title']); ?>
 						</a>
 						<div class="price">
@@ -810,7 +799,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                   <div class="y-popover">
                     <span class="y-arrow"></span>
                     <!-- <b>云购全球官方微信</b> -->
-                    <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" alt="">
+                    <img src="/<?php echo $_SESSION['sc']['infor']['weixinlogo']?>" alt="">
                   </div>
                 </dd>
               </a>
@@ -819,7 +808,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                   <div class="y-popover">
                     <span class="y-arrow"></span>
                     <!-- <b>扫二维码下载</b> -->
-                    <img src="/Public/Home/static/img/front/cloud_global/fullPage/android_app.jpg" alt="">
+                    <img src="/<?php echo $_SESSION['sc']['infor']['qqlogo']?>" alt="">
                   </div>
                 </dd>
               </a>
@@ -827,110 +816,31 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
           </div>
           <div class="footer-time-list" id="pageEnd">
             <div class="yFootBottomRight">
-              山西云购电子商务有限公司版权所有 © 2016 ICP证晋ICP备15005633号-1
+              <?php echo $_SESSION['sc']['infor']['copyright']?>
             </div>
             <div class="yFootBottomLeft">
-              <a href="http://si.trustutn.org/info?sn=836160421021216393517&certType=1" target="_blank" class="s_footer_icon"><img src="http://v.trustutn.org/images/cert/bottom_large_img.png"/></a>
-              <a href="http://webscan.360.cn/index/checkwebsite/url/www.ygqq.com" class="yFootBottomLeft2" target="_blank"></a>
-              <a href="http://www.itrust.org.cn/yz/pjwx.asp?wm=1325737350" target="_blank" class="yFootBottomLeft3"></a>
-              <a href="http://218.26.1.108/businessPublicity.jspx?id=4FA23AC6152B1BAC3D5A1FF847D3D615" target="_blank" class="yFootBottomLeft4"></a>
-              <a target="_blank" class="x_newadd_aBox" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=14019902000004">
+              <a href="javascript:void(0);" target="_blank" class="s_footer_icon"><img src="http://v.trustutn.org/images/cert/bottom_large_img.png"/></a>
+              <a href="javascript:void(0);javascript:void(0);" class="yFootBottomLeft2" target="_blank"></a>
+              <a href="javascript:void(0);" target="_blank" class="yFootBottomLeft3"></a>
+              <a href="javascript:void(0);" target="_blank" class="yFootBottomLeft4"></a>
+              <a target="_blank" class="x_newadd_aBox" href="javascript:void(0);">
               </a>
             </div>
           </div>
         </div>
-        <div class="yFootBottom">
+        <!-- <div class="yFootBottom">
           <div class="yFootBottomIn" style="clear: both;">
             <p>友情链接：
-              <a target="_blank" href="">大德通集团</a>
+              <a target="_blank" href=""></a>
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 <!-- 引入底部 -->
 <script type="text/javascript" src="/Public/Home/static/js/front/slider.js"></script>
-<script type="text/javascript" src="/Public/Home/static/min.js/js/common.min.js"></script>
-<script type="text/javascript" src="/Public/Home/static/js/ajaxfunctionMain.js"></script>
 <script type="text/javascript" src="/Public/Home/static/min.js/js/include/footer_header_new.min.js"></script>
-<script type="text/javascript" src="/Public/Home/static/min.js/js/index/index.min.js"></script>
-<script type="text/javascript" src="/Public/Home/static/min.js/js/index/indexExt.min.js"></script>
-<script type="text/javascript" src="/Public/Home/static/plugin/jquery/jquery.lazyload.min.js"></script>
-<script src="/Public/Admin/javascripts/layer/layer.js"></script>
-<script src="/Public/Admin/javascripts/JValidator.js"></script>
 <script>
-/*描述：根据条件获取商品列表
-	 * 参数：param{
-	 * 			size:行数，page：页数，cid：栏目ＩＤ，bid：品牌ID，q：关键字，
-	 * 			order：排序方式（即将揭晓：publicTime，剩余人次：takedout 人气：periods 最新商品：addTime 价格：totalPrice_up\totalPrice_down）
-	 * 			type：价格专区(几元区就传几比如10元就传10)
-	 * 			baoyuan：包圆(bao_yuan)
-	 * 			maxBuy：限购(maxbuy)			
-	 * }
-	 * 数量 callbackFun回调函数
-	 * 返回值 商品列表
-	 * 
-	 */
-$('.pullDownList>li').hover(function(){
-	$(this).children('.por').css('display','block')
-},function(){
-    $(this).children('.por').css('display','none')
-});
-    
-function bindRecommendGoods1(a, c) {
-    var b = "";
-    if (a && 0 < a.length){
-    	$.each(a, function(key, e){ 
-			b +='<li class="w_goods_details x_goods_details">';
-				b +='<div class="w_imgOut">';
-					b +='<a target="_blank" href="<?php echo U(MODULE_NAME."/Good/goodlist/id/'+e.id+'");?>" class="w_goods_img x_action">';
-						b +='<img id="img_'+e.id+'" src="/Uploads'+e.goods_logo+'"></a>';
-				b +='</div>';
-				b +='<a target="_blank" href="<?php echo U(MODULE_NAME."/Good/goodlist/id/'+e.id+'");?>" class="w_goods_three">'+e.goods_title+'</a>';
-				b +='<b>可用金：<span style="font-size:16;color:#dd2726;">'+e.price+'</span></b>';
-                b +='<b>消费币：<span style="font-size:16;color:#dd2726;">'+e.price+'</span></b>';
-				b +='<ul class="w_number">';
-					b +='<li class="w_amount">'+e.sell+'</li>';
-					b +='<li class="w_amount">'+e.kucun+'</li>';
-					b +='<li class="w_amount">'+e.comment+'</li>';
-					b +='<li>成交</li>';
-					b +='<li>库存</li>';
-					b +='<li>评价</li>';
-				b +='</ul> ';
-				b +='<dl class="w_rob">';
-					b +='<dd>';
-						b +='<a href="javascript:gotoCartOrder('+e.id+',1);"class="w_slip">立即购买</a>';
-						b +='<a class="w_slip2" href="javascript:cartoon('+e.id+',1)"></a>';
-						b +='<input type="hidden" id="priceArea_'+e.id+'" value="'+e.id+'">';
-					b +='</dd>';
-				b +='</dl>';
-			b +='</li>';
-		}); 
-    }else{
-        b = '\x3cli class\x3d"w_goods_details x_goods_details" style\x3d"background:url(\'/Public/Home/static/img/front/goods/expect.jpg\') no-repeat center 0;"\x3e\x3c/li\x3e';
-    }
-    $(".yCon" + c.index + " .w_goods_one").html($($(".yCon" + c.index + " .w_goods_one").find("li")[0]).prop("outerHTML"));
-    $(".yCon" + c.index + " .w_goods_one").append(b)
-
-}
-
-
-function ajaxGoodsListTopGoods(param,callbackFun){
-	var url = "<?php echo U('Good/getGoods');?>";
-	$.ajax({
-		type: "post",
-		url: url,
-		dataType:'json',
-		async: false,
-		data:param,
-		success:function(data){
-			callbackFun(data,param);
-		},  
-		error:function(){  
-			//handlingException(r);
-		} 
-	});
-}
 $(function() {
 	$('#banner').flexslider({
 		animation : "slide",
@@ -939,66 +849,7 @@ $(function() {
 		slideshowSpeed: 3500  
 	});
 });
-function gotoCartOrder(k) {
-    var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态	
-        	window.location.href="<?php echo U(MODULE_NAME.'/Good/goodlist/id/"+k+"');?>"; 
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
-function addCart(a) {
-    var url = "<?php echo U('Cart/docart');?>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: {id: a},
-        success:function(data){
-            if(data == 'ok'){
-                cartCount();
-            }else{
-                layer.msg(data,{offset: '300px',time: 1500,icon: 2});    
-            }
-        }
-    });
-}
-function cartCount() {
-	var url = "<?php echo U('Cart/cartCount');?>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: '',
-        success:function(data){
-            if(data > 0){
-                $("#cartCount").html(data);
-                $("#cartCount").addClass("num-rt");
-                $("#row").html(data);
-            }else{
-                $("#cartCount").html("");
-            }
-        }
-    });
-}
-function CartOrder(){
-    var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-            window.location.href="<?php echo U('Cart/cart');?>"; 
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
+
 </script>
 </body>
 </html>
