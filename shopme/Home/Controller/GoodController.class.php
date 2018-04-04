@@ -213,7 +213,7 @@ class GoodController extends ComController {
             $sheet =$objPHPExcel->getSheet(0);
             $highestRow = $sheet->getHighestRow();//取得总行数
             $highestColumn =$sheet->getHighestColumn(); //取得总列数
-            for ($i = 1; $i <= $highestRow; $i++) {
+            for ($i = 2; $i <= $highestRow; $i++) {
                 $data['lid'] =$objPHPExcel->getActiveSheet()->getCell("A" . $i)->getValue();
                 $data['title'] =$objPHPExcel->getActiveSheet()->getCell("B" .$i)->getValue();
                 $data['glogo'] =$objPHPExcel->getActiveSheet()->getCell("C" .$i)->getValue();
@@ -261,7 +261,12 @@ class GoodController extends ComController {
                 $data['gtype'] = $_POST['gtype'];
                 $data['goods_cate_id'] = $_POST['goods_cate_id'];
                 $data['time'] = time();
-                $addid=M('goods')->add($data);
+                $goods=M('goods')->field('lid')->where(['lid'=>$data['lid']])->find();
+                if($goods){
+                    $addid=M('goods')->where(['lid'=>$data['lid']])->save($data);
+                }else{
+                    $addid=M('goods')->add($data);
+                }
             }
             if($addid){
                 echo 'ok';exit;

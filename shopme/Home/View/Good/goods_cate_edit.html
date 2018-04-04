@@ -74,22 +74,12 @@
                                                 </if>
                                             </div>
                                         </div>
-                                        <if condition="stripos($_SESSION['ad']['auth'],'all') nheq false">
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <input type="hidden" name="setid"  value="<?php echo $_GET['id']?>" >
                                                     <button type="button" onclick="onClick()" class="btn btn-primary">提交</button>
                                                 </div>
                                             </div>
-                                        <elseif condition="stripos($_SESSION['ad']['auth'],'Good_good_cate_edit') nheq false" />
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <input type="hidden" name="setid"  value="<?php echo $_GET['id']?>" >
-                                                    <button type="button" onclick="onClick()" class="btn btn-primary">提交</button>
-                                                </div>
-                                            </div>
-                                        </if>
-                                        
                                     </form>
                                 </div>
                             </div>

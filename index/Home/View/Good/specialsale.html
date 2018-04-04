@@ -10,11 +10,8 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/comm.min.css"></link>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/footer_header.min.css"></link>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/index.min.css"></link>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/new_join.min.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/login_box/login_box.min.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/css/front/goods.css"></link>
-<link rel="stylesheet" href="__PUBLIC__/Home/static/userCenter/css/login.css"/>
-<link rel="stylesheet" href="__PUBLIC__/Home/static/css/front/login_box/login_box.css"/>
 <link rel="stylesheet" href="__PUBLIC__/Home/static/min.css/css/page.css"/>
 <title>咚咚抢会场</title>
 <body >
@@ -95,9 +92,9 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
     margin-left: 0!important;
 }
 .daily-sale-switcher .tabs .tab{
-    width: 120px;
+    width: 128px;
     box-sizing:border-box;
-        float: left;
+    float: left;
     height: 70px;
     padding: 0 20px;
     color: #ccc;
@@ -269,6 +266,8 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                         <div class="tab active" data-time="9" data-index="0" data-countdown-time="" data-type="9" data-status="done">
                     <?php }elseif($time9 >= $endtime9){?>
                         <div class="tab" data-time="9" data-index="0" data-countdown-time="" data-type="9" data-status="done">
+                    <?php }else if($time9 < 9){?>
+                        <div class="tab active" data-time="9" data-index="0" data-countdown-time="" data-type="9" data-status="done">
                     <?php }?>
                         <div class="time">9:00</div>
                         <?php if($time9 < $starttime9){?>
@@ -278,7 +277,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                         <?php }else if($time9 >= $endtime9){?>
                             <div class="text">已开抢</div>
                         <?php }?>
-                    </div>   
+                        </div>   
                     <?php
                         $time12=date('H',time());
                         $starttime12=date('H',mktime(12));
@@ -423,8 +422,17 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                           <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><{$list.title}></a>
                       </div>
                       <div class="goods_gobuy_seller ">
+                        <?php 
+                            $time=date("H",time());
+                            $starttime=date("H",mktime($list['ddq_kai']));
+                            if($time >= $starttime){
+                        ?>
                           <span class="goods_seller fl"><i></i><b><?php $sell=$list['yhj_num']-$list['yhj_sy_num'];echo $sell;?></b>人已抢</span>
                           <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><span class="goods_buy_btn ">马上抢</span></a>
+                        <?php }else{?>
+                            <span class="goods_seller fl"><i></i><b><{$list['ddq_kai']}>:00 准时开抢</b></span>
+                            <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><span class="goods_buy_btn " style="background:#D89750;">即将开始</span></a>
+                        <?php }?>
                       </div>
                     </div>
 	                <i class="a_js_icon"></i>
@@ -446,8 +454,8 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
             </div>
             <div class="xiaoliang" style="width:210px;">
               <h4>销量<span><{$list.sell}></span></h4>
-              <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-              <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+              <!-- <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+              <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt=""> -->
             </div>
         </li>
     </volist>    

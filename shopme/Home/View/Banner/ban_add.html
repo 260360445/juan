@@ -37,15 +37,7 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">URL：</label>
                                         <div class="col-sm-2">
-                                            <select id="url1" name="url1" id="select2-example-basic" class="form-control select2-hidden-accessible" style="width: 100%" tabindex="-1" aria-hidden="true">
-                                              <option value="2">商品</option>
-                                              <option value="3">文章</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <select id="url2" name="url2" id="select2-example-basic" class="form-control select2-hidden-accessible" style="width: 100%" tabindex="-1" aria-hidden="true">
-                                                <option value="0">请选择</option>
-                                            </select>
+                                            <input type="text" class="form-control" name="url" placeholder="url">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -80,20 +72,11 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <if condition="stripos($_SESSION['ad']['auth'],'all') nheq false">
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button type="button" onclick="onClick()" class="btn btn-primary">提交</button>
                                             </div>
                                         </div>
-                                    <elseif condition="stripos($_SESSION['ad']['auth'],'Banner_ban_add') nheq false" />
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <button type="button" onclick="onClick()" class="btn btn-primary">提交</button>
-                                            </div>
-                                        </div>
-                                    </if>
-                                    
                                 </form>
                             </div>
                         </div>

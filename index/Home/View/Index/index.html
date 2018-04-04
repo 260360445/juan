@@ -10,15 +10,10 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/comm.min.css"></link>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/footer_header.min.css"></link>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/index.min.css"></link>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/new_join.min.css"></link>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/login_box/login_box.min.css"></link>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/goods.min.css"></link>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/static/min.css/css/front/new_index.min.css"></link>
 <script type="text/javascript" src="__PUBLIC__/Home/static/js/uaredirect.js"></script>
-<link rel="stylesheet" href="__PUBLIC__/Home/static/userCenter/css/forgetPwd.css"/>
-<link rel="stylesheet" href="__PUBLIC__/Home/static/userCenter/css/login.css"/>
-<link rel="stylesheet" href="__PUBLIC__/Home/static/css/front/login_box/login_box.css"/>
-<link rel="stylesheet" href="__PUBLIC__/Home/static/userCenter/css/registerNew.css"/>
 
 <title>领卷卷_领卷购物 实惠 省钱</title>
 <script type="text/javascript">
@@ -297,7 +292,7 @@ cursor: pointer;
 				<h4 class="pullDownTitle" style="color: #fff;font-size: 16px;display: block;">所有商品分类</h4>
 				<ul class="pullDownList" style="display: block;">
 				<volist name="goods" id="list">
-					<li class=""><i></i><a href="<{:U('Good/allgood',['id'=>$list['goods_class_id']])}>"><{$list.name}></a><span></span></li>
+					<li class=""><i></i><a href="<{:U('Good/allgood',['gclass'=>$list['goods_class_id']])}>"><{$list.name}></a><span></span></li>
 				</volist>
 				</ul>
 			</div>
@@ -530,7 +525,7 @@ cursor: pointer;
 			<!--E sd2015 -->
 			<h2 class="x_left_line">
 				<i>1F</i><a href="javascript:void(0)" class="yCon-title" id="module_1_name">领券秒杀精选</a>
-				<a href="javascript:void(0)"  style="top: 0px;color: #f61d5a;padding-left: 10px;font-size: 12px;">实时更新\独享优惠券<em></em></a>
+				<a href="javascript:void(0)"  style="top: 0px;color: #f61d5a;padding-left: 10px;font-size: 12px;">实时更新\独享优惠券\每天10点，准时更新<em></em></a>
 			</h2>
 		</div>
 		<div class="discount">
@@ -589,8 +584,8 @@ cursor: pointer;
 						</div>
 						<div class="xiaoliang">
 							<h4>销量<span><{$list['sell']}></span></h4>
-							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+							<!-- <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt=""> -->
 						</div>
 					</li>
 				</volist>

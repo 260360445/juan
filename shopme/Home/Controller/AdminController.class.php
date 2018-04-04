@@ -29,7 +29,7 @@ class AdminController extends ComController
         $id=isset($_POST['id'])?$_POST['id']:'';//单删id
         if ($id!="") {
             $Model=M();
-            if ($Model->execute("delete from sc_admin where id='{$id}'")) {
+            if ($Model->execute("delete from tao_admin where id='{$id}'")) {
                 echo "ok";exit;
             }else{
                 echo "删除失败";exit;

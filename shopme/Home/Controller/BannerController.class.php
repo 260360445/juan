@@ -48,7 +48,7 @@ class BannerController extends ComController {
             }else{
                 echo '请上传图片';exit;
             }
-            //$data['url']=1;
+            $data['url']=$_POST['url'];
             $data['type']=$_POST['type'];
             $data['state']=$_POST['state'];
             $data['time']=time();
@@ -93,7 +93,7 @@ class BannerController extends ComController {
                 } 
             }
             $data['state']=$_POST['state'];
-            //$data['url']=2;
+            $data['url']=$_POST['url'];
             $data['type']=$_POST['type'];
             $data['time']=time();
             $id = I('post.setid','');

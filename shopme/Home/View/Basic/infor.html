@@ -94,19 +94,11 @@
                                             <textarea style="resize:none;" class="form-control" name="description" placeholder="网站描述" datacol='yes' checkexpession='NotNull' err='网站描述'><{$infor['description']}></textarea>
                                             </div>
                                         </div>
-                                        <if condition="stripos($_SESSION['ad']['auth'],'all') nheq false">
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-5">
                                                     <button type="button" onclick="onClick()" class="btn btn-primary">提交</button>
                                                 </div>
                                             </div>
-                                        <elseif condition="stripos($_SESSION['ad']['auth'],'Basic_infor') nheq false" />
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-5">
-                                                    <button type="button" onclick="onClick()" class="btn btn-primary">提交</button>
-                                                </div>
-                                            </div>
-                                        </if>
                                     </form>
                                 </div>
                             </div>

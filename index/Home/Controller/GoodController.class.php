@@ -53,7 +53,7 @@ class GoodController extends ComController {
             $where = ['ddq'=>2,'state'=>2,'ddq_kai'=>9];
         }
         $result = M('goods')
-            ->field('id,title,price,glogo,sell,yhj_num,yhj_sy_num,yhj_price')
+            ->field('id,title,price,glogo,sell,yhj_num,yhj_sy_num,yhj_price,ddq_kai')
             ->where($where)
             ->limit('18')
             ->order('ddq_time desc,id desc')

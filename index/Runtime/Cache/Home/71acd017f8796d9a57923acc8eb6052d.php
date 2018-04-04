@@ -10,15 +10,10 @@
 <link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/comm.min.css"></link>
 <link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/footer_header.min.css"></link>
 <link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/index.min.css"></link>
-<link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/new_join.min.css"></link>
 <link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/login_box/login_box.min.css"></link>
 <link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/goods.min.css"></link>
 <link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/new_index.min.css"></link>
 <script type="text/javascript" src="/Public/Home/static/js/uaredirect.js"></script>
-<link rel="stylesheet" href="/Public/Home/static/userCenter/css/forgetPwd.css"/>
-<link rel="stylesheet" href="/Public/Home/static/userCenter/css/login.css"/>
-<link rel="stylesheet" href="/Public/Home/static/css/front/login_box/login_box.css"/>
-<link rel="stylesheet" href="/Public/Home/static/userCenter/css/registerNew.css"/>
 
 <title>领卷卷_领卷购物 实惠 省钱</title>
 <script type="text/javascript">
@@ -292,7 +287,7 @@ cursor: pointer;
         <div class="header1">
             <div class="header1in">
                 <ul class="headerul1 header_yytc">
-                    <li><a style="padding-left:33px;" href="/"><i class="header-home"></i>领卷福利首页</a></li>
+                    <li><a style="padding-left:33px;" href="/"><i class="header-home"></i><?php echo $_SESSION['sc']['infor']['name']?>首页</a></li>
                      <li><a>客服QQ：<?php echo $_SESSION['sc']['infor']['service']?></a></li>
                     <li>
                         <span class="c_contact_icon c_kik">
@@ -356,7 +351,7 @@ $("#seach").click(function(){
 			<div class="pullDown" style="">
 				<h4 class="pullDownTitle" style="color: #fff;font-size: 16px;display: block;">所有商品分类</h4>
 				<ul class="pullDownList" style="display: block;">
-				<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><li class=""><i></i><a href="<?php echo U('Good/allgood',['id'=>$list['goods_class_id']]);?>"><?php echo ($list["name"]); ?></a><span></span></li><?php endforeach; endif; else: echo "" ;endif; ?>
+				<?php if(is_array($goods)): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><li class=""><i></i><a href="<?php echo U('Good/allgood',['gclass'=>$list['goods_class_id']]);?>"><?php echo ($list["name"]); ?></a><span></span></li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>
 			</div>
 		</div>
@@ -405,60 +400,6 @@ $("#seach").click(function(){
         </ul>
     </div>
     <!--E 2015 11 21 -->
-<div class="a_login_fixed_box a_login_register_box loginContent" style="z-index:1012">
-    <h4 class="a_world_title">账号登录</h4>
-        <form class="a_login_register_form a_login_form">
-            <div class="user" id="user">
-           <span></span>
-           <input type="text" id="user_name" class="border" placeholder="手机号" datacol='yes' checkexpession='NotNull' err='手机号' maxlength="11"/>
-        </div>
-        <div class="pas" id="pas">
-           <span></span>
-           <input type="password" id="pass_word"  maxlength="20" placeholder="密码" datacol='yes' checkexpession='NotNull' err='密码'/>
-        </div>
-        <a href="javascript:void(0);" class="a_login_btn_go" id="loginSubmitUser">立即登录</a>
-        <a href="<?php echo U('Login/reset');?>" class="cz_ps">忘记密码？</a>
-        <a href="<?php echo U('Register/register');?>" class="cz_ps" style="margin-left: 162px;">立即注册</a>
-       <div style="margin-top: 7px" class="ygqq_login_other"> 
-        <!--  <span><b class="ygqq_b"></b><h3>第三方登录</h3><b class="ygqq_b"></b></span>
-         <ul class="yygqq_login_other_ul">
-           <li class="ygqq_qq ygqq_qq_all"><a href="/api/uc/qqLogin.do?platform=qq"></a></li>
-           <li class="ygqq_wx ygqq_wx_all"><a href="/api/uc/qqLogin.do?platform=wx_scan"></a></li>
-           <li class="ygqq_wb"><a href="/api/uc/qqLogin.do?platform=wb"></a></li>
-         </ul> -->
-      </div>
-     </form>
-    <span class="a_world_close a_login_world_close"></span>
-</div>
-<script type="text/javascript" src="/Public/Home/static/js/jquery-1.11.3.js"></script>
-<script>
-$("#loginSubmitUser").click(function () {
-    var url = "<?php echo U('Login/dologin');?>";
-    if(CheckDataValid(".a_login_form")){
-      $.ajax({
-          type : 'post',
-          url : url,
-          dataType:'json',
-          async: false,
-          data : {username:$("#user_name").val(),password:$("#pass_word").val()},
-          error : function () {
-              layer.msg('网络故障，请稍后重试!',{offset: '300px',time: 1500,icon: 7});
-          },
-          success : function (responses) {
-            if (responses == '0'){
-                layer.msg('登录成功',{offset: '300px',time: 1500,icon: 1},function () {
-                    window.location.reload();
-                });
-            }else if (responses == '1'){//  账号错误
-                layer.msg('账号错误',{offset: '300px',time: 1500,icon: 2});
-            }else if (responses == '2'){//  密码错误
-                layer.msg('密码错误',{offset: '300px',time: 1500,icon: 2});
-            }
-          }
-      });
-    }
-})
-</script>
 <!--S 遮罩背景 -->
 	<!-- 引入左侧 -->
 
@@ -683,7 +624,7 @@ $("#loginSubmitUser").click(function () {
 			<!--E sd2015 -->
 			<h2 class="x_left_line">
 				<i>1F</i><a href="javascript:void(0)" class="yCon-title" id="module_1_name">领券秒杀精选</a>
-				<a href="javascript:void(0)"  style="top: 0px;color: #f61d5a;padding-left: 10px;font-size: 12px;">实时更新\独享优惠券<em></em></a>
+				<a href="javascript:void(0)"  style="top: 0px;color: #f61d5a;padding-left: 10px;font-size: 12px;">实时更新\独享优惠券\每天10点，准时更新<em></em></a>
 			</h2>
 		</div>
 		<div class="discount">
@@ -739,8 +680,8 @@ $("#loginSubmitUser").click(function () {
 						</div>
 						<div class="xiaoliang">
 							<h4>销量<span><?php echo ($list['sell']); ?></span></h4>
-							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
-							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+							<!-- <img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt="">
+							<img src="/Public/Home/static/img/front/11111111111111111111111111111111111111.png" alt=""> -->
 						</div>
 					</li><?php endforeach; endif; else: echo "" ;endif; ?>
 				</ul>

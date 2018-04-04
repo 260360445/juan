@@ -70,7 +70,7 @@ body{
       border-left:1px solid #ddd;
     }
     .w_goods_details{
-      height:327px;
+      height:315px;
     }
     .w_product_con{
       position: relative;
@@ -140,10 +140,6 @@ body{
 /*S 2015-12-1 新增  */
 body{min-width: 1210px;}
 /*E 2015-12-1 新增  */
-.yFootBottomRight{
-width:540px;}
-.yFootBottomLeft{
-width:670px;}
 .yFootBottomLeft  .x_newadd_aBox{
    width:88px;
    background:url(/Public/Home/static/images/wjhb.jpg) no-repeat center center;
@@ -158,9 +154,206 @@ width:670px;}
 .r-fixed{
     visibility: visible !important;
 }
+.w_top_navs{
+  height: 251px;
+    width: 100%;
+    background: url(/Public/Home/static/img/soso.jpg) no-repeat top center;
+}
+.w_guide{
+  height: 10px;
+}
 </style>
+
+<style type="text/css">
+    .jipin-wrap{
+        width: 1186px;
+        height: 24px;
+        line-height: 24px;
+        margin: 35px auto 20px;
+        font-size: 20px;
+        font-family: "Microsoft YaHei";
+        color: #2D2D2D;
+        display: block;
+    }
+    .jipin-wrap .jinpin-tit{
+        float: left;
+        background: url(/Public/Home/static/img/jptj.png) left center no-repeat;
+        padding-left: 30px;
+        letter-spacing: 2px;
+        color: #454545;
+    }
+    .jipin-wrap .jinpin-txt{
+        float: left;
+        margin-left: 8px;
+        font-size: 14px;
+        padding-top: 4px;
+        color: #999;
+    }
+    /*.main-container{
+        width: 1200px;
+        margin: 0 auto;
+    }*/
+    .goods-list ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font: 12px Simsun;
+    }
+    .goods-list ul li{
+        float: left;
+        list-style: none;
+        margin: 0 18px 20px 0;
+        padding: 0;
+        border: 1px solid #eee;
+        height: 410px;
+        width: 282px;
+        background: #fff;
+        display: block;
+        overflow: hidden;
+    }
+    .goods-list ul li a.img{
+        position: relative;
+        display: block;
+        width: 284px;
+        height: 284px;
+        margin: 0;
+        padding: 0;
+    }
+    .goods-list ul li .padding{
+        padding: 32px 12px;
+    }
+    .goods-list ul li .padding .coupon-wrap{
+        position: relative;
+        height: 26px;
+        display: block;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    .goods-list ul li .padding .coupon-wrap .price{
+        height: 27px;
+        line-height: 18px;
+        color: #dd2726;
+        float: left;
+        overflow: hidden;
+    }
+    .goods-list ul li .padding .coupon-wrap .price b{
+        font-size: 30px;
+        padding-right: 2px;
+        line-height: 28px;
+    }
+    .goods-list ul li .padding i{
+        font-family: "Microsoft Yahei";
+        font-size: 14px;
+    }
+    .goods-list ul li .padding .coupon-wrap .old-price{
+        float: left;
+        width: 50px;
+        margin-left: 10px;
+        text-decoration: line-through;
+        height: 26px;
+        font: 14px "Microsoft Yahei";
+        color: #aaa;
+        line-height: 40px;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon{
+        position: absolute;
+        right: 0;
+        font: 12px Simsun;
+        text-align: center;
+        background: #fff7fa;
+        color: #dd2726;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 8px;
+        margin: 0;
+        border: 1px dotted #dd2726;
+        border-left: none;
+        border-right: none;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon em.quan-left{
+        left: 0;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon em{
+        position: absolute;
+        top: 0;
+        width: 6px;
+        height: 24px;
+        background: url(/Public/Home/static/img/cms_pc_img.png) -120px -79px no-repeat #fff;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon b{
+        font-size: 14px;
+        font-family: "Microsoft Yahei";
+        float: right;
+        position: relative;
+    }
+    .goods-list ul li .padding .coupon-wrap .coupon em.quan-right{
+        right: 0;
+        background-position-x: -136px;
+    }
+    .clearfix:after{
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+    .goods-list ul li .padding .title{
+        height: 14px;
+        overflow: hidden;
+        display: block;
+        line-height: 14px;
+        letter-spacing: .5px;
+        margin-bottom: 13px;
+    }
+    .goods-list ul li .padding .title a{
+        color: #444;
+    }
+    .xiaoliang{
+        overflow: hidden;
+        margin-top: 10px;
+    }
+    .xiaoliang h4{
+        float: left;
+        font-size: 12px;
+        color: #787878;
+    }
+    .xiaoliang h4 span{
+        color: #fc903d;
+        margin-left: 5px;
+        line-height: 22px;
+    }
+    .xiaoliang img{
+        float: right;
+        width: 16px;
+        height: 16px;
+        margin: 3px 0 0 5px;
+    }
+    .goods-list ul li:hover{
+        border: 1px solid #dd2726;
+    }
+    .w_goods_class{
+      border-top: 1px solid #eee;
+    }
+    .w_goods_nav{
+          border:0;
+    }
+    .w_specific_class  ul li, .w_specific_class1  ul li{
+      margin-left: 20px;
+      text-align: center;
+    }
+    .w_specific_class  ul li a:hover{
+      background: #dd2726;
+      color:#fff;
+    }
+    .w_goods_class .w_specific_class{
+      width: 1100px;
+    }
+    .w_goods_class{
+      padding: 15px 0 15px 22px;
+    }
+    </style>
 <!--E 2015-10-30 添加-->
-<title>全部商品</title>
+<title>9块9包邮</title>
 </head>
 <body>
 <!-- 顶部 -->
@@ -174,190 +367,93 @@ width:670px;}
     <include file="public:left" />
 <!-- 引入左侧 -->
     <div class="a_world_bg" style="z-index:1011"></div>
+    <div class="w_top_navs"></div>
    <div class="w_con">
-      <!-- <h4 class="w_guide"><a href="/">首页</a><a class="w_accord" href="javascript:void(0)">全部商品</a></h4> -->
       <h4 class="w_guide">
-        <a href="/">首页</a>
-        <a href="">全部商品</a>
-        <a class="w_accord" href="javascript:void(0);"></a>
       </h4>
       <div class="w_goods_nav">
-        <h2>全部商品<span></h2>
          <div class="w_choose">
-           
             <div class="w_all_class" style="">
                <div class="w_choose_more">
                    <dl class="w_goods_class" >
-                      <dd>分类</dd>
+                      <dd>商品分类</dd>
                       <dd class="w_specific_class">
                           <ul>
-                            <volist name="good_menu" id="list" key="key">
-                            <?php if($list['goods_class_id'] == $_GET['pid']){?>
-                               <li><a class="w_effect" href="javascript:pone(<{$list['goods_class_id']}>);" data-pid="<{$list['goods_class_id']}>"><{$list['name']}></a></li> 
-                            <?php }else{?>
-                              <li><a href="javascript:pone(<{$list['goods_class_id']}>);" data-pid="<{$list['goods_class_id']}>"><{$list['name']}></a></li>
-                            <?php }?>
+                          <li style="margin-left: 45px;">
+                          <?php if(!empty($_GET['gclass'])){?>
+                            <a href="<{:U('Seach/seach',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>">全部优惠</a>
+                          <?php }else{?>
+                            <a class="w_effect" href="<{:U('Seach/seach',['gclass'=>$list['goods_class_id']])}>" data-id="<{$list.goods_class_id}>">全部优惠</a>
+                          <?php }?>
+                          </li>
+                          <?php if(empty($gclass)){?>
+                            <li> 暂无分类</li>
+                          <?php }else {?>
+                            <volist name="gclass" id="list">
+                              <?php if($list['goods_class_id'] == $_GET['gclass']){?>
+                                <li ><a class="w_effect" href="javascript:pone(<{$list['goods_class_id']}>);" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
+                              <?php }else{?>
+                                <li ><a  href="javascript:pone(<{$list['goods_class_id']}>);" data-id="<{$list.goods_class_id}>"><{$list.name}></a></li>
+                              <?php }?>
                             </volist>
+                          <?php }?>
                           </ul>
                        </dd>
-                   </dl>
-                   <dl class="w_goods_brand c_newgoods_brand">
-                      <dd class="c_newgoods_brand_name">品牌</dd>
-                      <dd class="w_specific_class1">
-                        <ul id="sonclass">
-                            <volist name="goods_cate_list" id="vo">
-                              <?php if($vo['goods_class_id'] == $_GET['sonid']){?>
-                                <li><a class="w_effect" href="javascript:sone(<{$pid}>,<{$vo['goods_class_id']}>);" data-id="<{$vo['goods_class_id']}>"><{$vo['name']}></a></li>
-                              <?php }else{?>
-                                <li><a href="javascript:sone(<{$pid}>,<{$vo['goods_class_id']}>);" data-id="<{$vo['goods_class_id']}>"><{$vo['name']}></a></li>
-                              <?php }?>
-                            </volist> 
-                        </ul>
-                      </dd>
-                       <div class="w_clear"></div>
                    </dl>
                </div>
              </div>
          </div>
-
       </div>
      <!--商品列表-->
-      <div class="w_goods_con">
-         <ul class="w_goods_one">
-          <volist name="result" id="list">
-           <li class="w_goods_details ">
-               <div class="w_imgOut" data-gid="<{$list['id']}>" data-pid="161106040101875">
-                   <a data-gid="<{$list['id']}>" data-pid="161106040101875" target="_blank" class="w_goods_img" href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
-                       <img id="img_<{$list['id']}>" data-gid="<{$list['id']}>" data-pid="161106040101875" class="lazy0" data-original="__ROOT__/Uploads<{$list['goods_logo']}>" src="__ROOT__/Uploads<{$list['goods_logo']}>" style="display: inline;">
-                   </a>
-               </div>
-               <a class="w_goods_three" target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id']])}>" data-gid="3541" data-pid="161106040101875" title="<{$list['goods_title']}>"><{$list['goods_title']}></a>
-               <b>可用金：<span style="font-size:16px;color:#dd2726;">￥<{$list.price}></span></b>
-               <b>消费币：<span style="font-size:16px;color:#dd2726;">￥<{$list.xfb}></span></b>
-               <div class="c_rob_box">
-                   <dl class="w_rob">
-                       <dd>
-                           <a class="w_slip" href="javascript:void(0);" onclick="gotoCartOrderList('<{$list['id']}>')">立即购买</a>
-                       </dd>
-                       <dd class="w_rob_out">
-                           <a class="w_rob_in" href="javascript:void(0);" onclick="cartoon('<{$list['id']}>')">加入购物车</a>
-                       </dd>
-                   </dl>
-               </div>
-           </li>
-          </volist>   
-         </ul>
+      <div class="w_goods_con" style="margin-top:20px;">
+        <div class="goods-list main-container">
+            <ul class="clearfix">
+            <?php if($result){?>
+            <volist name="result" id="list">
+                <li class="theme-hover-border-color-1 ">
+                    <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>" class="img" rel="nofollow" target="_blank" >
+                        <img src="<{$list.glogo}>" alt="" style="width:284px;height:284px;">
+                    </a>
+                    <div class="padding">
+                        <div class="coupon-wrap clearfix">
+                            <span class="price theme-color-8"><b><i>￥</i><{$list.price}></b></span>
+                            <span class="coupon"><em class="quan-left"></em><b><{$list.yhj_price}></b><em class="quan-right"></em></span>
+                        </div>
+                        <div class="title">
+                            <a target="_blank" href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>"><{$list.title}></a>
+                        </div>
+
+                        <div class="xiaoliang">
+                            <h4>销量<span><{$list.sell}></span></h4>
+                        </div>
+                    </div>
+                </li>
+            </volist>
+            <?php }else{?>
+              <div class="w_con" id="goods_details" style="display: block;">
+                  <img style="display:block;margin:75px auto;" src="__PUBLIC__/Home/static/img/zanwupingjia.png">
+              </div>
+            <?php }?>
+        </ul>
+    </div>
      </div>
      <div id="pages"><{$page}></div>
      </div>
 <script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/js/common.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/ajaxfunctionMain.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/goods/goods.min.js"></script>
-<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
-<script src="__PUBLIC__/Admin/javascripts/JValidator.js"></script>
 <!-- 引入底部 -->
 <include file="public:foot" />
 <!-- 引入底部 -->
-<script>
+<script type="text/javascript">
 function pone(id){
   var query=$("#query").val();
-  var pid=id;
   if(query){
-    window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+query+"/pid/"+pid+"')}>";
+    window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+query+"/gclass/"+id+"')}>";
   }else{
-    window.location.href="<{:U(MODULE_NAME.'/Seach/seach/pid/"+pid+"')}>";
+    window.location.href="<{:U(MODULE_NAME.'/Seach/seach/gclass/"+id+"')}>";
   }
-}
-function sone(pid,sid){
-  var query=$("#query").val();
-  var pid=pid;
-  var sid=sid;
-  if(query){
-    window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+query+"/pid/"+pid+"/sonid/"+sid+"')}>";
-  }else{
-    window.location.href="<{:U(MODULE_NAME.'/Seach/seach/pid/"+pid+"/sonid/"+sid+"')}>";
-  }
-}
-function pclass(id){
-  var url = "<{:U('Seach/sonclass')}>";
-    $.ajax({
-        url: url,
-        type: 'post',
-        dataType: 'json',
-        data: {pid:id},
-        success:function(data){
-            var html='';
-            $.each(data,function(k,v){
-                html+='<li><a href="<{:U(MODULE_NAME."/Seach/seach/pid/'+v.pid+'/sonid/'+v.goods_class_id+'")}>">'+v.name+'</a></li>';
-            })
-            $('#sonclass').html(html);
-        }
-    });
-}
-function cartCount() {
-
-
-    var url = "<{:U('Cart/cartCount')}>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: '',
-        success:function(data){
-            if(data > 0){
-                $("#cartCount").html(data);
-                $("#cartCount").addClass("num-rt");
-                $("#row").html(data);
-            }else{
-                $("#cartCount").html("");
-            }
-        }
-    });
-}
-function gotoCartOrderList(k){
-  var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-          window.location.href="<{:U(MODULE_NAME.'/Good/goodlist/id/"+k+"')}>";
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
-}
-function addCart(a) {
-    var url = "<{:U('Cart/docart')}>";
-    $.ajax({
-        url: url,
-        type: 'POST',
-        dataType: 'json',
-        data: {id: a},
-        success:function(data){
-            if(data == 'ok'){
-                cartCount();
-            }else{
-                layer.msg('添加失败！',{offset: '300px',time: 1500,icon: 2});    
-            }
-        }
-    });
-}
-function CartOrder(){
-    var a = $("#mid").val();
-    var b = $("#sta").val();
-    if(null != a && "" != a){
-        if(b == '2'){//账号处于激活状态
-            window.location.href="<{:U('Cart/cart')}>"; 
-        }else if(b == '3'){//账号处于冻结状态
-            layer.msg('账号处于冻结状态,请联系管理员解封',{offset: '300px',time: 2000,icon: 7});
-        }
-    }else{
-        go2Login();
-    }
 }
 </script>
 </body>
 </html>
+

@@ -67,13 +67,11 @@
                                                 </if>
                                             </td>
                                             <td > 
-                                            <if condition="stripos($_SESSION['ad']['auth'],'all') nheq false">
-                                                <a href="<{:U('Admin/auth',['id'=>$list['id']])}>" style="color:orange;">修改权限</a>
-                                                <span >|</span>
+                                              <!--   <a href="<{:U('Admin/auth',['id'=>$list['id']])}>" style="color:orange;">修改权限</a>
+                                                <span >|</span> -->
                                                 <a href="<{:U('Admin/admin_edit',['id'=>$list['id']])}>" >修改</a>
                                                 <span >|</span>
                                                 <a href="javascript:void(0);"  style="color:#F00;"  onclick="subformone(<{$list.id}>)">删除</a>
-                                            </if>
                                             </td>
                                         </tr>
                                     </if>

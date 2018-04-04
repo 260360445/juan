@@ -150,14 +150,14 @@ class GoodController extends ComController {
                 $pid = $value['goods_class_id'];    
             }
         }
-        $goods_cate_list = $goods_class->field("goods_class_id,name,mic")->where(['pid'=>$pid,'state'=>2])->order('sort asc,goods_class_id asc')->select();
+        $goods_cate_list = $goods_class->field("goods_class_id,name")->where(['pid'=>$pid,'state'=>2])->order('sort asc,goods_class_id asc')->select();
         $this->assign('good_menu',$good_menu);
         $this->assign('goods_cate_list',$goods_cate_list);
         $this->display();
     }
     public function ajaxclass(){
         $cid=I('post.cid','');
-        $goods_cate_list = M("goods_class")->field("goods_class_id,name,mic")->where(['pid'=>$cid,'state'=>2])->order('sort asc,goods_class_id asc')->select();
+        $goods_cate_list = M("goods_class")->field("goods_class_id,name")->where(['pid'=>$cid,'state'=>2])->order('sort asc,goods_class_id asc')->select();
         $this->ajaxReturn($goods_cate_list);exit;
     }
 }
