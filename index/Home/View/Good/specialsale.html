@@ -338,7 +338,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                     <?php
                         $time21=date("H",time());
                         $starttime21=date("H",mktime(21));
-                        $endtime21=date("H",mktime(24));
+                        $endtime21=date("H",mktime(23));
                     ?> 
                     <?php if($time21 >= $starttime21 && $time21 < 24){?>
                         <div class="tab active" data-time="21" data-index="4" data-countdown-time="1522069200000" data-type="21" data-status="notStart">
@@ -348,10 +348,10 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                         <div class="time">21:00</div>
                         <?php if($time21 < $starttime21){?>
                             <div class="text">即将开始</div>
-                        <?php }else if($time21 > $starttime21 && $starttime21 < $endtime21 && $time21 < $endtime21){?>
+                        <?php }else if($time21 >= $starttime21 && $starttime21 < $endtime21 && $time21 < $endtime21){?>
                             <div class="text">疯抢中</div>
                         <?php }else if($time21 >= $endtime21){?>
-                            <div class="text">即将开始</div>
+                            <div class="text">即将开始1</div>
                         <?php }?>
                     </div> 
                 </div>
@@ -462,6 +462,12 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
     </ul>
     <div class="w_clear"></div>
 </div>
+<style type="text/css">
+    #noneha:hover{
+        border:none;
+        box-shadow:none;
+    }
+</style>
 </div>
 <!-- 引入底部 -->
 <include file="public:foot" />
@@ -514,7 +520,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                         html+='</li>';
                     })
                 }else{
-                    html = '无数据';
+                    html = '<li class="w_latest goods3203_53996 " id="noneha" style="margin:0 40%;text-align:center;border:none;">无数据</li>';
                 }
                 $('#getAjaxArr').html(html);
             }

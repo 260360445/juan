@@ -660,7 +660,7 @@ $("#seach").click(function(){
 
 <div class="yCon yCon8 yConCenter y_new_index_Center x_new_index_Center">
 	<h2>
-		<i>2F</i><a href="" class="yCon-title" target="_blank">领券优惠直播</a> <a href="" class="yMoreLink" target="_blank" style="top: 0px;">更多<em></em></a>
+		<i>2F</i><a href="" class="yCon-title" target="_blank">领券优惠直播</a> <a href="<?php echo U('Good/allgood');?>" class="yMoreLink" target="_blank" style="top: 0px;">更多<em></em></a>
 	</h2>
 	<div class="yConCenterIn">
 		<div class="yConCenterInList" style="display: block;">

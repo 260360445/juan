@@ -173,7 +173,7 @@
                 shift: 4,
                 title: '限时抢购',
                 shadeClose: false, //开启遮罩关闭
-                area: ['30%', '28%'],
+                area: ['377px', '240px'],
                 content: data
               });       
             }
@@ -198,7 +198,11 @@
         });
     }
     function setexal(){
-       var index = layer.load(0, {shade: [0.5,'#fff']});
+        var index = layer.load(0, {shade: [0.5,'#fff']});
+        setTimeout(function () { daoruexal(); }, 2005);
+        return false;
+    }
+    function daoruexal(){
         var cate=$("#goods_cate_id option:selected").val();
         if(cate == 0){
             layer.msg('请选择分类',{offset: '300px',time: 1500,icon: 7});
@@ -247,7 +251,7 @@
                 shift: 4,
                 title: '导入商品',
                 shadeClose: false, //开启遮罩关闭
-                area: ['30%', '25%'],
+                area: ['377px', '240px'],
                 content: data
               });       
             }
