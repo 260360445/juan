@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/temai/sale.css">
+<title>超级人气会场</title>
+<style>
+.more{
+    width: 100%;
+    color: #ddd;
+    margin: 10px 0;
+    border-radius: 2px;
+    font-size: 20px;
+    text-align: center; 
+    display: none;
+}
+</style>
+</head>
+<body>
+	<include file="public:ghead" />
+	<div class="sale_con">
+		<div class="ad">
+			<img src="__PUBLIC__/Wap/images/temai/ad1.png" alt="">
+		</div>
+		<ul id="pro">
+		<volist name="info" id="list" key="key">
+			<input type='hidden' class='limit' value='<?php echo $k?>'/>
+		<?php if($key%2 === 0){?>
+			<li>
+				<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>">
+					<img class="shangpin" src="<{$list['glogo']}>" alt="">
+					<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">
+					<h3>可用金：<i>￥<{$list.price}></i></h3>
+					<h3>消费币：<i>￥<{$list.xfb}></i></h3>
+					<p><{$list['gtitle']}></p>
+					<button type="button">立即购买</button>
+				</a>
+				<span></span>
+			</li>
+		<?php }else{?>
+			<li class="right">
+				<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>">
+					<img class="shangpin" src="<{$list['glogo']}>" alt="">
+					<img class="renqi" src="__PUBLIC__/Wap/images/temai/huore.png" alt="">
+					<h3>可用金：<i>￥<{$list.price}></i></h3>
+					<h3>消费币：<i>￥<{$list.xfb}></i></h3>
+					<p><{$list['title']}></p>
+					<button type="button">立即购买</button>
+				</a>
+				<span></span>
+			</li>
+		<?php }?>
+		</volist>	
+		</ul>
+		<!-- 滚动加载 -->
+        <?php if(!empty($info)){?>
+	        <div class="more" style="width:100%;height:30px;">
+	           <img alt="loading" src="__PUBLIC__/Wap/images/loading2.gif" style="height:30px">
+	        </div>
+        <?php }?>
+        <!-- 滚动加载 -->
+	</div>
+	<include file="public:foot" />
+</body>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script>
+var page = 0;
+var is_loading = false;
+$(function(){
+//滚动加载
+    var stop = true;
+    var start = $('#pro li:last .limit').val();
+    if(start > 6){
+    	$(".more").show();
+    }
+    $(window).scroll(function () {
+        if ((screen.height + $(window).scrollTop()) >= $(document).height()) {
+            if (stop == true) {
+                stop = false;
+                $(".more").show();
+                if(!is_loading){
+                    more();
+                }
+            };  
+        }
+    });
+    function more(){
+        is_loading = true;
+        var url = "";
+        var ApiUrl =  "<{:U('Good/goodpage')}>";
+        page++;
+        $.ajax({
+            url:ApiUrl,
+            type: 'POST',
+            dataType: 'JSON',
+            data:{page:page,type:2},
+            success:function(data){
+                if (data == '') {
+                    $('.more').text('没有更多商品了');
+                }else{
+                    is_loading = false;
+                    var li = ""
+                    for (var i = 0; i < data.length; i++) {
+                        if(i%2 === 1){
+                        	li +='<li>';
+							li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
+							li +='<img class="shangpin" src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
+							li +='<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">';
+								li +='<h3>可用金：<i>￥'+data[i]['price']+'</i></h3>';
+								li +='<h3>消费币：<i>￥'+data[i]['xfb']+'</i></h3>';
+								li +='<p>'+data[i]['goods_title']+'</p>';
+								li +='<button type="button">立即购买</button>';
+							li +='</a>';
+							li +='<span></span>';
+	                        li +='</li>';
+                        }else{
+                        	li +='<li class="right">';
+							li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
+							li +='<img class="shangpin" src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
+							li +='<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">';
+								li +='<h3>可用金：<i>￥'+data[i]['price']+'</i></h3>';
+								li +='<h3>消费币：<i>￥'+data[i]['xfb']+'</i></h3>';
+								li +='<p>'+data[i]['goods_title']+'</p>';
+								li +='<button type="button">立即购买</button>';
+							li +='</a>';
+							li +='<span></span>';
+	                        li +='</li>';
+                        }
+                    };
+                    $('#pro').append(li);
+                }
+                stop = true;
+            }
+        })
+    }
+//滚动加载结束
+})
+</script>
+</html>

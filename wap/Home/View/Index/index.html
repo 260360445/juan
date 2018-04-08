@@ -10,10 +10,64 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/index/index.css">
 <title>方大商城_离梦想最近的地方</title>
 </head>
+<style type="text/css">
+    .icon-link-wrapper{
+        margin: 15px 0 10px;
+        overflow: hidden;
+    }
+    .icon-link-wrapper .icon-url-list{
+        padding: 0;
+    margin: 0;
+    list-style: none;
+    }
+    .icon-link-wrapper .icon-url-list li{
+            float: left;
+    width: 25%;
+    }
+    .mywap .icon-url-list li{
+            margin-bottom: 10px;
+    }
+    .icon-link-wrapper .icon-url-list li a{
+        display: block;
+    height: 75px;
+    text-align: center;
+    }
+    
+    .icon-link-wrapper .icon-url-list li a i{
+            width: 51px;
+        height: 51px;
+        margin: 0 auto 10px;
+        display: block;
+    }
+    .icon-link-wrapper .icon-url-list li.icon-xblj i{
+        background: url(/Public/Wap/images/ddq.gif) center no-repeat;
+    background-size: 100%;
+    }
+    .icon-link-wrapper .icon-url-list li a span{
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        color: #333;
+    }
+    .icon-link-wrapper .icon-url-list li a i{
+            width: 51px;
+    height: 51px;
+    margin: 0 auto 10px;
+    display: block;
+    background: url(/Public/Wap/images/cms-img.png) 0 -49px no-repeat;
+    background-size: 287px 800px;
+    }
+    .icon-link-wrapper .icon-url-list li.icon-rqb i{
+        background-position-x: -55px;
+    }
+    .icon-link-wrapper .icon-url-list li.icon-jpsf i{
+       background-position: -110px -49px;
+    }
+</style>
 <body>
 	<div class="header">
 		<div class="main">
-			<a class="car" href="<{:U('Cart/cart')}>"><img src="__PUBLIC__/Wap/images/index/car.png"></a>
+			<a class="car" href="<{:U('Index/index')}>"><img src="__PUBLIC__/Wap/images/index/car.png"></a>
             <form onsubmit="return false;">
                 <input class="seach" id="keyword" placeholder="输入关键字搜索"  type="text" value="<?php echo $_GET['query']?>"/>
                 <a style="position: absolute;right: 18%;top: 0;width: 1rem;height: 100%;" href="javascript:seach();"></a>
@@ -30,22 +84,43 @@
         <div class="main_image">
             <ul>
             <volist name="ban" id="list">
-                <li><a href="#"><img src="__ROOT__/<{$list.logo}>"/></a></li>
+                <li><a href="<{$list.url}>"><img src="__ROOT__/<{$list.logo}>"/></a></li>
             </volist>
             </ul>
             <a href="javascript:;" id="btn_prev"></a>
             <a href="javascript:;" id="btn_next"></a>
         </div>
     </div>
-   <!--  <div class="news">
-       <p>最新<i>动态</i></p>
-       <ul>
-           <li><a href="#">1摆脱拖延症，这些手账就不能错过摆</a></li>
-           <li><a href="#">2摆脱拖延症，这些手账就不能错过摆</a></li>
-           <li><a href="#">3摆脱拖延症，这些手账就不能错过摆</a></li>
-       </ul>
-       <span><a href="#">更多</a></span>
-   </div> -->
+   <div class="mywap">
+        <div class=" icon-link-wrapper" style="height: auto">
+            <ul class="icon-url-list clearfix">
+                <li class="icon-xblj">
+                    <a href="/index.php?r=ddq/wap">
+                        <i></i>
+                        <span>咚咚抢</span>
+                    </a>
+                </li>
+                <li class="icon-99by">
+                    <a href="/index.php?r=index/9">
+                        <i></i>
+                        <span>9.9包邮</span>
+                    </a>
+                </li>
+                <li class="icon-rqb">
+                    <a href="/index.php?r=p/wap">
+                        <i></i>
+                        <span>超级人气榜</span>
+                    </a>
+                </li>
+                <li class="icon-jpsf">
+                    <a href="/index.php?r=index/r">
+                        <i></i>
+                        <span>小编力荐</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="special_sale">
     	<div class="title">
     		<h3>猜你喜欢</h3>
@@ -53,12 +128,11 @@
     	<ul>
         <volist name="goods" id="list">
     		<li>
-    			<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
-    				<img src="__ROOT__/Uploads<{$list.goods_logo}>" alt="">
-    				<h4><{$list.goods_title}></h4>
-    				<p><s>￥<{$list.money}></s></p>
-                    <p><i>消费币</i><{$list.price}></p>
-                    <p><i>可用金</i><{$list.xfb}></p>
+    			<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>">
+    				<img src="<{$list.glogo}>" alt="">
+    				<h4><{$list.title}></h4>
+                    <p><i style="border:1px dashed #ff0060;"><{$list.yhj_price}></i></p>
+                    <p><i style="font-size: 16px;">￥<{$list.price}></i></p>
                     <p><span>销量<{$list.sell}></span></p>
     			</a>
     		</li>
@@ -84,7 +158,6 @@ $("#keyword").on('keypress',function(e) {
         var keycode = e.keyCode;  
         var search = $('#keyword').val();  
         if(keycode=='13') {  
-            //alert(searchName);
             if(search){
                 window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+search+"')}>";
             }else{
