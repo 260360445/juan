@@ -406,6 +406,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 <div class="w_announced">
     <div class="w_announced_one">
         <ul id="getAjaxArr">
+        <?php if($result){?>
             <volist name="result" id="list">
 	            <li class="w_latest goods3203_53996">
 	                <div class="w_latestImg" style="margin:0 25px;">
@@ -438,6 +439,9 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 	                <i class="a_js_icon"></i>
 	            </li>
         	</volist>  
+        <?php }else{?>
+            <li class="w_latest goods3203_53996 " id="noneha" style="margin:0 40%;text-align:center;border:none;">无数据</li>
+        <?php }?>
         </ul>
     </div>
     <ul class="w_announced_two">
