@@ -148,7 +148,7 @@ class GoodController extends ComController {
         }
         //商品详情
         $result = M('goods')
-            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state')
+            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')
             ->where($where)
             ->limit(6)
             ->order('sell desc,time desc')

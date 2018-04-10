@@ -7,8 +7,8 @@
 <meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
 <link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
 <link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
-<link rel="stylesheet" href="__PUBLIC__/Wap/css/temai/sale.css">
-<title>超级人气会场</title>
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/xinpin/new_product.css">
+<title>特卖会场</title>
 <style>
 .more{
     width: 100%;
@@ -19,52 +19,47 @@
     text-align: center; 
     display: none;
 }
+ul li{
+    height: 8.8rem;
+}
+ul li h3{
+    -webkit-line-clamp: 1;
+}
+
 </style>
 </head>
 <body>
 	<include file="public:ghead" />
-	<div class="sale_con">
-		<div class="ad">
-			<img src="__PUBLIC__/Wap/images/temai/ad1.png" alt="">
-		</div>
-		<ul id="pro">
-		<volist name="info" id="list" key="key">
-			<input type='hidden' class='limit' value='<?php echo $k?>'/>
-		<?php if($key%2 === 0){?>
-			<li>
-				<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>">
-					<img class="shangpin" src="<{$list['glogo']}>" alt="">
-					<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">
-					<h3>可用金：<i>￥<{$list.price}></i></h3>
-					<h3>消费币：<i>￥<{$list.xfb}></i></h3>
-					<p><{$list['gtitle']}></p>
-					<button type="button">立即购买</button>
-				</a>
-				<span></span>
-			</li>
-		<?php }else{?>
-			<li class="right">
-				<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>">
-					<img class="shangpin" src="<{$list['glogo']}>" alt="">
-					<img class="renqi" src="__PUBLIC__/Wap/images/temai/huore.png" alt="">
-					<h3>可用金：<i>￥<{$list.price}></i></h3>
-					<h3>消费币：<i>￥<{$list.xfb}></i></h3>
-					<p><{$list['title']}></p>
-					<button type="button">立即购买</button>
-				</a>
-				<span></span>
-			</li>
-		<?php }?>
-		</volist>	
-		</ul>
-		<!-- 滚动加载 -->
-        <?php if(!empty($info)){?>
-	        <div class="more" style="width:100%;height:30px;">
-	           <img alt="loading" src="__PUBLIC__/Wap/images/loading2.gif" style="height:30px">
-	        </div>
-        <?php }?>
-        <!-- 滚动加载 -->
-	</div>
+	<ul id="pro">
+	<volist name="info" id="list">
+		<li>
+        <input type='hidden' class='limit' value='<?php echo $k?>'/>
+			<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
+				<img src="<{$list['glogo']}>" alt="">
+				<div>
+					<h3><{$list['title']}></h3>
+					<h4><span><i style="font-size: 12px;color: #ff0060;border: 1px dashed #ff0060;"><{$list.yhj_price}></i></span></h4>
+					<h5><span>￥<i><{$list.price}></i></span></h5>
+					<p>销量<i><{$list.sell}></i></p>
+				</div>
+				<?php
+					$day_start = strtotime(date("Ymd"));
+        			$day_end=$day_start+86400;
+        			if($list['time'] >= $day_start and $list['time'] < $day_end){
+				?>
+				<em>新品</em>
+				<?php }?>
+			</a>
+		</li>
+	</volist>	
+	</ul>
+	<!-- 滚动加载 -->
+    <?php if(!empty($info)){?>
+        <div class="more" style="width:100%;height:30px;">
+           <img alt="loading" src="__PUBLIC__/Wap/images/loading2.gif" style="height:30px">
+        </div>
+    <?php }?>
+    <!-- 滚动加载 -->
 	<include file="public:foot" />
 </body>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
@@ -77,7 +72,7 @@ $(function(){
     var stop = true;
     var start = $('#pro li:last .limit').val();
     if(start > 6){
-    	$(".more").show();
+        $(".more").show();
     }
     $(window).scroll(function () {
         if ((screen.height + $(window).scrollTop()) >= $(document).height()) {
@@ -92,14 +87,13 @@ $(function(){
     });
     function more(){
         is_loading = true;
-        var url = "";
         var ApiUrl =  "<{:U('Good/goodpage')}>";
         page++;
         $.ajax({
             url:ApiUrl,
             type: 'POST',
             dataType: 'JSON',
-            data:{page:page,type:2},
+            data:{page:page,type:3},
             success:function(data){
                 if (data == '') {
                     $('.more').text('没有更多商品了');
@@ -107,31 +101,18 @@ $(function(){
                     is_loading = false;
                     var li = ""
                     for (var i = 0; i < data.length; i++) {
-                        if(i%2 === 1){
-                        	li +='<li>';
-							li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
-							li +='<img class="shangpin" src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
-							li +='<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">';
-								li +='<h3>可用金：<i>￥'+data[i]['price']+'</i></h3>';
-								li +='<h3>消费币：<i>￥'+data[i]['xfb']+'</i></h3>';
-								li +='<p>'+data[i]['goods_title']+'</p>';
-								li +='<button type="button">立即购买</button>';
-							li +='</a>';
-							li +='<span></span>';
-	                        li +='</li>';
-                        }else{
-                        	li +='<li class="right">';
-							li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
-							li +='<img class="shangpin" src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
-							li +='<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">';
-								li +='<h3>可用金：<i>￥'+data[i]['price']+'</i></h3>';
-								li +='<h3>消费币：<i>￥'+data[i]['xfb']+'</i></h3>';
-								li +='<p>'+data[i]['goods_title']+'</p>';
-								li +='<button type="button">立即购买</button>';
-							li +='</a>';
-							li +='<span></span>';
-	                        li +='</li>';
-                        }
+                    	li +='<li>';
+						li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
+							li +='<img src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
+							li +='<div>';
+								li +='<h3>'+data[i]['goods_title']+'</h3>';
+								li +='<h4>可用金：<span>￥<i>'+data[i]['price']+'</i></span></h4>';
+								li +='<h5>消费币：<span>￥<i>'+data[i]['xfb']+'</i></span></h5>';
+								li +='<p>销量<i><{$list.sell}></i></p>';
+							li +='</div>';
+							li +='<em>新品</em>';
+						li +='</a>';
+                        li +='</li>';
                     };
                     $('#pro').append(li);
                 }
