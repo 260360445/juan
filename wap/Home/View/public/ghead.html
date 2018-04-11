@@ -3,9 +3,13 @@
 	<div class="main">
 		<a class="car" href="javascript:window.history.back();"><img src="__PUBLIC__/Wap/images/user/come_back.png"></a>
 		<?php if(CONTROLLER_NAME == "Good" && ACTION_NAME=="specialsale"){?>
-			<p>特卖会场</p>
+			<p>咚咚会场</p>
 		<?php }else if(CONTROLLER_NAME == "Good" && ACTION_NAME=="newgood"){?>
+			<p>小编力荐</p>
+		<?php }else if(CONTROLLER_NAME == "Good" && ACTION_NAME=="popularity"){?>
 			<p>超级人气</p>
+		<?php }else if(CONTROLLER_NAME == "Good" && ACTION_NAME=="jiuby"){?>
+			<p>9.9包邮</p>
 		<?php }?>
 		<a class="classify" href="<{:U('Good/gclass')}>"><img src="__PUBLIC__/Wap/images/temai/classify.png"></a>
 	</div>

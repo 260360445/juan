@@ -28,7 +28,6 @@ body{
 }
 .header .main a.car img{
 	display: block;
-	width: .733rem;
 	height: .733rem;
 	margin: .15rem auto;
 }
@@ -48,7 +47,6 @@ body{
 	margin-left: -1.2rem;
 }
 .sale_con{
-	background-color: #270c5d;
 	padding: .5rem 0;
 }
 .sale_con .ad img{
@@ -72,7 +70,6 @@ body{
 }
 .sale_con ul li .renqi,
 .sale_con ul li .huore{
-	float: right;
 	display: block;
 	width: 4.066rem;
 	height: 0.866rem;
@@ -88,19 +85,7 @@ body{
 .sale_con ul li h3 i{
 	font-size: .6rem;
 }
-.sale_con ul li p{
-	float: right;
-	font-size: .5rem;
-	color: #fff;
-	line-height: .866rem;
-	width: 50%;
-	overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    text-align: right;
-}
+
 .sale_con ul li button{
 	float: right;
 	padding: 0 .25rem;
@@ -113,7 +98,7 @@ body{
 	border-radius: 3px;
 	margin-top: .2rem;
 }
-.sale_con ul li span{
+.sale_con ul li .font{
 	width: 100%;
 	height: 1px;
 	background-color: #fff;

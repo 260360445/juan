@@ -34,7 +34,7 @@ ul li h3{
 	<volist name="info" id="list">
 		<li>
         <input type='hidden' class='limit' value='<?php echo $k?>'/>
-			<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
+			<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ls])}>">
 				<img src="<{$list['glogo']}>" alt="">
 				<div>
 					<h3><{$list['title']}></h3>
@@ -87,6 +87,8 @@ $(function(){
     });
     function more(){
         is_loading = true;
+        var day_start= "<?php echo strtotime(date('Ymd'))?>";
+        var day_end= day_start+86400;
         var ApiUrl =  "<{:U('Good/goodpage')}>";
         page++;
         $.ajax({
@@ -102,15 +104,17 @@ $(function(){
                     var li = ""
                     for (var i = 0; i < data.length; i++) {
                     	li +='<li>';
-						li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
-							li +='<img src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
+						li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'/t/ls")}>">';
+							li +='<img src="'+data[i]['glogo']+'" alt="">';
 							li +='<div>';
-								li +='<h3>'+data[i]['goods_title']+'</h3>';
-								li +='<h4>可用金：<span>￥<i>'+data[i]['price']+'</i></span></h4>';
-								li +='<h5>消费币：<span>￥<i>'+data[i]['xfb']+'</i></span></h5>';
+								li +='<h3>'+data[i]['title']+'</h3>';
+								li +='<h4><span><i style="font-size: 12px;color: #ff0060;border: 1px dashed #ff0060;">'+data[i]['yhj_price']+'</i></span></h4>';
+								li +='<h5><span>￥<i>'+data[i]['price']+'</i></span></h5>';
 								li +='<p>销量<i><{$list.sell}></i></p>';
 							li +='</div>';
-							li +='<em>新品</em>';
+							if(data[i]['time'] >= day_start &&  data[i]['time'] < day_end){
+								li +='<em>新品</em>';
+							}
 						li +='</a>';
                         li +='</li>';
                     };

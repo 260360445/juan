@@ -19,42 +19,250 @@
     text-align: center; 
     display: none;
 }
+.wap-banner{
+	width: 100%;
+    height: 130px;
+}
+.wap-navTime{
+	width: 100%;
+    height: 60px;
+    background-color: #333;
+    color: #fff;
+}
+.wap-navTime{
+	z-index: 109;
+}
+.swiper-container{
+	    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.swiper-container{
+	margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    z-index: 1;
+}
+.swiper-wrapper{
+	    z-index: 1;
+	    display: flex;
+	    box-sizing: content-box;
+}
+.swiper-slide, .swiper-wrapper{
+	    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.swiper-slide{
+	    font-size: .7em;
+	        padding-top: 11px;
+    text-align: center;
+    color: #fff!important;
+    font-family: Arial;
+    vertical-align: middle;
+    height: 100%;
+    position: relative;
+}
+.swiper-slide p{
+	font-size: 12px;
+    color: #999;
+    font-family: "Microsoft yahei";
+    margin-top: -1px;
+}
+.active{
+	background-color: #dd2727;
+}
+.active p{
+	color: #fff;
+}
+.active:after{
+	content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: block;
+    height: 0;
+    width: 0;
+    margin: auto;
+    border-top: 7px solid #dd2727;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+}
+.gl-img{
+	width: 35%;
+    height: 120px;
+    float: left;
+}
+.gl-img img{
+	width: 100%;
+    height: auto;
+}
+.gl-content{
+	    font-size: 17px;
+	    height: 120px;
+    width: 60%;
+    text-align: left;
+    font-family: "Microsoft yahei";
+    float: left;
+    margin-left: 3%;
+}
+.glc-title{
+	font-size: 1em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #333;
+}
+.glc-zdt{
+    height: 20px;
+    clear: both;
+    margin-top: 0.3rem;
+}
+.goods_coupon{
+	    position: relative;
+    padding: 0 5px;
+    height: 18px;
+    background: #FF9960;
+    border-radius: 2px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #fff;
+}
+.goods_coupon, .ykq{
+	float: left;
+    text-align: center;
+}
+.c_l{
+	left: -3px;
+}
+.c_r{
+	    right: -3px;
+}
+.clb{
+	position: absolute;
+    width: 6px;
+    background-color: #fff;
+    border-radius: 100%;
+    margin-top: -3px;
+    top: 50%;
+    height: 6px;
+}
+.qunjine{
+	    display: inline-block;
+    margin-left: -2px;
+    font-family: Arial;
+}
+.zsz{
+	border: 1px solid #FF9960;
+    color: #FF9960;
+    padding: 0 3px;
+    font-size: .7em;
+        float: left;
+    margin-left: 3%;
+}
+.hasq{
+	    float: right;
+    color: #aaa;
+    font-size: .7em;
+}
+.hasq span{
+	    color: #FF9960;
+    font-family: Arial;
+}
+.gl-bot{
+	    margin: 5px 0;
+}
+.cf{
+	    clear: both;
+}
+.glc-price{
+	font-size: 1.1em;
+    color: #df2434;
+    float: left;
+    font-family: Arial;
+    font-weight: 700;
+}
+.priceNum{
+	    font-size: 1.1em!important;
+    color: #df2434!important;
+    font-family: Arial!important;
+    font-weight: 700!important;
+}
+.glc-btn{
+	    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    font-size: .8em;
+        float: right;
+    background-color: #df2434;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+}
 </style>
 </head>
 <body>
 	<include file="public:ghead" />
+	<div class="wap-banner">
+	    <img height="100%" width="100%" src="__PUBLIC__/Wap/images/temai/TB2AA0_hURIWKJjSZFgXXboxXXa_!!2053469401.jpg" alt="">
+	</div>
+	<div class="wap-navTime">
+<!--    <span class="perple"><i></i></span>-->
+	    <div class="swiper-container swiper-container-horizontal">
+	        <div class="swiper-wrapper">
+
+	            <a href="javascript:;" class="swiper-slide active" data-type="1013" data-check="0" data-types="1" >
+	                9:00<p>已开抢</p>
+	            </a>
+	            <a href="javascript:;" class="swiper-slide" data-type="1015" data-check="0" data-types="1" >
+	                12:00<p>已开抢</p>
+	            </a>
+	            <a href="javascript:;" class="swiper-slide" data-type="1017" data-check="0" data-types="1" >
+	                15:00<p>已开抢</p>
+	            </a>
+	            <a href="javascript:;" class="swiper-slide" data-type="1019" data-check="0" data-types="1" >
+	                18:00<p>已开抢</p>
+	            </a>
+	            <a href="javascript:;" class="swiper-slide" data-type="1020" data-check="0" data-types="1" >
+	                21:00<p>已开抢</p>
+	            </a>
+	        </div>
+	    </div>
+	</div>
 	<div class="sale_con">
-		<div class="ad">
-			<img src="__PUBLIC__/Wap/images/temai/ad1.png" alt="">
-		</div>
+		
 		<ul id="pro">
 		<volist name="result" id="list" key="key">
 			<input type='hidden' class='limit' value='<?php echo $k?>'/>
-		<?php if($key%2 === 0){?>
 			<li>
-				<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
-					<img class="shangpin" src="__ROOT__/Uploads<{$list['goods_logo']}>" alt="">
-					<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">
-					<h3>可用金：<i>￥<{$list.price}></i></h3>
-					<h3>消费币：<i>￥<{$list.xfb}></i></h3>
-					<p><{$list['goods_title']}></p>
-					<button type="button">立即购买</button>
+				<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>">
+					<div class="gl-img">
+						<img src="<{$list['glogo']}>" alt="">
+					</div>
+
+					<div class="gl-content">
+			            <p class="glc-title"><{$list.title}></p>
+			            <img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">
+			            <div class="glc-zdt">
+			                <div class="goods_coupon">
+				                <span class="c_l clb"></span>
+				                <span class="c_r clb"></span>
+				                <span class="qunjine"><{$list.yhj_price}></span>
+			                </div>
+                            <span class="zsz">折上折</span>
+                            <p class="hasq">已抢<span><{$list.sell}></span>件</p>
+			            </div>
+			            <div class="cf gl-bot">
+			                <p class="glc-price">￥ <span class="priceNum"><{$list.price}></span></p>
+			                <div class="glc-btn">马上抢</div>
+			            </div>
+			        </div>
 				</a>
-				<span></span>
+				<font class="font"></font>
 			</li>
-		<?php }else{?>
-			<li class="right">
-				<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
-					<img class="shangpin" src="__ROOT__/Uploads<{$list['goods_logo']}>" alt="">
-					<img class="renqi" src="__PUBLIC__/Wap/images/temai/huore.png" alt="">
-					<h3>可用金：<i>￥<{$list.price}></i></h3>
-					<h3>消费币：<i>￥<{$list.xfb}></i></h3>
-					<p><{$list['goods_title']}></p>
-					<button type="button">立即购买</button>
-				</a>
-				<span></span>
-			</li>
-		<?php }?>
+		
 		</volist>	
 		</ul>
 		<!-- 滚动加载 -->
@@ -69,6 +277,7 @@
 </body>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+
 <script>
 var page = 0;
 var is_loading = false;

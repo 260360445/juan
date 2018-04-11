@@ -10,13 +10,13 @@ class GoodController extends ComController {
         $id=I('get.id','');
         //商品详情
         $info = M('goods')
-            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_url,yhj_price,state,ddq_kai')
-            ->where(['id'=>$id,'sta'=>3])
+            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_url,yhj_price,yhj_kl,state,ddq_kai')
+            ->where(['id'=>$id,'state'=>2])
             ->find();
-        if($info['state']== '2'){
-            $this->assign("type",'yes');
-            $this->assign("info",$info);
-        }
+        //精品推荐
+        $store_hot=M('goods')->field('id,title,price,glogo,sell,yhj_price')->where(['tj_sta'=>2])->limit(6)->order('tj_time desc')->select();
+        $this->assign("info",$info);
+        $this->assign("store_hot",$store_hot);
         $this->display();
     }
     /*
@@ -29,32 +29,27 @@ class GoodController extends ComController {
         $order = '';
         $count = 6;
         $limit = $page * $count;
-        if($type == '2'){//特卖
+        if($type == '2'){//咚咚抢
             $model=M('goods');
             $where = ['tm'=>2,'sta'=>3];
             $order = 'tm_time desc';
             $good = $model->field('id,goods_title,goods_logo,price,xfb')->where($where)->order($order)->limit("$limit,$count")->select();
-        }else if($type == '3'){//新品
+        }else if($type == '3'){//超级人气
             $model=M('goods');
-            $where = ['xp'=>2,'sta'=>3];
-            $order = 'xp_time desc';
-            $good = $model->field('id,goods_title,goods_logo,price,xfb')->where($where)->order($order)->limit("$limit,$count")->select();
+            $where = ['state'=>2];
+            $order = 'sell desc,time desc';
+            $good = $model->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')->where($where)->order($order)->limit("$limit,$count")->select();
         }else if($type == '4'){//按分类查找
             $model=M('goods');
             $cid=I('post.cid','');
             $where = ['goods_cate_id'=>$cid,'sta'=>3];
             $order = 'sell desc';
             $good = $model->field('id,goods_title,goods_logo,price,xfb')->where($where)->order($order)->limit("$limit,$count")->select();
-        }else if($type == '5'){//评价
-            $id=I('post.gid','');
-            $good = M('comment')
-                ->field('o.id,o.cont,o.ptime,u.nick_name,u.photo')
-                ->alias('o')
-                ->join('left join __USER_INFOR__ u on o.uid = u.uid')
-                ->where(['o.gid'=>$id])
-                ->limit("$limit,$count")
-                ->order('o.id desc')
-                ->select();
+        }else if($type == '5'){//小编力荐
+            $model=M('goods');
+            $where = ['state'=>2];
+            $order = 'time desc,id desc';
+            $good = $model->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')->where($where)->order($order)->limit("$limit,$count")->select();
         }else if($type == '6'){//搜索
             $seach=I('post.seach','');
             if($seach){
@@ -76,6 +71,11 @@ class GoodController extends ComController {
                 ->order('id desc')
                 ->select();
             }
+        }else if($type == '7'){//小编力荐
+            $model=M('goods');
+            $where = ['gtype'=>2,'state'=>2];
+            $order = 'id desc,sell desc';
+            $good = $model->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')->where($where)->order($order)->limit("$limit,$count")->select();
         }
         $this->ajaxReturn($good);
         exit();
@@ -105,13 +105,6 @@ class GoodController extends ComController {
 
     //咚咚会场
     public function specialsale(){
-      //特卖最热商品
-        $result_hot = M('goods')
-            ->field('id,title,glogo,price,sell,yhj_num,yhj_sy_num')
-            ->where(['zd_ddq'=>2,'state'=>2])
-            ->order('zd_ddq_time desc')
-            ->limit(6)
-            ->select();
         //咚咚
         $where='';
         $time=date("H",time());
@@ -136,16 +129,11 @@ class GoodController extends ComController {
             ->order('ddq_time desc,id desc')
             ->select();
         $this->assign('result',$result);
-        $this->assign('result_hot',$result_hot);
         $this->display();
     }
     //人气
     public function popularity(){
-        $id=I('get.gclass','');
         $where=['state'=>2] ;
-        if($id != ''){
-            $where['goods_cate_id']= $id;
-        }
         //商品详情
         $result = M('goods')
             ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')
@@ -158,11 +146,26 @@ class GoodController extends ComController {
     }
     //新品上架
     public function newgood(){
+        $where=['state'=>2] ;
+        //商品详情
         $result = M('goods')
-            ->field('id,goods_title,goods_logo,price,kucun,sell,comment,xfb')
-            ->where(['xp'=>2,'sta'=>3])
-            ->limit('6')
-            ->order('xp_time desc')
+            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')
+            ->where($where)
+            ->limit(6)
+            ->order('time desc,id desc')
+            ->select();
+        $this->assign('result',$result);
+        $this->display();
+    }
+    //9.9包邮
+    public function jiuby(){
+        $where=['gtype'=>2,'state'=>2];
+        //商品详情
+         $result = M('goods')
+            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')
+            ->where($where)
+            ->limit(6)
+            ->order('id desc,sell desc')
             ->select();
         $this->assign('result',$result);
         $this->display();

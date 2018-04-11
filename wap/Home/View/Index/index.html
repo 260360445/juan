@@ -8,7 +8,7 @@
 <link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/base.css">
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/Wap/css/index/index.css">
-<title>方大商城_离梦想最近的地方</title>
+<title><?php echo $_SESSION['sc']['infor']['name']?></title>
 </head>
 <style type="text/css">
     .icon-link-wrapper{
@@ -95,25 +95,25 @@
         <div class=" icon-link-wrapper" style="height: auto">
             <ul class="icon-url-list clearfix">
                 <li class="icon-xblj">
-                    <a href="/index.php?r=ddq/wap">
+                    <a href="<{:U('Good/specialsale')}>">
                         <i></i>
                         <span>咚咚抢</span>
                     </a>
                 </li>
                 <li class="icon-99by">
-                    <a href="/index.php?r=index/9">
+                    <a href="<{:U('Good/jiuby')}>">
                         <i></i>
                         <span>9.9包邮</span>
                     </a>
                 </li>
                 <li class="icon-rqb">
-                    <a href="/index.php?r=p/wap">
+                    <a href="<{:U('Good/popularity')}>">
                         <i></i>
                         <span>超级人气榜</span>
                     </a>
                 </li>
                 <li class="icon-jpsf">
-                    <a href="/index.php?r=index/r">
+                    <a href="<{:U('Good/newgood')}>">
                         <i></i>
                         <span>小编力荐</span>
                     </a>
@@ -132,8 +132,7 @@
     				<img src="<{$list.glogo}>" alt="">
     				<h4><{$list.title}></h4>
                     <p><i style="border:1px dashed #ff0060;"><{$list.yhj_price}></i></p>
-                    <p><i style="font-size: 16px;">￥<{$list.price}></i></p>
-                    <p><span>销量<{$list.sell}></span></p>
+                    <p><i style="font-size: 16px;">￥<{$list.price}></i><span>销量<{$list.sell}></span></p>
     			</a>
     		</li>
     	</volist>
