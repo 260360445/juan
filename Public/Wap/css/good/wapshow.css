@@ -231,7 +231,6 @@
 	position: absolute;
 	left: 0;
 	top: 2px;
-	background: url(../images/goods_num.png?v=20182301625987) no-repeat;
 	background-size: 100%
 }
 
@@ -448,7 +447,6 @@
 	position: absolute;
 	left: 0;
 	top: 19px;
-	background: url(../images/goods_num.png?v=20182301625987) no-repeat;
 	background-size: 100%
 }
 
@@ -511,7 +509,6 @@
 	line-height: 15px;
 	text-align: center;
 	color: #FFF;
-	background-image: url(../images/coupon-btn.png?v=0830?v=20182301625987);
 	background-position: left center;
 	background-repeat: no-repeat;
 	background-origin: padding-box;
@@ -841,7 +838,6 @@ body,html {
 }
 
 .tuwen-tkl .pic-detail span.pic-detail-btn-span i em {
-	background: url(../images/cms_06.png?v=20182301625987) center center no-repeat;
 	background-size: 100% auto;
 	height: 25px;
 	width: 20px;
@@ -897,7 +893,6 @@ body,html {
 	z-index: 1000003;
 	width: 68px;
 	height: 68px;
-	background: url(../images/cms-img.png?v=20182301625987) -131px -149px no-repeat;
 	background-size: 287px 800px
 }
 
@@ -910,7 +905,6 @@ body,html {
 	z-index: 1000002;
 	top: 70px;
 	width: 215px;
-	background: url(../images/cms-img.png?v=20182301625987) 0 -544px no-repeat #ff7200;
 	background-size: 287px 800px;
 	height: 100px;
 	border-radius: 2px
@@ -924,7 +918,6 @@ body,html {
 	width: 250px;
 	height: 210px;
 	z-index: 1;
-	background: url(../images/cms-img.png?v=20182301625987) 0 -234px no-repeat;
 	background-size: 287px 800px;
 	text-align: center;
 	padding-top: 90px;
@@ -1075,12 +1068,10 @@ body,html {
 }
 
 .jp-full-screen:focus,.jp-play,.jp-play:focus,.jp-repeat:focus,.jp-state-full-screen .jp-full-screen:focus,.jp-state-looped .jp-repeat:focus,.jp-state-playing .jp-play,.jp-state-playing .jp-play:focus,.jp-stop,.jp-stop:focus,.jp-toggles button.jp-full-screen,.jp-toggles button.jp-repeat {
-	background: url(../images/cms_pc_img.png?20170517?v=20182301625987) -5px -356px no-repeat;
 	padding: 0
 }
 
 .jp-gui .jp-mute,.jp-gui .jp-mute:hover,.jp-state-muted .jp-gui .jp-mute,.jp-state-muted .jp-gui .jp-mute:focus,.jp-state-muted .jp-gui .jp-mute:hover,.jp-state-muted .jp-gui .jp-mute:hover:focus,.jp-video .jp-mute:focus {
-	background: url(../images/cms_pc_img.png?20170517?v=20182301625987) -169px -353px no-repeat;
 	padding: 0
 }
 
@@ -1148,7 +1139,6 @@ body,html {
 }
 
 .jp-video-play-icon,.jp-video-play-icon:focus {
-	background: url(../images/cms_pc_img.png?20170517?v=20182301625987) -102px -94px no-repeat;
 	width: 38px;
 	height: 38px;
 	padding: 0;
@@ -1281,7 +1271,6 @@ body,html {
 	position: absolute;
 	left: 0;
 	width: 78px;
-	background: url(../images/cms-img.png?v=09?v=20182301625987) 0 -768px no-repeat;
 	background-size: 287px 800px;
 	height: 26px;
 	top: 13px
@@ -1466,7 +1455,6 @@ body,html {
 }
 
 .buy-icon {
-	background: url(../images/cms-img.png?v=20182301625987)
 }
 
 .buy-wrapper-new {
@@ -1572,12 +1560,10 @@ body,html {
 	display: inline-block;
 	position: relative;
 	z-index: 1;
-	background: url(../images/buy_fx_code.svg?v=20182301625987) center center no-repeat;
 	background-size: 100% 100%
 }
 
 .buy-wrapper-new .buy-cent .buy-wrapper-box a .buy_svg_img {
-	background-image: url(../images/buy_fx_image.svg?v=20182301625987)
 }
 
 .buy-wrapper-new .buy-cent .buy-wrapper-box .cent {
@@ -1812,7 +1798,7 @@ div.buy-pic-box {
 	color: #333;
 	font-size: 14px;
 	line-height: 24px;
-	height: 113px;
+	height: 130px;
 	border-radius: 4px;
 	overflow: hidden
 }
@@ -1881,7 +1867,6 @@ div.buy-pic-box {
 	z-index: 99999;
 	width: 100%;
 	height: 100%;
-	background: url(../images/weixin-msg.png?v=20182301625987) 95% 10px no-repeat rgba(0,0,0,.5);
 	background-size: 60% auto
 }
 
@@ -1890,7 +1875,6 @@ div.buy-copy-img {
 }
 
 .buy-box .buy-msg-bottom {
-	background: url(../images/buy-msg.png?v=20182301625987) center top no-repeat;
 	height: 70px;
 	top: 102%;
 	position: fixed;

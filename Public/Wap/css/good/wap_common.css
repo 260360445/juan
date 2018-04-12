@@ -72,9 +72,6 @@ body {
 	color: #8c8c8c
 }
 
-@font-face {
-	font-family:iconfont;src:url(//at.alicdn.com/t/font_1465972880_677109.eot?v=20182301625987);src:url(//at.alicdn.com/t/font_1465972880_677109.eot?#iefix?v=20182301625987) format('embedded-opentype'),url(//at.alicdn.com/t/font_1465972880_677109.woff?v=20182301625987) format('woff'),url(//at.alicdn.com/t/font_1465972880_677109.ttf?v=20182301625987) format('truetype'),url(//at.alicdn.com/t/font_1465972880_677109.svg#iconfont?v=20182301625987) format('svg')
-}
 
 .main-title .main-logo {
 	font-family: Simhei;
@@ -94,7 +91,6 @@ body {
 .main-title .main-icon {
 	position: relative;
 	z-index: 7;
-	background: url(../images/cms-img.png?t=20180119?v=20182301625987) 0 2px no-repeat;
 	background-size: 287px 800px;
 	width: 28px;
 	height: 28px;
@@ -388,13 +384,11 @@ body {
 }
 
 .wap11 {
-	background-image: url(../images/wap11.png?v=20182301625987);
 	background-size: 90%;
 	width: 59px
 }
 
 .wap11-ks {
-	background-image: url(../images/ssyks.png?v=20182301625987);
 	background-size: 71%;
 	width: 50px
 }
@@ -760,13 +754,11 @@ a.img .video_icon:after {
 }
 
 .img_ks {
-	background-image: url(../images/ssyjx.png?t=123?v=20182301625987);
 	background-size: 70%!important;
 	width: 27%!important
 }
 
 .img_ys {
-	background-image: url(../images/wapdt11.png?t=123?v=20182301625987)
 }
 
 .shuang11 .quan {
@@ -997,7 +989,6 @@ a.img .video_icon:after {
 	border-radius: 50px;
 	width: 20px;
 	height: 20px;
-	background: url(/web/images/close_x.svg?v=20182301625987) center center no-repeat rgba(0,0,0,.15);
 	background-size: 50%;
 	border: 1px solid #fff
 }
@@ -1020,7 +1011,6 @@ a.img .video_icon:after {
 	border-radius: 50px;
 	width: 15px;
 	height: 15px;
-	background: url(/web/images/close_x.svg?v=20182301625987) center center no-repeat rgba(0,0,0,.15);
 	background-size: 50%;
 	border: 1px solid #fff
 }

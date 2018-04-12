@@ -46,37 +46,13 @@ header a.car span{
 	overflow: hidden;
 	border-top: 1px solid #e5e5e5;
 }
-.classify .nav ul{
-	width: 28%;
-	height: 100%;
-	position: fixed;
-	top: 1.55rem;
-	left: 0;
-	float: left;
-	background-color: #fff;
-	overflow-y: auto;
-}
-.classify .nav ul li{
-	padding: 0 .3rem;
-	border-bottom: 1px solid #f2f2f2;
-}
-.classify .nav ul li img{
-	float: left;
-	display: block;
-	width: .466rem;
-	height: .333rem;
-	margin-top: .5rem;
-	display: none;
-}
 .classify .nav ul li p{
 	color: #4d4d4d;
 	font-size: .433rem;
 	line-height: 1.333rem;
 	margin-left: .7rem;
 }
-.classify .nav ul li.active img{
-	display: block;
-}
+
 .classify .nav ul li.active p{
 	color: #ff1b2f;
 }

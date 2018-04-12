@@ -4,18 +4,16 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta content="telephone=no" name="format-detection">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-<title>双眼皮贴隐形自然蕾丝网纱超粘肤色透明无痕防水持久纤维条仙女贴--粉黛惠多多</title>
-<meta name="Keywords" content=",粉黛惠多多">
-<meta name="Description" content="">
-
+<title><{$info.title}></title>
+<meta name="keywords" content="<?php echo $_SESSION['sc']['infor']['keywords']?>">
+<meta name="description" content="<?php echo $_SESSION['sc']['infor']['description']?>">
+<link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
 <link href="__PUBLIC__/Wap/css/good/wap_common.css" rel="stylesheet">
 <link href="__PUBLIC__/Wap/css/good/wapshow.css" rel="stylesheet">
-        <!-- 皮肤 E-->
-<body data-appid="820138" data-in="1">
+<body>
 <div class="main-title clearfix">
     <a href="javascript:window.history.back();" class="main-back"></a>
 </div>
-
 <style>
     .pop-link{
         position: fixed;height: 30px;
@@ -68,22 +66,6 @@
     .wap-feedback span{
         color: #4470c1;
     }
-    .swiper-container .swiper-wrapper.img div{
-        background-size: cover;
-    }
-    .swiper-container .num{
-        position: absolute;bottom: 10px;right: 10px;width: 32px;height: 32px;border-radius: 50%;
-         text-align: center;z-index: 99;
-
-    }
-    .swiper-container .num i{
-        position: absolute;width: 100%;height: 100%;opacity: 0.4;background-color: #000;border-radius: 50%;left: 0;
-        top:0;
-    }
-    .swiper-container .num span{
-        color: #fff;position: relative;z-index: 99; font-size: 12px;
-        font-family: 'PingFangSC-Light',Arial;line-height: 32px;
-    }
     .shoufa-quan{
       font-size: 10px;
       height: 16px;
@@ -121,11 +103,6 @@
 
 <!--大家都在买开始-->
 <!--大家都在买结束-->
-
-<div style="overflow: hidden;width: 0;height: 0;">
-    <img src="https://img.alicdn.com/imgextra/i1/2255795767/TB2ckU9zY4npuFjSZFmXXXl4FXa_!!2255795767.jpg_310x310.jpg">
-    <img src="https://img.alicdn.com/imgextra/i1/2255795767/TB2ckU9zY4npuFjSZFmXXXl4FXa_!!2255795767.jpg_50x50.jpg">
-</div>
     <div class="detail-wrapper detail_style2 img">
             <a href="" class="tb_app">
                 <div class="swiper-container swiper-container-horizontal">
@@ -180,26 +157,45 @@
     <div class="buy-cent">
         <div class="buy-wrapper-box">
             <div class="cent">
-                <a href="javascript:;" onclick="$canvasImage.getCodeShow($('#codeText').val());"><i class="buy_svg_code"></i>通过口令分享</a>
-                <a href="javascript:;" onclick="$canvasImage.getCanvasImage()"><i class="buy_svg_img"></i>通过图片分享</a>
-                <textarea style="display: none;" id="codeText">
-                  <span><{$info.title}></span>
-                  <span>【价格】<{$info.price}>元</span>
-                  <span>【领券】<{$info.yhj_price}></span>
-                  <span>【打开手机淘宝即可查看并下单】<{$info.yhj_kl}></span>
+                <a href="javascript:;" onclick="getShow();"><i class="buy_svg_code"></i>通过口令分享</a>
+                <div style="display: none;" id="codeText">
+                  <div class="buy-box" >
+                    <a href="javascript:closeOpen();" class="close buy-icon"></a>
+                    <div class="buy-box-tab buy-box-tab-bg">复制分享文案</div>
+                    <div class="buy-box-center">
+                      <div class="code-cent">
+                        <div class="cente-text" >
+                            <p class="textarea" id="codeCopy" >
+                              <span><{$info.title}></span><br>
+                              <span>【价格】<{$info.price}>元</span><br>
+                              <span>【领券】<{$info.yhj_price}></span><br>
+                              <span>【打开手机淘宝即可查看并下单】<{$info.yhj_kl}></span>
+                            </p>
+                        </div>
+                        <p class="text">一键复制淘口令,打开手机淘宝下单</p>
+                        <a href="javascript:void(0);" class="buy-btn-copy btncopytext" onclick="copyUrl()">一键复制</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <textarea style="display: none;" id="codetextarea">
+                  <{$info.title}>
+                  【价格】<{$info.price}>元
+                  【领券】<{$info.yhj_price}>
+                  【打开手机淘宝即可查看并下单】<{$info.yhj_kl}>
                 </textarea>
                 <em></em>
             </div>
         </div>
         <ul class="row-s">
             <li class="col-sm-4">
-                <a href="javascript:;" class="buy-text">
+                <a href="javascript:void(0);" class="buy-text">
                     <i class="buy-icon"></i>
                     分享
                 </a>
             </li>
                 <li class="col-sm-6">
-                  <a href="https://uland.taobao.com/coupon/edetail?e=ZKDVFKRD180GQASttHIRqRk%2FFbQ7%2BzcXeE%2FZWGw7M20tePaj0LNp%2Bwx8Fp7DLRa7zSakMyQOmZh3CQkzuplp4b9fwBwwUiql6DF%2F2MLpJMq9GaVAvC2u%2FUBsXx8cnY%2FDoUbDhMrZcjV8R8MoDGscqA%3D%3D&amp;traceId=0bfa318015234266693017559e&amp;activityId=325b177877a749bc840b8b906704482d" class="buy-btn buy-btn-primary">
+                  <a href="<{$info.yhj_url}>" class="buy-btn buy-btn-primary">
                     领券购买</a>
                 </li>
         </ul>
@@ -207,23 +203,43 @@
 </div>
 <div class="buy-wrapper-new-bg" style="display: none;"></div>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
-<script src="__PUBLIC__/Wap/js/good/clipboard.min.js"></script>
-<script src="__PUBLIC__/Wap/js/layer/layer.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Wap/js/good/html2canvas.js"></script>
-<script src="__PUBLIC__/Wap/js/good/cms_detail.js"></script>
+<script src="/Public/Wap/js/layer/layer.js"></script>
+<script type="text/javascript">
+    function copyUrl() {
+        var Url2 = document.getElementById("codetextarea");
+        Url2.select();
+        document.execCommand("Copy");
+        $('.btncopytext').addClass("active").html("复制成功");
+    }
+</script>
 <!-- 新版底部样式e -->
 <script type="text/javascript">
     $(".buy-wrapper-new ul li:eq(0),.buy-wrapper-new-bg").click(function(event) {
         /* Act on the event */
-
         $(".buy-wrapper-new,.buy-wrapper-new-bg").toggleClass("active");
         if($(".buy-wrapper-new").hasClass("active")){
             $(".buy-wrapper-new-bg").fadeIn(300);
         }else{
             $(".buy-wrapper-new-bg").fadeOut(300);
         } 
-
     });
+    function getShow(){
+      $(".buy-wrapper-new").removeClass('active');
+      $(".buy-wrapper-new-bg").removeClass('active');
+      $(".buy-wrapper-new-bg").css('display','none');
+      index=layer.open({
+          type: 1,
+          title: false, //不显示标题
+          closeBtn: 1, //不显示关闭按钮
+          shadeClose: true, //开启遮罩关闭
+          shade: 0.5,
+          skin: "buy-copy buy-taokoulin",
+          content: $("#codeText").html(),
+      })
+    }
+    function closeOpen(){
+      layer.close(index);
+    }
 </script>
 <script>
     $(function(){
@@ -236,12 +252,6 @@
         }else{
             $('.not_clip').show();
             $('.spt_clip').hide();
-        }
-
-        if($('#tkl_val').val()==''){
-
-        }else{
-
         }
     });
 </script>

@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
+use Think\Image;
 class GoodController extends ComController {
     /*
     *商品详情
@@ -91,12 +92,10 @@ class GoodController extends ComController {
     */
     public function allgood(){
         $sonid=I('get.sonid','');
-        $where['goods_cate_id']=$sonid;
-        $where['sta']=3;
         $result = M('goods')
-            ->field('id,goods_title,goods_logo,goods_cate_id,price,xfb')
-            ->where($where)
-            ->limit('10')
+            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')
+            ->where(['goods_cate_id'=>$sonid,'state'=>2])
+            ->limit('6')
             ->order('id desc')
             ->select();
         $this->assign('result',$result);
@@ -174,21 +173,7 @@ class GoodController extends ComController {
         $goods_class = M("goods_class");
         //查询一级分类
         $good_menu = $goods_class->field("goods_class_id,name")->where("state = 2 and pid = 0")->order('sort asc,goods_class_id asc')->select();
-        //查询二级分类
-        $pid='';
-        foreach ($good_menu as $key => $value) {
-            if($key == 0){
-                $pid = $value['goods_class_id'];    
-            }
-        }
-        $goods_cate_list = $goods_class->field("goods_class_id,name")->where(['pid'=>$pid,'state'=>2])->order('sort asc,goods_class_id asc')->select();
         $this->assign('good_menu',$good_menu);
-        $this->assign('goods_cate_list',$goods_cate_list);
         $this->display();
-    }
-    public function ajaxclass(){
-        $cid=I('post.cid','');
-        $goods_cate_list = M("goods_class")->field("goods_class_id,name")->where(['pid'=>$cid,'state'=>2])->order('sort asc,goods_class_id asc')->select();
-        $this->ajaxReturn($goods_cate_list);exit;
     }
 }

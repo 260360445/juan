@@ -22,6 +22,41 @@
 ul li h3{
     -webkit-line-clamp: 1;
 }
+
+.goods_coupon{
+    position: relative;
+    padding: 0 5px;
+    height: 18px;
+    background: #FF9960;
+    border-radius: 2px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #fff;
+}
+.goods_coupon, .ykq{
+    text-align: center;
+    width: 80px;
+}
+.c_l{
+        left: -3px;
+}
+.c_r{
+    right: -3px;
+}
+.clb{
+        position: absolute;
+    width: 6px;
+    background-color: #fff;
+    border-radius: 100%;
+    margin-top: -3px;
+    top: 50%;
+    height: 6px;
+}
+.qunjine{
+    display: inline-block;
+    margin-left: -2px;
+    font-family: Arial;
+}
 </style>
 </head>
 <body>
@@ -31,11 +66,11 @@ ul li h3{
 	<input type='hidden' class='limit' value='<?php echo $k?>'/>
 		<li>
 			<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
-				<img src="__ROOT__/Uploads<{$list['goods_logo']}>" alt="">
+				<img src="<{$list['glogo']}>" alt="">
 				<div>
-					<h3><{$list['goods_title']}></h3>
-					<h4>可用金：<span>￥<i><{$list.price}></i></span></h4>
-					<h5>消费币：<span>￥<i><{$list.xfb}></i></span></h5>
+					<h3><{$list['title']}></h3>
+                    <div class="goods_coupon"><span class="c_l clb"></span><span class="c_r clb"></span><span class="qunjine"><{$list.yhj_price}></span></div>
+					<h5><span>￥<i><{$list.price}></i></span></h5>
 					<p>销量<i><{$list.sell}></i></p>
 				</div>
 			</a>
