@@ -8,6 +8,7 @@
 <link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
 <link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
 <link rel="stylesheet" href="__PUBLIC__/Wap/css/good/product_list.css">
+<link rel="stylesheet" href="__PUBLIC__/Wap/css/temai/sale.css">
 <title>商品列表</title>
 <style>
 .more{
@@ -62,6 +63,7 @@ ul li h3{
 <body>
 	<include file="public:head" />
 	<ul id="pro">
+    <?php if($result){?>
 	<volist name="result" id="list" key="key">	
 	<input type='hidden' class='limit' value='<?php echo $k?>'/>
 		<li>
@@ -76,6 +78,11 @@ ul li h3{
 			</a>
 		</li>
 	</volist>	
+    <?php }else{?>
+         <div class="w_con" id="goods_details" style="display: block;">
+            <img style="display:block;margin:80px auto;" src="__PUBLIC__/Home/static/img/zanwupingjia.png">
+        </div>
+    <?php }?>
 	</ul>
 	<!-- 滚动加载 -->
     <?php if(!empty($result)){?>
@@ -84,6 +91,7 @@ ul li h3{
         </div>
     <?php }?>
     <!-- 滚动加载 -->
+    <include file="public:foot" />
 </body>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
@@ -125,13 +133,15 @@ $(function(){
                     is_loading = false;
                     var li = ""
                     for (var i = 0; i < data.length; i++) {
+                    
+
                     	li +='<li>';
 						li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
-							li +='<img src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
+							li +='<img src="'+data[i]['glogo']+'" alt="">';
 							li +='<div>';
-								li +='<h3>'+data[i]['goods_title']+'</h3>';
-								li +='<h4>可用金：<span>￥<i>'+data[i]['price']+'</i></span></h4>';
-								li +='<h5>消费币：<span>￥<i>'+data[i]['xfb']+'</i></span></h5>';
+								li +='<h3>'+data[i]['title']+'</h3>';
+								li +='<div class="goods_coupon"><span class="c_l clb"></span><span class="c_r clb"></span><span class="qunjine">'+data[i]['yhj_price']+'</span></div>';
+								li +='<h5><span>￥<i>'+data[i]['price']+'</i></span></h5>';
 								li +='<p>销量<i><{$list.sell}></i></p>';
 							li +='</div>';
 						li +='</a>';

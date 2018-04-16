@@ -14,10 +14,9 @@
 <link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/goods.min.css"></link>
 <link rel="stylesheet" type="text/css" href="/Public/Home/static/min.css/css/front/new_index.min.css"></link>
 <script type="text/javascript" src="/Public/Home/static/js/uaredirect.js"></script>
-
-<title>领卷卷_领卷购物 实惠 省钱</title>
+<title><?php echo $_SESSION['sc']['infor']['name']?></title>
 <script type="text/javascript">
-	//uaredirect("/wap.php/Home/Index/index","");
+	uaredirect("/wap.php","");
 </script>
 <style>
 	

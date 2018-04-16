@@ -35,4 +35,26 @@
 </body>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
+<script type="text/javascript">
+function seach(){
+    var search = $('#keyword').val();  
+    if(search){
+        window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+search+"')}>";
+    }else{
+        window.location.href="<{:U('Seach/seach')}>";
+    }   
+}
+$("#keyword").on('keypress',function(e) {  
+        var keycode = e.keyCode;  
+        var search = $('#keyword').val();  
+        if(keycode=='13') {  
+            //alert(searchName);
+            if(search){
+                window.location.href="<{:U(MODULE_NAME.'/Seach/seach/query/"+search+"')}>";
+            }else{
+                window.location.href="<{:U('Seach/seach')}>";
+            }    
+        }  
+ });
+</script>
 </html>

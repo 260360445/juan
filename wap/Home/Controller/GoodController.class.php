@@ -43,9 +43,9 @@ class GoodController extends ComController {
         }else if($type == '4'){//按分类查找
             $model=M('goods');
             $cid=I('post.cid','');
-            $where = ['goods_cate_id'=>$cid,'sta'=>3];
+            $where = ['goods_cate_id'=>$cid,'state'=>2];
             $order = 'sell desc';
-            $good = $model->field('id,goods_title,goods_logo,price,xfb')->where($where)->order($order)->limit("$limit,$count")->select();
+            $good = $model->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')->where($where)->order($order)->limit("$limit,$count")->select();
         }else if($type == '5'){//小编力荐
             $model=M('goods');
             $where = ['state'=>2];
@@ -54,25 +54,17 @@ class GoodController extends ComController {
         }else if($type == '6'){//搜索
             $seach=I('post.seach','');
             if($seach){
-                $where['goods_title'] = ['like',"%$seach%"];
+                $where['title'] = ['like',"%$seach%"];
             }else{
                 $where = '1=1';
             }
             $good = M('goods')
-            ->field('id,goods_title,goods_logo,goods_cate_id,price,xfb')
+            ->field('id,title,price,glogo,gurl,store,sell,yhj_num,yhj_sy_num,yhj_url,yhj_price,state,time')
             ->where($where)
             ->limit("$limit,$count")
             ->order('id desc')
             ->select();
-            if(empty($good)){
-                $good = M('goods')
-                ->field('id,goods_title,goods_logo,goods_cate_id,price,xfb')
-                ->where('1=1')
-                ->limit("$limit,$count")
-                ->order('id desc')
-                ->select();
-            }
-        }else if($type == '7'){//小编力荐
+        }else if($type == '7'){//9.9包邮
             $model=M('goods');
             $where = ['gtype'=>2,'state'=>2];
             $order = 'id desc,sell desc';
@@ -124,11 +116,28 @@ class GoodController extends ComController {
         $result = M('goods')
             ->field('id,title,price,glogo,sell,yhj_num,yhj_sy_num,yhj_price,ddq_kai')
             ->where($where)
-            ->limit('6')
+            ->limit('18')
             ->order('ddq_time desc,id desc')
             ->select();
         $this->assign('result',$result);
+        $this->assign('result_hot',$result_hot);
         $this->display();
+    }
+    //点击切换咚咚抢
+    public function ajaxDdq(){
+        $time = I('post.time','');
+        $result = M('goods')
+            ->field('id,title,price,glogo,sell,yhj_num,yhj_sy_num,yhj_price,ddq_kai')
+            ->where(['ddq'=>2,'state'=>2,'ddq_kai'=>$time])
+            ->limit('18')
+            ->order('ddq_time desc,id desc')
+            ->select();
+        if($result){
+            $result=$result;
+        }else{
+            $result='no';
+        }
+        $this->ajaxReturn($result);
     }
     //人气
     public function popularity(){

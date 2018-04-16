@@ -8,17 +8,8 @@
 <link rel="shortcut icon" href="/<?php echo $_SESSION['sc']['infor']['ico']?>" type="image/x-icon" /> 
 <link rel="stylesheet" href="__PUBLIC__/Wap/css/base.css">
 <link rel="stylesheet" href="__PUBLIC__/Wap/css/temai/sale.css">
-<title>特卖会场</title>
+<title>咚咚抢会场</title>
 <style>
-.more{
-    width: 100%;
-    color: #ddd;
-    margin: 10px 0;
-    border-radius: 2px;
-    font-size: 20px;
-    text-align: center; 
-    display: none;
-}
 .wap-banner{
 	width: 100%;
     height: 130px;
@@ -33,35 +24,33 @@
 	z-index: 109;
 }
 .swiper-container{
-	    height: 100%;
+	height: 100%;
     width: 100%;
     position: relative;
-}
-.swiper-container{
 	margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
     z-index: 1;
 }
 .swiper-wrapper{
-	    z-index: 1;
-	    display: flex;
-	    box-sizing: content-box;
+    z-index: 1;
+    display: flex;
+    box-sizing: content-box;
 }
 .swiper-slide, .swiper-wrapper{
-	    width: 100%;
+	width: 100%;
     height: 100%;
     position: relative;
 }
 .swiper-slide{
-	    font-size: .7em;
-	        padding-top: 11px;
+	font-size: .7em;
+	padding-top: 11px;
     text-align: center;
     color: #fff!important;
     font-family: Arial;
     vertical-align: middle;
     height: 100%;
     position: relative;
+    box-sizing: border-box;
 }
 .swiper-slide p{
 	font-size: 12px;
@@ -201,6 +190,21 @@
     text-align: center;
     border-radius: 2px;
 }
+.active:after{
+        content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: block;
+    height: 0;
+    width: 0;
+    margin: auto;
+    border-top: 7px solid #dd2727;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+}
 </style>
 </head>
 <body>
@@ -212,143 +216,227 @@
 <!--    <span class="perple"><i></i></span>-->
 	    <div class="swiper-container swiper-container-horizontal">
 	        <div class="swiper-wrapper">
-
-	            <a href="javascript:;" class="swiper-slide active" data-type="1013" data-check="0" data-types="1" >
-	                9:00<p>已开抢</p>
+                <?php 
+                    $time9=date("H",time());
+                    $starttime9=date("H",mktime(9));
+                    $endtime9=date("H",mktime(12));
+                    //print_r($time9.$endtime9);
+                ?>
+                <?php if($time9 >= $starttime9 && $time9 < 12){?>
+                    <a href="javascript:void(0);" data-time="9" class="swiper-slide active">
+                <?php }elseif($time9 >= $endtime9){?>
+                    <a href="javascript:void(0);" data-time="9" class="swiper-slide">
+                <?php }else if($time9 < 9){?>
+                    <a href="javascript:void(0);" data-time="9" class="swiper-slide active">
+                <?php }?>
+	                9:00<p>
+                    <?php if($time9 < $starttime9){?>
+                        即将开始
+                    <?php }else if($time9 >= $starttime9 && $starttime9 < $endtime9 && $time9 < $endtime9){?>
+                        疯抢中
+                    <?php }else if($time9 >= $endtime9){?>
+                        已开抢
+                    <?php }?>
+                    </p>
 	            </a>
-	            <a href="javascript:;" class="swiper-slide" data-type="1015" data-check="0" data-types="1" >
-	                12:00<p>已开抢</p>
+                <?php
+                    $time12=date('H',time());
+                    $starttime12=date('H',mktime(12));
+                    $endtime12=date('H',mktime(15));
+                ?>
+                <?php if($time12 >= $starttime12 &&  $time12 < 15 ){?>
+                    <a href="javascript:void(0);" data-time="12" class="swiper-slide active">
+                <?php }else{?>
+                    <a href="javascript:void(0);" data-time="12" class="swiper-slide">
+                <?php }?>
+	                12:00<p>
+                    <?php if($time12 < $starttime12){?>
+                        即将开始
+                    <?php }else if($time12 >= $starttime12 && $starttime12 < $endtime12 && $time12 < $endtime12){?>
+                        疯抢中
+                    <?php }else if($time12 >= $endtime12){?>
+                        已开抢
+                    <?php }?>
+                    </p>
 	            </a>
-	            <a href="javascript:;" class="swiper-slide" data-type="1017" data-check="0" data-types="1" >
-	                15:00<p>已开抢</p>
+                <?php
+                    $time15=date("H",time());
+                    $starttime15=date("H",mktime(15));
+                    $endtime15=date("H",mktime(18));
+                ?>
+                <?php if($time15 >= $starttime15 && $time15 < 18 ){?>
+                    <a href="javascript:void(0);" data-time="15" class="swiper-slide active">
+                <?php }else{?>
+                    <a href="javascript:void(0);" data-time="15" class="swiper-slide">
+                <?php }?>
+	                15:00<p>
+                    <?php if($time15 < $starttime15){?>
+                        即将开始
+                    <?php }else if($time15 >= $starttime15 && $starttime15 < $endtime15 && $time15 < $endtime15){?>
+                        疯抢中
+                    <?php }else if($time15 >= $endtime15){?>
+                        已开抢
+                    <?php }?>   
+                    </p>
 	            </a>
-	            <a href="javascript:;" class="swiper-slide" data-type="1019" data-check="0" data-types="1" >
-	                18:00<p>已开抢</p>
+                <?php 
+                    $time18=date("H",time());
+                    $starttime18=date("H",mktime(18));
+                    $endtime18=date("H",mktime(21));
+                ?>
+                <?php if($time18 >= $starttime18 && $time18 < 21 ){?>
+                    <a href="javascript:void(0);" data-time="18" class="swiper-slide active">
+                <?php }else{?>
+                    <a href="javascript:void(0);" data-time="18" class="swiper-slide">
+                <?php }?>
+	                18:00<p>
+                    <?php if($time18 < $starttime18){?>
+                        即将开始
+                    <?php }else if($time18 >= $starttime18 && $starttime18 < $endtime18 && $time18 < $endtime18){?>
+                        疯抢中
+                    <?php }else if($time18 >= $endtime18){?>
+                        已开抢
+                    <?php }?> 
+                    </p>
 	            </a>
-	            <a href="javascript:;" class="swiper-slide" data-type="1020" data-check="0" data-types="1" >
-	                21:00<p>已开抢</p>
+                <?php
+                    $time21=date("H",time());
+                    $starttime21=date("H",mktime(21));
+                    $endtime21=date("H",mktime(23));
+                ?> 
+                <?php if($time21 >= $starttime21 && $time21 < 24){?>
+                    <a href="javascript:void(0);" data-time="21" class="swiper-slide active">
+                <?php }else{?>
+                    <a href="javascript:void(0);" data-time="21" class="swiper-slide">
+                <?php }?>
+	                21:00<p>
+                    <?php if($time21 < $starttime21){?>
+                        即将开始
+                    <?php }else if($time21 >= $starttime21 && $starttime21 < $endtime21 && $time21 < $endtime21){?>
+                        疯抢中
+                    <?php }else if($time21 >= $endtime21){?>
+                        即将开始
+                    <?php }?>
+                    </p>
 	            </a>
 	        </div>
 	    </div>
 	</div>
-	<div class="sale_con">
-		
-		<ul id="pro">
+	<div class="sale_con">		
+		<ul id="getAjaxArr">
+        <?php if($result){?>
 		<volist name="result" id="list" key="key">
-			<input type='hidden' class='limit' value='<?php echo $k?>'/>
 			<li>
-				<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>">
-					<div class="gl-img">
-						<img src="<{$list['glogo']}>" alt="">
-					</div>
-
-					<div class="gl-content">
-			            <p class="glc-title"><{$list.title}></p>
-			            <img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">
-			            <div class="glc-zdt">
-			                <div class="goods_coupon">
-				                <span class="c_l clb"></span>
-				                <span class="c_r clb"></span>
-				                <span class="qunjine"><{$list.yhj_price}></span>
-			                </div>
-                            <span class="zsz">折上折</span>
-                            <p class="hasq">已抢<span><{$list.sell}></span>件</p>
-			            </div>
-			            <div class="cf gl-bot">
-			                <p class="glc-price">￥ <span class="priceNum"><{$list.price}></span></p>
-			                <div class="glc-btn">马上抢</div>
-			            </div>
-			        </div>
-				</a>
+				<div class="gl-img">
+					<a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><img src="<{$list['glogo']}>" alt=""></a>
+				</div>
+				<div class="gl-content">
+		            <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><p class="glc-title"><{$list.title}></p></a>
+		            <img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">
+		            <div class="glc-zdt">
+		                <div class="goods_coupon">
+			                <span class="c_l clb"></span>
+			                <span class="c_r clb"></span>
+			                <span class="qunjine"><{$list.yhj_price}></span>
+		                </div>
+                        <?php 
+                            $time=date("H",time());
+                            $starttime=date("H",mktime($list['ddq_kai']));
+                            if($time >= $starttime){
+                        ?>
+                        <p class="hasq">已抢<span><?php $sell=$list['yhj_num']-$list['yhj_sy_num'];echo $sell;?></span>件</p>
+                        <?php }else{?>
+                            <p class="hasq"><span>{$list['ddq_kai']}>:00 准时开抢</span></p>
+                        <?php }?>
+		            </div>
+		            <div class="cf gl-bot">
+		                <p class="glc-price">￥ <span class="priceNum"><{$list.price}></span></p>
+                        <?php 
+                            $time=date("H",time());
+                            $starttime=date("H",mktime($list['ddq_kai']));
+                            if($time >= $starttime){
+                        ?>
+		                    <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><div class="glc-btn">马上抢</div></a>
+                        <?php }else{?>
+                            <a href="<{:U('Good/goodlist',['id'=>$list['id'],'t'=>ts])}>"><div class="glc-btn" style="background:#D89750;">即将开始</div></a>
+                        <?php }?>
+		            </div>
+		        </div>
 				<font class="font"></font>
 			</li>
-		
-		</volist>	
+		</volist>
+        <?php }else{?>
+            <li class="w_latest goods3203_53996 " id="noneha" style="margin:0 40%;text-align:center;border:none;">无数据</li>
+        <?php }?>	
 		</ul>
-		<!-- 滚动加载 -->
-        <?php if(!empty($result)){?>
-	        <div class="more" style="width:100%;height:30px;">
-	           <img alt="loading" src="__PUBLIC__/Wap/images/loading2.gif" style="height:30px">
-	        </div>
-        <?php }?>
-        <!-- 滚动加载 -->
 	</div>
 	<include file="public:foot" />
 </body>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Wap/js/base.js"></script>
-
-<script>
-var page = 0;
-var is_loading = false;
-$(function(){
-//滚动加载
-    var stop = true;
-    var start = $('#pro li:last .limit').val();
-    if(start > 6){
-    	$(".more").show();
-    }
-    $(window).scroll(function () {
-        if ((screen.height + $(window).scrollTop()) >= $(document).height()) {
-            if (stop == true) {
-                stop = false;
-                $(".more").show();
-                if(!is_loading){
-                    more();
-                }
-            };  
-        }
-    });
-    function more(){
-        is_loading = true;
-        var url = "";
-        var ApiUrl =  "<{:U('Good/goodpage')}>";
-        page++;
+<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
+<script type="text/javascript">
+    $('.swiper-wrapper .swiper-slide').click(function(){
+        var time = $(this).data('time');
+        var url = "<{:U('Good/ajaxDdq')}>";
+        $(this).addClass('active').siblings('.swiper-slide').removeClass('active');
         $.ajax({
-            url:ApiUrl,
-            type: 'POST',
-            dataType: 'JSON',
-            data:{page:page,type:2},
-            success:function(data){
-                if (data == '') {
-                    $('.more').text('没有更多商品了');
+            type : 'post',
+            url : url,
+            data : {time:time},
+            error : function () {
+                layer.open({
+                    content: '网络故障，请稍后重试!'
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+                return false;
+            },
+            success : function (responses) {
+                var html='';
+                if (responses != 'no'){
+                    $.each(responses,function(k,v){
+                        html+='<li>';
+                            html+='<div class="gl-img">';
+                                html+='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+v['id']+'/t/ts")}>">';
+                                   html+=' <img src="'+v['glogo']+'" >';
+                                html+='</a>';
+                            html+='</div>';
+                            html+='<div class="gl-content">';
+                               html+=' <a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+v['id']+'/t/ts")}>"><p class="glc-title">'+v['title']+'</p></a>';
+                                html+='<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">';
+                                html+='<div class="glc-zdt">';
+                                    html+='<div class="goods_coupon">';
+                                        html+='<span class="c_l clb"></span>';
+                                        html+='<span class="c_r clb"></span>';
+                                        html+='<span class="qunjine">'+v['yhj_price']+'</span>';
+                                    html+='</div>';
+                                    var sell=v['yhj_num']-v['yhj_sy_num'];
+                                    if(time >= v['ddq_kai']){
+                                        html+='<p class="hasq">已抢<span>'+sell+'</span>件</p>';
+                                    }else{
+                                        html+='<p class="hasq"><span>'+v['ddq_kai']+':00 准时开抢</span></p>';
+                                    }
+                                html+='</div>';
+                                html+='<div class="cf gl-bot">';
+                                    html+='<p class="glc-price">￥ <span class="priceNum">'+v['price']+'</span></p>';
+                                    var times=<?php echo date("H",time())?>;
+                                    if(times >= v['ddq_kai']){
+                                        html+='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+v['id']+'/t/ts")}>"><div class="glc-btn">马上抢</div></a>';
+                                    }else{
+                                        html+='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+v['id']+'/t/ts")}>"><div class="glc-btn" style="background:#D89750;">即将开始</div></a>';
+                                    }
+                                html+='</div>';
+                            html+='</div>';
+                            html+='<font class="font"></font>';
+                        html+='</li>';
+                    })
                 }else{
-                    is_loading = false;
-                    var li = ""
-                    for (var i = 0; i < data.length; i++) {
-                        if(i%2 === 1){
-                        	li +='<li>';
-							li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
-							li +='<img class="shangpin" src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
-							li +='<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">';
-								li +='<h3>可用金：<i>￥'+data[i]['price']+'</i></h3>';
-								li +='<h3>消费币：<i>￥'+data[i]['xfb']+'</i></h3>';
-								li +='<p>'+data[i]['goods_title']+'</p>';
-								li +='<button type="button">立即购买</button>';
-							li +='</a>';
-							li +='<span></span>';
-	                        li +='</li>';
-                        }else{
-                        	li +='<li class="right">';
-							li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
-							li +='<img class="shangpin" src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
-							li +='<img class="renqi" src="__PUBLIC__/Wap/images/temai/renqi.png" alt="">';
-								li +='<h3>可用金：<i>￥'+data[i]['price']+'</i></h3>';
-								li +='<h3>消费币：<i>￥'+data[i]['xfb']+'</i></h3>';
-								li +='<p>'+data[i]['goods_title']+'</p>';
-								li +='<button type="button">立即购买</button>';
-							li +='</a>';
-							li +='<span></span>';
-	                        li +='</li>';
-                        }
-                    };
-                    $('#pro').append(li);
+                    html = '<li style="margin:0 4%;text-align:center;border:none;color: #999;font-size: 16px;">暂无数据</li>';
                 }
-                stop = true;
+                $('#getAjaxArr').html(html);
             }
-        })
-    }
-//滚动加载结束
-})
+        });
+    })
 </script>
 </html>

@@ -104,19 +104,17 @@
 <!--大家都在买开始-->
 <!--大家都在买结束-->
     <div class="detail-wrapper detail_style2 img">
-            <a href="" class="tb_app">
-                <div class="swiper-container swiper-container-horizontal">
-                    <div class="swiper-wrapper img" style="height: 414px;">
-                        <img src="<{$info.glogo}>">
-                    </div>
-                </div>
-                <!--2淘抢购 3聚划算-->
-                <div data-gid="7052030" class="title-wrapper clearfix">
-                    <!-- 咚咚抢 -->
-                  <span class="tmall"></span>
-                  <{$info.title}>
-                </div>
-            </a>
+        <div class="swiper-container swiper-container-horizontal">
+            <div class="swiper-wrapper img" style="height: 414px;">
+                <img src="<{$info.glogo}>">
+            </div>
+        </div>
+        <!--2淘抢购 3聚划算-->
+        <div data-gid="7052030" class="title-wrapper clearfix">
+            <!-- 咚咚抢 -->
+          <span class="tmall"></span>
+          <{$info.title}>
+        </div>
         <div class="goods-jq clearfix">
             <div class="goods-price fl"><b><i>￥</i><{$info.price}></b></div>
             <div class="goods-quan shoufa-quan fl"><span>券</span><b><{$info.yhj_price}></b></div>
@@ -195,8 +193,19 @@
                 </a>
             </li>
                 <li class="col-sm-6">
+                <?php $t=$_GET['t']; if($t == 'ts'){?>
+                  <?php 
+                      $time=date('H',time());
+                      if($time >= $info['ddq_kai']){
+                  ?>
+                       <a href="<{$info.yhj_url}>" class="buy-btn buy-btn-primary">领券购买</a>
+                  <?php }else{?>
+                       <a href="javascript:void(0);" class="buy-btn buy-btn-primary" style="background: #ccc;color: #fff;"><{$info.ddq_kai}>：00 准时开抢</a>
+                  <?php }?>
+                <?php }else if($t == 'ls'){?>
                   <a href="<{$info.yhj_url}>" class="buy-btn buy-btn-primary">
                     领券购买</a>
+                <?php }?>
                 </li>
         </ul>
     </div>

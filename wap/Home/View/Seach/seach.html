@@ -30,11 +30,11 @@ ul li h3{
 	<volist name="result" id="list" key="key">	
 		<li>
 			<a href="<{:U('Good/goodlist',['id'=>$list['id']])}>">
-				<img src="__ROOT__/Uploads<{$list['goods_logo']}>" alt="">
+				<img src="<{$list['glogo']}>" alt="">
 				<div>
-					<h3><{$list['goods_title']}></h3>
-					<h4>可用金：<span>￥<i><{$list.price}></i></span></h4>
-					<h5>消费币：<span>￥<i><{$list.xfb}></i></span></h5>
+					<h3><{$list['title']}></h3>
+					<h4><span><i style="border:1px dashed #ff0060;font-size: .3rem;"><{$list.yhj_price}></i></span></h4>
+					<h5><span>￥<i><{$list.price}></i></span></h5>
 					<p>销量<i><{$list.sell}></i></p>
 				</div>
 			</a>
@@ -88,14 +88,15 @@ $(function(){
                 }else{
                     is_loading = false;
                     var li = ""
+                    
                     for (var i = 0; i < data.length; i++) {
                     	li +='<li>';
 						li +='<a href="<{:U(MODULE_NAME."/Good/goodlist/id/'+data[i]['id']+'")}>">';
-							li +='<img src="__ROOT__/Uploads'+data[i]['goods_logo']+'" alt="">';
+							li +='<img src="'+data[i]['glogo']+'" alt="">';
 							li +='<div>';
-								li +='<h3>'+data[i]['goods_title']+'</h3>';
-								li +='<h4>可用金：<span>￥<i>'+data[i]['price']+'</i></span></h4>';
-								li +='<h5>消费币：<span>￥<i>'+data[i]['xfb']+'</i></span></h5>';
+								li +='<h3>'+data[i]['title']+'</h3>';
+								li +='<h4><span><i style="border:1px dashed #ff0060;font-size: .3rem;">'+data[i]['yhj_price']+'</i></span></h4>';
+								li +='<h5>消费币：<span>￥<i>'+data[i]['price']+'</i></span></h5>';
 								li +='<p>销量<i><{$list.sell}></i></p>';
 							li +='</div>';
 						li +='</a>';

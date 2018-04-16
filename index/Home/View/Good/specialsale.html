@@ -281,9 +281,9 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                     <?php
                         $time12=date('H',time());
                         $starttime12=date('H',mktime(12));
-                        $endtime12=date('H',mktime(14));
+                        $endtime12=date('H',mktime(15));
                     ?>
-                    <?php if($time12 >= $starttime12 &&  $time12 < 14 ){?>
+                    <?php if($time12 >= $starttime12 &&  $time12 < 15 ){?>
                         <div class="tab active" data-time="12" data-index="1" data-countdown-time="" data-type="12" data-status="done">
                     <?php }else{?>
                         <div class="tab" data-time="12" data-index="1" data-countdown-time="" data-type="12" data-status="done">
@@ -351,7 +351,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                         <?php }else if($time21 >= $starttime21 && $starttime21 < $endtime21 && $time21 < $endtime21){?>
                             <div class="text">疯抢中</div>
                         <?php }else if($time21 >= $endtime21){?>
-                            <div class="text">即将开始1</div>
+                            <div class="text">即将开始</div>
                         <?php }?>
                     </div> 
                 </div>
@@ -478,6 +478,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
 <!-- 引入底部 -->
 <script type="text/javascript" src="__PUBLIC__/Home/static/js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Home/static/min.js/js/include/footer_header_new.min.js"></script>
+<script src="__PUBLIC__/Admin/javascripts/layer/layer.js"></script>
 <script type="text/javascript">
     $('.tabs .tab').click(function  () {
         var time = $(this).data('time');
@@ -524,7 +525,7 @@ background:url(/Public/Home/static/images/wj.jpg) no-repeat center center;
                         html+='</li>';
                     })
                 }else{
-                    html = '<li class="w_latest goods3203_53996 " id="noneha" style="margin:0 40%;text-align:center;border:none;">无数据</li>';
+                    html = '<li class="w_latest goods3203_53996 " id="noneha" style="margin:0 40%;text-align:center;border:none;">暂无数据</li>';
                 }
                 $('#getAjaxArr').html(html);
             }
